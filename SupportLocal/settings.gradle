@@ -1,0 +1,3 @@
+rootProject.name = 'SupportLocal'
+
+includeFlat 'JPASupportLocal'
