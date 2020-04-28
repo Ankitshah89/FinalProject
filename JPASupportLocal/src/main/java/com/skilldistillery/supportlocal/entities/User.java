@@ -69,11 +69,6 @@ public class User {
 	@OneToMany(mappedBy="manager")
 	private List<Business> businesses;
 	
-	
-	@JsonIgnore
-	@OneToMany(mappedBy="user")
-	private List<ArticleComment> articleComments;
-	
 
 	@ManyToMany
 	@JoinTable(name = "user_favourite_business",
@@ -289,8 +284,7 @@ public class User {
 		this.businesses = businesses;
 	}
 
-<<<<<<< HEAD
-=======
+
 	public List<Business> getFavoriteBusinesses() {
 		return favoriteBusinesses;
 	}
@@ -307,7 +301,7 @@ public class User {
 		this.preferences = preferences;
 	}
 
->>>>>>> 96ecc84219ad5825d8455aa8036f09a28e58f5a1
+
 	public List<ArticleComment> getArticleComments() {
 		return articleComments;
 	}
