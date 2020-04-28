@@ -36,7 +36,7 @@ public class User {
 	
 	private String phone;
 	
-	@Column(name = "create_at")
+	@Column(name = "created_at")
 	private LocalDate createdAt;
 	
 	private boolean active;

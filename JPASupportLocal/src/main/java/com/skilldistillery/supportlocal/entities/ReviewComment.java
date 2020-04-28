@@ -9,36 +9,38 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+@Table(name="review_comment")
 @Entity
 public class ReviewComment {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@ManyToOne
-	@JoinColumn(name="review_id")
+	@JoinColumn(name = "review_id")
 	@JsonIgnore
 	private Review review;
-	
+
 	@ManyToOne
-	@JoinColumn(name="user_id")
+	@JoinColumn(name = "user_id")
 	@JsonIgnore
 	private User user;
-	
+
 	private String content;
-	
+
 	@Column(name = "create_date")
 	private LocalDate createdAt;
 	
-//	@ManyToOne
-//	@JoinColumn(name="user_id")
-//	private 
 	
-	
+	@ManyToOne
+	@JoinColumn(name = "inreply_to_id")
+	private ReviewComment parentComment;
+
 	/////////////////
 
 	public int getId() {
@@ -145,8 +147,13 @@ public class ReviewComment {
 	public ReviewComment() {
 		super();
 	}
-	
-	
-	
+
+	public ReviewComment getParentComment() {
+		return parentComment;
+	}
+
+	public void setParentComment(ReviewComment parentComment) {
+		this.parentComment = parentComment;
+	}
 
 }
