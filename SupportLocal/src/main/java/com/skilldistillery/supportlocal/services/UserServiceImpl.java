@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
 
 		Optional<User> userOpt = userRepo.findById(user.getId());
 
-		if (userAdmin.getRole().equals("admin")) {
+		if (userAdmin.getRole().equals("Admin")) {
 			if (userOpt.isPresent()) {
 				user.setActive(user.isActive());
 
