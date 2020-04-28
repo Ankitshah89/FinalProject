@@ -30,7 +30,7 @@ public class ArticleComment {
 	@Column(name="inreply_to_id")
 	private int inReplyToId;
 	
-	@Column(name="usear_id")
+	@Column(name="user_id")
 	private int userId;
 	
 	// M e t h o d s
