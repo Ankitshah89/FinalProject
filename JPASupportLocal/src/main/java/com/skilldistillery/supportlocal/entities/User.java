@@ -19,7 +19,6 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-
 @Entity
 public class User {
 	
@@ -51,10 +50,6 @@ public class User {
 	@JsonIgnore
 	@OneToMany(mappedBy="user")
 	private List<Review> reviews;
-	
-	@JsonIgnore
-	@OneToMany(mappedBy="user")
-	private List<ArticleComment> articleComments;
 	
 	
 	@JsonIgnore
@@ -289,8 +284,6 @@ public class User {
 		this.businesses = businesses;
 	}
 
-<<<<<<< HEAD
-=======
 	public List<Business> getFavoriteBusinesses() {
 		return favoriteBusinesses;
 	}
@@ -307,7 +300,6 @@ public class User {
 		this.preferences = preferences;
 	}
 
->>>>>>> 96ecc84219ad5825d8455aa8036f09a28e58f5a1
 	public List<ArticleComment> getArticleComments() {
 		return articleComments;
 	}
