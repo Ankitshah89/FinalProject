@@ -2,6 +2,8 @@ package com.skilldistillery.supportlocal.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -46,6 +48,21 @@ class AddressTest {
 	void test() {
 		assertNotNull(address);
 		assertEquals("123 Street", address.getStreet());
+		assertNull(address.getStreet2());
+		assertEquals("Centennail", address.getCity());
+		assertEquals("CO", address.getState());
+		assertEquals("80112", address.getPostalCode());
+		assertEquals("USA", address.getCountry());
 	}
-
+	
+	@Test
+	@DisplayName("Address Test Relational Mapping between Address/Business")
+	void test2() {
+		assertEquals("Mount Rushmore", address.getBusiness().getName());
+		assertEquals("Rock climbing", address.getBusiness().getDescription());
+		assertEquals("123456789", address.getBusiness().getPhone());
+		assertTrue(address.getBusiness().isActive());
+		assertEquals(1,address.getBusiness().getManager().getId());
+	}
+	
 }
