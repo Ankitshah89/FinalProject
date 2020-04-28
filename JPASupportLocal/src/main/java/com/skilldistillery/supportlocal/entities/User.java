@@ -50,6 +50,10 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private List<ReviewComment> reviewComments;
 	
+	@JsonIgnore
+	@OneToMany(mappedBy="user")
+	private List<Article> articles; 
+	
 	
 	////////////
 	
@@ -195,7 +199,8 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
 				+ ", password=" + password + ", role=" + role + ", phone=" + phone + ", createdAt=" + createdAt
-				+ ", active=" + active + "]";
+				+ ", active=" + active + ", reviews=" + reviews + ", reviewComments=" + reviewComments + ", articles="
+				+ articles + "]";
 	}
 
 	public User(int id, String firstName, String lastName, String email, String password, Role role, String phone,
@@ -230,6 +235,14 @@ public class User {
 
 	public void setReviewComments(List<ReviewComment> reviewComments) {
 		this.reviewComments = reviewComments;
+	}
+
+	public List<Article> getArticles() {
+		return articles;
+	}
+
+	public void setArticles(List<Article> articles) {
+		this.articles = articles;
 	}
 	
 	

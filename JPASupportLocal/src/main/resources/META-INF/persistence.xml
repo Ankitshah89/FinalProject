@@ -10,6 +10,8 @@
     
     <!-- List entities here -->
     <class>com.skilldistillery.supportlocal.entities.User</class>
+    <class>com.skilldistillery.supportlocal.entities.Article</class>
+    <class>com.skilldistillery.supportlocal.entities.ArticleComment</class> 
 
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/supportlocaldb?useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=MST" />
