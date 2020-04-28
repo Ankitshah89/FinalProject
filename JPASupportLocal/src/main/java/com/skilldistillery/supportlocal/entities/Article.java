@@ -1,6 +1,7 @@
 package com.skilldistillery.supportlocal.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -31,17 +33,30 @@ public class Article {
 	private String title;
 
 	private String content;
-
-//	@ManyToOne
-//	@Column(name="business_id")
-//	private Business business;
 	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name="business_id")
+	private Business business;
+	
+	public List<ArticleComment> getArticleComments() {
+		return articleComments;
+	}
+
+	public void setArticleComments(List<ArticleComment> articleComments) {
+		this.articleComments = articleComments;
+	}
+
 	@Column(name="create_at")
 	@CreationTimestamp
 	private LocalDateTime createAt;
 
 	@Column(name="image_url")
 	private String imageUrl;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="article")
+	private List<ArticleComment> articleComments;
 
 	// M e t h o d s
 
@@ -67,11 +82,11 @@ public class Article {
 		this.id = id;
 	}
 
-	public User getUserId() {
+	public User getUser() {
 		return user;
 	}
 
-	public void setUserId(User user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 
@@ -107,12 +122,12 @@ public class Article {
 		this.imageUrl = imageUrl;
 	}
 
-	public User getUser() {
-		return user;
+	public Business getBusiness() {
+		return business;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setBusiness(Business business) {
+		this.business = business;
 	}
 
 	@Override
@@ -139,8 +154,9 @@ public class Article {
 
 	@Override
 	public String toString() {
-		return "Article [id=" + id + ", user=" + user + ", title=" + title + ", content=" + content + ", createAt="
-				+ createAt + ", imageUrl=" + imageUrl + "]";
+		return "Article [id=" + id + ", user=" + user + ", title=" + title + ", content=" + content + ", business="
+				+ business + ", createAt=" + createAt + ", imageUrl=" + imageUrl + ", articleComments="
+				+ articleComments + "]";
 	}
 
 }

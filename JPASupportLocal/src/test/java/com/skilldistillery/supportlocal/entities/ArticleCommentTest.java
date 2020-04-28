@@ -32,7 +32,7 @@ class ArticleCommentTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		articleComment = em.find(ArticleComment.class, 1);
+		articleComment = em.find(ArticleComment.class, 2);
 	}
 
 	@AfterEach
@@ -41,11 +41,26 @@ class ArticleCommentTest {
 		articleComment = null;
 	}
 
+//	@Test
+//	@DisplayName("ArticleComment Entity Mapping")
+//	void test() {
+//		assertNotNull(articleComment);
+//	}
+//	@Test
+//	@DisplayName("ArticleComment to  article Entity Mapping")
+//	void test1() {
+//		assertEquals("Trial and Error",articleComment.getArticle().getContent());
+//	}
 	@Test
-	@DisplayName("ArticleComment Entity Mapping")
-	void test() {
-		assertNotNull(articleComment);
+	@DisplayName("ArticleComment to parentComment Entity Mapping")
+	void test2() {
+		assertEquals("Check Check",articleComment.getParentComment().getContent());
 	}
+//	@Test
+//	@DisplayName("ArticleComment to User Entity Mapping")
+//	void test3() {
+//		assertEquals("Jason",articleComment.getUser().getFirstName());
+//	}
 
 
 }
