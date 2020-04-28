@@ -1,12 +1,18 @@
 package com.skilldistillery.supportlocal.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -25,6 +31,9 @@ public class Business {
 	
 	private boolean active;
 	
+	@OneToOne(mappedBy="business")
+	private Address address;
+	
 	@Column(name="image_url")
 	private String imageUrl;
 	
@@ -32,7 +41,34 @@ public class Business {
 	@ManyToOne
 	@JsonIgnore
 	private User manager;
+	
+	
+	@OneToMany(mappedBy="business")
+	@JsonIgnore
+	private List<Article> articles;
+	
+	@OneToMany(mappedBy="business")
+	@JsonIgnore
+	private List<Review> reviews;
+	
+	@ManyToMany
+	@JoinTable(name = "user_favourite_business",
+				joinColumns = @JoinColumn(name="business_id"),
+				inverseJoinColumns = @JoinColumn(name = "user_id"))
+	@JsonIgnore
+	private List<User> users;
+	
+	@ManyToMany
+	@JoinTable(name = "business_preference",
+	joinColumns = @JoinColumn(name="business_id"),
+	inverseJoinColumns = @JoinColumn(name = "preference_id"))
+	@JsonIgnore
+	private List<Preference> preferences;
 	///Methods Begin
+
+	public Business() {
+		super();
+	}
 
 	public int getId() {
 		return id;
@@ -106,6 +142,7 @@ public class Business {
 		return true;
 	}
 
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -133,5 +170,45 @@ public class Business {
 
 	public void setManager(User manager) {
 		this.manager = manager;
+	}
+
+	public List<Article> getArticles() {
+		return articles;
+	}
+
+	public void setArticles(List<Article> articles) {
+		this.articles = articles;
+	}
+
+	public List<Review> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+
+	public List<Preference> getPreferences() {
+		return preferences;
+	}
+
+	public void setPreferences(List<Preference> preferences) {
+		this.preferences = preferences;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 }

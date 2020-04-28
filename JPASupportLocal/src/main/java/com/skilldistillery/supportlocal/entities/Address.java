@@ -14,25 +14,31 @@ public class Address {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	private String street;
-	
-	@Column(name="street_2")
+
+	@Column(name = "street_2")
 	private String street2;
-	
+
 	private String city;
-	
+
 	private String state;
-	
-	@Column(name="postal_code")
+
+	@Column(name = "postal_code")
 	private String postalCode;
-	
+
 	private String country;
-	
+
 	@OneToOne
-	@JoinColumn(name="business_id")
+	@JoinColumn(name = "business_id")
 	private Business business;
-	//Methods begin
+	// Methods begin
+	
+	
+
+	public Address() {
+		super();
+	}
 
 	public int getId() {
 		return id;
@@ -145,5 +151,5 @@ public class Address {
 		builder.append("]");
 		return builder.toString();
 	}
-	
+
 }

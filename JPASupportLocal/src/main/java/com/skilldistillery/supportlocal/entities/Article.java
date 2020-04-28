@@ -38,14 +38,7 @@ public class Article {
 	@ManyToOne
 	@JoinColumn(name="business_id")
 	private Business business;
-	
-	public List<ArticleComment> getArticleComments() {
-		return articleComments;
-	}
 
-	public void setArticleComments(List<ArticleComment> articleComments) {
-		this.articleComments = articleComments;
-	}
 
 	@Column(name="create_at")
 	@CreationTimestamp
@@ -62,6 +55,14 @@ public class Article {
 
 	public Article() {
 		super();
+	}
+	
+	public List<ArticleComment> getArticleComments() {
+		return articleComments;
+	}
+
+	public void setArticleComments(List<ArticleComment> articleComments) {
+		this.articleComments = articleComments;
 	}
 
 	public Article(int id, User user, String title, String content, LocalDateTime createAt, String imageUrl) {
