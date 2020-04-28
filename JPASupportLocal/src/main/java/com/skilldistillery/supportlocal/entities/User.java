@@ -54,6 +54,14 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private List<Article> articles; 
 	
+	@JsonIgnore
+	@OneToMany(mappedBy="manager")
+	private List<Business> businesses;
+	
+
+	
+	
+	
 	
 	////////////
 	
@@ -243,6 +251,14 @@ public class User {
 
 	public void setArticles(List<Article> articles) {
 		this.articles = articles;
+	}
+
+	public List<Business> getBusinesses() {
+		return businesses;
+	}
+
+	public void setBusinesses(List<Business> businesses) {
+		this.businesses = businesses;
 	}
 	
 	
