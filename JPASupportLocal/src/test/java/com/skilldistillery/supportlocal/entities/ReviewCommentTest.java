@@ -44,7 +44,8 @@ public class ReviewCommentTest {
 	@Test
 	void test() {
 		assertNotNull(reviewComment);
-//		assertEquals("More content", reviewComment.getContent());
+	assertEquals("More content", reviewComment.getContent());
+	assertEquals("Great Rock Climbing place", reviewComment.getReview().getDescription());
 	}
 
 
