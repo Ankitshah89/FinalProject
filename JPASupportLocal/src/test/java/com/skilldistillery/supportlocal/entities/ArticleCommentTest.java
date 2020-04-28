@@ -32,7 +32,7 @@ class ArticleCommentTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		articleComment = em.find(ArticleComment.class, 2);
+		articleComment = em.find(ArticleComment.class, 1);
 	}
 
 	@AfterEach

@@ -38,15 +38,11 @@ public class ArticleComment {
 	@JoinColumn(name="inreply_to_id")
 	private ArticleComment parentComment;
 	
-<<<<<<< HEAD
-	@Column(name="user_id")
-	private int userId;
-=======
+
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
->>>>>>> fb9539351edd48362e9c4289400aa687eb021311
 	
 	// M e t h o d s
 
