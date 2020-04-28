@@ -1,6 +1,7 @@
 package com.skilldistillery.supportlocal.entities;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,10 +14,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class ArticleCommentTest {
+class PreferenceTest {
 	private static EntityManagerFactory emf;
-	private static EntityManager em;
-	private ArticleComment articleComment;
+	private EntityManager em;
+	private Preference pref;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -26,41 +27,42 @@ class ArticleCommentTest {
 	@AfterAll
 	static void tearDownAfterClass() throws Exception {
 		emf.close();
-		
 	}
 
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		articleComment = em.find(ArticleComment.class, 1);
+		pref = em.find(Preference.class, 1);
+		
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		articleComment = null;
+		pref = null;
 	}
 
-//	@Test
-//	@DisplayName("ArticleComment Entity Mapping")
-//	void test() {
-//		assertNotNull(articleComment);
-//	}
-//	@Test
-//	@DisplayName("ArticleComment to  article Entity Mapping")
-//	void test1() {
-//		assertEquals("Trial and Error",articleComment.getArticle().getContent());
-//	}
 	@Test
-	@DisplayName("ArticleComment to parentComment Entity Mapping")
-	void test2() {
-		assertEquals("Check Check",articleComment.getParentComment().getContent());
+	@DisplayName("Testing Preference mapping without relationships")
+	void test() {
+		assertNotNull(pref);
+		assertEquals("climbing", pref.getPreferenceType());
+		assertEquals("Sports", pref.getPreferenceCategory().toString());
+		
 	}
-//	@Test
-//	@DisplayName("ArticleComment to User Entity Mapping")
-//	void test3() {
-//		assertEquals("Jason",articleComment.getUser().getFirstName());
-//	}
-
+	
+	@Test
+	@DisplayName("Relationship Mapping between Preference/Business")
+	void test2() {
+		assertEquals("Mount Rushmore", pref.getBuinesses().get(0).getName());
+	}
+	
+	@Test
+	@DisplayName("Relationship Mapping between Preference/User")
+	void test3() {
+		assertEquals("Jason", pref.getUsers().get(0).getFirstName());
+	}
+	
+	
 
 }

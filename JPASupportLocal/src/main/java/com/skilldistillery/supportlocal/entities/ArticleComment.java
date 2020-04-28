@@ -39,9 +39,12 @@ public class ArticleComment {
 	private ArticleComment parentComment;
 	
 
+<<<<<<< HEAD
 	@Column(name="user_id")
 	private int userId;
 
+=======
+>>>>>>> 96ecc84219ad5825d8455aa8036f09a28e58f5a1
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="user_id")
