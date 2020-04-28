@@ -1,6 +1,6 @@
 package com.skilldistillery.supportlocal.entities;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -46,6 +46,16 @@ class ArticleTest {
 	void test() {
 		assertNotNull(article);
 		
+	}
+	@Test
+	@DisplayName("Article to User mapping")
+	void test1() {
+		assertEquals("Jason", article.getUser().getFirstName());
+	}
+	@Test
+	@DisplayName("Article to Business Mapping")
+	void test2() {
+		assertEquals("Mount Rushmore", article.getBusiness().getName());
 	}
 
 }
