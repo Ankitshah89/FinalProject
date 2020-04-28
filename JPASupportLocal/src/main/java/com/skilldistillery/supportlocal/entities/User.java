@@ -15,6 +15,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
@@ -41,6 +43,7 @@ public class User {
 	
 	
 	@Column(name = "created_at")
+	@CreationTimestamp
 	private LocalDate createdAt;
 	
 	private boolean active;
@@ -65,6 +68,11 @@ public class User {
 	@JsonIgnore
 	@OneToMany(mappedBy="manager")
 	private List<Business> businesses;
+	
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="user")
+	private List<ArticleComment> articleComments;
 	
 
 	@ManyToMany
@@ -281,6 +289,8 @@ public class User {
 		this.businesses = businesses;
 	}
 
+<<<<<<< HEAD
+=======
 	public List<Business> getFavoriteBusinesses() {
 		return favoriteBusinesses;
 	}
@@ -297,6 +307,7 @@ public class User {
 		this.preferences = preferences;
 	}
 
+>>>>>>> 96ecc84219ad5825d8455aa8036f09a28e58f5a1
 	public List<ArticleComment> getArticleComments() {
 		return articleComments;
 	}
