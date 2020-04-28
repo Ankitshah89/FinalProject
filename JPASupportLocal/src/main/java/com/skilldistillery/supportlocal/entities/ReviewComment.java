@@ -13,8 +13,8 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Table(name="review_comment")
 @Entity
+@Table(name="review_comment")
 public class ReviewComment {
 
 	@Id

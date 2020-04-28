@@ -126,7 +126,7 @@ DROP TABLE IF EXISTS `address` ;
 CREATE TABLE IF NOT EXISTS `address` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `street` VARCHAR(500) NOT NULL,
-  `street 2` VARCHAR(500) NULL,
+  `street_2` VARCHAR(500) NULL,
   `city` VARCHAR(500) NOT NULL,
   `state` VARCHAR(500) NOT NULL,
   `postal_code` VARCHAR(45) NOT NULL,
@@ -359,8 +359,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `supportlocaldb`;
-INSERT INTO `address` (`id`, `street`, `street 2`, `city`, `state`, `postal_code`, `country`, `business_id`) VALUES (1, '123 Street', NULL, 'Centennail', 'CO', '80112', 'USA', 1);
-INSERT INTO `address` (`id`, `street`, `street 2`, `city`, `state`, `postal_code`, `country`, `business_id`) VALUES (2, '234 Street', NULL, 'Omaha', 'NE', '12345', 'USA', 2);
+INSERT INTO `address` (`id`, `street`, `street_2`, `city`, `state`, `postal_code`, `country`, `business_id`) VALUES (1, '123 Street', NULL, 'Centennail', 'CO', '80112', 'USA', 1);
+INSERT INTO `address` (`id`, `street`, `street_2`, `city`, `state`, `postal_code`, `country`, `business_id`) VALUES (2, '234 Street', NULL, 'Omaha', 'NE', '12345', 'USA', 2);
 
 COMMIT;
 

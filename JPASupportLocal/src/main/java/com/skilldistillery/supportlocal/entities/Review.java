@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -21,6 +23,7 @@ public class Review {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
+	@CreationTimestamp
 	@Column(name = "create_date")
 	private LocalDate createdAt;
 	
