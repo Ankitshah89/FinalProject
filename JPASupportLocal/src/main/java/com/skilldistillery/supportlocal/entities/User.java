@@ -10,6 +10,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -36,6 +39,7 @@ public class User {
 	
 	private String phone;
 	
+	
 	@Column(name = "created_at")
 	private LocalDate createdAt;
 	
@@ -44,6 +48,10 @@ public class User {
 	@JsonIgnore
 	@OneToMany(mappedBy="user")
 	private List<Review> reviews;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="user")
+	private List<ArticleComment> articleComments;
 	
 	
 	@JsonIgnore
@@ -59,7 +67,19 @@ public class User {
 	private List<Business> businesses;
 	
 
+	@ManyToMany
+	@JoinTable(name = "user_favourite_business",
+				joinColumns = @JoinColumn(name="user_id"),
+				inverseJoinColumns = @JoinColumn(name = "business_id"))
+	@JsonIgnore
+	private List<Business> favoriteBusinesses;
 	
+	@ManyToMany
+	@JoinTable(name = "user_preference",
+	joinColumns = @JoinColumn(name="user_id"),
+	inverseJoinColumns = @JoinColumn(name = "preference_id"))
+	@JsonIgnore
+	private List<Preference> preferences;
 	
 	
 	
@@ -259,6 +279,30 @@ public class User {
 
 	public void setBusinesses(List<Business> businesses) {
 		this.businesses = businesses;
+	}
+
+	public List<Business> getFavoriteBusinesses() {
+		return favoriteBusinesses;
+	}
+
+	public void setFavoriteBusinesses(List<Business> favoriteBusinesses) {
+		this.favoriteBusinesses = favoriteBusinesses;
+	}
+
+	public List<Preference> getPreferences() {
+		return preferences;
+	}
+
+	public void setPreferences(List<Preference> preferences) {
+		this.preferences = preferences;
+	}
+
+	public List<ArticleComment> getArticleComments() {
+		return articleComments;
+	}
+
+	public void setArticleComments(List<ArticleComment> articleComments) {
+		this.articleComments = articleComments;
 	}
 	
 	

@@ -42,6 +42,11 @@ public class Review {
 	@OneToMany(mappedBy="review")
 	private List<ReviewComment> reviewComments;
 	
+	@ManyToOne
+	@JoinColumn(name="business_id")
+	@JsonIgnore
+	private Business business;
+	
 	
 	
 	
@@ -146,8 +151,25 @@ public class Review {
 
 	@Override
 	public String toString() {
-		return "Review [id=" + id + ", createdAt=" + createdAt + ", description=" + description + ", rating=" + rating
-				+ ", notification=" + notification + ", user=" + user + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("Review [id=");
+		builder.append(id);
+		builder.append(", createdAt=");
+		builder.append(createdAt);
+		builder.append(", description=");
+		builder.append(description);
+		builder.append(", rating=");
+		builder.append(rating);
+		builder.append(", notification=");
+		builder.append(notification);
+		builder.append(", user=");
+		builder.append(user);
+		builder.append(", reviewComments=");
+		builder.append(reviewComments);
+		builder.append(", business=");
+		builder.append(business);
+		builder.append("]");
+		return builder.toString();
 	}
 
 	public Review(int id, LocalDate createdAt, String description, int rating, boolean notification, User user) {
@@ -170,6 +192,14 @@ public class Review {
 
 	public void setReviewComments(List<ReviewComment> reviewComments) {
 		this.reviewComments = reviewComments;
+	}
+
+	public Business getBusiness() {
+		return business;
+	}
+
+	public void setBusiness(Business business) {
+		this.business = business;
 	}
 	
 //	@ManyToOne

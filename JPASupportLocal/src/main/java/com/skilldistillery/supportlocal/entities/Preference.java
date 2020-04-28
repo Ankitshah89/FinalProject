@@ -1,6 +1,5 @@
 package com.skilldistillery.supportlocal.entities;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -18,30 +17,35 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Preference {
-		//Preference
-	
+	// Preference
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	@Column(name="preference_type")
+
+	@Column(name = "preference_type")
 	private String preferenceType;
-	
-	@Column(name="preference_category")
+
+	@Column(name = "preference_category")
 	@Enumerated(EnumType.STRING)
 	private PreferenceCategory preferenceCategory;
-	
+
 	@ManyToMany
-	@JoinTable(name="business_preference", joinColumns = @JoinColumn(name = "preference_id")
-	, inverseJoinColumns = @JoinColumn(name= "business_id"))
+	@JoinTable(name = "business_preference"
+			, joinColumns = @JoinColumn(name = "preference_id")
+			, inverseJoinColumns = @JoinColumn(name = "business_id"))
 	@JsonIgnore
 	private List<Business> buinesses;
+	
 	@ManyToMany
-	@JoinTable(name="user_preference", joinColumns = @JoinColumn(name = "preference_id")
-	, inverseJoinColumns = @JoinColumn(name= "user_id"))
+	@JoinTable(name = "user_preference", joinColumns = @JoinColumn(name = "preference_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
 	@JsonIgnore
 	private List<User> users;
-	//Methods begin
+	// Methods begin
+
+	public Preference() {
+		super();
+	}
 
 	public int getId() {
 		return id;
@@ -117,8 +121,5 @@ public class Preference {
 	public void setUsers(List<User> users) {
 		this.users = users;
 	}
-
-	
-	
 
 }
