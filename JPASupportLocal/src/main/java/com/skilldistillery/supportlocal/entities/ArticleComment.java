@@ -7,7 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="article_comment")
@@ -19,19 +23,30 @@ public class ArticleComment {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name="article_id")
-	private int articleId;
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name="article_id")
+	private Article article;
 	
 	private String content;
 	
 	@Column(name="create_date")
 	private LocalDateTime createDate;
 	
-	@Column(name="inreply_to_id")
-	private int inReplyToId;
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name="inreply_to_id")
+	private ArticleComment parentComment;
 	
-	@Column(name="usear_id")
+<<<<<<< HEAD
+	@Column(name="user_id")
 	private int userId;
+=======
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
+>>>>>>> fb9539351edd48362e9c4289400aa687eb021311
 	
 	// M e t h o d s
 
@@ -39,15 +54,15 @@ public class ArticleComment {
 		super();
 	}
 
-	public ArticleComment(int id, int articleId, String content, LocalDateTime createDate, int inReplyToId,
-			int userId) {
+	public ArticleComment(int id, Article article, String content, LocalDateTime createDate, ArticleComment parentComment,
+			User user) {
 		super();
 		this.id = id;
-		this.articleId = articleId;
+		this.article = article;
 		this.content = content;
 		this.createDate = createDate;
-		this.inReplyToId = inReplyToId;
-		this.userId = userId;
+		this.parentComment = parentComment;
+		this.user = user;
 	}
 
 	public int getId() {
@@ -58,12 +73,12 @@ public class ArticleComment {
 		this.id = id;
 	}
 
-	public int getArticleId() {
-		return articleId;
+	public Article getArticle() {
+		return article;
 	}
 
-	public void setArticleId(int articleId) {
-		this.articleId = articleId;
+	public void setArticle(Article article) {
+		this.article = article;
 	}
 
 	public String getContent() {
@@ -82,20 +97,28 @@ public class ArticleComment {
 		this.createDate = createDate;
 	}
 
-	public int getInReplyToId() {
-		return inReplyToId;
+	public ArticleComment getInReplyTo() {
+		return parentComment;
 	}
 
-	public void setInReplyToId(int inReplyToId) {
-		this.inReplyToId = inReplyToId;
+	public void setInReplyTo(ArticleComment parentComment) {
+		this.parentComment = parentComment;
 	}
 
-	public int getUserId() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public ArticleComment getParentComment() {
+		return parentComment;
+	}
+
+	public void setParentComment(ArticleComment parentComment) {
+		this.parentComment = parentComment;
 	}
 
 	@Override
@@ -122,8 +145,8 @@ public class ArticleComment {
 
 	@Override
 	public String toString() {
-		return "ArticleComment [id=" + id + ", articleId=" + articleId + ", content=" + content + ", createDate="
-				+ createDate + ", inReplyToId=" + inReplyToId + ", userId=" + userId + "]";
+		return "ArticleComment [id=" + id + ", article=" + article + ", content=" + content + ", createDate="
+				+ createDate + ", parentComment=" + parentComment + ", user=" + user + "]";
 	}
 	
 	

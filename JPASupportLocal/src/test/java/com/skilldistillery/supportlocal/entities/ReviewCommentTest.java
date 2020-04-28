@@ -47,6 +47,7 @@ public class ReviewCommentTest {
 	assertEquals("More content", reviewComment.getContent());
 	assertEquals("Great Rock Climbing place", reviewComment.getReview().getDescription());
 	}
+	
 
 
 }
