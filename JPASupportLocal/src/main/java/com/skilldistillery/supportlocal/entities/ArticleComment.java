@@ -43,6 +43,7 @@ public class ArticleComment {
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
+
 	
 	// M e t h o d s
 
