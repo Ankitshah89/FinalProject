@@ -6,7 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Business {
@@ -27,7 +29,8 @@ public class Business {
 	private String imageUrl;
 	
 	@JoinColumn(name="manager_id")
-	@OneToOne
+	@ManyToOne
+	@JsonIgnore
 	private User manager;
 	///Methods Begin
 
