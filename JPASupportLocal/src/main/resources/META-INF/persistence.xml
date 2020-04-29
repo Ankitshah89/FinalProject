@@ -9,9 +9,15 @@
     </provider>
     
     <!-- List entities here -->
-    <class>com.skilldistillery.supportlocal.entities.User</class>
+    <class>com.skilldistillery.supportlocal.entities.Address</class>
     <class>com.skilldistillery.supportlocal.entities.Article</class>
     <class>com.skilldistillery.supportlocal.entities.ArticleComment</class> 
+    <class>com.skilldistillery.supportlocal.entities.Business</class>
+    <class>com.skilldistillery.supportlocal.entities.Preference</class>
+    <class>com.skilldistillery.supportlocal.entities.PreferenceCategory</class>
+    <class>com.skilldistillery.supportlocal.entities.Review</class>
+    <class>com.skilldistillery.supportlocal.entities.ReviewComment</class>
+    <class>com.skilldistillery.supportlocal.entities.User</class>
 
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/supportlocaldb?useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=MST" />
@@ -22,8 +28,8 @@
       <property name="javax.persistence.jdbc.driver"
         value="com.mysql.jdbc.Driver" />
 
-      <property name="hibernate.show_sql" value="false" />
-      <property name="hibernate.format_sql" value="false" />
+      <property name="hibernate.show_sql" value="true" />
+      <property name="hibernate.format_sql" value="true" />
 
       <property name="hibernate.dialect"
         value="org.hibernate.dialect.MySQLDialect" />
