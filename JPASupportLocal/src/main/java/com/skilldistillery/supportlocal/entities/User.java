@@ -226,13 +226,6 @@ public class User {
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", password=" + password + ", role=" + role + ", phone=" + phone + ", createdAt=" + createdAt
-				+ ", active=" + active + ", reviews=" + reviews + ", reviewComments=" + reviewComments + ", articles="
-				+ articles + "]";
-	}
 
 	public User(int id, String firstName, String lastName, String email, String password, Role role, String phone,
 			LocalDate createdAt, boolean active) {
@@ -309,6 +302,13 @@ public class User {
 
 	public void setArticleComments(List<ArticleComment> articleComments) {
 		this.articleComments = articleComments;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+				+ ", password=" + password + ", role=" + role + ", phone=" + phone + ", createdAt=" + createdAt
+				+ ", active=" + active + "]";
 	}
 	
 	

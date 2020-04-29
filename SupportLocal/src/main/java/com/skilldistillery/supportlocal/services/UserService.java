@@ -14,8 +14,8 @@ public interface UserService {
 	
 	User updateUserProfile( String email, User user);
 
-	User findUserByUsername(String email);
+	User findUserByEmail(String email);
 	
 	User create (User user);
-
+	
 }

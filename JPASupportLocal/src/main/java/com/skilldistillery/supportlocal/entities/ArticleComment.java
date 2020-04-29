@@ -141,9 +141,10 @@ public class ArticleComment {
 
 	@Override
 	public String toString() {
-		return "ArticleComment [id=" + id + ", article=" + article + ", content=" + content + ", createDate="
-				+ createDate + ", parentComment=" + parentComment + ", user=" + user + "]";
+		return "ArticleComment [id=" + id + ", content=" + content + ", createDate=" + createDate + ", parentComment="
+				+ parentComment + "]";
 	}
+
 	
 	
 	
