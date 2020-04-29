@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.supportlocal.entities.Role;
@@ -16,6 +17,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserRepository userRepo;
+	
+	@Autowired
+	private PasswordEncoder encoder;
 	
 	@Override
 	public List<User> findByEmail(String email) {
@@ -30,22 +34,26 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User updateUser(User user, String email) {
+	public User updateUser(User user, String email ) {
+		String encodedPW = encoder.encode(user.getPassword());
+		
+		Optional<User> userOpt = userRepo.findByEmail(email);
+ 
 
-		User userAdmin = userRepo.findUserByEmail(email);
-
-		Optional<User> userOpt = userRepo.findById(user.getId());
-
-		if (userAdmin.getRole().equals(Role.Admin)) {
-			if (userOpt.isPresent()) {
-				user.setActive(user.isActive());
-
-				userRepo.saveAndFlush(user);
-				return user;
-			}
+		if(userOpt.isPresent()) {
+			User managedUser = userOpt.get();
+			managedUser.setFirstName(user.getFirstName());
+			managedUser.setLastName(user.getLastName());
+			managedUser.setPhone(user.getPhone());
+			managedUser.setEmail(user.getEmail());
+			managedUser.setPassword(encodedPW);
+			userRepo.saveAndFlush(managedUser);
+			return managedUser;
 		}
-		return null;
+		return user;
 	}
+	
+	
 
 
 	@Override
