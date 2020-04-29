@@ -47,7 +47,8 @@ public class Review {
 	
 	@ManyToOne
 	@JoinColumn(name="business_id")
-	@JsonManagedReference(value="BusinessToReview")
+//	@JsonManagedReference(value="BusinessToReview")
+	@JsonIgnore
 	private Business business;
 	
 	

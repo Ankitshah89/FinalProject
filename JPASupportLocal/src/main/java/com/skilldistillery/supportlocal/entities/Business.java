@@ -42,7 +42,7 @@ public class Business {
 	
 	@JoinColumn(name="manager_id")
 	@ManyToOne
-	@JsonIgnore
+	@JsonBackReference(value = "businessToUserManager")
 	private User manager;
 	
 	
@@ -51,7 +51,8 @@ public class Business {
 	private List<Article> articles;
 	
 	@OneToMany(mappedBy="business")
-	@JsonBackReference(value="BusinessToReview")
+//	@JsonBackReference(value="BusinessToReview")
+	@JsonIgnore
 	private List<Review> reviews;
 	
 	@ManyToMany
@@ -65,7 +66,7 @@ public class Business {
 	@JoinTable(name = "business_preference",
 	joinColumns = @JoinColumn(name="business_id"),
 	inverseJoinColumns = @JoinColumn(name = "preference_id"))
-	@JsonManagedReference(value="businessToPreference")
+	@JsonIgnore
 	private List<Preference> preferences;
 	///Methods Begin
 

@@ -5,15 +5,15 @@ import java.util.List;
 import com.skilldistillery.supportlocal.entities.Business;
 
 public interface BusinessService {
-	//Index
+	//Index - Done
 	List<Business> businessIndex();
-	//Id
+	//Id - Done
 	Business findById(int id);
 	//Update
 	Business updateBusiness(Business business, int id);
 	//Destroy
-	boolean deleteBusiness(Business business);
-	//Create
+	boolean deleteBusiness(int id);
+	//Create - Done
 	Business createBusiness(Business business);
 	//FindByName
 	List<Business> findBusinessByName(String name);
