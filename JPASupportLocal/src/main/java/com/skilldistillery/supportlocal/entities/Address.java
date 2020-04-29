@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Address {
 
@@ -31,6 +33,7 @@ public class Address {
 
 	@OneToOne
 	@JoinColumn(name = "business_id")
+	@JsonManagedReference(value="businessToAddress")
 	private Business business;
 	// Methods begin
 	
