@@ -13,7 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -32,12 +31,10 @@ public class Preference {
 	private PreferenceCategory preferenceCategory;
 
 	@ManyToMany
-	@JoinTable(name = "business_preference"
-			, joinColumns = @JoinColumn(name = "preference_id")
-			, inverseJoinColumns = @JoinColumn(name = "business_id"))
-	@JsonBackReference(value = "businessToPreference")
+	@JoinTable(name = "business_preference", joinColumns = @JoinColumn(name = "preference_id"), inverseJoinColumns = @JoinColumn(name = "business_id"))
+	@JsonIgnore
 	private List<Business> buinesses;
-	
+
 	@ManyToMany
 	@JoinTable(name = "user_preference", joinColumns = @JoinColumn(name = "preference_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
 	@JsonIgnore
