@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.supportlocal.entities.Article;
+import com.skilldistillery.supportlocal.entities.User;
 import com.skilldistillery.supportlocal.repositories.ArticleRepository;
 import com.skilldistillery.supportlocal.repositories.UserRepository;
 
@@ -31,17 +32,24 @@ public class ArticleServiceImpl implements ArticleService {
         if (optArticle.isPresent()) {
             Article article = optArticle.get();
             if (article != null) {
-                if (article.getUser().getEmail().equals(email))
-                    ;
+                if (article.getUser().getEmail().equals(email));
+                    
                 return article;
             }
         }
         return null;
 	}
+	
+	
+	// HAVE NOT FINISHED YET
 
 	@Override
 	public Article create(String email, Article article) {
-		// TODO Auto-generated method stub
+		User user = userRepo.findUserByEmail(email);
+		if(user != null) {
+			article.setUser(user);
+//			article.setBusiness(user.);
+		}
 		return null;
 	}
 
