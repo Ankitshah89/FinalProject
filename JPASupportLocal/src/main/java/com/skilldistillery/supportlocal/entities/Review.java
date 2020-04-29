@@ -210,13 +210,6 @@ public class Review {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
-	
-//	@ManyToOne
-//	@JoinColumn(name="business_id")
-//	@JsonIgnore
-//	private Business business;
-//	
 
-	
 	
 }
