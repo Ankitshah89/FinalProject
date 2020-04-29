@@ -47,9 +47,9 @@ public class ArticleController {
 	@PostMapping("articles")
 	@ResponseBody
 	public Article create(HttpServletRequest req, HttpServletResponse res, @RequestBody Article article,
-			Principal principal) {
+			Principal principal, @PathVariable Integer bid) {
 		try {
-			Article newArticle = articleSvc.create(principal.getName(), article);
+			Article newArticle = articleSvc.create(principal.getName(), article, bid);
 			res.setStatus(201);
 			StringBuffer url = req.getRequestURL();
 			url.append("/").append(article.getId());

@@ -48,9 +48,10 @@ public class ArticleServiceImpl implements ArticleService {
 	// HAVE NOT FINISHED YET
 
 	@Override
-	public Article create(String email, Article article) {
+	public Article create(String email, Article article, int bid) {
 		User user = userRepo.findUserByEmail(email);
-		Business business = busRepo.findByManager(user);
+		Optional<Business> optBusiness = busRepo.findById(bid);
+		Business business = optBusiness.get();
 		if (user != null) {
 			article.setUser(user);
 			article.setBusiness(business);
