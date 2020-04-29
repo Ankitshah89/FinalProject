@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.supportlocal.entities.Role;
 import com.skilldistillery.supportlocal.entities.User;
+import com.skilldistillery.supportlocal.repositories.AddressRepository;
 import com.skilldistillery.supportlocal.repositories.UserRepository;
 
 @Service
@@ -15,7 +16,7 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserRepository userRepo;
-
+	
 	@Override
 	public List<User> findByEmail(String email) {
 		User user = userRepo.findUserByEmail(email);
@@ -43,15 +44,9 @@ public class UserServiceImpl implements UserService {
 				return user;
 			}
 		}
-
 		return null;
 	}
 
-	@Override
-	public User updateUserProfile(String username, User user) {
-
-		return null;
-	}
 
 	@Override
 	public User findUserByEmail(String email) {
