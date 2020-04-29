@@ -5,12 +5,14 @@ import java.util.List;
 import com.skilldistillery.supportlocal.entities.Review;
 
 public interface ReviewService {
-	List<Review> findUserReviews(String email, int id);
+	List<Review> findUserReviews(String email, Integer id);
 	
-	List<Review> findBusinessReviews ( int id);
+	List<Review> findBusinessReviews ( Integer id);
 
-	Review createReview(String email, Review review, int uid , int bid);
+	Review createReview(String email, Review review, Integer uid , Integer bid);
 
-	Review updateReview(String email, Review review, int id);
+	Review updateReview(String email, Review review, Integer id, Integer bid);
+	
+	Boolean deleteReview (String email, Integer id);
 
 }

@@ -2,15 +2,16 @@ package com.skilldistillery.supportlocal.services;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.persistence.EnumType;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.supportlocal.entities.Business;
 import com.skilldistillery.supportlocal.entities.Review;
 import com.skilldistillery.supportlocal.entities.Role;
 import com.skilldistillery.supportlocal.entities.User;
+import com.skilldistillery.supportlocal.repositories.BusinessRepository;
 import com.skilldistillery.supportlocal.repositories.ReviewRepository;
 import com.skilldistillery.supportlocal.repositories.UserRepository;
 
@@ -22,12 +23,15 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Autowired
 	private UserRepository userRepo;
-//	
+////	
 //	@Autowired
-//	private Busines
+//	private BusinessService businessSvc;
+	
+	@Autowired
+	private BusinessRepository businessRepo;
 
 	@Override
-	public List<Review> findUserReviews(String email, int id) {
+	public List<Review> findUserReviews(String email, Integer id) {
 
 		User user = userRepo.findUserByEmail(email);
 		List<Review> results = new ArrayList<>();
@@ -49,32 +53,80 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public Review createReview(String email, Review review, int id, int bid) {
+	public Review createReview(String email, Review review, Integer id, Integer bid) {
 		User user = userRepo.findUserByEmail(email);
 		
-//		Business
+		Business business;
+		Optional<Business> opt = businessRepo.findById(bid);
+		
+		if(opt.isPresent()) {
+			business = opt.get();
+			System.out.println(business);
 		
 		if (user.getId() == id || user.getRole().equals(Role.Admin)) {
 		System.out.println("REvieeww" +review);
-			if(review.getBusiness().getId() == bid) {
-				
-//				review.setDescription();
-				 return reviewRepo.saveAndFlush(review);
-			}
-			
-				
+		
+		review.setUser(user);
+		review.setBusiness(business);
 		}
-		return null;
+		
+		reviewRepo.saveAndFlush(review);
+		
+		System.out.println(review);
+		}
+		return review;
 	}
 
 	@Override
-	public Review updateReview(String email, Review review, int id) {
+	public Review updateReview(String email, Review review, Integer id, Integer bid) {
+	
+		User user = userRepo.findUserByEmail(email);
+		Optional<Business> opt = businessRepo.findById(bid);
+		
+		Business business;
+		Review existing = null;
 
-		return null;
+		if (opt.isPresent()) {
+			business = opt.get();
+			if (user.getId() == id || user.getRole().equals(Role.Admin)) {
+				Optional<Review> optRev = reviewRepo.findById(id);
+				review.setBusiness(business);
+
+				if (optRev.isPresent()) {
+					existing = optRev.get();
+					existing.setRating(review.getRating());
+					existing.setDescription(review.getDescription());	
+					reviewRepo.saveAndFlush(existing);
+				} else {
+					return null;
+				}
+			}
+		}
+		return existing;
 	}
+	
+	
 
 	@Override
-	public List<Review> findBusinessReviews(int id) {
+	public List<Review> findBusinessReviews(Integer id) {
 		return reviewRepo.findByBusinessId(id);
 	}
+
+	
+
+	@Override
+	public Boolean deleteReview(String email, Integer id) {
+		User user = userRepo.findUserByEmail(email);
+		
+		if (user.getId() == id || user.getRole().equals(Role.Admin)) {
+
+	
+		reviewRepo.deleteById(id);
+		return true;
+		
+
+		}
+		return false;
+	}
+
 }

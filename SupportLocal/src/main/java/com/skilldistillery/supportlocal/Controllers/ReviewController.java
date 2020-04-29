@@ -8,9 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -77,5 +79,34 @@ public class ReviewController {
 		}
 		return review;
 	}
+	
+	@PutMapping("users/{uid}/business/{bid}/reviews")
+	public Review updateReview(@RequestBody Review review, @PathVariable int uid,
+			@PathVariable int bid, HttpServletRequest req, HttpServletResponse res,
+			Principal principal) {
+		try {
+			review = reviewSvc.updateReview(principal.getName(), review, uid, bid);
+			if (review == null) {
+				res.setStatus(404);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+			review = null;
+		}
+		return review;
+	}
+	
+	@DeleteMapping("reviews/{uid}")
+	public boolean deleteReview(@PathVariable int uid,
+			 HttpServletRequest req, HttpServletResponse res,
+			Principal principal) {	
+		return reviewSvc.deleteReview(principal.getName(), uid);
+		
+	}
+
+	
+	
+	
 
 }
