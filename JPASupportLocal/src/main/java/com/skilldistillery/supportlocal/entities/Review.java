@@ -47,7 +47,8 @@ public class Review {
 	
 	@ManyToOne
 	@JoinColumn(name="business_id")
-	@JsonManagedReference(value="BusinessToReview")
+//	@JsonManagedReference(value="BusinessToReview")
+	@JsonIgnore
 	private Business business;
 	
 	
@@ -209,13 +210,6 @@ public class Review {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
-	
-//	@ManyToOne
-//	@JoinColumn(name="business_id")
-//	@JsonIgnore
-//	private Business business;
-//	
 
-	
 	
 }
