@@ -25,9 +25,9 @@ import com.skilldistillery.supportlocal.services.AddressService;
 public class AddressController {
 	@Autowired
 	private AddressService addServe;
-	
+
 	@GetMapping("addresses")
-	public List<Address> addressIndex(HttpServletResponse response){
+	public List<Address> addressIndex(HttpServletResponse response) {
 		List<Address> index = addServe.indexAddress();
 		if (index != null) {
 			response.setStatus(200);
@@ -37,34 +37,35 @@ public class AddressController {
 		}
 		return index;
 	}
-	
+
 	@GetMapping("addresses/{id}")
 	public Address findById(@PathVariable int id, HttpServletResponse response) {
 		Address address = addServe.findById(id);
-		if(address != null) {
+		if (address != null) {
 			response.setStatus(200);
 		} else {
 			response.setStatus(404);
 		}
 		return address;
 	}
-	
+
 	@PostMapping("addresses")
-	public Address createAddress(@RequestBody Address address, HttpServletResponse response, HttpServletRequest request) {
+	public Address createAddress(@RequestBody Address address, HttpServletResponse response,
+			HttpServletRequest request) {
 		Address newAddress = addServe.createAddress(address);
-		
-		if( newAddress != null) {
+
+		if (newAddress != null) {
 			response.setStatus(201);
 		} else {
 			response.setStatus(400);
 		}
 		return newAddress;
 	}
-	
+
 	@PutMapping("addresses/{id}")
 	public Address updateAddress(@PathVariable int id, @RequestBody Address address, HttpServletResponse response) {
 		Address manAdd = addServe.findById(id);
-		if(manAdd != null) {
+		if (manAdd != null) {
 			manAdd.setStreet(address.getStreet());
 			manAdd.setStreet2(address.getStreet2());
 			manAdd.setCity(address.getCity());
@@ -73,22 +74,19 @@ public class AddressController {
 			manAdd.setCountry(address.getCountry());
 			return addServe.updateAddress(manAdd);
 		}
-		
+
 		return null;
 	}
-	
+
 	@DeleteMapping("addresses/{id}")
 	public boolean deleteAddress(@PathVariable int id, HttpServletResponse response) {
 		boolean deleted = addServe.deleteAddress(id);
-		if(deleted) {
+		if (deleted) {
 			response.setStatus(204);
 		} else {
 			response.setStatus(404);
 		}
 		return deleted;
 	}
-	
-	
-	
 
 }
