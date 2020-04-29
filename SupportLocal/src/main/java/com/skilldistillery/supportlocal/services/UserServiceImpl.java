@@ -17,8 +17,10 @@ public class UserServiceImpl implements UserService {
 	private UserRepository userRepo;
 
 	@Override
-	public List<User> findAll(String email) {
+	public List<User> findByEmail(String email) {
 		User user = userRepo.findUserByEmail(email);
+		System.out.println(user.getRole());
+		
 		if (user.getRole().equals(Role.Admin)) {
 			return userRepo.findAll();
 		}
@@ -52,9 +54,19 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User findUserByUsername(String email) {
+	public User findUserByEmail(String email) {
 
 		return userRepo.findUserByEmail(email);
+	}
+
+	@Override
+	public List<User> findAll() {
+		return userRepo.findAll();
+	}
+
+	@Override
+	public User create(User user) {
+		return userRepo.saveAndFlush(user);
 	}
 
 }

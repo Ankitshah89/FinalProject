@@ -51,7 +51,7 @@ public class Business {
 	private List<Article> articles;
 	
 	@OneToMany(mappedBy="business")
-	@JsonIgnore
+	@JsonBackReference(value="BusinessToReview")
 	private List<Review> reviews;
 	
 	@ManyToMany

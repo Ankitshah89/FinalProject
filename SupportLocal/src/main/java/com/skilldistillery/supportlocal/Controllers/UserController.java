@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -30,26 +31,31 @@ public class UserController {
 	@GetMapping("users")
 	public List<User> findAll(HttpServletRequest req, HttpServletResponse resp, Principal principal) {
 
-		List<User> users = userSvc.findAll(principal.getName());
+		System.out.println(principal.getName());
+		List<User> users = userSvc.findByEmail(principal.getName());
+		
 
 		if (users == null) {
 			resp.setStatus(404);
 		}
-		if (users.size() == 0) {
-			resp.setStatus(204);
+		if ( users != null) {
+			if(users.size() == 0) {
+				resp.setStatus(204);
+				
+			}
 		}
 
 		return users;
 	}
 	
-	
+
 	@GetMapping("users/{email}")
 	public User getExistingUserByUsername(@PathVariable String email, HttpServletRequest req, Principal principal,
 			HttpServletResponse resp) {
 		User user = null;
 
 		try {
-			user = userSvc.findUserByUsername(email);
+			user = userSvc.findUserByEmail(email);
 			if (user == null) {
 				resp.setStatus(404);
 				return null;
@@ -65,8 +71,8 @@ public class UserController {
 	}
 	
 
-	@PutMapping("users")
-	public User replaceExistingUser(@RequestBody User user, HttpServletRequest req, Principal principal,
+	@PutMapping("users/{id}")
+	public User replaceExistingUser(@PathVariable Integer id ,@RequestBody User user, HttpServletRequest req, Principal principal,
 			HttpServletResponse resp) {
 		
 		
@@ -88,8 +94,6 @@ public class UserController {
 		
 		return user;
 	}
-	
-	
 	
 	
 }

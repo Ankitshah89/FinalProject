@@ -64,12 +64,12 @@ public class User {
 	@OneToMany(mappedBy="manager")
 	private List<Business> businesses;
 	
-	
-	@JsonIgnore
-	@OneToMany(mappedBy="user")
-	private List<ArticleComment> articleComments;
-	
 
+	@JsonIgnore
+    @OneToMany(mappedBy="user")
+    private List<ArticleComment> articleComments;
+	
+	
 	@ManyToMany
 	@JoinTable(name = "user_favourite_business",
 				joinColumns = @JoinColumn(name="user_id"),
@@ -226,13 +226,6 @@ public class User {
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", password=" + password + ", role=" + role + ", phone=" + phone + ", createdAt=" + createdAt
-				+ ", active=" + active + ", reviews=" + reviews + ", reviewComments=" + reviewComments + ", articles="
-				+ articles + "]";
-	}
 
 	public User(int id, String firstName, String lastName, String email, String password, Role role, String phone,
 			LocalDate createdAt, boolean active) {
@@ -284,6 +277,7 @@ public class User {
 		this.businesses = businesses;
 	}
 
+
 	public List<Business> getFavoriteBusinesses() {
 		return favoriteBusinesses;
 	}
@@ -300,12 +294,21 @@ public class User {
 		this.preferences = preferences;
 	}
 
+
+
 	public List<ArticleComment> getArticleComments() {
 		return articleComments;
 	}
 
 	public void setArticleComments(List<ArticleComment> articleComments) {
 		this.articleComments = articleComments;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+				+ ", password=" + password + ", role=" + role + ", phone=" + phone + ", createdAt=" + createdAt
+				+ ", active=" + active + "]";
 	}
 	
 	
