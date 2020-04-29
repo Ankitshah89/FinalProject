@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `business` (
   `phone` VARCHAR(45) NULL,
   `active` TINYINT NOT NULL DEFAULT 1,
   `image_url` VARCHAR(500) NULL,
-  `manager_id` INT NOT NULL,
+  `manager_id` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_business_user1_idx` (`manager_id` ASC),
   CONSTRAINT `fk_business_user`
@@ -309,6 +309,7 @@ START TRANSACTION;
 USE `supportlocaldb`;
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `phone`, `created_at`, `active`) VALUES (1, 'Jason', 'Nash', 'abc@xyz.com', '$2a$10$iFcq7QU0MTFhsMESWUkkzeb2HR66wDjyt0gkMzbJFYNbmSylBX/Ce', 'Admin', '1234567890', NULL, 1);
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `phone`, `created_at`, `active`) VALUES (2, 'Devin', 'Homie', 'xyz@abc.com', '$2a$10$iFcq7QU0MTFhsMESWUkkzeb2HR66wDjyt0gkMzbJFYNbmSylBX/Ce', 'User', '5675432341', NULL, 1);
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `phone`, `created_at`, `active`) VALUES (3, 'Ankit', 'Shah', 'ankit@ankit.com', '$2a$10$iFcq7QU0MTFhsMESWUkkzeb2HR66wDjyt0gkMzbJFYNbmSylBX/Ce', 'User', '1234567799', NULL, 1);
 
 COMMIT;
 
