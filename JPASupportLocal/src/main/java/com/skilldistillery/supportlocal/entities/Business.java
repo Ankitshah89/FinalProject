@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Business {
@@ -32,6 +33,7 @@ public class Business {
 	private boolean active;
 	
 	@OneToOne(mappedBy="business")
+	@JsonBackReference(value="businessToAddress")
 	private Address address;
 	
 	@Column(name="image_url")
@@ -62,7 +64,7 @@ public class Business {
 	@JoinTable(name = "business_preference",
 	joinColumns = @JoinColumn(name="business_id"),
 	inverseJoinColumns = @JoinColumn(name = "preference_id"))
-	@JsonIgnore
+	@JsonManagedReference(value="businessToPreference")
 	private List<Preference> preferences;
 	///Methods Begin
 

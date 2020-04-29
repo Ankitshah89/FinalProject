@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -34,7 +35,7 @@ public class Preference {
 	@JoinTable(name = "business_preference"
 			, joinColumns = @JoinColumn(name = "preference_id")
 			, inverseJoinColumns = @JoinColumn(name = "business_id"))
-	@JsonIgnore
+	@JsonBackReference(value = "businessToPreference")
 	private List<Business> buinesses;
 	
 	@ManyToMany
