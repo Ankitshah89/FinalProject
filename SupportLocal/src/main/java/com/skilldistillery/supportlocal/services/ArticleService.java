@@ -1,12 +1,12 @@
 package com.skilldistillery.supportlocal.services;
 
-import java.util.Set;
+import java.util.List;
 
 import com.skilldistillery.supportlocal.entities.Article;
 
 public interface ArticleService {
 	
-	 public Set<Article> index(String email);
+	 public List<Article> index();
 
 	    public Article show(String email, int aid);
 
