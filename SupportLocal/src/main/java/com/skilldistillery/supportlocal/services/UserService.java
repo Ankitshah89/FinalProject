@@ -11,8 +11,6 @@ public interface UserService {
 	List<User> findByEmail(String email);
 
 	User updateUser(User user, String email);
-	
-	User updateUserProfile( String email, User user);
 
 	User findUserByEmail(String email);
 	
