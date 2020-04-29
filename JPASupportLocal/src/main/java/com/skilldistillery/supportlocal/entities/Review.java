@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Review {
@@ -32,6 +33,8 @@ public class Review {
 	private int rating;
 	private boolean notification;
 	
+	private boolean active;
+	
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	@JsonIgnore
@@ -44,7 +47,7 @@ public class Review {
 	
 	@ManyToOne
 	@JoinColumn(name="business_id")
-	@JsonIgnore
+	@JsonManagedReference(value="BusinessToReview")
 	private Business business;
 	
 	
@@ -54,6 +57,20 @@ public class Review {
 	
 	
 	//////////////////////////
+
+	public Review(int id, LocalDate createdAt, String description, int rating, boolean notification, boolean active,
+			User user, List<ReviewComment> reviewComments, Business business) {
+		super();
+		this.id = id;
+		this.createdAt = createdAt;
+		this.description = description;
+		this.rating = rating;
+		this.notification = notification;
+		this.active = active;
+		this.user = user;
+		this.reviewComments = reviewComments;
+		this.business = business;
+	}
 
 	public int getId() {
 		return id;
@@ -151,25 +168,8 @@ public class Review {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Review [id=");
-		builder.append(id);
-		builder.append(", createdAt=");
-		builder.append(createdAt);
-		builder.append(", description=");
-		builder.append(description);
-		builder.append(", rating=");
-		builder.append(rating);
-		builder.append(", notification=");
-		builder.append(notification);
-		builder.append(", user=");
-		builder.append(user);
-		builder.append(", reviewComments=");
-		builder.append(reviewComments);
-		builder.append(", business=");
-		builder.append(business);
-		builder.append("]");
-		return builder.toString();
+		return "Review [id=" + id + ", createdAt=" + createdAt + ", description=" + description + ", rating=" + rating
+				+ ", notification=" + notification + ", active=" + active ;
 	}
 
 	public Review(int id, LocalDate createdAt, String description, int rating, boolean notification, User user) {
@@ -200,6 +200,14 @@ public class Review {
 
 	public void setBusiness(Business business) {
 		this.business = business;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 	
 //	@ManyToOne

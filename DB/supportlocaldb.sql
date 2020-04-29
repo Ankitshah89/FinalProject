@@ -178,6 +178,7 @@ CREATE TABLE IF NOT EXISTS `review` (
   `description` VARCHAR(1000) NULL,
   `rating` INT(10) NULL,
   `notification` TINYINT(1) NULL DEFAULT 0,
+  `active` TINYINT(1) NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_comments_user1_idx` (`user_id` ASC),
   UNIQUE INDEX `uq_business_user` (`business_id` ASC, `user_id` ASC),
@@ -380,8 +381,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `supportlocaldb`;
-INSERT INTO `review` (`id`, `create_date`, `business_id`, `user_id`, `description`, `rating`, `notification`) VALUES (1, '2020-04-27', 1, 1, 'Great Rock Climbing place', 5, 1);
-INSERT INTO `review` (`id`, `create_date`, `business_id`, `user_id`, `description`, `rating`, `notification`) VALUES (2, '2020-04-29', 2, 1, 'Love Mrs.Cooper', 4, 1);
+INSERT INTO `review` (`id`, `create_date`, `business_id`, `user_id`, `description`, `rating`, `notification`, `active`) VALUES (1, '2020-04-27', 1, 1, 'Great Rock Climbing place', 5, 1, 1);
+INSERT INTO `review` (`id`, `create_date`, `business_id`, `user_id`, `description`, `rating`, `notification`, `active`) VALUES (2, '2020-04-29', 2, 1, 'Love Mrs.Cooper', 4, 1, 1);
+INSERT INTO `review` (`id`, `create_date`, `business_id`, `user_id`, `description`, `rating`, `notification`, `active`) VALUES (3, '2020-04-17', 1, 2, 'Test Test', 3, 1, 1);
 
 COMMIT;
 

@@ -22,41 +22,59 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Autowired
 	private UserRepository userRepo;
+//	
+//	@Autowired
+//	private Busines
 
 	@Override
-	public List<Review> findAll(String email, int id) {
+	public List<Review> findUserReviews(String email, int id) {
 
 		User user = userRepo.findUserByEmail(email);
 		List<Review> results = new ArrayList<>();
 		List<Review> reviews = new ArrayList<>();
 
 		if (user != null) {
-
+			
+			reviews = reviewRepo.findByActiveTrue();
+			System.out.println(reviews);
+			
 			for (Review review : reviews) {
-				if (review.getId() == id) {
+				if (review.getUser().getId() == id) {
 					results.add(review);
 				}
 			}
 			return results;
 		}
-
 		return null;
 	}
 
 	@Override
-	public Review createReview(String email, Review review, int id) {
+	public Review createReview(String email, Review review, int id, int bid) {
 		User user = userRepo.findUserByEmail(email);
+		
+//		Business
+		
 		if (user.getId() == id || user.getRole().equals(Role.Admin)) {
-			review.setDescription(email);
-			;
-			reviewRepo.saveAndFlush(review);
+		System.out.println("REvieeww" +review);
+			if(review.getBusiness().getId() == bid) {
+				
+//				review.setDescription();
+				 return reviewRepo.saveAndFlush(review);
+			}
+			
+				
 		}
-		return review;
+		return null;
 	}
 
 	@Override
 	public Review updateReview(String email, Review review, int id) {
 
 		return null;
+	}
+
+	@Override
+	public List<Review> findBusinessReviews(int id) {
+		return reviewRepo.findByBusinessId(id);
 	}
 }
