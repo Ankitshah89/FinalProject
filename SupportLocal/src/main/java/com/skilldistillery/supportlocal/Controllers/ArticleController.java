@@ -39,7 +39,7 @@ public class ArticleController {
 		}
 		if (articles != null) {
 			if (articles.size() == 0) {
-				resp.setStatus(204);
+				resp.setStatus(200);
 			}
 		}
 		return articles;
@@ -55,13 +55,14 @@ public class ArticleController {
 		if (article == null) {
 			resp.setStatus(404);
 		} else {
-			resp.setStatus(204);
+			resp.setStatus(200);
+			System.out.println("in 204 " + article);
+			return article;
 		}
-		return article;
+		return null;
 	}
 
 	@PostMapping("users/{uid}/business/{bid}/articles")
-	@ResponseBody
 	public Article create(HttpServletRequest req, HttpServletResponse res, @RequestBody Article article,
 			Principal principal, @PathVariable int uid, @PathVariable int bid) {
 		try {
@@ -81,7 +82,6 @@ public class ArticleController {
 	}
 
 	@PutMapping("articles/{aid}")
-	@ResponseBody
 	public Article update(HttpServletRequest req, HttpServletResponse res, @PathVariable int aid,
 			@RequestBody Article article, Principal principal) {
 		Article updatedArticle = articleSvc.update(principal.getName(), aid, article);
@@ -99,7 +99,7 @@ public class ArticleController {
 			Principal principal) {
 		boolean isDeleted = articleSvc.destroy(principal.getName(), aid);
 		if (isDeleted) {
-			res.setStatus(204);
+			res.setStatus(200);
 		} else {
 			res.setStatus(404);
 		}
