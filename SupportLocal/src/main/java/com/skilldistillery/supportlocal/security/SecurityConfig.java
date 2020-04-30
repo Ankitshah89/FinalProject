@@ -35,6 +35,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatchers(HttpMethod.GET, "/api/comments").permitAll()
         .antMatchers(HttpMethod.GET, "/api/comments/**").permitAll()
         .antMatchers(HttpMethod.GET, "/api/business/{businessId}/reviews").permitAll()
+        .antMatchers(HttpMethod.GET, "/api/preferences").permitAll()
+        .antMatchers(HttpMethod.GET, "/api/preferences/**").permitAll()
+        .antMatchers(HttpMethod.GET, "/api/addresses").permitAll()
+        .antMatchers(HttpMethod.GET, "/api/addresses/**").permitAll()
+        .antMatchers(HttpMethod.GET, "/api/articles").permitAll()
+        .antMatchers(HttpMethod.GET, "/api/articles/**").permitAll()
         .antMatchers("/api/**").authenticated() // Requests for our REST API must be authorized.
         .anyRequest().permitAll()               // All other requests are allowed without authorization.
         .and()

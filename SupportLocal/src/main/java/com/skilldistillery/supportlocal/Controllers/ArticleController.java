@@ -47,10 +47,9 @@ public class ArticleController {
 	}
 
 	@GetMapping("articles/{aid}")
-	public Article show(HttpServletRequest req, HttpServletResponse resp, Principal principal, @PathVariable int aid) {
-		Article article = articleSvc.show(principal.getName(), aid);
+	public Article show(HttpServletRequest req, HttpServletResponse resp, @PathVariable int aid) {
+		Article article = articleSvc.show(aid);
 		System.out.println("Article: " + article);
-		System.out.println("Principal: " + principal.getName());
 		System.out.println("AID: " + aid);
 		if (article == null) {
 			resp.setStatus(404);
@@ -62,11 +61,11 @@ public class ArticleController {
 		return null;
 	}
 
-	@PostMapping("users/{uid}/business/{bid}/articles")
+	@PostMapping("users/business/{bid}/articles")
 	public Article create(HttpServletRequest req, HttpServletResponse res, @RequestBody Article article,
-			Principal principal, @PathVariable int uid, @PathVariable int bid) {
+			Principal principal, @PathVariable int bid) {
 		try {
-			Article newArticle = articleSvc.create(principal.getName(), article, uid, bid);
+			Article newArticle = articleSvc.create(principal.getName(), article, bid);
 			res.setStatus(201);
 			StringBuffer url = req.getRequestURL();
 			url.append("/").append(article.getId());

@@ -7,11 +7,11 @@ import com.skilldistillery.supportlocal.entities.Preference;
 public interface PreferenceService {
 	List<Preference> prefIndex();
 	//Create
-	Preference createPref(Preference pref);
+	Preference createPref(String email,Preference pref);
 	//Update
-	Preference updatePref(Preference pref, int id);
+	Preference updatePref(String email,Preference pref, int id);
 	//Destroy
-	boolean deleteById(int id);
+	boolean deleteById(String email,int id);
 	//Retrieve
 	Preference prefById(int id);
 	//SearchByType
