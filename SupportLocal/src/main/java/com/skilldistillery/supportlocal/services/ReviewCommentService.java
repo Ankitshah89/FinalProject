@@ -11,7 +11,6 @@ public interface ReviewCommentService {
 	ReviewComment findCommentById(Integer id);
 	
 	ReviewComment createComment (ReviewComment comment, Integer userId, Integer reviewId);
-	
 
 	ReviewComment updateComment(Integer id, ReviewComment comment);
 

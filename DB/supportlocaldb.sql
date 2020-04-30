@@ -84,6 +84,8 @@ CREATE TABLE IF NOT EXISTS `business` (
   `active` TINYINT NOT NULL DEFAULT 1,
   `image_url` VARCHAR(500) NULL,
   `manager_id` INT NULL,
+  `create_date` DATETIME NULL,
+  `created_by_id` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_business_user1_idx` (`manager_id` ASC),
   CONSTRAINT `fk_business_user`
@@ -342,8 +344,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `supportlocaldb`;
-INSERT INTO `business` (`id`, `name`, `description`, `phone`, `active`, `image_url`, `manager_id`) VALUES (1, 'Mount Rushmore', 'Rock climbing', '123456789', 1, NULL, 1);
-INSERT INTO `business` (`id`, `name`, `description`, `phone`, `active`, `image_url`, `manager_id`) VALUES (2, 'Mrs. Cooper', 'Boutique', '234512312', 1, NULL, 2);
+INSERT INTO `business` (`id`, `name`, `description`, `phone`, `active`, `image_url`, `manager_id`, `create_date`, `created_by_id`) VALUES (1, 'Mount Rushmore', 'Rock climbing', '123456789', 1, NULL, 1, NULL, NULL);
+INSERT INTO `business` (`id`, `name`, `description`, `phone`, `active`, `image_url`, `manager_id`, `create_date`, `created_by_id`) VALUES (2, 'Mrs. Cooper', 'Boutique', '234512312', 1, NULL, 2, NULL, NULL);
 
 COMMIT;
 
