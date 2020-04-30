@@ -16,9 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.skilldistillery.supportlocal.entities.Article;
 import com.skilldistillery.supportlocal.services.ArticleService;
 
@@ -45,24 +43,52 @@ public class ArticleController {
 		return articles;
 
 	}
+	
+	@GetMapping("articles/business/{bid}")
+	public List<Article> findAllByBusiness(HttpServletRequest req, HttpServletResponse resp, Principal principal, @PathVariable Integer bid) {
+		List<Article> articles = articleSvc.indexBusiness(bid);
+		
+		if (articles == null) {
+			resp.setStatus(404);
+		}
+		if (articles != null) {
+			if (articles.size() == 0) {
+				resp.setStatus(200);
+			}
+		}
+		return articles;
+		
+	}
+	
+	@GetMapping("articles/user/{uid}")
+	public List<Article> findAllByUser(HttpServletRequest req, HttpServletResponse resp, Principal principal, @PathVariable Integer uid) {
+		List<Article> articles = articleSvc.indexUser(uid);
+		
+		if (articles == null) {
+			resp.setStatus(404);
+		}
+		if (articles != null) {
+			if (articles.size() == 0) {
+				resp.setStatus(200);
+			}
+		}
+		return articles;
+		
+	}
 
 	@GetMapping("articles/{aid}")
 	public Article show(HttpServletRequest req, HttpServletResponse resp, Principal principal, @PathVariable int aid) {
 		Article article = articleSvc.show(principal.getName(), aid);
-		System.out.println("Article: " + article);
-		System.out.println("Principal: " + principal.getName());
-		System.out.println("AID: " + aid);
 		if (article == null) {
 			resp.setStatus(404);
 		} else {
 			resp.setStatus(200);
-			System.out.println("in 204 " + article);
 			return article;
 		}
 		return null;
 	}
 
-	@PostMapping("business/{bid}/articles")
+	@PostMapping("articles/business/{bid}")
 	public Article create(HttpServletRequest req, HttpServletResponse res, @RequestBody Article article,
 			Principal principal, @PathVariable int bid) {
 		try {
