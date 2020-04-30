@@ -1,3 +1,4 @@
+
 package com.skilldistillery.supportlocal.Controllers;
 
 import java.security.Principal;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -44,12 +46,26 @@ public class ArticleController {
 
 	}
 
-	@PostMapping("articles")
+	@GetMapping("articles/{aid}")
+	public Article show(HttpServletRequest req, HttpServletResponse resp, Principal principal, @PathVariable int aid) {
+		Article article = articleSvc.show(principal.getName(), aid);
+		System.out.println("Article: " + article);
+		System.out.println("Principal: " + principal.getName());
+		System.out.println("AID: " + aid);
+		if (article == null) {
+			resp.setStatus(404);
+		} else {
+			resp.setStatus(204);
+		}
+		return article;
+	}
+
+	@PostMapping("users/{uid}/business/{bid}/articles")
 	@ResponseBody
 	public Article create(HttpServletRequest req, HttpServletResponse res, @RequestBody Article article,
-			Principal principal, @PathVariable Integer bid) {
+			Principal principal, @PathVariable int uid, @PathVariable int bid) {
 		try {
-			Article newArticle = articleSvc.create(principal.getName(), article, bid);
+			Article newArticle = articleSvc.create(principal.getName(), article, uid, bid);
 			res.setStatus(201);
 			StringBuffer url = req.getRequestURL();
 			url.append("/").append(article.getId());
@@ -63,20 +79,20 @@ public class ArticleController {
 			return null;
 		}
 	}
-//    }
-////  PUT todos/{tid}
-//    @PutMapping("todos/{tid}")
-//    @ResponseBody
-//    public Todo update(HttpServletRequest req, HttpServletResponse res, @PathVariable("tid") Integer tid, @RequestBody Todo todo, Principal principal) {
-//            Todo updatedTodo = todoSvc.update(principal.getName(), tid, todo);
-//            if (updatedTodo == null) {
-//                res.setStatus(400);
-//            }
-//        else {
-//            res.setStatus(200);
-//        }
-//        return updatedTodo;
-//    }
+
+	@PutMapping("articles/{aid}")
+	@ResponseBody
+	public Article update(HttpServletRequest req, HttpServletResponse res, @PathVariable int aid,
+			@RequestBody Article article, Principal principal) {
+		Article updatedArticle = articleSvc.update(principal.getName(), aid, article);
+		if (updatedArticle == null) {
+			res.setStatus(400);
+		} else {
+			res.setStatus(200);
+		}
+
+		return updatedArticle;
+	}
 
 	@DeleteMapping("articles/{aid}")
 	public boolean destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable("aid") Integer aid,

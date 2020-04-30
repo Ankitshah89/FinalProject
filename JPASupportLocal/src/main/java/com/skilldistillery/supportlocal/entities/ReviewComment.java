@@ -42,6 +42,7 @@ public class ReviewComment {
 	
 	
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name = "inreply_to_id")
 	private ReviewComment parentComment;
 	
@@ -213,7 +214,7 @@ public class ReviewComment {
 	@Override
 	public String toString() {
 		return "ReviewComment [id=" + id + ", content=" + content + ", createdAt=" + createdAt + ", updatedAt="
-				+ updatedAt + ", parentComment=" + parentComment + ", active=" + active + "]";
+				+ updatedAt + ", active=" + active + "]";
 	}
 
 
