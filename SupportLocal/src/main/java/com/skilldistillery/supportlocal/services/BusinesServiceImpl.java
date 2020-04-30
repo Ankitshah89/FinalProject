@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.supportlocal.entities.Business;
+import com.skilldistillery.supportlocal.entities.Role;
+import com.skilldistillery.supportlocal.entities.User;
 import com.skilldistillery.supportlocal.repositories.BusinessRepository;
+import com.skilldistillery.supportlocal.repositories.UserRepository;
 
 @Service
 public class BusinesServiceImpl implements BusinessService {
@@ -15,17 +18,18 @@ public class BusinesServiceImpl implements BusinessService {
 	@Autowired
 	private BusinessRepository busRepo;
 
-	//Add User Repo.
-	
-	
-	@Override //Done
-	public List<Business> businessIndex() { //Check if active in repo
+	// Add User Repo.
+	@Autowired
+	private UserRepository userRepo;
+
+	@Override // Done
+	public List<Business> businessIndex() {
 
 		// TODO Auto-generated method stub
 		return busRepo.findAll();
 	}
 
-	@Override //Done
+	@Override // Done
 	public Business findById(int id) {
 		Optional<Business> busOpt = busRepo.findById(id);
 		if (busOpt.isPresent()) {
@@ -34,47 +38,62 @@ public class BusinesServiceImpl implements BusinessService {
 		return null;
 	}
 
-	@Override //Done
-	public Business updateBusiness(Business business, int id) {
-		Optional<Business> optBus = busRepo.findById(id);
-		if (optBus.isPresent()) {
-			if (business.getName() != null) {
-				Business manBus = optBus.get();
-				manBus.setName(business.getName());
-				manBus.setDescription(business.getDescription());
-				manBus.setPhone(business.getPhone());
-				manBus.setImageUrl(business.getImageUrl());
-				manBus.setActive(business.isActive());
-				return busRepo.saveAndFlush(manBus);
+	@Override // Done
+	public Business updateBusiness(String email, Business business, int id) {
+		User user = userRepo.findUserByEmail(email);
+
+		if (user != null && (user.getRole().equals(Role.Admin) || user.getRole().equals(Role.Business))) {
+
+			Optional<Business> optBus = busRepo.findById(id);
+
+			if (optBus.isPresent()) {
+				if (business.getName() != null) {
+					Business manBus = optBus.get();
+					manBus.setName(business.getName());
+					manBus.setDescription(business.getDescription());
+					manBus.setPhone(business.getPhone());
+					manBus.setImageUrl(business.getImageUrl());
+					manBus.setActive(business.isActive());
+					return busRepo.saveAndFlush(manBus);
+				}
 			}
+
 		}
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override //Done
-	public boolean deleteBusiness(int id) { //Add username, check to see if valid //Set active to false
+	@Override // Done
+	public boolean deleteBusiness(String email, int id) {
+		User user = userRepo.findUserByEmail(email);
 		boolean deleted = false;
-		Optional<Business> optBus = busRepo.findById(id);
-		if (optBus.isPresent()) {
-			Business manBus = optBus.get();
-			try {
-				busRepo.delete(manBus);
-				deleted = true;
-			} catch(Exception e) {
-				System.out.println("Could not delete business with id:" + id);
-				deleted = false;
+
+		if (user != null && (user.getRole().equals(Role.Admin) || user.getRole().equals(Role.Business))) {
+
+			Optional<Business> optBus = busRepo.findById(id);
+
+			if (optBus.isPresent()) {
+				Business manBus = optBus.get();
+				try {
+					busRepo.delete(manBus);
+					deleted = true;
+				} catch (Exception e) {
+					System.out.println("Could not delete business with id:" + id);
+					deleted = false;
+				}
 			}
 		}
 		// TODO Auto-generated method stub
 		return deleted;
 	}
 
-	@Override //Done
-	public Business createBusiness(Business business) {
-		
-		if (business != null) {
+	@Override // Done
+	public Business createBusiness(String email, Business business) {
+		User user = userRepo.findUserByEmail(email);
+
+		if (business != null && user != null && (user.getRole().equals(Role.Admin) || user.getRole().equals(Role.Business))) {
 			try {
+				business.setManager(user);
 				return busRepo.saveAndFlush(business);
 			} catch (Exception e) {
 				System.out.println("Could not create new business");
@@ -91,10 +110,10 @@ public class BusinesServiceImpl implements BusinessService {
 	@Override
 	public List<Business> findBusinessByName(String name) {
 		List<Business> listByName = null;
-		if(name.length() > 0) {
+		if (name.length() > 0) {
 			try {
-				listByName = busRepo.findByNameLike("%"+name+"%");
-			} catch(Exception e) {
+				listByName = busRepo.findByNameLike("%" + name + "%");
+			} catch (Exception e) {
 				System.out.println("Could not return a list of results from name " + name);
 			}
 		}
@@ -105,10 +124,10 @@ public class BusinesServiceImpl implements BusinessService {
 	@Override
 	public List<Business> findBusinessByDescription(String description) {
 		List<Business> listByDescription = null;
-		if(description.length() > 0) {
+		if (description.length() > 0) {
 			try {
-				listByDescription = busRepo.findByDescriptionLike("%"+description+"%");
-			} catch(Exception e) {
+				listByDescription = busRepo.findByDescriptionLike("%" + description + "%");
+			} catch (Exception e) {
 				System.out.println("Could not return a list of results from description " + description);
 			}
 		}
@@ -119,10 +138,10 @@ public class BusinesServiceImpl implements BusinessService {
 	@Override
 	public List<Business> findBusinessByZipCode(String zip) {
 		List<Business> listByZip = null;
-		if(zip.length() > 0) {
+		if (zip.length() > 0) {
 			try {
-				listByZip = busRepo.findByAddressPostalCodeLike("%"+zip+"%");
-			} catch(Exception e) {
+				listByZip = busRepo.findByAddressPostalCodeLike("%" + zip + "%");
+			} catch (Exception e) {
 				System.out.println("Could not return a list of results from description " + zip);
 			}
 		}

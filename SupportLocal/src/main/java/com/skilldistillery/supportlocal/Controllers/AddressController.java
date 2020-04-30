@@ -1,5 +1,6 @@
 package com.skilldistillery.supportlocal.Controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -51,8 +52,8 @@ public class AddressController {
 
 	@PostMapping("addresses")
 	public Address createAddress(@RequestBody Address address, HttpServletResponse response,
-			HttpServletRequest request) {
-		Address newAddress = addServe.createAddress(address);
+			HttpServletRequest request, Principal principal) {
+		Address newAddress = addServe.createAddress( principal.getName(),address);
 
 		if (newAddress != null) {
 			response.setStatus(201);
@@ -63,7 +64,8 @@ public class AddressController {
 	}
 
 	@PutMapping("addresses/{id}")
-	public Address updateAddress(@PathVariable int id, @RequestBody Address address, HttpServletResponse response) {
+	public Address updateAddress(@PathVariable int id, @RequestBody Address address, HttpServletResponse response,
+			Principal principal) {
 		Address manAdd = addServe.findById(id);
 		if (manAdd != null) {
 			manAdd.setStreet(address.getStreet());
@@ -72,15 +74,16 @@ public class AddressController {
 			manAdd.setState(address.getState());
 			manAdd.setPostalCode(address.getPostalCode());
 			manAdd.setCountry(address.getCountry());
-			return addServe.updateAddress(manAdd);
+			return addServe.updateAddress(principal.getName(),manAdd);
 		}
 
 		return null;
 	}
 
 	@DeleteMapping("addresses/{id}")
-	public boolean deleteAddress(@PathVariable int id, HttpServletResponse response) {
-		boolean deleted = addServe.deleteAddress(id);
+	public boolean deleteAddress(@PathVariable int id, HttpServletResponse response,
+			Principal principal) {
+		boolean deleted = addServe.deleteAddress(principal.getName(),id);
 		if (deleted) {
 			response.setStatus(204);
 		} else {

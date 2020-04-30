@@ -1,5 +1,6 @@
 package com.skilldistillery.supportlocal.Controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -50,8 +51,9 @@ public class PreferenceController {
 	}
 
 	@DeleteMapping("preferences/{id}") // Tested
-	public boolean deletedPref(@PathVariable int id, HttpServletResponse response) {
-		boolean deleted = prefServe.deleteById(id);
+	public boolean deletedPref(@PathVariable int id, HttpServletResponse response,
+			Principal principal) {
+		boolean deleted = prefServe.deleteById(principal.getName(),id);
 		if (deleted) {
 			response.setStatus(200);
 		} else {
@@ -61,13 +63,14 @@ public class PreferenceController {
 	}
 
 	@PostMapping("preferences") // Tested
-	public Preference createPref(@RequestBody Preference pref, HttpServletResponse response) {
+	public Preference createPref(@RequestBody Preference pref, HttpServletResponse response,Principal principal) {
+		
 		if (pref.getPreferenceCategory() != null && pref.getPreferenceType() != null) {
 			PreferenceCategory category[] = PreferenceCategory.values();
 			for (PreferenceCategory pc : category) {
 				if (pref.getPreferenceCategory() == pc) {
 					response.setStatus(201);
-					return prefServe.createPref(pref);
+					return prefServe.createPref(principal.getName(),pref);
 				} else {
 					response.setStatus(400);
 				}
@@ -78,7 +81,8 @@ public class PreferenceController {
 	}
 
 	@PutMapping("preferences/{id}") // Tested
-	public Preference updatePref(@RequestBody Preference pref, @PathVariable int id, HttpServletResponse response) {
+	public Preference updatePref(@RequestBody Preference pref, @PathVariable int id, HttpServletResponse response,
+			Principal principal) {
 
 		if (pref.getPreferenceCategory() != null && pref.getPreferenceType() != null) {
 
@@ -87,7 +91,7 @@ public class PreferenceController {
 			for (PreferenceCategory pc : category) {
 				if (pref.getPreferenceCategory() == pc) {
 					response.setStatus(201);
-					return prefServe.updatePref(pref, id);
+					return prefServe.updatePref(principal.getName(),pref, id);
 				} else {
 					response.setStatus(400);
 				}

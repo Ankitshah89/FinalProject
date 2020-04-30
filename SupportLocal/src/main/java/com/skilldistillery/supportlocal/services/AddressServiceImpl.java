@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.supportlocal.entities.Address;
-import com.skilldistillery.supportlocal.entities.Business;
+import com.skilldistillery.supportlocal.entities.Role;
+import com.skilldistillery.supportlocal.entities.User;
 import com.skilldistillery.supportlocal.repositories.AddressRepository;
+import com.skilldistillery.supportlocal.repositories.UserRepository;
 
 @Service
 public class AddressServiceImpl implements AddressService {
@@ -17,6 +19,8 @@ public class AddressServiceImpl implements AddressService {
 	private AddressRepository addRepo;
 	@Autowired 
 	private BusinessService busServe;
+	@Autowired
+	private UserRepository userRepo;
 	
 	
 
@@ -34,8 +38,13 @@ public class AddressServiceImpl implements AddressService {
 	// Create
 
 	@Override
-	public Address createAddress(Address address) {
+	public Address createAddress(String email,Address address) {
+		User user = userRepo.findUserByEmail(email);
+		
 		try {
+			if(user.getRole().equals(Role.Admin) || user.getRole().equals(Role.Business)) {
+				
+			
 			if (address.getStreet() == null 
 					|| address.getCity() == null 
 					|| address.getState() == null
@@ -50,20 +59,27 @@ public class AddressServiceImpl implements AddressService {
 				System.out.println(address);
 				return addRepo.saveAndFlush(address);
 			}
-		} catch (Exception e) {
+			}
+		}
+		catch (Exception e) {
 			System.out.println(e);
 			System.out.println("Could not complete creation of: " + address);
 			System.out.println("Some fields may not have been provided.");
 			return null;
 		}
+		return address;
 	}
 
 	// Update
 	@Override
-	public Address updateAddress(Address address) {
+	public Address updateAddress(String email,Address address) {
+		User user = userRepo.findUserByEmail(email);
+		
+			
 		Optional<Address> optAdd = addRepo.findById(address.getId());
 		if (optAdd.isPresent()) {
 			try {
+				if(user.getRole().equals(Role.Admin) || user.getRole().equals(Role.Business)) {
 				if (address.getStreet() == null 
 						|| address.getCity() == null 
 						|| address.getState() == null
@@ -82,6 +98,7 @@ public class AddressServiceImpl implements AddressService {
 					manAdd.setCountry(address.getCountry());
 					return addRepo.saveAndFlush(manAdd);
 				}
+				}
 			} catch (Exception e) {
 				System.out.println(e);
 				System.out.println("Could not complete update of: " + address);
@@ -93,13 +110,18 @@ public class AddressServiceImpl implements AddressService {
 
 	// Delete
 	@Override
-	public boolean deleteAddress(int id) {
+	public boolean deleteAddress(String email, int id) {
 		boolean deleted = false;
+		
+		User user = userRepo.findUserByEmail(email);
+		if(user.getRole().equals(Role.Admin) || user.getRole().equals(Role.Business)) {
+			
 		Optional<Address> toDelete = addRepo.findById(id);
 		if(toDelete.isPresent()) {
 			Address manAdd = toDelete.get();
 			addRepo.delete(manAdd);
 			deleted = true;
+		}
 		}
 		// TODO Auto-generated method stub
 		return deleted;
