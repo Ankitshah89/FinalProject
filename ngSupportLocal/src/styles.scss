@@ -1,50 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+
+
 @import "~bootstrap/scss/bootstrap";
 
 $fa-font-path: "../node_modules/font-awesome/fonts";
 
 @import "../node_modules/font-awesome/scss/font-awesome.scss";
 
-body {
-  padding-top: 70px;
-}
-footer {
-  padding-left: 15px;
-  padding-right: 15px;
-}
 
-/*
- * Off Canvas
- * --------------------------------------------------
- */
-@media screen and (max-width: 768px) {
-  .row-offcanvas {
-    position: relative;
-    -webkit-transition: all 0.4s ease-out;
-    -moz-transition: all 0.4s ease-out;
-    transition: all 0.4s ease-out;
-  }
 
-  .row-offcanvas-left #sidebarLeft {
-    left: -40%;
-  }
 
-  .row-offcanvas-left.active {
-    left: 40%;
-  }
-
-  .row-offcanvas-right #sidebarRight {
-    right: -40%;
-  }
-
-  .row-offcanvas-right.active {
-    right: 40%;
-  }
-
-  .sidebar-offcanvas {
-    position: absolute;
-    top: 0;
-    width: 40%;
-    margin-left: 10px;
-  }
-}
