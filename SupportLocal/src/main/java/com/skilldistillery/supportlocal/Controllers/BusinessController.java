@@ -1,5 +1,6 @@
 package com.skilldistillery.supportlocal.Controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -58,6 +59,7 @@ public class BusinessController {
 		}
 		return manBus;
 	}
+	
 	@PutMapping("businesses/{id}")
 	public Business updateBusiness(@RequestBody Business business, @PathVariable int id, HttpServletResponse response) {
 		Business manBus = bServ.updateBusiness(business, id);
@@ -69,9 +71,10 @@ public class BusinessController {
 		return manBus;
 	}
 	
-	@DeleteMapping("businesses/{id}")
-	public boolean deleteById(@PathVariable int id, HttpServletResponse response) {
-		boolean deleted = bServ.deleteBusiness(id);
+	@DeleteMapping("businesses/{id}") //Modify Service (String username) Pass this from the Controller to the principal
+	public boolean deleteById(@PathVariable int id, HttpServletResponse response, Principal principal) {
+		boolean deleted = bServ.deleteBusiness(id); //takes string
+//		boolean deleted = bServ.deleteBusiness(id, principal.getName()); //takes string
 		if(deleted) {
 			response.setStatus(200);
 		} else {
