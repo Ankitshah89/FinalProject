@@ -33,7 +33,7 @@ public class Business {
 	private boolean active;
 	
 	@OneToOne(mappedBy="business")
-//	@JsonBackReference(value="businessToAddress")
+	@JsonBackReference(value="businessToAddress")
 	private Address address;
 	
 	@Column(name="image_url")
