@@ -14,7 +14,6 @@ public interface ReviewService {
 	Review updateReview(String email, Review review, Integer bid, Integer rid);
 	
 	
-	
 	Boolean deleteReview (String email, Integer id);
 
 }
