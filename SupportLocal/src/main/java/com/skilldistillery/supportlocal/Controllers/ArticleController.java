@@ -62,11 +62,11 @@ public class ArticleController {
 		return null;
 	}
 
-	@PostMapping("users/{uid}/business/{bid}/articles")
+	@PostMapping("business/{bid}/articles")
 	public Article create(HttpServletRequest req, HttpServletResponse res, @RequestBody Article article,
-			Principal principal, @PathVariable int uid, @PathVariable int bid) {
+			Principal principal, @PathVariable int bid) {
 		try {
-			Article newArticle = articleSvc.create(principal.getName(), article, uid, bid);
+			Article newArticle = articleSvc.create(principal.getName(), article, bid);
 			res.setStatus(201);
 			StringBuffer url = req.getRequestURL();
 			url.append("/").append(article.getId());
