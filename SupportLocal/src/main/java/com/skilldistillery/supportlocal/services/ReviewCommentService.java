@@ -10,11 +10,11 @@ public interface ReviewCommentService {
 	
 	ReviewComment findCommentById(Integer id);
 	
-	ReviewComment createComment (ReviewComment comment, Integer userId, Integer reviewId);
+	ReviewComment createComment (String email,ReviewComment comment, Integer reviewId);
 
-	ReviewComment updateComment(Integer id, ReviewComment comment);
+	ReviewComment updateComment(String email,Integer id, ReviewComment comment);
 
-	boolean deleteComment(Integer id);
+	boolean deleteComment(String email,Integer id);
 	
 
 }

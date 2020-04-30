@@ -11,5 +11,7 @@ public interface ReviewRepository extends JpaRepository<Review, Integer> {
 	List<Review> findByActiveTrue();
 	
 	List<Review> findByBusinessId(int id);
+	
+	List<Review> findByActiveTrueAndUser_Id(int id);
 
 }

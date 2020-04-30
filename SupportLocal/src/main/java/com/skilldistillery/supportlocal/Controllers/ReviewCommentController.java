@@ -1,5 +1,6 @@
 package com.skilldistillery.supportlocal.Controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -53,15 +54,15 @@ public class ReviewCommentController {
 	}
 	
 
-	@PostMapping("comments/{userid}/{reviewid}")
+	@PostMapping("comments/{reviewid}")
 	public ReviewComment createNewComment(
 			@RequestBody ReviewComment comment,
-			@PathVariable Integer userid,
 			@PathVariable Integer reviewid,
-			HttpServletResponse resp
+			HttpServletResponse resp,
+			Principal principal
 		){
 		System.out.println(comment.getReview());
-		ReviewComment newComment = svc.createComment(comment, userid, reviewid);
+		ReviewComment newComment = svc.createComment(principal.getName(),comment, reviewid);
 		if (newComment != null) {
 			return newComment;
 		}
@@ -72,8 +73,9 @@ public class ReviewCommentController {
 	}
 	
 	@PutMapping("comments/{id}")
-	public ReviewComment updateComment(@RequestBody ReviewComment comment, @PathVariable int id, HttpServletResponse response){
-		ReviewComment editComment = svc.updateComment(id, comment);
+	public ReviewComment updateComment(@RequestBody ReviewComment comment, @PathVariable int id, HttpServletResponse response,
+			Principal principal){
+		ReviewComment editComment = svc.updateComment(principal.getName(),id, comment);
 		if (editComment != null) {
 			return editComment;
 		}
@@ -84,10 +86,10 @@ public class ReviewCommentController {
 	}
 	
 	@DeleteMapping("comments/{id}")
-	public void deleteComment(@PathVariable int id, HttpServletResponse resp){
+	public void deleteComment(@PathVariable int id, HttpServletResponse resp,Principal principal){
 		boolean result = false;
 		try {
-			result = svc.deleteComment(id);
+			result = svc.deleteComment(principal.getName(),id);
 			if (result == true) {
 				resp.setStatus(204);
 			}
