@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -63,20 +64,20 @@ public class ArticleController {
 			return null;
 		}
 	}
-//    }
-////  PUT todos/{tid}
-//    @PutMapping("todos/{tid}")
-//    @ResponseBody
-//    public Todo update(HttpServletRequest req, HttpServletResponse res, @PathVariable("tid") Integer tid, @RequestBody Todo todo, Principal principal) {
-//            Todo updatedTodo = todoSvc.update(principal.getName(), tid, todo);
-//            if (updatedTodo == null) {
-//                res.setStatus(400);
-//            }
-//        else {
-//            res.setStatus(200);
-//        }
-//        return updatedTodo;
-//    }
+
+	@PutMapping("articles/{aid}")
+	@ResponseBody
+	public Article update(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer aid,
+			@RequestBody Article article, Principal principal) {
+		Article updatedArticle = articleSvc.update(principal.getName(), aid, article);
+		if (updatedArticle == null) {
+			res.setStatus(400);
+		} else {
+			res.setStatus(200);
+		}
+
+		return updatedArticle;
+	}
 
 	@DeleteMapping("articles/{aid}")
 	public boolean destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable("aid") Integer aid,
