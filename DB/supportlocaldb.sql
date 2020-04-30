@@ -207,6 +207,8 @@ CREATE TABLE IF NOT EXISTS `review_comment` (
   `create_date` DATETIME NULL,
   `inreply_to_id` INT NULL,
   `user_id` INT NULL,
+  `active` TINYINT(1) NULL,
+  `date_updated` DATETIME NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_reviewcomment_review_idx` (`review_id` ASC),
   INDEX `fk_comment_parentcomment_idx` (`inreply_to_id` ASC),
@@ -394,8 +396,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `supportlocaldb`;
-INSERT INTO `review_comment` (`id`, `review_id`, `content`, `create_date`, `inreply_to_id`, `user_id`) VALUES (1, 1, 'More content', '2020-04-27', NULL, 1);
-INSERT INTO `review_comment` (`id`, `review_id`, `content`, `create_date`, `inreply_to_id`, `user_id`) VALUES (2, 1, 'Replying to more content', '2020-04-29', 1, 2);
+INSERT INTO `review_comment` (`id`, `review_id`, `content`, `create_date`, `inreply_to_id`, `user_id`, `active`, `date_updated`) VALUES (1, 1, 'More content', '2020-04-27', NULL, 1, 1, NULL);
+INSERT INTO `review_comment` (`id`, `review_id`, `content`, `create_date`, `inreply_to_id`, `user_id`, `active`, `date_updated`) VALUES (2, 1, 'Replying to more content', '2020-04-29', 1, 2, 1, NULL);
+INSERT INTO `review_comment` (`id`, `review_id`, `content`, `create_date`, `inreply_to_id`, `user_id`, `active`, `date_updated`) VALUES (3, 1, 'Replying to 2', '2020-04-29', 2, 1, 1, NULL);
 
 COMMIT;
 
