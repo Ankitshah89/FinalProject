@@ -47,62 +47,80 @@ public class ArticleCommentController {
 
 	}
 
-//	@GetMapping("article/comments/{cid}")
-//	public ArticleComment show(HttpServletRequest req, HttpServletResponse resp, Principal principal, @PathVariable int cid) {
-//		ArticleComment comments = commentSvc.show(cid);
-//		if (comments == null) {
-//			resp.setStatus(404);
-//		} else {
-//			resp.setStatus(200);
-//			return comments;
-//		}
-//		return null;
-//	}
-//
-//	@PostMapping("users/{uid}/artile/{aid}/comments")
-//	@ResponseBody
-//	public ArticleComment create(HttpServletRequest req, HttpServletResponse res, @RequestBody ArticleComment comments,
-//			Principal principal, @PathVariable int uid, @PathVariable int aid) {
-//		try {
-//			ArticleComment newComments = commentSvc.create(principal.getName(), comments, uid, aid);
-//			res.setStatus(201);
-//			StringBuffer url = req.getRequestURL();
-//			url.append("/").append(comments.getId());
-//			String location = url.toString();
-//			res.addHeader("Location", location);
-//			return newComments;
-//
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			res.setStatus(400);
-//			return null;
-//		}
-//	}
-//
-//	@PutMapping("article/comments/{cid}")
-//	@ResponseBody
-//	public ArticleComment update(HttpServletRequest req, HttpServletResponse res, @PathVariable int cid,
-//			@RequestBody ArticleComment comments, Principal principal) {
-//		ArticleComment updatedComments = commentSvc.update(principal.getName(), cid, comments);
-//		if (updatedComments == null) {
-//			res.setStatus(400);
-//		} else {
-//			res.setStatus(200);
-//		}
-//
-//		return updatedComments;
-//	}
-//
-//	@DeleteMapping("article/comments{cid}")
-//	public boolean destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable("cid") Integer cid,
-//			Principal principal) {
-//		boolean isDeleted = commentSvc.destroy(principal.getName(), cid);
-//		if (isDeleted) {
-//			res.setStatus(200);
-//		} else {
-//			res.setStatus(404);
-//		}
-//		return isDeleted;
-//	}
+	@GetMapping("article/comments/{cid}")
+	public ArticleComment show(HttpServletRequest req, HttpServletResponse resp, Principal principal, @PathVariable int cid) {
+		ArticleComment comments = commentSvc.show(cid);
+		if (comments == null) {
+			resp.setStatus(404);
+		} else {
+			resp.setStatus(200);
+			return comments;
+		}
+		return null;
+	}
+
+	@PostMapping("article/{aid}/comments")
+	public ArticleComment create(HttpServletRequest req, HttpServletResponse res, @RequestBody ArticleComment comments,
+			Principal principal, @PathVariable Integer aid) {
+		try {
+			ArticleComment newComments = commentSvc.create(principal.getName(), comments, aid);
+			res.setStatus(201);
+			StringBuffer url = req.getRequestURL();
+			url.append("/").append(comments.getId());
+			String location = url.toString();
+			res.addHeader("Location", location);
+			return newComments;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+			return null;
+		}
+	}
+	
+	@PostMapping("article/{aid}/comments/{cid}")
+	public ArticleComment createReplyTo(HttpServletRequest req, HttpServletResponse res, @RequestBody ArticleComment reply,
+			Principal principal, @PathVariable Integer cid) {
+		try {
+			ArticleComment newComments = commentSvc.createReplyTo(principal.getName(), reply, cid);
+			res.setStatus(201);
+			StringBuffer url = req.getRequestURL();
+			url.append("/").append(reply.getId());
+			String location = url.toString();
+			res.addHeader("Location", location);
+			return newComments;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+			return null;
+		}
+	}
+	
+	@PutMapping("article/comments/{cid}")
+	@ResponseBody
+	public ArticleComment update(HttpServletRequest req, HttpServletResponse res, @PathVariable int cid,
+			@RequestBody ArticleComment comments, Principal principal) {
+		ArticleComment updatedComments = commentSvc.update(principal.getName(), cid, comments);
+		if (updatedComments == null) {
+			res.setStatus(400);
+		} else {
+			res.setStatus(200);
+		}
+
+		return updatedComments;
+	}
+
+	@DeleteMapping("article/comments/{cid}")
+	public boolean destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable("cid") Integer cid,
+			Principal principal) {
+		boolean isDeleted = commentSvc.destroy(principal.getName(), cid);
+		if (isDeleted) {
+			res.setStatus(200);
+		} else {
+			res.setStatus(404);
+		}
+		return isDeleted;
+	}
 
 }

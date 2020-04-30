@@ -30,6 +30,16 @@ public class ArticleServiceImpl implements ArticleService {
 	public List<Article> index() {
 		return articleRepo.findAll();
 	}
+	
+	@Override
+	public List<Article> indexBusiness(Integer bid) {
+		return articleRepo.findByBusinessId(bid);
+	}
+	
+	@Override
+	public List<Article> indexUser(Integer uid) {
+		return articleRepo.findByUserId(uid);
+	}
 
 	@Override
 	public Article show(int aid) {

@@ -59,6 +59,7 @@ public class BusinessController {
 		}
 		return manBus;
 	}
+	
 	@PutMapping("businesses/{id}")
 	public Business updateBusiness(@RequestBody Business business, @PathVariable int id, HttpServletResponse response,
 			Principal principal) {
