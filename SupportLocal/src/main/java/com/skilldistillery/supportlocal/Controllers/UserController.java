@@ -77,7 +77,7 @@ public class UserController {
 		
 		
 		try {
-			user = userSvc.updateUserProfile(principal.getName(), user)  ;
+			user = userSvc.updateUser(user, principal.getName());
 			if (user == null) {
 				resp.setStatus(404);
 				return null;

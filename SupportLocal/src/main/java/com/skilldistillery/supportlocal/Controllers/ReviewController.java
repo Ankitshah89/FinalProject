@@ -32,10 +32,10 @@ public class ReviewController {
 	public List<Review> userReviews(@PathVariable Integer id, HttpServletRequest request, HttpServletResponse response,
 			Principal principal) {
 
-		
+		 
 		List<Review> reviews = reviewSvc.findUserReviews(principal.getName(), id);
 		System.out.println("from controller" + reviews);
-		if(reviews != null && reviews.size() ==0) {
+		if(reviews != null && reviews.size() == 0) {
 			response.setStatus(204);
 		}
 		if(reviews == null) {
@@ -105,7 +105,6 @@ public class ReviewController {
 		
 	}
 
-	
 	
 	
 
