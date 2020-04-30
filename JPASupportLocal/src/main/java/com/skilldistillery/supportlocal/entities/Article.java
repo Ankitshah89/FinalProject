@@ -155,9 +155,7 @@ public class Article {
 
 	@Override
 	public String toString() {
-		return "Article [id=" + id + ", user=" + user + ", title=" + title + ", content=" + content + ", business="
-				+ business + ", createAt=" + createAt + ", imageUrl=" + imageUrl + ", articleComments="
-				+ articleComments + "]";
+		return "Article [id=" + id + ", user=" + user + ", title=" + title + ", content=" + content + ", createAt=" + createAt + ", imageUrl=" + imageUrl + "]";
 	}
 
 }

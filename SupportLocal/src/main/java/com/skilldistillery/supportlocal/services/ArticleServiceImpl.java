@@ -33,14 +33,20 @@ public class ArticleServiceImpl implements ArticleService {
 
 	@Override
 	public Article show(String email, int aid) {
+		System.out.println("AID: " + aid);
+		System.out.println("Email: " + email);
+		User user = userRepo.findUserByEmail(email);
+		System.out.println("User: " + user);
 		Optional<Article> optArticle = articleRepo.findById(aid);
+		System.out.println("optArticle: " + optArticle);
 		if (optArticle.isPresent()) {
 			Article article = optArticle.get();
+			System.out.println("Article: " + article);
 			if (article != null) {
-				if (article.getUser().getEmail().equals(email))
-					;
-
+				if (user.getId() == article.getUser().getId() || user.getRole().equals(Role.Admin)) {
+					System.out.println("In return article");
 				return article;
+				}
 			}
 		}
 		return null;
@@ -49,18 +55,20 @@ public class ArticleServiceImpl implements ArticleService {
 	// HAVE NOT FINISHED YET
 
 	@Override
-	public Article create(String email, Article article, int bid) {
+	public Article create(String email, Article article, int uid, int bid) {
 		User user = userRepo.findUserByEmail(email);
 		Optional<Business> optBusiness = busRepo.findById(bid);
-		Business business = optBusiness.get();
-		if (user != null) {
-			article.setUser(user);
-			article.setBusiness(business);
-			articleRepo.saveAndFlush(article);
-		} else {
-			article = null;
+		if (optBusiness != null || user != null) {
+			Business business = optBusiness.get();
+			if (user.getId() == uid || user.getRole().equals(Role.Admin)) {
+				article.setUser(user);
+				article.setBusiness(business);
+				articleRepo.saveAndFlush(article);
+				return article;
+			}
 		}
-		return article;
+		return null;
+
 	}
 
 	@Override
@@ -85,8 +93,8 @@ public class ArticleServiceImpl implements ArticleService {
 		User user = userRepo.findUserByEmail(email);
 		Optional<Article> optArticle = articleRepo.findById(aid);
 		if (optArticle != null) {
-			Article article = optArticle.get();
-			if (user.getId() == article.getUser().getId() || user.getRole().equals(Role.Admin)) {
+			Article managed = optArticle.get();
+			if (user.getId() == managed.getUser().getId() || user.getRole().equals(Role.Admin)) {
 				articleRepo.deleteById(aid);
 				return true;
 			}
