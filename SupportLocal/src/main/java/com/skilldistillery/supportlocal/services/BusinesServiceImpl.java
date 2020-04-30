@@ -19,7 +19,7 @@ public class BusinesServiceImpl implements BusinessService {
 	
 	
 	@Override //Done
-	public List<Business> businessIndex() {
+	public List<Business> businessIndex() { //Check if active in repo
 
 		// TODO Auto-generated method stub
 		return busRepo.findAll();
@@ -53,7 +53,7 @@ public class BusinesServiceImpl implements BusinessService {
 	}
 
 	@Override //Done
-	public boolean deleteBusiness(int id) {
+	public boolean deleteBusiness(int id) { //Add username, check to see if valid //Set active to false
 		boolean deleted = false;
 		Optional<Business> optBus = busRepo.findById(id);
 		if (optBus.isPresent()) {
