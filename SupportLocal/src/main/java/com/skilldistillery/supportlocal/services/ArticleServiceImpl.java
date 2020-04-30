@@ -32,24 +32,10 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
-	public Article show(String email, int aid) {
-		System.out.println("AID: " + aid);
-		System.out.println("Email: " + email);
-		User user = userRepo.findUserByEmail(email);
-		System.out.println("User: " + user);
+	public Article show(int aid) {
 		Optional<Article> optArticle = articleRepo.findById(aid);
-		System.out.println("optArticle: " + optArticle);
-		if (optArticle.isPresent()) {
 			Article article = optArticle.get();
-			System.out.println("Article: " + article);
-			if (article != null) {
-				if (user.getId() == article.getUser().getId() || user.getRole().equals(Role.Admin)) {
-					System.out.println("In return article");
 				return article;
-				}
-			}
-		}
-		return null;
 	}
 
 	@Override
@@ -90,9 +76,15 @@ public class ArticleServiceImpl implements ArticleService {
 	public boolean destroy(String email, int aid) {
 		User user = userRepo.findUserByEmail(email);
 		Optional<Article> optArticle = articleRepo.findById(aid);
+		System.out.println("here i am");
 		if (optArticle != null) {
+			System.out.println("in opt Null check");
 			Article managed = optArticle.get();
+			System.out.println("managed id " + managed.getUser().getId());
+			System.out.println("user id" + user.getId());
+			System.out.println("user role" + user.getRole());
 			if (user.getId() == managed.getUser().getId() || user.getRole().equals(Role.Admin)) {
+				System.out.println("in delete");
 				articleRepo.deleteById(aid);
 				return true;
 			}

@@ -47,16 +47,14 @@ public class ArticleController {
 
 	@GetMapping("articles/{aid}")
 	public Article show(HttpServletRequest req, HttpServletResponse resp, Principal principal, @PathVariable int aid) {
-		Article article = articleSvc.show(principal.getName(), aid);
-		System.out.println("Article: " + article);
-		System.out.println("Principal: " + principal.getName());
-		System.out.println("AID: " + aid);
+		Article article = articleSvc.show(aid);
 		if (article == null) {
 			resp.setStatus(404);
 		} else {
 			resp.setStatus(204);
+			return article;
 		}
-		return article;
+		return null;
 	}
 
 	@PostMapping("users/{uid}/business/{bid}/articles")
