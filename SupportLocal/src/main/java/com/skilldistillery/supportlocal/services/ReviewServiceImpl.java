@@ -117,14 +117,9 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public Boolean deleteReview(String email, Integer id) {
 		User user = userRepo.findUserByEmail(email);
-		
 		if (user.getId() == id || user.getRole().equals(Role.Admin)) {
-
-	
 		reviewRepo.deleteById(id);
 		return true;
-		
-
 		}
 		return false;
 	}

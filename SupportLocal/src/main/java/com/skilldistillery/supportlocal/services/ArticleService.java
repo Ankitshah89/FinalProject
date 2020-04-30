@@ -8,7 +8,7 @@ public interface ArticleService {
 	
 	 public List<Article> index();
 
-	    public Article show(String email, int aid);
+	Article show(int aid);
 
 	    Article create(String email, Article article, int uid, int bid);
 

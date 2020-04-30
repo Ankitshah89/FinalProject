@@ -23,9 +23,9 @@ public class ArticleComment {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="article_id")
+	@JsonIgnore
 	private Article article;
 	
 	private String content;
@@ -33,14 +33,14 @@ public class ArticleComment {
 	@Column(name="create_date")
 	private LocalDateTime createDate;
 	
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="inreply_to_id")
+	@JsonIgnore
 	private ArticleComment parentComment;
 	
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="user_id")
+	@JsonIgnore
 	private User user;
 
 	
@@ -141,8 +141,7 @@ public class ArticleComment {
 
 	@Override
 	public String toString() {
-		return "ArticleComment [id=" + id + ", content=" + content + ", createDate=" + createDate + ", parentComment="
-				+ parentComment + "]";
+		return "ArticleComment [id=" + id + ", content=" + content + ", createDate=" + createDate + "]";
 	}
 
 	

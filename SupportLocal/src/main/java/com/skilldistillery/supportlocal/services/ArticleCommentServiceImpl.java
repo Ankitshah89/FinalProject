@@ -19,7 +19,6 @@ public class ArticleCommentServiceImpl implements ArticleCommentService {
 
 	@Autowired
 	private ArticleRepository articleRepo;
-
 	@Autowired
 	private UserRepository userRepo;
 
