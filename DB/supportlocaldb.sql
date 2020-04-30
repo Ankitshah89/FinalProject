@@ -85,7 +85,6 @@ CREATE TABLE IF NOT EXISTS `business` (
   `image_url` VARCHAR(500) NULL,
   `manager_id` INT NULL,
   `create_date` DATETIME NULL,
-  `created_by_id` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_business_user1_idx` (`manager_id` ASC),
   CONSTRAINT `fk_business_user`
@@ -344,8 +343,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `supportlocaldb`;
-INSERT INTO `business` (`id`, `name`, `description`, `phone`, `active`, `image_url`, `manager_id`, `create_date`, `created_by_id`) VALUES (1, 'Mount Rushmore', 'Rock climbing', '123456789', 1, NULL, 1, NULL, NULL);
-INSERT INTO `business` (`id`, `name`, `description`, `phone`, `active`, `image_url`, `manager_id`, `create_date`, `created_by_id`) VALUES (2, 'Mrs. Cooper', 'Boutique', '234512312', 1, NULL, 2, NULL, NULL);
+INSERT INTO `business` (`id`, `name`, `description`, `phone`, `active`, `image_url`, `manager_id`, `create_date`) VALUES (1, 'Mount Rushmore', 'Rock climbing', '123456789', 1, NULL, 1, NULL);
+INSERT INTO `business` (`id`, `name`, `description`, `phone`, `active`, `image_url`, `manager_id`, `create_date`) VALUES (2, 'Mrs. Cooper', 'Boutique', '234512312', 1, NULL, 2, NULL);
 
 COMMIT;
 
@@ -398,8 +397,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `supportlocaldb`;
-INSERT INTO `review_comment` (`id`, `review_id`, `content`, `create_date`, `inreply_to_id`, `user_id`, `active`, `date_updated`) VALUES (1, 1, 'More content', '2020-04-27', NULL, 1, NULL, NULL);
-INSERT INTO `review_comment` (`id`, `review_id`, `content`, `create_date`, `inreply_to_id`, `user_id`, `active`, `date_updated`) VALUES (2, 1, 'Replying to more content', '2020-04-29', 1, 2, NULL, NULL);
+INSERT INTO `review_comment` (`id`, `review_id`, `content`, `create_date`, `inreply_to_id`, `user_id`, `active`, `date_updated`) VALUES (1, 1, 'More content', '2020-04-27', NULL, 1, 1, NULL);
+INSERT INTO `review_comment` (`id`, `review_id`, `content`, `create_date`, `inreply_to_id`, `user_id`, `active`, `date_updated`) VALUES (2, 1, 'Replying to more content', '2020-04-29', 1, 2, 1, NULL);
+INSERT INTO `review_comment` (`id`, `review_id`, `content`, `create_date`, `inreply_to_id`, `user_id`, `active`, `date_updated`) VALUES (3, 1, 'Replying to 2', '2020-04-29', 2, 1, 1, NULL);
 
 COMMIT;
 

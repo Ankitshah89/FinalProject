@@ -1,5 +1,6 @@
 package com.skilldistillery.supportlocal.Controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -49,8 +50,8 @@ public class BusinessController {
 	}
 
 	@PostMapping("businesses")
-	public Business createBusiness(@RequestBody Business business, HttpServletResponse response) {
-		Business manBus = bServ.createBusiness(business);
+	public Business createBusiness(@RequestBody Business business, HttpServletResponse response, Principal principal) {
+		Business manBus = bServ.createBusiness(principal.getName(),business);
 		if (manBus != null) {
 			response.setStatus(201);
 		} else {
@@ -59,8 +60,9 @@ public class BusinessController {
 		return manBus;
 	}
 	@PutMapping("businesses/{id}")
-	public Business updateBusiness(@RequestBody Business business, @PathVariable int id, HttpServletResponse response) {
-		Business manBus = bServ.updateBusiness(business, id);
+	public Business updateBusiness(@RequestBody Business business, @PathVariable int id, HttpServletResponse response,
+			Principal principal) {
+		Business manBus = bServ.updateBusiness(principal.getName(),business, id);
 		if(manBus != null) {
 			response.setStatus(202);
 		} else {
@@ -70,8 +72,8 @@ public class BusinessController {
 	}
 	
 	@DeleteMapping("businesses/{id}")
-	public boolean deleteById(@PathVariable int id, HttpServletResponse response) {
-		boolean deleted = bServ.deleteBusiness(id);
+	public boolean deleteById(@PathVariable int id, HttpServletResponse response, Principal principal) {
+		boolean deleted = bServ.deleteBusiness(principal.getName(),id);
 		if(deleted) {
 			response.setStatus(200);
 		} else {

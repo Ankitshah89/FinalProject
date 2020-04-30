@@ -10,11 +10,11 @@ public interface BusinessService {
 	//Id - Done
 	Business findById(int id);
 	//Update
-	Business updateBusiness(Business business, int id);
+	Business updateBusiness(String email,Business business, int id);
 	//Destroy
-	boolean deleteBusiness(int id);
+	boolean deleteBusiness(String email,int id);
 	//Create - Done
-	Business createBusiness(Business business);
+	Business createBusiness(String email,Business business);
 	//FindByName
 	List<Business> findBusinessByName(String name);
 	//FindByDescription
