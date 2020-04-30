@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -25,8 +26,8 @@ public class Article {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@JsonIgnore
 	@ManyToOne
+	@JsonBackReference(value = "userToArticle")
 	@JoinColumn(name="user_id")
 	private User user;
 
@@ -34,8 +35,8 @@ public class Article {
 
 	private String content;
 	
-	@JsonIgnore
 	@ManyToOne
+	@JsonBackReference(value = "businessToArticle")
 	@JoinColumn(name="business_id")
 	private Business business;
 

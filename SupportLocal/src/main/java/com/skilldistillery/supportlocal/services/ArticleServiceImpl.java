@@ -52,8 +52,6 @@ public class ArticleServiceImpl implements ArticleService {
 		return null;
 	}
 
-	// HAVE NOT FINISHED YET
-
 	@Override
 	public Article create(String email, Article article, int uid, int bid) {
 		User user = userRepo.findUserByEmail(email);

@@ -58,7 +58,7 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private List<ReviewComment> reviewComments;
 	
-	@JsonIgnore
+	@JsonManagedReference(value = "userToArticle")
 	@OneToMany(mappedBy="user")
 	private List<Article> articles; 
 	

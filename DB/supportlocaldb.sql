@@ -396,9 +396,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `supportlocaldb`;
-INSERT INTO `review_comment` (`id`, `review_id`, `content`, `create_date`, `inreply_to_id`, `user_id`, `active`, `date_updated`) VALUES (1, 1, 'More content', '2020-04-27', NULL, 1, 1, NULL);
-INSERT INTO `review_comment` (`id`, `review_id`, `content`, `create_date`, `inreply_to_id`, `user_id`, `active`, `date_updated`) VALUES (2, 1, 'Replying to more content', '2020-04-29', 1, 2, 1, NULL);
-INSERT INTO `review_comment` (`id`, `review_id`, `content`, `create_date`, `inreply_to_id`, `user_id`, `active`, `date_updated`) VALUES (3, 1, 'Replying to 2', '2020-04-29', 2, 1, 1, NULL);
+INSERT INTO `review_comment` (`id`, `review_id`, `content`, `create_date`, `inreply_to_id`, `user_id`, `active`, `date_updated`) VALUES (1, 1, 'More content', '2020-04-27', NULL, 1, NULL, NULL);
+INSERT INTO `review_comment` (`id`, `review_id`, `content`, `create_date`, `inreply_to_id`, `user_id`, `active`, `date_updated`) VALUES (2, 1, 'Replying to more content', '2020-04-29', 1, 2, NULL, NULL);
 
 COMMIT;
 
