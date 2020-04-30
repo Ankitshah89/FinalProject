@@ -62,7 +62,7 @@ public class ReviewController {
 	
 	
 	
-	@PostMapping("users/business/{bid}/reviews")
+	@PostMapping("businesses/{bid}/reviews")
 	public Review createReview(@RequestBody Review review,
 			@PathVariable Integer bid,
 			 HttpServletRequest req, HttpServletResponse res, Principal principal) {
@@ -79,12 +79,12 @@ public class ReviewController {
 		return review;
 	}
 	
-	@PutMapping("users/business/{bid}/reviews/{rid}")
+	@PutMapping("businesses/{bid}/reviews/{rid}")
 	public Review updateReview(@RequestBody Review review,
 			@PathVariable int bid,@PathVariable int rid, HttpServletRequest req, HttpServletResponse res,
 			Principal principal) {
 		try {
-			review = reviewSvc.updateReview(principal.getName(), review, rid, bid);
+			review = reviewSvc.updateReview(principal.getName(), review, bid, rid);
 			if (review == null) {
 				res.setStatus(404);
 			}
@@ -105,6 +105,6 @@ public class ReviewController {
 	}
 
 	
-	
+
 
 }
