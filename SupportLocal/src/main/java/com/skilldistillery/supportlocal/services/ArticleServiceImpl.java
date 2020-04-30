@@ -45,7 +45,7 @@ public class ArticleServiceImpl implements ArticleService {
 			if (article != null) {
 				if (user.getId() == article.getUser().getId() || user.getRole().equals(Role.Admin)) {
 					System.out.println("In return article");
-				return article;
+					return article;
 				}
 			}
 		}
@@ -54,17 +54,16 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
-	public Article create(String email, Article article, int uid, int bid) {
+	public Article create(String email, Article article, int bid) {
 		User user = userRepo.findUserByEmail(email);
 		Optional<Business> optBusiness = busRepo.findById(bid);
 		if (optBusiness != null || user != null) {
 			Business business = optBusiness.get();
-			if (user.getId() == uid || user.getRole().equals(Role.Admin)) {
-				article.setUser(user);
-				article.setBusiness(business);
-				articleRepo.saveAndFlush(article);
-				return article;
-			}
+			article.setUser(user);
+			article.setBusiness(business);
+			articleRepo.saveAndFlush(article);
+			return article;
+
 		}
 		return null;
 

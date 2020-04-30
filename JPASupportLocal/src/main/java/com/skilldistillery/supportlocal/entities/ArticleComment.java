@@ -11,47 +11,49 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="article_comment")
+@Table(name = "article_comment")
 public class ArticleComment {
-	
-	// F i e l d s 
-	
+
+	// F i e l d s
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@ManyToOne
-	@JoinColumn(name="article_id")
+	@JoinColumn(name = "article_id")
 	@JsonIgnore
 	private Article article;
-	
+
 	private String content;
-	
-	@Column(name="create_date")
+
+	@Column(name = "create_date")
+	@CreationTimestamp
 	private LocalDateTime createDate;
-	
+
 	@ManyToOne
-	@JoinColumn(name="inreply_to_id")
+	@JoinColumn(name = "inreply_to_id")
 	@JsonIgnore
 	private ArticleComment parentComment;
-	
+
 	@ManyToOne
-	@JoinColumn(name="user_id")
+	@JoinColumn(name = "user_id")
 	@JsonIgnore
 	private User user;
 
-	
 	// M e t h o d s
 
 	public ArticleComment() {
 		super();
 	}
 
-	public ArticleComment(int id, Article article, String content, LocalDateTime createDate, ArticleComment parentComment,
-			User user) {
+	public ArticleComment(int id, Article article, String content, LocalDateTime createDate,
+			ArticleComment parentComment, User user) {
 		super();
 		this.id = id;
 		this.article = article;
@@ -143,10 +145,5 @@ public class ArticleComment {
 	public String toString() {
 		return "ArticleComment [id=" + id + ", content=" + content + ", createDate=" + createDate + "]";
 	}
-
-	
-	
-	
-	
 
 }

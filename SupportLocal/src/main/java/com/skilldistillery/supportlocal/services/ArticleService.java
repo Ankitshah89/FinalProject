@@ -10,7 +10,7 @@ public interface ArticleService {
 
 //	Article show(int aid);
 
-	    Article create(String email, Article article, int uid, int bid);
+	    Article create(String email, Article article, int bid);
 
 		Article update(String email, int aid, Article article);
 
