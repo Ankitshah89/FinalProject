@@ -28,12 +28,12 @@ public class ReviewController {
 	@Autowired
 	private ReviewService reviewSvc;
 
-	@GetMapping("users/{id}/reviews")
-	public List<Review> userReviews(@PathVariable Integer id, HttpServletRequest request, HttpServletResponse response,
+	@GetMapping("users/reviews")
+	public List<Review> userReviews(HttpServletRequest request, HttpServletResponse response,
 			Principal principal) {
 
 		 
-		List<Review> reviews = reviewSvc.findUserReviews(principal.getName(), id);
+		List<Review> reviews = reviewSvc.findUserReviews(principal.getName());
 		System.out.println("from controller" + reviews);
 		if(reviews != null && reviews.size() == 0) {
 			response.setStatus(204);
@@ -43,7 +43,6 @@ public class ReviewController {
 		}
 		return reviews;
 	}
-	
 	
 	@GetMapping("business/{businessId}/reviews")
 	public List<Review> businessReviews(@PathVariable Integer businessId, HttpServletRequest request, HttpServletResponse response,
@@ -63,12 +62,12 @@ public class ReviewController {
 	
 	
 	
-	@PostMapping("users/{uid}/business/{bid}/reviews")
-	public Review createReview(@RequestBody Review review, @PathVariable Integer uid,
+	@PostMapping("users/business/{bid}/reviews")
+	public Review createReview(@RequestBody Review review,
 			@PathVariable Integer bid,
 			 HttpServletRequest req, HttpServletResponse res, Principal principal) {
 		try {
-			reviewSvc.createReview(principal.getName(), review, uid, bid);
+			reviewSvc.createReview(principal.getName(), review, bid);
 		
 			res.setStatus(201);
 			StringBuffer url = req.getRequestURL();
@@ -80,12 +79,12 @@ public class ReviewController {
 		return review;
 	}
 	
-	@PutMapping("users/{uid}/business/{bid}/reviews")
-	public Review updateReview(@RequestBody Review review, @PathVariable int uid,
-			@PathVariable int bid, HttpServletRequest req, HttpServletResponse res,
+	@PutMapping("users/business/{bid}/reviews/{rid}")
+	public Review updateReview(@RequestBody Review review,
+			@PathVariable int bid,@PathVariable int rid, HttpServletRequest req, HttpServletResponse res,
 			Principal principal) {
 		try {
-			review = reviewSvc.updateReview(principal.getName(), review, uid, bid);
+			review = reviewSvc.updateReview(principal.getName(), review, rid, bid);
 			if (review == null) {
 				res.setStatus(404);
 			}

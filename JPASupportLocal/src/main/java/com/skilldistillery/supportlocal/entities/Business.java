@@ -1,5 +1,6 @@
 package com.skilldistillery.supportlocal.entities;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -13,6 +14,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -31,6 +34,12 @@ public class Business {
 	private String phone;
 	
 	private boolean active;
+	
+	
+	@Column(name = "create_date")
+	@CreationTimestamp
+	private LocalDate createdAt;
+	
 	
 	@OneToOne(mappedBy="business")
 	@JsonBackReference(value="businessToAddress")
@@ -155,6 +164,8 @@ public class Business {
 		builder.append(name);
 		builder.append(", description=");
 		builder.append(description);
+		builder.append(", created At=");
+		builder.append(createdAt);
 		builder.append(", phone=");
 		builder.append(phone);
 		builder.append(", active=");
@@ -213,5 +224,13 @@ public class Business {
 
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+
+	public LocalDate getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDate createdAt) {
+		this.createdAt = createdAt;
 	}
 }

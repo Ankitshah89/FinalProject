@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.supportlocal.entities.Review;
 import com.skilldistillery.supportlocal.entities.ReviewComment;
+import com.skilldistillery.supportlocal.entities.Role;
 import com.skilldistillery.supportlocal.entities.User;
 import com.skilldistillery.supportlocal.repositories.ReviewCommentRepository;
 import com.skilldistillery.supportlocal.repositories.ReviewRepository;
@@ -44,29 +45,35 @@ public class ReviewCommentServiceImpl implements ReviewCommentService {
 		}
 	}
 	@Override
-	public ReviewComment createComment(ReviewComment comment, Integer userId, Integer reviewId) {
-		Optional<Review> rOpt = reviewRepo.findById(reviewId);
+	public ReviewComment createComment(String email,ReviewComment comment, Integer reviewId) {
+		User user = userRepo.findUserByEmail(email);
+		
+		if(user != null) {
+		
+		
+	Optional<Review> rOpt = reviewRepo.findById(reviewId);
 		if (rOpt.isPresent()) {
-			comment.setReview(rOpt.get());			
+			comment.setReview(rOpt.get());		
+			comment.setUser(user);
+			
+			
 		}else {
 			return null;
 		}
-		Optional<User> uOpt = userRepo.findById(userId);
-		if (uOpt.isPresent()) {
-			comment.setUser(uOpt.get());	
-		}else {
-			return null;
-		}
+
 		comment.setCreatedAt(LocalDateTime.now());
 		ReviewComment newComment = reviewCommentrepo.saveAndFlush(comment);
 		if (newComment != null) {
 			return newComment;
 		}
+	}
 		return null;
 	}
 
 	@Override
-	public ReviewComment updateComment(Integer id, ReviewComment comment) {
+	public ReviewComment updateComment(String email,Integer id, ReviewComment comment) {
+		User user = userRepo.findUserByEmail(email);
+		if(user!=null) {
 		Optional<ReviewComment> opt = reviewCommentrepo.findById(id);
 		if (opt.isPresent()) {
 			ReviewComment managed = opt.get();
@@ -76,16 +83,22 @@ public class ReviewCommentServiceImpl implements ReviewCommentService {
 			managed.setUpdatedAt(LocalDateTime.now());
 			return reviewCommentrepo.saveAndFlush(managed);
 		}
+		}
 		return null;
 	}
 
 	@Override
-	public boolean deleteComment(Integer id) {
+	public boolean deleteComment(String email,Integer id) {
+		
+		User user = userRepo.findUserByEmail(email);
 		boolean result = false;
+		if(user!=null) {
+			
 		Optional<ReviewComment> comment = reviewCommentrepo.findById(id);
 		if (comment.isPresent()) {
 			reviewCommentrepo.deleteById(id);
 			result = true;
+		}
 		}
 		
 		return result;

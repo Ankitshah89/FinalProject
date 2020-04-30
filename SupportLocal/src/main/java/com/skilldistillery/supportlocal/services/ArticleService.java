@@ -20,6 +20,7 @@ public interface ArticleService {
 
 		boolean destroy(String email, int aid);
 
+		Article show(int aid);
 
 
 
