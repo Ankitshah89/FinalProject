@@ -22,9 +22,16 @@ import { ArticlesComponent } from './components/articles/articles.component';
 import { LeftSideBarComponent } from './components/left-side-bar/left-side-bar.component';
 import { RightSideBarComponent } from './components/right-side-bar/right-side-bar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { CategoryPipe } from './pipes/category.pipe';
+import { HttpClientModule } from '@angular/common/http';
+
 import { ReviewsComponent } from './components/reviews/reviews.component';
 import { BusinessLandingComponent } from './components/business-landing/business-landing.component';
 import { UserLandingComponent } from './components/user-landing/user-landing.component';
+import { LogoutComponent } from './components/logout/logout.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -39,13 +46,19 @@ import { UserLandingComponent } from './components/user-landing/user-landing.com
     RightSideBarComponent,
     ReviewsComponent,
     BusinessLandingComponent,
-    UserLandingComponent
+    UserLandingComponent,
+    CategoryPipe,
+    ReviewsComponent,
+    LogoutComponent,
+    RegisterComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule,
   ],
   providers: [
     AddressService,
@@ -56,8 +69,8 @@ import { UserLandingComponent } from './components/user-landing/user-landing.com
     PreferenceService,
     ReviewCommentService,
     ReviewService,
-    UserService
+    UserService,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

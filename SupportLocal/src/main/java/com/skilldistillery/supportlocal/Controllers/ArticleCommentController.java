@@ -27,7 +27,7 @@ import com.skilldistillery.supportlocal.services.ArticleCommentService;
 @RequestMapping("api")
 @CrossOrigin({ "*", "http://localhost:4220" })
 public class ArticleCommentController {
-	
+
 	@Autowired
 	private ArticleCommentService commentSvc;
 
@@ -48,7 +48,8 @@ public class ArticleCommentController {
 	}
 
 	@GetMapping("articles/comments/{cid}")
-	public ArticleComment show(HttpServletRequest req, HttpServletResponse resp, Principal principal, @PathVariable int cid) {
+	public ArticleComment show(HttpServletRequest req, HttpServletResponse resp, Principal principal,
+			@PathVariable int cid) {
 		ArticleComment comments = commentSvc.show(cid);
 		if (comments == null) {
 			resp.setStatus(404);
@@ -77,10 +78,10 @@ public class ArticleCommentController {
 			return null;
 		}
 	}
-	
+
 	@PostMapping("articles/{aid}/comments/{cid}")
-	public ArticleComment createReplyTo(HttpServletRequest req, HttpServletResponse res, @RequestBody ArticleComment reply,
-			Principal principal, @PathVariable Integer cid) {
+	public ArticleComment createReplyTo(HttpServletRequest req, HttpServletResponse res,
+			@RequestBody ArticleComment reply, Principal principal, @PathVariable Integer cid) {
 		try {
 			ArticleComment newComments = commentSvc.createReplyTo(principal.getName(), reply, cid);
 			res.setStatus(201);
@@ -89,14 +90,14 @@ public class ArticleCommentController {
 			String location = url.toString();
 			res.addHeader("Location", location);
 			return newComments;
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			res.setStatus(400);
 			return null;
 		}
 	}
-	
+
 	@PutMapping("articles/comments/{cid}")
 	@ResponseBody
 	public ArticleComment update(HttpServletRequest req, HttpServletResponse res, @PathVariable int cid,
