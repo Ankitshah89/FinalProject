@@ -18,4 +18,5 @@ export class LogoutComponent implements OnInit {
     this.router.navigateByUrl('/home');
   }
 
+
 }
