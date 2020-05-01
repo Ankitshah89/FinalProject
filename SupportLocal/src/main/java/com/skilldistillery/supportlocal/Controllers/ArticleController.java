@@ -78,7 +78,7 @@ public class ArticleController {
 
 	@GetMapping("articles/{aid}")
 	public Article show(HttpServletRequest req, HttpServletResponse resp, Principal principal, @PathVariable int aid) {
-		Article article = articleSvc.show(principal.getName(), aid);
+		Article article = articleSvc.show(aid);
 		if (article == null) {
 			resp.setStatus(404);
 		} else {

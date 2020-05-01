@@ -12,7 +12,6 @@ public interface ArticleService {
 		
 		public List<Article> indexUser(Integer uid);
 
-	 	Article show(String email, int aid);
 
 	    Article create(String email, Article article, int bid);
 
