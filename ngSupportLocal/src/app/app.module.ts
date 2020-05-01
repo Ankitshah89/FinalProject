@@ -23,6 +23,8 @@ import { LeftSideBarComponent } from './components/left-side-bar/left-side-bar.c
 import { RightSideBarComponent } from './components/right-side-bar/right-side-bar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReviewsComponent } from './components/reviews/reviews.component';
+import { BusinessLandingComponent } from './components/business-landing/business-landing.component';
+import { UserLandingComponent } from './components/user-landing/user-landing.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { ReviewsComponent } from './components/reviews/reviews.component';
     ArticlesComponent,
     LeftSideBarComponent,
     RightSideBarComponent,
-    ReviewsComponent
+    ReviewsComponent,
+    BusinessLandingComponent,
+    UserLandingComponent
   ],
   imports: [
     BrowserModule,

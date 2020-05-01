@@ -10,6 +10,7 @@ import { ReviewsComponent } from './components/reviews/reviews.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'user', component: UserComponent },
   { path: 'business', component: BusinessComponent },
   { path: 'businesses', component: BusinessComponent },
   { path: 'articles', component: ArticlesComponent },
