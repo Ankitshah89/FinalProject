@@ -28,20 +28,36 @@
             <path d="M21 21l-5.2-5.2" />
           </svg>
         </a>
-        <button
-          class="btn btn-sm btn-warning mx-4"
-          data-toggle="modal"
-          data-target="#registerModal"
-        >
-          Register
-        </button>
-        <button
-          class="btn btn-sm btn-warning"
-          data-toggle="modal"
-          data-target="#loginModal"
-        >
-          Login
-        </button>
+
+        <a [routerLink]="['/register']" *ngIf="!userLogInCheck()">
+          <button
+            class="btn btn-sm btn-warning mx-4"
+            data-toggle="modal"
+            data-target="#registerModal"
+
+          >
+            Register
+          </button>
+        </a>
+
+        <a [routerLink]="['/login']" *ngIf="!userLogInCheck()">
+          <button
+            class="btn btn-sm btn-warning"
+            data-toggle="modal"
+            data-target="#loginModal"
+          >
+            Login
+          </button>
+        </a>
+        <a [routerLink]="['/logout']" *ngIf="userLogInCheck()">
+          <button
+            class="btn btn-sm btn-warning"
+          >
+            Logout
+          </button>
+        </a>
+
+
       </div>
     </div>
   </header>
@@ -65,179 +81,11 @@
 </div>
 
 <!-- Modal -->
-<div
-  class="modal fade"
-  id="registerModal"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="registerModal"
-  aria-hidden="true"
->
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="registerModalTitle">Register</h5>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
 
-        <form #registerForm="ngForm" ngNativeValidate id="registerForm">
-          <div class="form-row">
-            <div class="form-group col-md-6">
-
-              <label for="firstName">First Name</label>
-              <input type="text" class="form-control" id="firstName" name ="firstName" ngModel/>
-
-              <label for="inputEmail4">First Name</label>
-              <input type="text" class="form-control" id="firstname" />
-
-            </div>
-            <div class="form-group col-md-6">
-              <label for="lastName">Last Name</label>
-              <input type="text" class="form-control"  name="lastName" ngModel/>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="email">Email</label>
-              <input type="email" class="form-control" name ="email" ngModel/>
-            </div>
-            <div class="form-group col-md-6">
-              <label for="password">Password</label>
-              <input type="password" class="form-control"  name="password" ngModel/>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="phone">Phone Number</label>
-              <input type="phone" class="form-control"  name="phone" ngModel/>
-            </div>
-            <!-- <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                Close
-              </button>
-              <button type="button" class="btn btn-primary"  (click)="register(registerForm)">Register</button>
-              </div> -->
-            <div class="form-group col-md-6">
-              <label for="businessOption">Account Type</label>
-              <select class="form-control btn-danger" name="userRole" [(ngModel)]="userRole">
-                <option value="User">Basic User</option>
-                <option value="Business">Owner/Manager</option>
-              </select>
-            </div>
-
-            <!-- Business User -->
-            <div class="card card-body" id="businessForm" *ngIf="userRole==='Business'">
-              <!-- <form id="businessForm"> -->
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="name">Business Name</label>
-                    <input type="text" class="form-control"  name="name" ngModel/>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="businessPhone">Business Phone</label>
-                    <input
-                      type="text"
-                      class="form-control"
-
-                      name="businessPhone"
-                      ngModel
-                    />
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="imageUrl">Image URL</label>
-                  <input
-                    type="text"
-                    class="form-control"
-
-                    placeholder="Image Url"
-                    name="imageUrl"
-                    ngModel
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="description"
-                    >Description</label
-                  >
-                  <textarea
-                    class="form-control"
-
-                    rows="3"
-                    name="description"
-                    ngModel
-                  ></textarea>
-                </div>
-                <div class="form-group">
-                  <label for="street">Street</label>
-                  <input
-                    type="text"
-                    class="form-control"
-
-                    placeholder="1234 Main Street"
-                    name="street"
-                    ngModel
-                  />
-                </div>
-
-                <div class="form-group">
-                  <label for="street2">Street</label>
-                  <input
-                    type="text"
-                    class="form-control"
-
-                    placeholder="Apartment, studio, or floor"
-                    name="street2"
-                    ngModel
-                  />
-                </div>
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="city">City</label>
-                    <input type="text" class="form-control"  name ="city" ngModel/>
-                  </div>
-                  <div class="form-group col-md-4">
-                    <label for="state">State</label>
-                    <input type="text" class="form-control"  name ="state" ngModel/>
-                  </div>
-                  <div class="form-group col-md-2">
-                    <label for="postalCode">Zip</label>
-                    <input type="text" class="form-control"  name="postalCode" ngModel/>
-                  </div>
-                </div>
-
-              </div>
-                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                    Close
-                  </button>
-                  <button type="button" class="btn btn-primary"  (click)="register(registerForm)">Register</button>
-                  </div>
-
-               <!-- </form> -->
-
-              <!-- </form> -->
-            </div>
-
-           <!-- </div>  -->
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-
- <!-- Modal  -->
+<!-- Modal  -->
 
 <!-- Modal -->
-
+<!--
 <div
   class="modal fade"
   id="loginModal"
@@ -260,23 +108,28 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form  #loginForm="ngForm"
+        ngNativeValidate
+        id="login-form">
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="text" class="form-control" name="email" />
+            <input type="text" class="form-control" name="email" ngModel/>
           </div>
           <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" class="form-control" name="password" />
+            <input type="password" class="form-control" name="password" ngModel/>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+              Close
+            </button>
+            <button type="button" class="btn btn-primary" (click)="login(loginForm)"  >Login</button>
           </div>
         </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">
-          Close
-        </button>
-        <button type="button" class="btn btn-primary">Login</button>
-      </div>
     </div>
   </div>
-</div>
+
+
+
+</div> -->

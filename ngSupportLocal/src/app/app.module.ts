@@ -27,6 +27,9 @@ import { CategoryPipe } from './pipes/category.pipe';
 import { HttpClientModule } from '@angular/common/http';
 
 import { ReviewsComponent } from './components/reviews/reviews.component';
+import { LogoutComponent } from './components/logout/logout.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +44,9 @@ import { ReviewsComponent } from './components/reviews/reviews.component';
     RightSideBarComponent,
     CategoryPipe,
     ReviewsComponent,
+    LogoutComponent,
+    RegisterComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
