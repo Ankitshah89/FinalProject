@@ -22,8 +22,11 @@ import { ArticlesComponent } from './components/articles/articles.component';
 import { LeftSideBarComponent } from './components/left-side-bar/left-side-bar.component';
 import { RightSideBarComponent } from './components/right-side-bar/right-side-bar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { CategoryPipe } from './pipes/category.pipe';
 import { HttpClientModule } from '@angular/common/http';
+
+import { ReviewsComponent } from './components/reviews/reviews.component';
 
 @NgModule({
   declarations: [
@@ -36,14 +39,15 @@ import { HttpClientModule } from '@angular/common/http';
     ArticlesComponent,
     LeftSideBarComponent,
     RightSideBarComponent,
-    CategoryPipe
+    CategoryPipe,
+    ReviewsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     AddressService,
@@ -54,8 +58,8 @@ import { HttpClientModule } from '@angular/common/http';
     PreferenceService,
     ReviewCommentService,
     ReviewService,
-    UserService
+    UserService,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
