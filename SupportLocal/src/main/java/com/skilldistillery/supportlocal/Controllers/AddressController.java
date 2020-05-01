@@ -74,6 +74,7 @@ public class AddressController {
 			manAdd.setState(address.getState());
 			manAdd.setPostalCode(address.getPostalCode());
 			manAdd.setCountry(address.getCountry());
+			response.setStatus(200);
 			return addServe.updateAddress(principal.getName(),manAdd);
 		}
 

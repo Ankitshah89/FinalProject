@@ -8,7 +8,7 @@ export class Address {
   state: string;
   postalCode: string;
   country: string;
-  businesId: number;
+  businessId: number;
 
   constructor(id?: number, street?: string, street2?: string, city?: string, state?: string,
     postalCode?: string, country?: string, businessId?: number){
@@ -19,7 +19,7 @@ export class Address {
       this.state = state;
       this.postalCode = postalCode;
       this.country = country;
-      this.businesId = businessId;
+      this.businessId = businessId;
     }
 
 }
