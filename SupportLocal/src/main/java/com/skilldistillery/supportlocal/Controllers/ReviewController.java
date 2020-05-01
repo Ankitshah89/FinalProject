@@ -29,46 +29,40 @@ public class ReviewController {
 	private ReviewService reviewSvc;
 
 	@GetMapping("users/reviews")
-	public List<Review> userReviews(HttpServletRequest request, HttpServletResponse response,
-			Principal principal) {
+	public List<Review> userReviews(HttpServletRequest request, HttpServletResponse response, Principal principal) {
 
-		 
 		List<Review> reviews = reviewSvc.findUserReviews(principal.getName());
 		System.out.println("from controller" + reviews);
-		if(reviews != null && reviews.size() == 0) {
+		if (reviews != null && reviews.size() == 0) {
 			response.setStatus(204);
 		}
-		if(reviews == null) {
+		if (reviews == null) {
 			response.setStatus(404);
 		}
 		return reviews;
 	}
-	
-	@GetMapping("business/{businessId}/reviews")
-	public List<Review> businessReviews(@PathVariable Integer businessId, HttpServletRequest request, HttpServletResponse response,
-			Principal principal) {
 
-		
+	@GetMapping("business/{businessId}/reviews")
+	public List<Review> businessReviews(@PathVariable Integer businessId, HttpServletRequest request,
+			HttpServletResponse response, Principal principal) {
+
 		List<Review> reviews = reviewSvc.findBusinessReviews(businessId);
 		System.out.println("from controller" + reviews);
-		if(reviews != null && reviews.size() ==0) {
+		if (reviews != null && reviews.size() == 0) {
 			response.setStatus(204);
 		}
-		if(reviews == null) {
+		if (reviews == null) {
 			response.setStatus(404);
 		}
 		return reviews;
 	}
-	
-	
-	
+
 	@PostMapping("businesses/{bid}/reviews")
-	public Review createReview(@RequestBody Review review,
-			@PathVariable Integer bid,
-			 HttpServletRequest req, HttpServletResponse res, Principal principal) {
+	public Review createReview(@RequestBody Review review, @PathVariable Integer bid, HttpServletRequest req,
+			HttpServletResponse res, Principal principal) {
 		try {
 			reviewSvc.createReview(principal.getName(), review, bid);
-		
+
 			res.setStatus(201);
 			StringBuffer url = req.getRequestURL();
 			res.addHeader("Location", url.toString());
@@ -78,11 +72,10 @@ public class ReviewController {
 		}
 		return review;
 	}
-	
+
 	@PutMapping("businesses/{bid}/reviews/{rid}")
-	public Review updateReview(@RequestBody Review review,
-			@PathVariable int bid,@PathVariable int rid, HttpServletRequest req, HttpServletResponse res,
-			Principal principal) {
+	public Review updateReview(@RequestBody Review review, @PathVariable int bid, @PathVariable int rid,
+			HttpServletRequest req, HttpServletResponse res, Principal principal) {
 		try {
 			review = reviewSvc.updateReview(principal.getName(), review, bid, rid);
 			if (review == null) {
@@ -95,16 +88,12 @@ public class ReviewController {
 		}
 		return review;
 	}
-	
+
 	@DeleteMapping("reviews/{uid}")
-	public boolean deleteReview(@PathVariable int uid,
-			 HttpServletRequest req, HttpServletResponse res,
-			Principal principal) {	
+	public boolean deleteReview(@PathVariable int uid, HttpServletRequest req, HttpServletResponse res,
+			Principal principal) {
 		return reviewSvc.deleteReview(principal.getName(), uid);
-		
+
 	}
-
-	
-
 
 }

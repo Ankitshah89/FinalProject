@@ -1,17 +1,20 @@
+import { User } from './user';
+import { Business } from './business';
+
 export class Article {
   id: number;
-  userId: number;
-  businessId: number;
+  user: User;
+  business: Business;
   title: string;
   content: string;
   createAt: Date;
   imageUrl: string;
 
-  constructor(id?: number, userId?: number, businessId?: number, title?: string, content?: string,
+  constructor(id?: number, user?: User, business?: Business, title?: string, content?: string,
             createAt?: Date, imageUrl?: string){
       this.id = id;
-      this.userId = userId;
-      this.businessId = businessId;
+      this.user = user;
+      this.business = business;
       this.title = title;
       this.content = content;
       this.createAt = createAt;

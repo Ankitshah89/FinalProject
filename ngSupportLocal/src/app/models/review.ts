@@ -1,18 +1,20 @@
+import { User } from './user';
+
 export class Review {
   id: number;
   createDate: Date;
   businessId: number;
-  userId: number;
+  user: User;
   description: string;
   rating: number;
   notification: boolean;
 
-  constructor(id?: number, createDate?: Date, businessId?: number, userId?: number,
+  constructor(id?: number, createDate?: Date, businessId?: number, user?: User,
         description?: string, rating?: number, notification?: boolean){
           this.id = id;
           this.createDate = createDate;
           this.businessId = businessId;
-          this.userId = userId;
+          this.user = user;
           this.description = description;
           this.rating = rating;
           this.notification = notification;
