@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.supportlocal.entities.Address;
+import com.skilldistillery.supportlocal.entities.Business;
 import com.skilldistillery.supportlocal.entities.Role;
 import com.skilldistillery.supportlocal.entities.User;
 import com.skilldistillery.supportlocal.repositories.AddressRepository;
@@ -44,6 +45,8 @@ public class AddressServiceImpl implements AddressService {
 		try {
 			if(user.getRole().equals(Role.Admin) || user.getRole().equals(Role.Business)) {
 				
+
+				
 			
 			if (address.getStreet() == null 
 					|| address.getCity() == null 
@@ -74,12 +77,12 @@ public class AddressServiceImpl implements AddressService {
 	@Override
 	public Address updateAddress(String email,Address address) {
 		User user = userRepo.findUserByEmail(email);
-		
-			
+		if(user!=null) {
+					
 		Optional<Address> optAdd = addRepo.findById(address.getId());
 		if (optAdd.isPresent()) {
 			try {
-				if(user.getRole().equals(Role.Admin) || user.getRole().equals(Role.Business)) {
+			
 				if (address.getStreet() == null 
 						|| address.getCity() == null 
 						|| address.getState() == null
@@ -90,6 +93,7 @@ public class AddressServiceImpl implements AddressService {
 
 				} else {
 					Address manAdd = optAdd.get();
+					if( manAdd.getBusiness().getManager().getId()==user.getId()|| user.getRole().equals(Role.Admin)) {
 					manAdd.setStreet(address.getStreet());
 					manAdd.setStreet2(address.getStreet2());
 					manAdd.setCity(address.getCity());
@@ -99,10 +103,12 @@ public class AddressServiceImpl implements AddressService {
 					return addRepo.saveAndFlush(manAdd);
 				}
 				}
+				
 			} catch (Exception e) {
 				System.out.println(e);
 				System.out.println("Could not complete update of: " + address);
 				return null;
+			}
 			}
 		}
 		return address;
@@ -114,14 +120,19 @@ public class AddressServiceImpl implements AddressService {
 		boolean deleted = false;
 		
 		User user = userRepo.findUserByEmail(email);
-		if(user.getRole().equals(Role.Admin) || user.getRole().equals(Role.Business)) {
-			
+		
+		if(user!= null) {
+				
 		Optional<Address> toDelete = addRepo.findById(id);
 		if(toDelete.isPresent()) {
 			Address manAdd = toDelete.get();
+			if(manAdd.getBusiness().getManager().getId() == user.getId() || user.getRole().equals(Role.Admin)){
+				
 			addRepo.delete(manAdd);
 			deleted = true;
+			}
 		}
+		
 		}
 		// TODO Auto-generated method stub
 		return deleted;
