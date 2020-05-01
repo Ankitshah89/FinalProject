@@ -22,6 +22,9 @@ public class AuthServiceImpl implements AuthService {
 		String encodedPW = encoder.encode(user.getPassword());
 		user.setPassword(encodedPW); // only persist encoded password
 		user.setActive(true);
+		if(user.getRole() == null) {
+			user.setRole(Role.User);
+		}
 		
 		
 		// set other fields to default values

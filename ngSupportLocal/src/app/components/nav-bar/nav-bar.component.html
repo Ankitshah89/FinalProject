@@ -49,12 +49,9 @@
             Login
           </button>
         </a>
-        <a [routerLink]="['/logout']" *ngIf="userLogInCheck()">
-          <button
-            class="btn btn-sm btn-warning"
-          >
-            Logout
-          </button>
+        <a *ngIf="userLogInCheck()">
+
+          <app-logout></app-logout>
         </a>
 
 
