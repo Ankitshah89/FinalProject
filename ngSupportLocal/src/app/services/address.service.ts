@@ -62,7 +62,7 @@ export class AddressService {
         })
       )
     } else {
-      this.router.navigateByUrl('/home');
+      this.router.navigateByUrl(`/home`);
 
     }
   }
@@ -97,7 +97,7 @@ export class AddressService {
       })
     };
     if (this.authService.checkLogin()){
-      return this.http.put<Address>(this.url + address.id, httpOptions)
+      return this.http.put<Address>(this.url + address.id, address, httpOptions)
       .pipe(
         catchError((err: any) =>{
           console.log(err);

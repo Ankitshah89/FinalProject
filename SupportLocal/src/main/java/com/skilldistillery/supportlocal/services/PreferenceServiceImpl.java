@@ -1,5 +1,6 @@
 package com.skilldistillery.supportlocal.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.supportlocal.entities.Preference;
+import com.skilldistillery.supportlocal.entities.PreferenceCategory;
 import com.skilldistillery.supportlocal.entities.Role;
 import com.skilldistillery.supportlocal.entities.User;
 import com.skilldistillery.supportlocal.repositories.PreferenceRepository;
@@ -119,13 +121,22 @@ public class PreferenceServiceImpl implements PreferenceService {
 	}
 
 	@Override
-	public List<Preference> searchByCategory(String category) {
-		List<Preference> preferences = null;
-		if (category.length() > 0) {
+	public List<Preference> searchByCategory(String categoryStr) {
+		List<Preference> preferences = new ArrayList<>();
+		PreferenceCategory category = null;
+		for (PreferenceCategory cat : PreferenceCategory.values()) {
+			if(cat.toString().equals(categoryStr)) {
+				category = cat;
+				break;
+			}
+		}
+		if (category != null) {
 			try {
-				preferences = pRepo.findByPreferenceCategoryLike("%" + category + "%");
+				preferences = pRepo.findByPreferenceCategory(category);
+				System.out.println(preferences);
 
 			} catch (Exception e) {
+				e.printStackTrace();
 				System.out.println("Could not retrieve list of preferences: " + category);
 			}
 		}
