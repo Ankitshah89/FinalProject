@@ -1,3 +1,12 @@
+import { UserService } from './services/user.service';
+import { ReviewService } from './services/review.service';
+import { ReviewCommentService } from './services/review-comment.service';
+import { PreferenceService } from './services/preference.service';
+import { BusinessService } from './services/business.service';
+import { AuthService } from './services/auth.service';
+import { ArticleService } from './services/article.service';
+import { ArticleCommentService } from './services/article-comment.service';
+import { AddressService } from './services/address.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -32,7 +41,17 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     NgbModule
   ],
-  providers: [],
+  providers: [
+    AddressService,
+    ArticleCommentService,
+    ArticleService,
+    AuthService,
+    BusinessService,
+    PreferenceService,
+    ReviewCommentService,
+    ReviewService,
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

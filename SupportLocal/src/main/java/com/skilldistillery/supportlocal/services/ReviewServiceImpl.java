@@ -31,7 +31,7 @@ public class ReviewServiceImpl implements ReviewService {
 	public List<Review> findUserReviews(String email) {
 
 		User user = userRepo.findUserByEmail(email);
-		List<Review> results = new ArrayList<>();
+//		List<Review> results = new ArrayList<>();
 		List<Review> reviews = new ArrayList<>();
 
 		if (user != null) {
@@ -96,12 +96,22 @@ public class ReviewServiceImpl implements ReviewService {
 		return reviewRepo.findByBusinessId(id);
 	}
 
+
 	@Override
 	public Boolean deleteReview(String email, Integer id) {
 		User user = userRepo.findUserByEmail(email);
-		if (user.getId() == id || user.getRole().equals(Role.Admin)) {
-			reviewRepo.deleteById(id);
-			return true;
+		List<Review> reviews = new ArrayList<>();
+
+		if (user != null) {
+			reviews = reviewRepo.findByActiveTrueAndUser_Id(user.getId());
+			Optional<Review> opt = reviewRepo.findById(id);
+			if (opt.isPresent()) {
+				if (user.getRole().equals(Role.Admin) || reviews.contains(opt.get())) {
+					reviewRepo.deleteById(id);
+					return true;
+				}
+			}
+
 		}
 		return false;
 	}

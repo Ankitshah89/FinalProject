@@ -74,6 +74,7 @@ public class AddressController {
 			manAdd.setState(address.getState());
 			manAdd.setPostalCode(address.getPostalCode());
 			manAdd.setCountry(address.getCountry());
+			response.setStatus(200);
 			return addServe.updateAddress(principal.getName(),manAdd);
 		}
 
@@ -85,7 +86,7 @@ public class AddressController {
 			Principal principal) {
 		boolean deleted = addServe.deleteAddress(principal.getName(),id);
 		if (deleted) {
-			response.setStatus(204);
+			response.setStatus(200);
 		} else {
 			response.setStatus(404);
 		}

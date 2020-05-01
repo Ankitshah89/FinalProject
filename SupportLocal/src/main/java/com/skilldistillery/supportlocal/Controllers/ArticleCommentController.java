@@ -31,7 +31,7 @@ public class ArticleCommentController {
 	@Autowired
 	private ArticleCommentService commentSvc;
 
-	@GetMapping("article/comments")
+	@GetMapping("articles/comments")
 	public List<ArticleComment> findAll(HttpServletRequest req, HttpServletResponse resp, Principal principal) {
 		List<ArticleComment> comments = commentSvc.index();
 
@@ -47,7 +47,7 @@ public class ArticleCommentController {
 
 	}
 
-	@GetMapping("article/comments/{cid}")
+	@GetMapping("articles/comments/{cid}")
 	public ArticleComment show(HttpServletRequest req, HttpServletResponse resp, Principal principal, @PathVariable int cid) {
 		ArticleComment comments = commentSvc.show(cid);
 		if (comments == null) {
@@ -59,7 +59,7 @@ public class ArticleCommentController {
 		return null;
 	}
 
-	@PostMapping("article/{aid}/comments")
+	@PostMapping("articles/{aid}/comments")
 	public ArticleComment create(HttpServletRequest req, HttpServletResponse res, @RequestBody ArticleComment comments,
 			Principal principal, @PathVariable Integer aid) {
 		try {
@@ -78,7 +78,7 @@ public class ArticleCommentController {
 		}
 	}
 	
-	@PostMapping("article/{aid}/comments/{cid}")
+	@PostMapping("articles/{aid}/comments/{cid}")
 	public ArticleComment createReplyTo(HttpServletRequest req, HttpServletResponse res, @RequestBody ArticleComment reply,
 			Principal principal, @PathVariable Integer cid) {
 		try {
@@ -97,7 +97,7 @@ public class ArticleCommentController {
 		}
 	}
 	
-	@PutMapping("article/comments/{cid}")
+	@PutMapping("articles/comments/{cid}")
 	@ResponseBody
 	public ArticleComment update(HttpServletRequest req, HttpServletResponse res, @PathVariable int cid,
 			@RequestBody ArticleComment comments, Principal principal) {
@@ -111,7 +111,7 @@ public class ArticleCommentController {
 		return updatedComments;
 	}
 
-	@DeleteMapping("article/comments/{cid}")
+	@DeleteMapping("articles/comments/{cid}")
 	public boolean destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable("cid") Integer cid,
 			Principal principal) {
 		boolean isDeleted = commentSvc.destroy(principal.getName(), cid);

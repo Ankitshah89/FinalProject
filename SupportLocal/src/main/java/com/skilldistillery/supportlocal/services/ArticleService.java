@@ -12,8 +12,13 @@ public interface ArticleService {
 		
 		public List<Article> indexUser(Integer uid);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 399863b23528342f686aaf623bdca488a4f14fb0
 	    Article create(String email, Article article, int bid);
+	    
+	    Article createSingleArticle(String email, Article article);
 
 		Article update(String email, int aid, Article article);
 

@@ -30,12 +30,12 @@ public class ArticleServiceImpl implements ArticleService {
 	public List<Article> index() {
 		return articleRepo.findAll();
 	}
-	
+
 	@Override
 	public List<Article> indexBusiness(Integer bid) {
 		return articleRepo.findByBusinessId(bid);
 	}
-	
+
 	@Override
 	public List<Article> indexUser(Integer uid) {
 		return articleRepo.findByUserId(uid);
@@ -59,11 +59,11 @@ public class ArticleServiceImpl implements ArticleService {
 	@Override
 	public Article create(String email, Article article, int bid) {
 		User user = userRepo.findUserByEmail(email);
-		if(user!=null) {
-			
-		Optional<Business> optBusiness = busRepo.findById(bid);
-		if (optBusiness != null || user != null) {
-			Business business = optBusiness.get();
+		if (user != null) {
+
+			Optional<Business> optBusiness = busRepo.findById(bid);
+			if (optBusiness != null || user != null) {
+				Business business = optBusiness.get();
 
 				article.setUser(user);
 				article.setBusiness(business);
@@ -74,21 +74,41 @@ public class ArticleServiceImpl implements ArticleService {
 		return null;
 
 	}
+	
+	
+	
+	@Override
+	public Article createSingleArticle(String email, Article article) {
+		User user = userRepo.findUserByEmail(email);
+		if (user != null) {
+				article.setUser(user);
+				articleRepo.saveAndFlush(article);
+				return article;
+			
+		}
+		return null;
+
+	}
 
 	@Override
 	public Article update(String email, int aid, Article article) {
 		User user = userRepo.findUserByEmail(email);
-		if(user!=null) {
-			
-		Optional<Article> optArticle = articleRepo.findById(aid);
-		if (optArticle != null) {
-			Article managed = optArticle.get();
-				managed.setTitle(article.getTitle());
-				managed.setContent(article.getContent());
-				managed.setImageUrl(article.getImageUrl());
-				articleRepo.saveAndFlush(managed);
-				return managed;
-		}
+		if (user != null) {
+
+			Optional<Article> optArticle = articleRepo.findById(aid);
+			if (optArticle != null) {
+				Article managed = optArticle.get();
+				if (managed.getUser().getId() == user.getId()
+						|| managed.getBusiness().getManager().getId() == user.getId()
+						|| user.getRole().equals(Role.Admin)) {
+
+					managed.setTitle(article.getTitle());
+					managed.setContent(article.getContent());
+					managed.setImageUrl(article.getImageUrl());
+					articleRepo.saveAndFlush(managed);
+					return managed;
+				}
+			}
 		}
 		return null;
 	}
@@ -96,18 +116,25 @@ public class ArticleServiceImpl implements ArticleService {
 	@Override
 	public boolean destroy(String email, int aid) {
 		User user = userRepo.findUserByEmail(email);
-		if(user!=null) {
-			
-		Optional<Article> optArticle = articleRepo.findById(aid);
-		if (optArticle != null) {
-			Article managed = optArticle.get();
+		if (user != null) {
+
+			Optional<Article> optArticle = articleRepo.findById(aid);
+			if (optArticle != null) {
+				Article managed = optArticle.get();
+				if(managed.getUser().getId() == user.getId() ||
+						user.getRole().equals(Role.Admin) ||
+						managed.getBusiness().getManager().getId() == user.getId()) {
+					
+					
 				articleRepo.deleteById(aid);
 				return true;
-		}
+				}
+			}
 
 		}
 		return false;
 	}
+
 }
 
 // find by business, user
