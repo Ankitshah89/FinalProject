@@ -53,7 +53,7 @@ export class UserService {
       })
     };
     if (this.authService.checkLogin()){
-      return this.http.put<User>(this.url + user.id, httpOptions)
+      return this.http.put<User>(this.url + user.id, user, httpOptions)
       .pipe(
         catchError((err: any) => {
           console.log(err);
@@ -74,7 +74,7 @@ export class UserService {
       })
     };
     if (this.authService.checkLogin()){
-      return this.http.post<User>(this.url, httpOptions)
+      return this.http.post<User>(this.url, user, httpOptions)
       .pipe(
         catchError((err: any) => {
           console.log(err);
