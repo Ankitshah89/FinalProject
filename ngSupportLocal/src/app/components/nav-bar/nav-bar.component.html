@@ -1,35 +1,287 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
+<div class="container-fluid">
+  <header class="blog-header py-3 px-3">
+    <div class="row flex-nowrap justify-content-between align-items-center">
+      <div class="col-4 pt-1">
+        <a class="text-muted" href="#">Subscribe</a>
+      </div>
+      <div class="col-4 text-center">
+        <a class="blog-header-logo text-dark" href="#">Large</a>
+      </div>
+      <div class="col-4 d-flex justify-content-end align-items-center">
+        <a class="text-muted" href="#" aria-label="Search">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            class="mx-3"
+            role="img"
+            viewBox="0 0 24 24"
+            focusable="false"
+          >
+            <title>Search</title>
+            <circle cx="10.5" cy="10.5" r="7.5" />
+            <path d="M21 21l-5.2-5.2" />
+          </svg>
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+        <button
+          class="btn btn-sm btn-warning mx-4"
+          data-toggle="modal"
+          data-target="#registerModal"
+        >
+          Register
+        </button>
+        <button
+          class="btn btn-sm btn-warning"
+          data-toggle="modal"
+          data-target="#loginModal"
+        >
+          Login
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container nav-scroller py-1 mb-2">
+    <nav class="nav d-flex justify-content-between">
+      <a class="p-2 text-muted" href="#">World</a>
+      <a class="p-2 text-muted" href="#">U.S.</a>
+      <a class="p-2 text-muted" href="#">Technology</a>
+      <a class="p-2 text-muted" href="#">Design</a>
+      <a class="p-2 text-muted" href="#">Culture</a>
+      <a class="p-2 text-muted" href="#">Business</a>
+      <a class="p-2 text-muted" href="#">Politics</a>
+      <a class="p-2 text-muted" href="#">Opinion</a>
+      <a class="p-2 text-muted" href="#">Science</a>
+      <a class="p-2 text-muted" href="#">Health</a>
+      <a class="p-2 text-muted" href="#">Style</a>
+      <a class="p-2 text-muted" href="#">Travel</a>
+    </nav>
   </div>
-</nav>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="registerModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="registerModal"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="registerModalTitle">Register</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputEmail4">First Name</label>
+              <input type="text" class="form-control" id="inputEmail4" />
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputPassword4">Last Name</label>
+              <input type="text" class="form-control" id="inputPassword4" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputEmail4">Email</label>
+              <input type="email" class="form-control" id="inputEmail4" />
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputPassword4">Password</label>
+              <input type="password" class="form-control" id="inputPassword4" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputEmail4">Phone Number</label>
+              <input type="phone" class="form-control" id="inputEmail4" />
+            </div>
+            <div class="form-group col-md-6">
+              <label for="businessOption">Account Type</label>
+              <select class="form-control btn-danger" id="select">
+                <option value="Basic">Basic User</option>
+                <option value="Owner">Owner/Manager</option>
+              </select>
+            </div>
+
+            <!-- Business User -->
+            <div class="card card-body" id="businessForm">
+              <form id="businessForm">
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="inputEmail4">Business Name</label>
+                    <input type="email" class="form-control" id="inputEmail4" />
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="inputPassword4">Business Phone</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="inputPassword4"
+                    />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputAddress">Image URL</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputAddress"
+                    placeholder="1234 Main St"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="exampleFormControlTextarea1"
+                    >Example textarea</label
+                  >
+                  <textarea
+                    class="form-control"
+                    id="exampleFormControlTextarea1"
+                    rows="3"
+                  ></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="inputAddress2">Address</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputAddress2"
+                    placeholder="Apartment, studio, or floor"
+                  />
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="inputCity">City</label>
+                    <input type="text" class="form-control" id="inputCity" />
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="inputState">State</label>
+                    <select id="inputState" class="form-control">
+                      <option selected>Choose...</option>
+                      <option>...</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-2">
+                    <label for="inputZip">Zip</label>
+                    <input type="text" class="form-control" id="inputZip" />
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- <div class="form-group">
+            <label for="inputAddress">Address</label>
+            <input
+              type="text"
+              class="form-control"
+              id="inputAddress"
+              placeholder="1234 Main St"
+            />
+          </div>
+          <div class="form-group">
+            <label for="inputAddress2">Address 2</label>
+            <input
+              type="text"
+              class="form-control"
+              id="inputAddress2"
+              placeholder="Apartment, studio, or floor"
+            />
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputCity">City</label>
+              <input type="text" class="form-control" id="inputCity" />
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputState">State</label>
+              <select id="inputState" class="form-control">
+                <option selected>Choose...</option>
+                <option>...</option>
+              </select>
+            </div>
+            <div class="form-group col-md-2">
+              <label for="inputZip">Zip</label>
+              <input type="text" class="form-control" id="inputZip" />
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="gridCheck" />
+              <label class="form-check-label" for="gridCheck">
+                Check me out
+              </label>
+            </div>
+          </div> -->
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary">Register</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="loginModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="loginModal"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginModalTitle">Register</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="inputAddress2">Email</label>
+            <input type="text" class="form-control" id="inputAddress2" />
+          </div>
+          <div class="form-group">
+            <label for="inputAddress2">Password</label>
+            <input type="password" class="form-control" id="inputAddress2" />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary">Login</button>
+      </div>
+    </div>
+  </div>
+</div>
