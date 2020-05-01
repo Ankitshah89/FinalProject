@@ -69,35 +69,27 @@ public class ReviewServiceImpl implements ReviewService {
 	public Review updateReview(String email, Review review, Integer bid, Integer rid) {
 
 		User user = userRepo.findUserByEmail(email);
-		Business business;
+
 		Review existing = null;
+		if (user != null) {
 
-		if (user != null || user.getRole().equals(Role.Admin)) {
-
-			Optional<Business> opt = businessRepo.findById(bid);
-
-	
 			Optional<Review> revOpt = reviewRepo.findById(rid);
-			if (opt.isPresent()) {
-				business = opt.get();
-				
-				if(revOpt.isPresent()) {
-				review = revOpt.get();
-				
-				review.setBusiness(business);
-				existing.setRating(review.getRating());
-				existing.setDescription(review.getDescription());
-				reviewRepo.saveAndFlush(existing);
+			if (revOpt.isPresent()) {
+				existing = revOpt.get();
+
+				if (existing.getBusiness().getId() == bid) {
+					if (existing.getUser().getId() == user.getId() || user.getRole().equals(Role.Admin)) {
+
+						existing.setRating(review.getRating());
+						existing.setDescription(review.getDescription());
+						reviewRepo.saveAndFlush(existing);
+					}
 				}
 			}
-			return existing;
-			
-			}
-				
-			else {
-				return null;
-			}
-			}
+		}
+		return existing;
+
+	}
 
 	@Override
 	public List<Review> findBusinessReviews(Integer id) {
