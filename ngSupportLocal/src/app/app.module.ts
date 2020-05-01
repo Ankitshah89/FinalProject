@@ -23,6 +23,7 @@ import { LeftSideBarComponent } from './components/left-side-bar/left-side-bar.c
 import { RightSideBarComponent } from './components/right-side-bar/right-side-bar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CategoryPipe } from './pipes/category.pipe';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { CategoryPipe } from './pipes/category.pipe';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule
   ],
   providers: [
     AddressService,
