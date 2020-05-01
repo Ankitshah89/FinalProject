@@ -22,6 +22,7 @@ import { ArticlesComponent } from './components/articles/articles.component';
 import { LeftSideBarComponent } from './components/left-side-bar/left-side-bar.component';
 import { RightSideBarComponent } from './components/right-side-bar/right-side-bar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ReviewsComponent } from './components/reviews/reviews.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HomeComponent,
     ArticlesComponent,
     LeftSideBarComponent,
-    RightSideBarComponent
+    RightSideBarComponent,
+    ReviewsComponent
   ],
   imports: [
     BrowserModule,
