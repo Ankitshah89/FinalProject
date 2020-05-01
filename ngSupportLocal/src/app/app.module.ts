@@ -22,7 +22,14 @@ import { ArticlesComponent } from './components/articles/articles.component';
 import { LeftSideBarComponent } from './components/left-side-bar/left-side-bar.component';
 import { RightSideBarComponent } from './components/right-side-bar/right-side-bar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { CategoryPipe } from './pipes/category.pipe';
+import { HttpClientModule } from '@angular/common/http';
+
 import { ReviewsComponent } from './components/reviews/reviews.component';
+import { LogoutComponent } from './components/logout/logout.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -35,13 +42,18 @@ import { ReviewsComponent } from './components/reviews/reviews.component';
     ArticlesComponent,
     LeftSideBarComponent,
     RightSideBarComponent,
-    ReviewsComponent
+    CategoryPipe,
+    ReviewsComponent,
+    LogoutComponent,
+    RegisterComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule,
   ],
   providers: [
     AddressService,
@@ -52,8 +64,8 @@ import { ReviewsComponent } from './components/reviews/reviews.component';
     PreferenceService,
     ReviewCommentService,
     ReviewService,
-    UserService
+    UserService,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

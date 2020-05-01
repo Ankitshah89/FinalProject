@@ -13,9 +13,9 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  login(username, password) {
+  login(email, password) {
     // Make credentials
-    const credentials = this.generateBasicAuthCredentials(username, password);
+    const credentials = this.generateBasicAuthCredentials(email, password);
     // Send credentials as Authorization header (this is spring security convention for basic auth)
     const httpOptions = {
       headers: new HttpHeaders({
@@ -61,8 +61,8 @@ export class AuthService {
     return false;
   }
 
-  generateBasicAuthCredentials(username, password) {
-    return btoa(`${username}:${password}`);
+  generateBasicAuthCredentials(email, password) {
+    return btoa(`${email}:${password}`);
   }
 
   getCredentials() {

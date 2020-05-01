@@ -52,8 +52,8 @@ export class BusinessService {
       );
   }
 
-  public create(business: Business, user: User) {
-    business.managerId = user.id;
+  public create(business: Business) {
+
     const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
