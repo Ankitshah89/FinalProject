@@ -78,7 +78,7 @@ public class ArticleController {
 
 	@GetMapping("articles/{aid}")
 	public Article show(HttpServletRequest req, HttpServletResponse resp, Principal principal, @PathVariable int aid) {
-		Article article = articleSvc.show(principal.getName(), aid);
+		Article article = articleSvc.show(aid);
 		if (article == null) {
 			resp.setStatus(404);
 		} else {
@@ -87,6 +87,27 @@ public class ArticleController {
 		}
 		return null;
 	}
+	
+	
+	@PostMapping("articles")
+	public Article createSingleArticle(HttpServletRequest req, HttpServletResponse res, @RequestBody Article article,
+			Principal principal) {
+		try {
+			Article newArticle = articleSvc.createSingleArticle(principal.getName(), article);
+			res.setStatus(201);
+			StringBuffer url = req.getRequestURL();
+			url.append("/").append(article.getId());
+			String location = url.toString();
+			res.addHeader("Location", location);
+			return newArticle;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+			return null;
+		}
+	}
+
 
 	@PostMapping("articles/business/{bid}")
 	public Article create(HttpServletRequest req, HttpServletResponse res, @RequestBody Article article,

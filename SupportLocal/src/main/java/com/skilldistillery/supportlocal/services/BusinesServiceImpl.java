@@ -41,24 +41,30 @@ public class BusinesServiceImpl implements BusinessService {
 	@Override // Done
 	public Business updateBusiness(String email, Business business, int id) {
 		User user = userRepo.findUserByEmail(email);
+		
+//		Business existing = null;
 
-		if (user != null && (user.getRole().equals(Role.Admin) || user.getRole().equals(Role.Business))) {
-
+		if (user != null) {
+			
 			Optional<Business> optBus = busRepo.findById(id);
-
+			
 			if (optBus.isPresent()) {
 				if (business.getName() != null) {
 					Business manBus = optBus.get();
-					manBus.setName(business.getName());
-					manBus.setDescription(business.getDescription());
-					manBus.setPhone(business.getPhone());
-					manBus.setImageUrl(business.getImageUrl());
-					manBus.setActive(business.isActive());
-					return busRepo.saveAndFlush(manBus);
+					if(manBus.getManager().getId() == user.getId() ||
+							user.getRole().equals(Role.Admin)) {
+						
+						manBus.setName(business.getName());
+						manBus.setDescription(business.getDescription());
+						manBus.setPhone(business.getPhone());
+						manBus.setImageUrl(business.getImageUrl());
+						manBus.setActive(business.isActive());
+						return busRepo.saveAndFlush(manBus);
+					}
 				}
 			}
-
 		}
+	
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -68,18 +74,22 @@ public class BusinesServiceImpl implements BusinessService {
 		User user = userRepo.findUserByEmail(email);
 		boolean deleted = false;
 
-		if (user != null && (user.getRole().equals(Role.Admin) || user.getRole().equals(Role.Business))) {
+		if (user != null)  {
 
 			Optional<Business> optBus = busRepo.findById(id);
 
 			if (optBus.isPresent()) {
 				Business manBus = optBus.get();
+				if(manBus.getManager().getId() == user.getId() ||
+			 user.getRole().equals(Role.Admin)) {
+					
 				try {
 					busRepo.delete(manBus);
 					deleted = true;
 				} catch (Exception e) {
 					System.out.println("Could not delete business with id:" + id);
 					deleted = false;
+				}
 				}
 			}
 		}
@@ -91,7 +101,8 @@ public class BusinesServiceImpl implements BusinessService {
 	public Business createBusiness(String email, Business business) {
 		User user = userRepo.findUserByEmail(email);
 
-		if (business != null && user != null && (user.getRole().equals(Role.Admin) || user.getRole().equals(Role.Business))) {
+		if (business != null && user != null
+				&& (user.getRole().equals(Role.Admin) || user.getRole().equals(Role.Business))) {
 			try {
 				business.setManager(user);
 				return busRepo.saveAndFlush(business);

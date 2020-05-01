@@ -12,9 +12,9 @@ public interface ArticleService {
 		
 		public List<Article> indexUser(Integer uid);
 
-	 	Article show(String email, int aid);
-
 	    Article create(String email, Article article, int bid);
+	    
+	    Article createSingleArticle(String email, Article article);
 
 		Article update(String email, int aid, Article article);
 

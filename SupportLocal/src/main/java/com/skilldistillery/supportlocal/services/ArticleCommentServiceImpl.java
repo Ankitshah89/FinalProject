@@ -56,15 +56,20 @@ public class ArticleCommentServiceImpl implements ArticleCommentService {
 	@Override
 	public ArticleComment createReplyTo(String email, ArticleComment reply, Integer cid) {
 		User user = userRepo.findUserByEmail(email);
+		
+			
 		Optional<ArticleComment> optOriginal = commentRepo.findById(cid);
 		if (optOriginal != null && user != null) {
 			ArticleComment original = optOriginal.get();
 			Article article = original.getArticle();
+				
 			reply.setUser(user);
 			reply.setArticle(article);
 			reply.setInReplyTo(original);
 			commentRepo.saveAndFlush(reply);
 			return reply;
+		
+		
 		}
 
 		return null;
@@ -74,13 +79,18 @@ public class ArticleCommentServiceImpl implements ArticleCommentService {
 	@Override
 	public ArticleComment update(String email, int cid, ArticleComment comment) {
 		User user = userRepo.findUserByEmail(email);
+		if(user!=null) {
 		Optional<ArticleComment> optArticle = commentRepo.findById(cid);
 		if (optArticle != null && user != null) {
 			ArticleComment managed = optArticle.get();
+			if(managed.getUser().getId() == user.getId() ||
+					managed.getArticle().getBusiness().getId() == user.getId() ||
+					user.getRole().equals(Role.Admin)) {
 			managed.setContent(comment.getContent());
 			commentRepo.saveAndFlush(managed);
 			return managed;
-
+			}
+		}
 		}
 		return null;
 	}

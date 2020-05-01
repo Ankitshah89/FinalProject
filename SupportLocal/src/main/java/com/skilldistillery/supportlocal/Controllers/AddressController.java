@@ -85,7 +85,7 @@ public class AddressController {
 			Principal principal) {
 		boolean deleted = addServe.deleteAddress(principal.getName(),id);
 		if (deleted) {
-			response.setStatus(204);
+			response.setStatus(200);
 		} else {
 			response.setStatus(404);
 		}
