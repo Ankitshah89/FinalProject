@@ -1,4 +1,5 @@
 import { NullTemplateVisitor } from '@angular/compiler';
+import { User } from './user';
 
 export class ReviewComment {
   id: number;
@@ -6,16 +7,16 @@ export class ReviewComment {
   content: string;
   createDate: Date;
   inreplyToId: number;
-  userId: number;
+  user: User;
 
   constructor(id?: number, reviewId?: number, content?: string, createDate?: Date,
-        inreplyToId?: number, userId?: number){
+        inreplyToId?: number, user?: User){
 
           this.id = id;
           this.reviewId = reviewId;
           this.content = content;
           this.createDate = createDate;
           this.inreplyToId = inreplyToId;
-          this.userId = userId;
+          this.user = user;
   }
 }
