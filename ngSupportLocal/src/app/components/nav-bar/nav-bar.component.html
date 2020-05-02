@@ -31,10 +31,9 @@
 
         <a [routerLink]="['/register']" *ngIf="!userLogInCheck()">
           <button
-            class="btn btn-sm btn-warning mx-4"
+            class="btn btn-sm btn-outline-dark mx-4"
             data-toggle="modal"
             data-target="#registerModal"
-
           >
             Register
           </button>
@@ -42,7 +41,7 @@
 
         <a [routerLink]="['/login']" *ngIf="!userLogInCheck()">
           <button
-            class="btn btn-sm btn-warning"
+            class="btn btn-sm btn-outline-dark"
             data-toggle="modal"
             data-target="#loginModal"
           >
@@ -50,11 +49,8 @@
           </button>
         </a>
         <a *ngIf="userLogInCheck()">
-
           <app-logout></app-logout>
         </a>
-
-
       </div>
     </div>
   </header>
