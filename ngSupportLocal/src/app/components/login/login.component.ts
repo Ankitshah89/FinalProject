@@ -1,3 +1,4 @@
+import { UserService } from 'src/app/services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
@@ -10,10 +11,16 @@ import { User } from 'src/app/models/user';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
+user : User = new User();
+
   constructor(
     private router: Router,
-    private auth: AuthService
+    private auth: AuthService,
+    private userService : UserService
   ) {}
+
+  isAdmin = false;
 
   ngOnInit() {}
 
@@ -22,13 +29,17 @@ export class LoginComponent implements OnInit {
     user.email = loginForm.value.email;
     user.password = loginForm.value.password;
 
+  // let newUser : User = null;
+  //   console.log(this.newUser.role);
+
 
     this.auth.login(user.email, user.password).subscribe(
       next => {
+        console.log(user.role);
        if (next.role === 'Admin'){
           this.router.navigateByUrl('/admin-landing');
         }
-        if(next.role === 'Business'){
+        else if(next.role === 'Business'){
           this.router.navigateByUrl('/businesses');
         }
         else{
@@ -40,4 +51,44 @@ export class LoginComponent implements OnInit {
       }
     );
   }
+
+  // login() {
+  //   this.auth.login(this.user.username, this.user.password).subscribe(
+  //     next => {
+  //       this.userData.setLoggedIn();
+  //     },
+  //     error => {
+  //       console.error(error);
+  //       console.error('LoginComponent.login(): error logging in.');
+  //     },
+  //     () => {
+  //       this.userService.index().subscribe(
+  //         good => {
+  //           this.user = good;
+  //           this.userData.setUser(good);
+  //           this.userData.setUserRole(this.userData.user.role);
+  //           if (!this.user.role) {
+  //             this.router.navigateByUrl('/patient-registration');
+  //           }
+  //           if (this.user.role.toLowerCase() === 'ems') {
+  //             this.router.navigateByUrl('/emt-view');
+  //           }
+  //           if (this.user.role.toLowerCase() === 'user') {
+  //             this.router.navigateByUrl('/app/tabs/medications');
+  //           }
+  //           if (this.user.role.toLowerCase() === 'physician') {
+  //             this.router.navigateByUrl('/patient-list');
+  //           }
+  //           if (this.user.role.toLowerCase() === 'admin') {
+  //             this.router.navigateByUrl('/admin-dashboard');
+  //           }
+  //         },
+  //         error => {
+  //           console.error(error);
+  //           console.error('LoginComponent.login(): error logging in.');
+  //         }
+  //       );
+  //     }
+  //   );
+  // }
 }
