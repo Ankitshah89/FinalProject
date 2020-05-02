@@ -10,7 +10,7 @@ public interface ArticleService {
 		
 		public List<Article> indexBusiness(Integer bid);
 		
-		public List<Article> indexUser(Integer uid);
+		public List<Article> indexUser(String email);
 
 	    Article create(String email, Article article, int bid);
 	    

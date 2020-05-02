@@ -60,9 +60,9 @@ public class ArticleController {
 		
 	}
 	
-	@GetMapping("articles/user/{uid}")
-	public List<Article> findAllByUser(HttpServletRequest req, HttpServletResponse resp, Principal principal, @PathVariable Integer uid) {
-		List<Article> articles = articleSvc.indexUser(uid);
+	@GetMapping("articles/user")
+	public List<Article> findAllByUser(HttpServletRequest req, HttpServletResponse resp, Principal principal) {
+		List<Article> articles = articleSvc.indexUser(principal.getName());
 		
 		if (articles == null) {
 			resp.setStatus(404);

@@ -245,6 +245,7 @@ CREATE TABLE IF NOT EXISTS `article` (
   `content` TEXT NULL,
   `create_at` DATETIME NULL,
   `image_url` VARCHAR(1000) NULL,
+  `active` TINYINT(1) NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   INDEX `fk_article_user_idx` (`user_id` ASC),
   INDEX `fk_article_business_idx` (`business_id` ASC),
@@ -409,9 +410,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `supportlocaldb`;
-INSERT INTO `article` (`id`, `user_id`, `business_id`, `title`, `content`, `create_at`, `image_url`) VALUES (1, 1, 1, 'Hello World', 'Trial and Error', '2020-04-27', NULL);
-INSERT INTO `article` (`id`, `user_id`, `business_id`, `title`, `content`, `create_at`, `image_url`) VALUES (2, 3, 2, 'Some Small Businesses That Got Aid Fear the Rules Too Much to Spend It', 'When a $192,000 loan from the federal government’s small-business aid program arrived in his bank account last month, George Evageliou, the founder of a custom woodworking company, felt like one of the lucky ones.\n\nUnder the program’s rules, Mr. Evageliou has eight weeks from the day he received the cash to spend it. But nearly three weeks after the clock started on April 14, he hasn’t used a penny.', '2020-05-01', NULL);
-INSERT INTO `article` (`id`, `user_id`, `business_id`, `title`, `content`, `create_at`, `image_url`) VALUES (3, 3, 1, 'There’s a more accurate way to compare coronavirus deaths to the flu', 'Months into the coronavirus pandemic, some politicians and pundits continue to promote ham-handed comparisons between covid-19 and the seasonal flu to score political points.\n\nThough there are many ways to debunk this fundamentally flawed comparison, one of the clearest was put forth this week by Jeremy Samuel Faust, an emergency room physician at Brigham and Women’s Hospital at Harvard Medical School', '2020-05-01', NULL);
+INSERT INTO `article` (`id`, `user_id`, `business_id`, `title`, `content`, `create_at`, `image_url`, `active`) VALUES (1, 1, 1, 'Hello World', 'Trial and Error', '2020-04-27', 'https://www.digitalmeetsculture.net/wp-content/uploads/2015/04/article.jpg', 1);
+INSERT INTO `article` (`id`, `user_id`, `business_id`, `title`, `content`, `create_at`, `image_url`, `active`) VALUES (2, 2, 2, 'Some Small Businesses That Got Aid Fear the Rules Too Much to Spend It', 'When a $192,000 loan from the federal government’s small-business aid program arrived in his bank account last month, George Evageliou, the founder of a custom woodworking company, felt like one of the lucky ones.\n\nUnder the program’s rules, Mr. Evageliou has eight weeks from the day he received the cash to spend it. But nearly three weeks after the clock started on April 14, he hasn’t used a penny.', '2020-05-01', 'https://cdn.the-scientist.com/assets/articleNo/30636/iImg/2186/b531a5bf-c7af-43de-9fc1-3560813f9d49-online.jpg', 1);
+INSERT INTO `article` (`id`, `user_id`, `business_id`, `title`, `content`, `create_at`, `image_url`, `active`) VALUES (3, 1, 1, 'There’s a more accurate way to compare coronavirus deaths to the flu', 'Months into the coronavirus pandemic, some politicians and pundits continue to promote ham-handed comparisons between covid-19 and the seasonal flu to score political points.\n\nThough there are many ways to debunk this fundamentally flawed comparison, one of the clearest was put forth this week by Jeremy Samuel Faust, an emergency room physician at Brigham and Women’s Hospital at Harvard Medical School', '2020-05-01', 'https://images.wisegeek.com/pile-of-newspapers.jpg', 1);
 
 COMMIT;
 

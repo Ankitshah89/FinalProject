@@ -33,6 +33,7 @@ public class Article {
 	private String title;
 
 	private String content;
+	private boolean active;
 	
 	
 	@ManyToOne
@@ -153,9 +154,31 @@ public class Article {
 		return true;
 	}
 
+	public Article(int id, User user, String title, String content, boolean active, Business business,
+			LocalDateTime createAt, String imageUrl, List<ArticleComment> articleComments) {
+		super();
+		this.id = id;
+		this.user = user;
+		this.title = title;
+		this.content = content;
+		this.active = active;
+		this.business = business;
+		this.createAt = createAt;
+		this.imageUrl = imageUrl;
+		this.articleComments = articleComments;
+	}
+
 	@Override
 	public String toString() {
-		return "Article [id=" + id + ", title=" + title + ", content=" + content + ", createAt=" + createAt + ", imageUrl=" + imageUrl + "]";
+		return "Article [id=" + id + ", title=" + title + ", content=" + content + ", createAt=" + active + ", active=" + createAt+ ", imageUrl=" + imageUrl + "]";
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 }
