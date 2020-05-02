@@ -11,12 +11,14 @@ import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { BusinessLandingComponent } from './components/business-landing/business-landing.component';
 import { UserLandingComponent } from './components/user-landing/user-landing.component';
+import { AdminLandingComponent } from './components/admin-landing/admin-landing.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomeComponent },
   { path: 'user', component: UserComponent },
   { path: 'user-landing', component: UserLandingComponent },
+  { path: 'admin-landing', component: AdminLandingComponent },
   { path: 'business', component: BusinessComponent },
   { path: 'business-landing', component: BusinessLandingComponent },
   { path: 'login', component: LoginComponent },
@@ -24,7 +26,7 @@ const routes: Routes = [
   { path: 'logout', component: LogoutComponent },
   { path: 'businesses', component: BusinessComponent },
   { path: 'articles', component: ArticlesComponent },
-  { path: 'reviews', component: ReviewsComponent },
+  { path: 'reviews', component: ReviewsComponent }
 ];
 
 @NgModule({

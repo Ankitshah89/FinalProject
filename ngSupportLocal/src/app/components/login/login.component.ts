@@ -22,11 +22,18 @@ export class LoginComponent implements OnInit {
     user.email = loginForm.value.email;
     user.password = loginForm.value.password;
 
+
     this.auth.login(user.email, user.password).subscribe(
       next => {
-        this.router.navigateByUrl('/businesses');
-
-
+       if (next.role === 'Admin'){
+          this.router.navigateByUrl('/admin-landing');
+        }
+        if(next.role === 'Business'){
+          this.router.navigateByUrl('/businesses');
+        }
+        else{
+          this.router.navigateByUrl('/user-landing');
+        }
       },
       error => {
         this.router.navigateByUrl('/login');
