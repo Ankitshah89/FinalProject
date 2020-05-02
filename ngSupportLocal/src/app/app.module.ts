@@ -32,7 +32,6 @@ import { UserLandingComponent } from './components/user-landing/user-landing.com
 import { LogoutComponent } from './components/logout/logout.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
-
 @NgModule({
   declarations: [
     AppComponent,
