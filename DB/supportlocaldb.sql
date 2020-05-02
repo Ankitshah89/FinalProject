@@ -312,7 +312,7 @@ START TRANSACTION;
 USE `supportlocaldb`;
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `phone`, `created_at`, `active`) VALUES (1, 'Jason', 'Nash', 'abc@xyz.com', '$2a$10$iFcq7QU0MTFhsMESWUkkzeb2HR66wDjyt0gkMzbJFYNbmSylBX/Ce', 'Admin', '1234567890', NULL, 1);
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `phone`, `created_at`, `active`) VALUES (2, 'Devin', 'Homie', 'xyz@abc.com', '$2a$10$iFcq7QU0MTFhsMESWUkkzeb2HR66wDjyt0gkMzbJFYNbmSylBX/Ce', 'User', '5675432341', NULL, 1);
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `phone`, `created_at`, `active`) VALUES (3, 'Ankit', 'Shah', 'ankit@ankit.com', '$2a$10$iFcq7QU0MTFhsMESWUkkzeb2HR66wDjyt0gkMzbJFYNbmSylBX/Ce', 'User', '1234567799', NULL, 1);
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `phone`, `created_at`, `active`) VALUES (3, 'Ankit', 'Shah', 'ankit@ankit.com', '$2a$10$iFcq7QU0MTFhsMESWUkkzeb2HR66wDjyt0gkMzbJFYNbmSylBX/Ce', 'Business', '1234567799', NULL, 1);
 
 COMMIT;
 
@@ -410,6 +410,8 @@ COMMIT;
 START TRANSACTION;
 USE `supportlocaldb`;
 INSERT INTO `article` (`id`, `user_id`, `business_id`, `title`, `content`, `create_at`, `image_url`) VALUES (1, 1, 1, 'Hello World', 'Trial and Error', '2020-04-27', NULL);
+INSERT INTO `article` (`id`, `user_id`, `business_id`, `title`, `content`, `create_at`, `image_url`) VALUES (2, 3, 2, 'Some Small Businesses That Got Aid Fear the Rules Too Much to Spend It', 'When a $192,000 loan from the federal government’s small-business aid program arrived in his bank account last month, George Evageliou, the founder of a custom woodworking company, felt like one of the lucky ones.\n\nUnder the program’s rules, Mr. Evageliou has eight weeks from the day he received the cash to spend it. But nearly three weeks after the clock started on April 14, he hasn’t used a penny.', '2020-05-01', NULL);
+INSERT INTO `article` (`id`, `user_id`, `business_id`, `title`, `content`, `create_at`, `image_url`) VALUES (3, 3, 1, 'There’s a more accurate way to compare coronavirus deaths to the flu', 'Months into the coronavirus pandemic, some politicians and pundits continue to promote ham-handed comparisons between covid-19 and the seasonal flu to score political points.\n\nThough there are many ways to debunk this fundamentally flawed comparison, one of the clearest was put forth this week by Jeremy Samuel Faust, an emergency room physician at Brigham and Women’s Hospital at Harvard Medical School', '2020-05-01', NULL);
 
 COMMIT;
 
