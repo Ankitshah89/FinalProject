@@ -23,7 +23,7 @@
         <div>
           <h2>Top Articles Today</h2>
           <p>Presenting the Best of Local Colorado</p>
-          <span class="btn btn-sm btn-outline-secondary">Learn More</span>
+          <span class="btn btn-sm btn-outline-warning">Learn More</span>
         </div>
       </div>
     </div>
@@ -37,7 +37,7 @@
         <div>
           <h2>Top Articles Today</h2>
           <p>Presenting the Best of Local Colorado</p>
-          <span class="btn btn-sm btn-outline-secondary">Learn More</span>
+          <span class="btn btn-sm btn-outline-warning">Learn More</span>
         </div>
       </div>
     </div>
@@ -51,7 +51,7 @@
         <div>
           <h2>Top Articles Today</h2>
           <p>Presenting the Best of Local Colorado</p>
-          <span class="btn btn-sm btn-outline-secondary">Learn More</span>
+          <span class="btn btn-sm btn-outline-warning">Learn More</span>
         </div>
       </div>
     </div>
@@ -123,20 +123,25 @@
         <h3 class="mb-0">{{ article.title }}</h3>
         <div class="mb-1 text-muted">{{ article.createAt }}</div>
 
-        <p class="mb-auto"
-         style="
-        display: inline-block;
-        white-space: wrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 200ch; ">
+        <p
+          class="mb-auto"
+          style="
+            display: inline-block;
+            white-space: wrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 200ch;
+          "
+        >
+          {{ article.content }}
 
-            {{ article.content }}
-
-          <br/>
-          <a href="#/article/{{ article.id }}" class="stretched-link">Continue reading</a>
-
+          <br />
+          <a href="#/article/{{ article.id }}" class="stretched-link"
+            >Continue reading</a
+          >
+        </p>
       </div>
+
       <div class="col-auto d-none d-lg-block"></div>
     </div>
   </div>
