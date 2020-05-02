@@ -1,0 +1,218 @@
+<div class="container-fluid jumbotron">
+  <div class="row">
+    <div class="col">
+      <h1>Admin Dashboard</h1>
+    </div>
+    <div class="col" align="right">
+      <button type="button" class="btn btn-light" onClick="history.go(0);">
+        Refresh Dashboard
+      </button>
+    </div>
+  </div>
+</div>
+<!-- Cards Topper -->
+
+<!--  -->
+<div class="card-deck container-fluid">
+  <div class="card bordered shadow mb-3">
+    <!-- <img class="card-img-top" src="" alt="Card image cap"> -->
+    <div class="card-body">
+      <h1 class="card-title">User Status</h1>
+      <h4>
+        <span class="badge badge-secondary border shadow">Total Users: {{ countUsers() }}</span>
+      </h4>
+      <h4>
+        <span class="badge badge-success border shadow">Active Users: {{ countActiveU() }}</span>
+      </h4>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted"></small>
+    </div>
+  </div>
+  <div class="card bordered shadow mb-3">
+    <!-- <img class="card-img-top" src=".../100px180/" alt="Card image cap"> -->
+    <div class="card-body">
+      <h1 class="card-title">Business Status</h1>
+      <h4>
+        <span class="badge badge-secondary border shadow">Total Business: {{ countBusiness() }}</span>
+      </h4>
+      <h4>
+        <span class="badge badge-success border shadow">Active Business: {{ countActiveG() }}</span>
+      </h4>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted"></small>
+    </div>
+  </div>
+</div>
+
+<!-- User List Tab -->
+
+<div class="container-fluid bg-light">
+  <ngb-tabset>
+    <ngb-tab>
+      <ng-template ngbTabTitle>
+        <div (click)="selectedUser = null">Users</div>
+      </ng-template>
+      <ng-template ngbTabContent>
+        <div id="userList" class="container-fluid" *ngIf="!selectedUser">
+          <table class="table table-striped table-hover">
+            <thead class="thead-light">
+              <tr>
+                <th>Id</th>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Enabled</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="showHand" *ngFor="let user of users" (click)="selectedUser = user">
+                <td>{{ user.id }}</td>
+                <td>{{ user.lastName }}</td>
+                <td>{{ user.firstName }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.role }}</td>
+                <td>{{ user.active }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Single User Display w/Options Here -->
+
+        <div class="container" id="oneUser" *ngIf="selectedUser">
+          <!-- Add && !selectedUpdate element here -->
+          <h1>
+            {{ selectedUser.firstName | uppercase }}
+            {{ selectedUser.lastName | uppercase }}
+          </h1>
+          <!-- <img class="img-fluid img-thumbnail" src="{{ selectedUser.imageUrl }}" alt="Profile Photo" width="200"
+            height="200" /> -->
+          <br />
+          <ul class="list-group">
+            <li class="list-group-item">User Id: {{ selectedUser.id }}</li>
+            <li class="list-group-item">
+              Email:
+              <a href="mailto:{{ selectedUser.email }}"><u>{{ selectedUser.email }}</u></a>
+            </li>
+            <!-- <li class="list-group-item">
+              Address: {{ selectedUser.address.address }}
+            </li>
+            <li class="list-group-item">
+              Address2: {{ selectedUser.address.address2 }}
+            </li>
+            <li class="list-group-item">
+              City: {{ selectedUser.address.city }}
+            </li>
+            <li class="list-group-item">
+              State: {{ selectedUser.address.state }}
+            </li>
+            <li class="list-group-item">
+              Country: {{ selectedUser.address.country }}
+            </li>
+            <li class="list-group-item">
+              Postal Code: {{ selectedUser.address.postalCode }}
+            </li> -->
+            <li class="list-group-item">Phone: {{ selectedUser.phone }}</li>
+            <li class="list-group-item">
+              Created: {{ selectedUser.createdAt | date: "shortDate" }}
+            </li>
+            <!-- <li class="list-group-item">
+              Last Updated: {{ selectedUser.updatedAt | date: "shortDate" }}
+            </li> -->
+            <li class="list-group-item">Role: {{ selectedUser.role }}</li>
+            <li class="list-group-item">Enabled: {{ selectedUser.active }}</li>
+          </ul>
+
+          <br />
+          <div class="btn-group" role="group" aria-label="selected task">
+            <button class="btn btn-outline-success" (click)="selectedUser = null">
+              Back
+            </button>
+            <button class="btn btn-outline-warning" *ngIf="!selectedUser.active"
+              (click)="updatedUserEnabled(selectedUser)">
+              Enable
+            </button>
+            <button class="btn btn-outline-danger" *ngIf="selectedUser.active"
+              (click)="updatedUserEnabled(selectedUser)">
+              Disable
+            </button>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab>
+      <ng-template ngbTabTitle>
+        <div (click)="selectedBusiness = null">Business</div>
+      </ng-template>
+      <ng-template ngbTabContent>
+        <!-- Gear List Tab -->
+
+        <div id="gearList" class="container-fluid" *ngIf="!selectedBusiness">
+          <table class="table table-striped table-hover">
+            <thead class="thead-light">
+              <tr>
+                <th>Id</th>
+                <th>Business</th>
+                <th>Description</th>
+                <th>Manager Id</th>
+                <th>Phone</th>
+                <th>Image</th>
+                <th>Active</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let business of businessList" class="showHand" (click)="selectedBusiness = business">
+                <td>{{ business.id }}</td>
+                <td>{{ business.name }}</td>
+                <td>{{ business.descripiton }}</td>
+                <td>{{ business.manager }}</td>
+                <td>{{ business.phone }}</td>
+                <td>{{ business.imageUrl }}</td>
+                <td>{{ business.active }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      <!-- Single Business Display -->
+
+        <div class="container" id="oneGear" *ngIf="selectedBusiness">
+          <!-- && !updateResv element here -->
+          <h1>{{ selectedBusiness.name | uppercase }}</h1>
+          <br />
+          <ul class="list-group">
+            <li class="list-group-item">Business Id: {{ selectedBusiness.id }}</li>
+            <li class="list-group-item">Active: {{ selectedBusiness.active }}</li>
+            <li class="list-group-item">
+              Manager First Name: {{ selectedBusiness.manager.firstName }}
+            </li>
+            <li class="list-group-item">
+              Manager Last Name: {{ selectedBusiness.manager.lastName }}
+            </li>
+            <li class="list-group-item">
+              Description: {{ selectedBusiness.descripiton }}
+            </li>
+
+            <li class="list-group-item">
+              IMG-1:<img class="img-thumbnail" src="{{ selectedBusiness.imageUrl }}" alt="" />
+            </li>
+          </ul>
+          <br />
+          <div class="btn-group" role="group" aria-label="selected task">
+            <button class="btn btn-outline-success" (click)="selectedBusiness = null">
+              Back
+            </button>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-tab>
+
+
+    <!-- Business Review List Tab -->
+
+
+  </ngb-tabset>
+</div>

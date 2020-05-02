@@ -15,7 +15,7 @@ export class UserService {
   constructor(
     private http: HttpClient,
     private authService: AuthService,
-    private routher: Router
+    private router: Router
   ) {
 
   }
@@ -63,6 +63,30 @@ export class UserService {
       )
     };
   }
+
+
+  updateUserAsAdmin(user: User) {
+    if (localStorage.length === 0) {
+      this.router.navigateByUrl('/login');
+    }
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Basic ` + this.authService.getCredentials(),
+        'Content-Type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+    return this.http.put(this.url + '/admin', user, httpOptions).pipe(
+      catchError((err: any) => {
+        // console.log(err);
+        // console.log('update method User Service');
+        return throwError('user.service.ts Error: Update Method');
+      })
+    );
+  }
+
+
+
   //Create Users
 
   public createUser(user: User){

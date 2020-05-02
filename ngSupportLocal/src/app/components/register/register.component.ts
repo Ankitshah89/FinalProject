@@ -107,7 +107,7 @@ export class RegisterComponent implements OnInit {
                 }
               );
             }else{
-              this.router.navigateByUrl('/businesses');
+              this.router.navigateByUrl('/user-landing');
               userForm.reset();
             }
           },
