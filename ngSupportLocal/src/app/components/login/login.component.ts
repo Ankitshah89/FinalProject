@@ -35,6 +35,10 @@ user : User = new User();
 
     this.auth.login(user.email, user.password).subscribe(
       next => {
+        console.log('This is in Login with next information: ');
+        console.log(next);
+
+
         console.log(user.role);
        if (next.role === 'Admin'){
           this.router.navigateByUrl('/admin-landing');

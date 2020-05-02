@@ -49,16 +49,16 @@ public class User {
 	
 	private boolean active;
 	
-	@JsonIgnore
+	
 	@OneToMany(mappedBy="user")
 	private List<Review> reviews;
 	
 	
-	@JsonIgnore
+	
 	@OneToMany(mappedBy="user")
 	private List<ReviewComment> reviewComments;
 	
-	@JsonIgnore
+	
 	@OneToMany(mappedBy="user")
 	private List<Article> articles; 
 	
@@ -67,7 +67,7 @@ public class User {
 	private List<Business> businesses;
 	
 
-	@JsonIgnore
+	
     @OneToMany(mappedBy="user")
     private List<ArticleComment> articleComments;
 	
@@ -76,14 +76,13 @@ public class User {
 	@JoinTable(name = "user_favourite_business",
 				joinColumns = @JoinColumn(name="user_id"),
 				inverseJoinColumns = @JoinColumn(name = "business_id"))
-	@JsonIgnore
 	private List<Business> favoriteBusinesses;
 	
 	@ManyToMany
 	@JoinTable(name = "user_preference",
 	joinColumns = @JoinColumn(name="user_id"),
 	inverseJoinColumns = @JoinColumn(name = "preference_id"))
-	@JsonIgnore
+	
 	private List<Preference> preferences;
 	
 	

@@ -14,8 +14,11 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   login(email, password) {
-    // Make credentials
+    localStorage.setItem('email', email);
+
     const credentials = this.generateBasicAuthCredentials(email, password);
+    console.log('In login function: ' + credentials);
+
     // Send credentials as Authorization header (this is spring security convention for basic auth)
     const httpOptions = {
       headers: new HttpHeaders({
@@ -48,6 +51,7 @@ export class AuthService {
   }
 
   logout() {
+    localStorage.removeItem('email');
     localStorage.removeItem('credentials');
   }
 
@@ -67,6 +71,8 @@ export class AuthService {
   }
 
   getLoggedInEmail() {
+    console.log('This is the email: ' + localStorage.getItem('email'));
+
     return localStorage.getItem('email');
   }
   getUserByEmail(email: string) {
@@ -83,7 +89,7 @@ export class AuthService {
       .pipe(
         catchError((err: any) => {
           // console.log(err);
-          return throwError('AuthService.register(): error registering user.');
+          return throwError('AuthService.getUserByEmail(): error finding user.');
         })
       );
   }
