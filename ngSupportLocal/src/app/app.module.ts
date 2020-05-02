@@ -32,6 +32,7 @@ import { UserLandingComponent } from './components/user-landing/user-landing.com
 import { LogoutComponent } from './components/logout/logout.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
+import { AdminLandingComponent } from './components/admin-landing/admin-landing.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { LoginComponent } from './components/login/login.component';
     LogoutComponent,
     RegisterComponent,
     LoginComponent,
+    AdminLandingComponent,
   ],
   imports: [
     BrowserModule,

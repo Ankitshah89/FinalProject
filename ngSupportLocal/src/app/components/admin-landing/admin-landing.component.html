@@ -1,0 +1,409 @@
+<!-- <div class="container-fluid jumbotron">
+  <div class="row">
+    <div class="col">
+      <h1>Admin Dashboard</h1>
+    </div>
+    <div class="col" align="right">
+      <button type="button" class="btn btn-light" onClick="history.go(0);">
+        Refresh Dashboard
+      </button>
+    </div>
+  </div>
+</div>
+<!-- Cards Topper -->
+
+<!--  -->
+<div class="card-deck container-fluid">
+  <div class="card bordered shadow mb-3">
+    <!-- <img class="card-img-top" src="" alt="Card image cap"> -->
+    <div class="card-body">
+      <h1 class="card-title">User Status</h1>
+      <h4>
+        <span class="badge badge-secondary border shadow">Total Users: {{ countUsers() }}</span>
+      </h4>
+      <h4>
+        <span class="badge badge-success border shadow">Active Users: {{ countActiveU() }}</span>
+      </h4>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted"></small>
+    </div>
+  </div>
+  <div class="card bordered shadow mb-3">
+    <!-- <img class="card-img-top" src=".../100px180/" alt="Card image cap"> -->
+    <div class="card-body">
+      <h1 class="card-title">Gear Status</h1>
+      <h4>
+        <span class="badge badge-secondary border shadow">Total Gear: {{ countGear() }}</span>
+      </h4>
+      <h4>
+        <span class="badge badge-success border shadow">Active Gear: {{ countActiveG() }}</span>
+      </h4>
+      <h4>
+        <span class="badge badge-success border shadow">Available Gear: {{ countAvailableG() }}</span>
+      </h4>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted"></small>
+    </div>
+  </div>
+  <div class="card bordered shadow mb-3">
+    <!-- <img class="card-img-top" src="src/assets/img/019 Malibu Beach.jpg" alt="Card image cap"> -->
+    <div class="card-body">
+      <h1 class="card-title">Reservation Status</h1>
+      <h4>
+        <span class="badge badge-secondary border shadow">Total Reservations: {{ countResv() }}</span>
+      </h4>
+      <h4>
+        <span class="badge badge-warning border shadow">Needs Approval: {{ countNeedsApproval() }}</span>
+      </h4>
+      <h4>
+        <span class="badge badge-success border shadow">Completed Reservations: {{ countCompletedR() }}</span>
+      </h4>
+      <h4>
+        <span class="badge badge-success border shadow">Active Reservations: {{ countActiveR() }}</span>
+      </h4>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted"></small>
+    </div>
+  </div>
+</div>
+
+<!-- User List Tab -->
+
+<div class="container-fluid bg-light">
+  <ngb-tabset>
+    <ngb-tab>
+      <ng-template ngbTabTitle>
+        <div (click)="selectedUser = null">Users</div>
+      </ng-template>
+      <ng-template ngbTabContent>
+        <div id="userList" class="container-fluid" *ngIf="!selectedUser">
+          <table class="table table-striped table-hover">
+            <thead class="thead-light">
+              <tr>
+                <th>Id</th>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Enabled</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="showHand" *ngFor="let user of users" (click)="selectedUser = user">
+                <td>{{ user.id }}</td>
+                <td>{{ user.lastName }}</td>
+                <td>{{ user.firstName }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.role }}</td>
+                <td>{{ user.enabled }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Single User Display w/Options Here -->
+
+        <div class="container" id="oneUser" *ngIf="selectedUser">
+          <!-- Add && !selectedUpdate element here -->
+          <h1>
+            {{ selectedUser.firstName | uppercase }}
+            {{ selectedUser.lastName | uppercase }}
+          </h1>
+          <img class="img-fluid img-thumbnail" src="{{ selectedUser.imageUrl }}" alt="Profile Photo" width="200"
+            height="200" />
+          <br />
+          <ul class="list-group">
+            <li class="list-group-item">User Id: {{ selectedUser.id }}</li>
+            <li class="list-group-item">
+              Email:
+              <a href="mailto:{{ selectedUser.email }}"><u>{{ selectedUser.email }}</u></a>
+            </li>
+            <li class="list-group-item">
+              Username: {{ selectedUser.username }}
+            </li>
+            <li class="list-group-item">
+              Address: {{ selectedUser.address.address }}
+            </li>
+            <li class="list-group-item">
+              Address2: {{ selectedUser.address.address2 }}
+            </li>
+            <li class="list-group-item">
+              City: {{ selectedUser.address.city }}
+            </li>
+            <li class="list-group-item">
+              State: {{ selectedUser.address.state }}
+            </li>
+            <li class="list-group-item">
+              Country: {{ selectedUser.address.country }}
+            </li>
+            <li class="list-group-item">
+              Postal Code: {{ selectedUser.address.postalCode }}
+            </li>
+            <li class="list-group-item">Phone: {{ selectedUser.phone }}</li>
+            <li class="list-group-item">
+              Created: {{ selectedUser.createdAt | date: "shortDate" }}
+            </li>
+            <li class="list-group-item">
+              Last Updated: {{ selectedUser.updatedAt | date: "shortDate" }}
+            </li>
+            <li class="list-group-item">Role: {{ selectedUser.role }}</li>
+            <li class="list-group-item">Enabled: {{ selectedUser.enabled }}</li>
+          </ul>
+
+          <br />
+          <div class="btn-group" role="group" aria-label="selected task">
+            <button class="btn btn-outline-success" (click)="selectedUser = null">
+              Back
+            </button>
+            <button class="btn btn-outline-warning" *ngIf="!selectedUser.enabled"
+              (click)="updatedUserEnabled(selectedUser)">
+              Enable
+            </button>
+            <button class="btn btn-outline-danger" *ngIf="selectedUser.enabled"
+              (click)="updatedUserEnabled(selectedUser)">
+              Disable
+            </button>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab>
+      <ng-template ngbTabTitle>
+        <div (click)="selectedGear = null">Gear</div>
+      </ng-template>
+      <ng-template ngbTabContent>
+        <!-- Gear List Tab -->
+
+        <div id="gearList" class="container-fluid" *ngIf="!selectedGear">
+          <table class="table table-striped table-hover">
+            <thead class="thead-light">
+              <tr>
+                <th>Id</th>
+                <th>Gear</th>
+                <th>Owner Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Available</th>
+                <th>Active</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let gear of gearList" class="showHand" (click)="selectedGear = gear">
+                <td>{{ gear.id }}</td>
+                <td>{{ gear.name }}</td>
+                <td>{{ gear.user.id }}</td>
+                <td>{{ gear.user.firstName }}</td>
+                <td>{{ gear.user.lastName }}</td>
+                <td>{{ gear.available }}</td>
+                <td>{{ gear.active }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Single Gear Display w/Options Here -->
+
+        <div class="container" id="oneGear" *ngIf="selectedGear">
+          <!-- && !updateResv element here -->
+          <h1>{{ selectedGear.name | uppercase }}</h1>
+          <br />
+          <ul class="list-group">
+            <li class="list-group-item">Gear Id: {{ selectedGear.id }}</li>
+            <li class="list-group-item">Active: {{ selectedGear.active }}</li>
+            <li class="list-group-item">
+              Available: {{ selectedGear.available }}
+            </li>
+            <li class="list-group-item">
+              Lender First: {{ selectedGear.user.firstName }}
+            </li>
+            <li class="list-group-item">
+              Lender Last: {{ selectedGear.user.lastName }}
+            </li>
+            <li class="list-group-item">
+              Condition: {{ selectedGear.gearCondition }}
+            </li>
+            <li class="list-group-item">
+              Description: {{ selectedGear.description }}
+            </li>
+            <li class="list-group-item">Price: $ {{ selectedGear.price }}</li>
+            <li class="list-group-item">
+              IMG-1:<img class="img-thumbnail" src="{{ selectedGear.imageUrl }}" alt="" />
+            </li>
+            <li class="list-group-item">
+              IMG-2:<img class="img-thumbnail" src="{{ selectedGear.imageUrl2 }}" alt="" />
+            </li>
+            <li class="list-group-item">
+              IMG-3:<img class="img-thumbnail" src="{{ selectedGear.imageUrl3 }}" alt="" />
+            </li>
+          </ul>
+          <br />
+          <div class="btn-group" role="group" aria-label="selected task">
+            <button class="btn btn-outline-success" (click)="selectedGear = null">
+              Back
+            </button>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-tab>
+
+    <!-- Reservation List Tab -->
+
+    <ngb-tab>
+      <ng-template ngbTabTitle>
+        <div (click)="selectedResv = null">Reservations</div>
+      </ng-template>
+      <ng-template ngbTabContent>
+        <div id="resvList" class="container-fluid" *ngIf="!selectedResv">
+          <table class="table table-striped table-hover">
+            <thead class="thead-light">
+              <tr>
+                <th>Reservation Id</th>
+                <th>Lender Id</th>
+                <th>Renter Id</th>
+                <th>Created Date</th>
+                <th>Approved</th>
+                <th>Completed</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let reservation of resvList" class="showHand" (click)="selectedResv = reservation">
+                <td>{{ reservation.id }}</td>
+                <td>{{ reservation.gearId.user.id }}</td>
+                <td>{{ reservation.userShopper.id }}</td>
+                <td type="date">
+                  {{ reservation.createdAt | date: "shortDate" }}
+                </td>
+                <td>{{ reservation.approved }}</td>
+                <td>{{ reservation.completed }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Single Reservation Display w/Options Here -->
+
+        <div class="container" id="oneReservation" *ngIf="selectedResv">
+          <!-- && !updateResv element here -->
+          <h1>{{ selectedResv.gearId.name | uppercase }}</h1>
+          <br />
+          <ul class="list-group">
+            <li class="list-group-item">
+              Reservation Id: {{ selectedResv.id }}
+            </li>
+            <li class="list-group-item">
+              Reservation Created:
+              {{ selectedResv.createdAt | date: "shortDate" }}
+            </li>
+            <br />
+            <li class="list-group-item">
+              Approved: {{ selectedResv.approved }}
+            </li>
+            <li class="list-group-item">
+              Completed: {{ selectedResv.completed }}
+            </li>
+            <br />
+            <li class="list-group-item">
+              Lender Id: {{ selectedResv.gearId.user.id }}
+            </li>
+            <li class="list-group-item">
+              Lender Email: {{ selectedResv.gearId.user.email }}
+            </li>
+            <br />
+            <li class="list-group-item">
+              Shopper Id: {{ selectedResv.userShopper.id }}
+            </li>
+            <li class="list-group-item">
+              Shopper Email: {{ selectedResv.userShopper.email }}
+            </li>
+          </ul>
+          <br />
+          <div class="btn-group" role="group" aria-label="selected task">
+            <button class="btn btn-outline-success" (click)="selectedResv = null">
+              Back
+            </button>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-tab>
+
+    <!-- Gear Review List Tab -->
+
+    <ngb-tab [disabled]="true">
+      <ng-template ngbTabTitle>
+        <div (click)="selectedGearReview = null">Gear Reviews</div>
+      </ng-template>
+      <ng-template ngbTabContent>
+        <div id="gearReviewList" class="container-fluid" *ngIf="!selectedGearReview">
+          <table class="table table-striped table-hover">
+            <thead class="thead-light">
+              <tr>
+                <th>Gear Review Id</th>
+                <th>Gear Rating</th>
+                <th>Gear Review Active</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let review of gearReviewList" class="showHand" (click)="selectedGearReview = review">
+                <td>{{ review.id }}</td>
+                <td>{{ review.rating }}</td>
+                <td>{{ review.active }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Single Review Display w/Options Here -->
+
+        <div class="container" id="oneGearReview" *ngIf="selectedGearReview">
+          <h1>{{ selectedGearReview.rating }}</h1>
+          <br />
+          <ul class="list-group">
+            <li class="list-group-item">
+              Gear Review Id: {{ selectedGearReview.id }}
+            </li>
+            <li class="list-group-item">
+              Gear Review: {{ selectedGearReview.review }}
+            </li>
+            <li class="list-group-item">
+              Active: {{ selectedGearReview.active }}
+            </li>
+            <br />
+            <li class="list-group-item">
+              Shopper First Name:
+              {{ selectedGearReview.reservation.userShopper.firstName }}
+            </li>
+            <li class="list-group-item">
+              Shopper Last Name:
+              {{ selectedGearReview.reservation.userShopper.lastName }}
+            </li>
+            <li class="list-group-item">
+              Shopper Email:
+              {{ selectedGearReview.reservation.userShopper.email }}
+            </li>
+            <li class="list-group-item">
+              Shopper Enabled:
+              {{ selectedGearReview.reservation.userShopper.enabled }}
+            </li>
+          </ul>
+          <br />
+          <div class="btn-group" role="group" aria-label="selected task">
+            <button class="btn btn-outline-success" (click)="selectedGearReview = null">
+              Back
+            </button>
+            <button class="btn btn-outline-warning" *ngIf="!selectedGearReview.active"
+              (click)="updatedGearReviewEnabled()">
+              Enable
+            </button>
+            <button class="btn btn-outline-danger" *ngIf="selectedGearReview.active"
+              (click)="updatedGearReviewEnabled()">
+              Disable
+            </button>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
+</div> -->
