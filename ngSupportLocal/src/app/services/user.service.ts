@@ -108,5 +108,9 @@ export class UserService {
       )
     };
   }
+  //Get - Business Favorites
+
+  //Post - User Favorites
+
 
 }

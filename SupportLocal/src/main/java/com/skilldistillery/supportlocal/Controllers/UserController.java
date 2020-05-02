@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skilldistillery.supportlocal.entities.Business;
 import com.skilldistillery.supportlocal.entities.User;
 import com.skilldistillery.supportlocal.services.UserService;
 
@@ -94,6 +95,8 @@ public class UserController {
 		
 		return user;
 	}
+	
+	
 	
 	
 }

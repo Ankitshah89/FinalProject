@@ -2,20 +2,24 @@
 <div class="bg-light border-right" id="sidebar-wrapper">
   <div class="sidebar-heading">Links</div>
   <div class="list-group list-group-flush">
+    <div *ngIf='user.role == "Admin"'>
     <a
-      href="#/business-landing"
+      href="#/admin-landing"
       class="list-group-item list-group-item-action bg-light"
-      >Dashboard</a
+      >Admin Dashboard</a
     >
+  </div>
     <a href="#/home" class="list-group-item list-group-item-action bg-light"
       >Home</a
     >
     <a href="#/user" class="list-group-item list-group-item-action bg-light"
       >User</a
     >
-    <a href="#/business" class="list-group-item list-group-item-action bg-light"
+    <div *ngIf="user.businesses.length > 0">
+    <a  href="#/business" class="list-group-item list-group-item-action bg-light"
       >Business</a
     >
+  </div>
     <a href="#/articles" class="list-group-item list-group-item-action bg-light"
       >Articles</a
     >

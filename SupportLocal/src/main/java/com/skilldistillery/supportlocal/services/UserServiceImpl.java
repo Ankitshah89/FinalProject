@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.supportlocal.entities.Role;
 import com.skilldistillery.supportlocal.entities.User;
-import com.skilldistillery.supportlocal.repositories.AddressRepository;
 import com.skilldistillery.supportlocal.repositories.UserRepository;
 
 @Service
@@ -71,5 +70,7 @@ public class UserServiceImpl implements UserService {
 	public User create(User user) {
 		return userRepo.saveAndFlush(user);
 	}
+
+	
 
 }
