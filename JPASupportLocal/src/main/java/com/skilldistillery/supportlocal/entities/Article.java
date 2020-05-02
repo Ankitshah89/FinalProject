@@ -34,7 +34,7 @@ public class Article {
 
 	private String content;
 	
-	@JsonIgnore
+	
 	@ManyToOne
 	@JoinColumn(name="business_id")
 	private Business business;
