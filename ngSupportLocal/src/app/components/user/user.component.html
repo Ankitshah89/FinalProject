@@ -31,77 +31,78 @@
           </div>
         </ng-template>
       </li>
-<<<<<<< HEAD
-      <!-- <div *ngFor= "let item of articleList"> -->
-=======
 
       <!-- Articles Link and body -->
->>>>>>> 329887ed6f752fc7b5c50e6d747ba5aaaa960900
       <li [ngbNavItem]="2">
         <a ngbNavLink>My Articles</a>
 
-
-
         <ng-template ngbNavContent>
-              <div class="jumbotron-fluid text-center hoverable p-4">
-                <!-- Grid row -->
-                <div class="row">
-                  <!-- Grid column -->
-                  <div class="col-md-4 offset-md-1 mx-3 my-3">
-                    <!-- Featured image -->
-                    <div class="view overlay">
-                      <img
-                      src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg"
-                      class="img-fluid"
-                      alt="Sample image for first version of blog listing"
-                      />
-                      <a>
-                        <div class="mask rgba-white-slight"></div>
-                      </a>
-                    </div>
-                  </div>
-                  <!-- Grid column -->
+          <div class="jumbotron-fluid text-center hoverable p-4">
+            <!-- Grid row -->
+            <div class="row">
+              <!-- Grid column -->
+              <div class="col-md-4 offset-md-1 mx-3 my-3">
+                <!-- Featured image -->
+                <div class="view overlay">
+                  <img
+                    src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg"
+                    class="img-fluid"
+                    alt="Sample image for first version of blog listing"
+                  />
+                  <a>
+                    <div class="mask rgba-white-slight"></div>
+                  </a>
+                </div>
+              </div>
+              <!-- Grid column -->
 
-                  <!-- Grid column -->
-                  <div class="col-md-7 text-md-left ml-3 mt-3">
-                    <!-- Excerpt -->
-                    <a href="#!" class="green-text">
-                      <h6 class="h6 pb-1">
-                        <i class="fas fa-desktop pr-1"></i> Articles
-                      </h6>
-                    </a>
+              <!-- Grid column -->
+              <div class="col-md-7 text-md-left ml-3 mt-3">
+                <!-- Excerpt -->
+                <a href="#!" class="green-text">
+                  <h6 class="h6 pb-1">
+                    <i class="fas fa-desktop pr-1"></i> Articles
+                  </h6>
+                </a>
 
-                    <h4 class="h4 mb-4">TITLE</h4>
-                    <h5 class="font-weight-normal">
-                      by <a><strong>Chrissy Rowland</strong></a
-                        >, 19/08/2016
-                      </h5>
+                <h4 class="h4 mb-4">TITLE</h4>
+                <h5 class="font-weight-normal">
+                  by <a><strong>Chrissy Rowland</strong></a
+                  >, 19/08/2016
+                </h5>
 
-                <p>
+                <p
+                  id="dots"
+                  style="
+                    display: -webkit-box;
+                    -webkit-line-clamp: 3;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                  "
+                >
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                   Phasellus imperdiet, nulla et dictum interdum, nisi lorem
-                  egestas vitae scel<span id="dots">...</span
-                  ><span id="more"
-                    >erisque enim ligula venenatis dolor. Maecenas nisl est,
-                    ultrices nec congue eget, auctor vitae massa. Fusce luctus
-                    vestibulum augue ut aliquet. Nunc sagittis dictum nisi, sed
-                    ullamcorper ipsum dignissim ac. In at libero sed nunc
-                    venenatis imperdiet sed ornare turpis. Donec vitae dui eget
-                    tellus gravida venenatis. Integer fringilla congue eros non
-                    fermentum. Sed dapibus pulvinar nibh tempor porta. ultrices
-                    nec congue eget, auctor vitae massa. Fusce luctus vestibulum
-                    augue ut aliquet. Nunc sagittis dictum nisi, sed ullamcorper
-                    ipsum dignissim ac. In at libero sed nunc venenatis
-                    imperdiet sed ornare turpis. Donec vitae dui eget tellus
-                    gravida venenatis. Integer fringilla congue eros non
-                    fermentum. Sed dapibus pulvinar nibh tempor porta. ultrices
-                    nec congue eget, auctor vitae massa. Fusce luctus vestibulum
-                    augue ut aliquet. Nunc sagittis dictum nisi, sed ullamcorper
-                    ipsum dignissim ac. In at libero sed nunc venenatis
-                    imperdiet sed ornare turpis. Donec vitae dui eget tellus
-                    gravida venenatis. Integer fringilla congue eros non
-                    fermentum. Sed dapibus pulvinar nibh tempor porta.
-                  </span>
+                  <!-- egestas vitae scel<span id="dots">...</span
+                  ><span id="more" -->
+                  erisque enim ligula venenatis dolor. Maecenas nisl est,
+                  ultrices nec congue eget, auctor vitae massa. Fusce luctus
+                  vestibulum augue ut aliquet. Nunc sagittis dictum nisi, sed
+                  ullamcorper ipsum dignissim ac. In at libero sed nunc
+                  venenatis imperdiet sed ornare turpis. Donec vitae dui eget
+                  tellus gravida venenatis. Integer fringilla congue eros non
+                  fermentum. Sed dapibus pulvinar nibh tempor porta. ultrices
+                  nec congue eget, auctor vitae massa. Fusce luctus vestibulum
+                  augue ut aliquet. Nunc sagittis dictum nisi, sed ullamcorper
+                  ipsum dignissim ac. In at libero sed nunc venenatis imperdiet
+                  sed ornare turpis. Donec vitae dui eget tellus gravida
+                  venenatis. Integer fringilla congue eros non fermentum. Sed
+                  dapibus pulvinar nibh tempor porta. ultrices nec congue eget,
+                  auctor vitae massa. Fusce luctus vestibulum augue ut aliquet.
+                  Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac.
+                  In at libero sed nunc venenatis imperdiet sed ornare turpis.
+                  Donec vitae dui eget tellus gravida venenatis. Integer
+                  fringilla congue eros non fermentum. Sed dapibus pulvinar nibh
+                  tempor porta.
                 </p>
                 <button (click)="myFunction()" id="myBtn">Read more</button>
               </div>
@@ -112,9 +113,15 @@
                 <div class="comment-wrapper">
                   <div class="panel panel-info">
                     <div class="panel-heading">
-                      Comment panel
+                      <button (click)="showComments()" id="divBtn">
+                        Show Comment
+                      </button>
                     </div>
-                    <div class="panel-body">
+                    <div
+                      class="panel-body"
+                      id="commentDiv"
+                      style="display: none;"
+                    >
                       <div class="clearfix"></div>
                       <hr />
                       <ul class="media-list">
