@@ -1,122 +1,601 @@
 <div class="d-flex" id="wrapper">
   <app-left-side-bar></app-left-side-bar>
   <div id="page-content-wrapper">
-    <!-- News jumbotron -->
-    <div class="jumbotron text-center hoverable p-4">
-      <!-- Grid row -->
-      <div class="row">
-        <!-- Grid column -->
-        <div class="col-md-4 offset-md-1 mx-1 my-1">
-          <!-- Featured image -->
-          <div class="view overlay">
-            <img
-              src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg"
-              class="img-fluid"
-              alt="Sample image for first version of blog listing"
-            />
-            <a>
-              <div class="mask rgba-white-slight"></div>
-            </a>
-          </div>
-        </div>
-        <!-- Grid column -->
-
-        <!-- Grid column -->
-        <div class="col-md-4 text-md-center my-auto">
-          <!-- Excerpt -->
-          <a href="#!" class="green-text">
-            <h6 class="h6 pb-1">
-              <i class="fas fa-desktop pr-1"></i> Edit Info
-            </h6>
-          </a>
-
-          <h4 class="h4 mb-3">Kurosawa Asian Bistro</h4>
-          <p>
-            17002 E Main St <br />
-            Parker, CO 80134 <br />
-            (303) 805-5985
-          </p>
-          <p class="font-weight-normal">
-            <a><strong>Manager</strong></a
-            ><br />
-            Jackie Chan
-          </p>
-        </div>
-        <!-- Grid column -->
-        <div class="col-md-3 text-md-center my-auto">
-          <p>
-            History <br />
-            Established in 2014.
-          </p>
-          <p></p>
-
-          <p class="font-weight-normal">
-            Kurosawa fuse traditional Japanese food with inventive French
-            inspired nonvelle cuisines topped with talented chefs with years of
-            industry experience, making Kurosawa's dishes extremely exquisite to
-            the taste buds. what makes us unique is our quality of service &
-            100% organic vegetables, a warm atmosphere and our prices.
-          </p>
+    <!-- Profile header and image -->
+    <div class="row justify-content-center align-self-center mt-5 mb-4">
+      <div class="row no-gutters">
+        <div class="col-md-12">
+          <img
+            src="assets/images/chrissy.jpg"
+            class="card-img rounded-circle img-thumbnail profile-img"
+            alt="..."
+          />
         </div>
       </div>
-      <!-- Grid row -->
     </div>
-    <!-- News jumbotron -->
-    <!-- News jumbotron -->
-    <div class="jumbotron text-center hoverable p-4">
-      <!-- Grid row -->
-      <div class="row">
-        <!-- Grid column -->
-        <div class="col-md-4 offset-md-1 mx-3 my-3">
-          <!-- Featured image -->
-          <div class="view overlay">
-            <img
-              src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg"
-              class="img-fluid"
-              alt="Sample image for first version of blog listing"
-            />
-            <a>
-              <div class="mask rgba-white-slight"></div>
-            </a>
+
+    <!-- Navigation Links and body -->
+    <ul ngbNav #nav="ngbNav" class="nav-tabs justify-content-center">
+      <!-- Info Link tab and body -->
+      <li [ngbNavItem]="1">
+        <a ngbNavLink>My Info</a>
+        <ng-template ngbNavContent class="mx-2">
+          <div class="jumbotron jumbotron-fluid text-center">
+            <div class="container">
+              <h1 class="display-4">Chrissy Rowland</h1>
+              <p class="lead">
+                Chrissy@EvilDead.com <br />
+                (555) 555-5555 <br />
+              </p>
+            </div>
           </div>
-        </div>
-        <!-- Grid column -->
+        </ng-template>
+      </li>
 
-        <!-- Grid column -->
-        <div class="col-md-7 text-md-left ml-3 mt-3">
-          <!-- Excerpt -->
-          <a href="#!" class="green-text">
-            <h6 class="h6 pb-1">
-              <i class="fas fa-desktop pr-1"></i> Articles
-            </h6>
-          </a>
+      <!-- Articles Link and body -->
+      <li [ngbNavItem]="2">
+        <a ngbNavLink>My Articles</a>
+        <ng-template ngbNavContent>
+          <div class="jumbotron-fluid text-center hoverable p-4">
+            <!-- Grid row -->
+            <div class="row">
+              <!-- Grid column -->
+              <div class="col-md-4 offset-md-1 mx-3 my-3">
+                <!-- Featured image -->
+                <div class="view overlay">
+                  <img
+                    src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg"
+                    class="img-fluid"
+                    alt="Sample image for first version of blog listing"
+                  />
+                  <a>
+                    <div class="mask rgba-white-slight"></div>
+                  </a>
+                </div>
+              </div>
+              <!-- Grid column -->
 
-          <h4 class="h4 mb-4">This is title of the Article</h4>
+              <!-- Grid column -->
+              <div class="col-md-7 text-md-left ml-3 mt-3">
+                <!-- Excerpt -->
+                <a href="#!" class="green-text">
+                  <h6 class="h6 pb-1">
+                    <i class="fas fa-desktop pr-1"></i> Articles
+                  </h6>
+                </a>
 
-          <p class="font-weight-normal">
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-            accusantium doloremque, totam rem aperiam, eaque ipsa quae ab illo
-            inventore veritatis et quasi architecto beatae vitae dicta sunt
-            explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur.
-          </p>
-          <p class="font-weight-normal">
-            by <a><strong>Carine Fox</strong></a
-            >, 19/08/2016
-          </p>
+                <h4 class="h4 mb-4">This is title of the Article</h4>
+                <h5 class="font-weight-normal">
+                  by <a><strong>Chrissy Rowland</strong></a
+                  >, 19/08/2016
+                </h5>
 
-          <a class="btn btn-success">Read more</a>
-        </div>
-        <!-- Grid column -->
-      </div>
-      <!-- Grid row -->
-    </div>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Phasellus imperdiet, nulla et dictum interdum, nisi lorem
+                  egestas vitae scel<span id="dots">...</span
+                  ><span id="more"
+                    >erisque enim ligula venenatis dolor. Maecenas nisl est,
+                    ultrices nec congue eget, auctor vitae massa. Fusce luctus
+                    vestibulum augue ut aliquet. Nunc sagittis dictum nisi, sed
+                    ullamcorper ipsum dignissim ac. In at libero sed nunc
+                    venenatis imperdiet sed ornare turpis. Donec vitae dui eget
+                    tellus gravida venenatis. Integer fringilla congue eros non
+                    fermentum. Sed dapibus pulvinar nibh tempor porta. ultrices
+                    nec congue eget, auctor vitae massa. Fusce luctus vestibulum
+                    augue ut aliquet. Nunc sagittis dictum nisi, sed ullamcorper
+                    ipsum dignissim ac. In at libero sed nunc venenatis
+                    imperdiet sed ornare turpis. Donec vitae dui eget tellus
+                    gravida venenatis. Integer fringilla congue eros non
+                    fermentum. Sed dapibus pulvinar nibh tempor porta. ultrices
+                    nec congue eget, auctor vitae massa. Fusce luctus vestibulum
+                    augue ut aliquet. Nunc sagittis dictum nisi, sed ullamcorper
+                    ipsum dignissim ac. In at libero sed nunc venenatis
+                    imperdiet sed ornare turpis. Donec vitae dui eget tellus
+                    gravida venenatis. Integer fringilla congue eros non
+                    fermentum. Sed dapibus pulvinar nibh tempor porta.
+                  </span>
+                </p>
+                <button (click)="myFunction()" id="myBtn">Read more</button>
+              </div>
+              <!-- Grid column -->
+            </div>
+            <div class="row bootstrap snippets">
+              <div class="col-md-12 col-md-offset-2 col-sm-12">
+                <div class="comment-wrapper">
+                  <div class="panel panel-info">
+                    <div class="panel-heading">
+                      Comment panel
+                    </div>
+                    <div class="panel-body">
+                      <div class="clearfix"></div>
+                      <hr />
+                      <ul class="media-list">
+                        <li class="media">
+                          <a href="#" class="pull-left">
+                            <img
+                              src="https://bootdey.com/img/Content/user_1.jpg"
+                              alt=""
+                              class="rounded-circle"
+                            />
+                          </a>
+                          <div class="media-body">
+                            <span class="text-muted pull-right">
+                              <small class="text-muted"
+                                >4-20-2020 11:15am</small
+                              >
+                            </span>
+                            <p>
+                              Lorem ipsum dolor sit amet, consectetur adipiscing
+                              elit. Lorem ipsum dolor sit amet,
+                              <a href="#">#consecteturadipiscing </a>.
+                            </p>
+                          </div>
+                        </li>
+                        <li class="media">
+                          <a href="#" class="pull-left">
+                            <img
+                              src="assets/images/chrissy.jpg"
+                              alt=""
+                              class="rounded-circle"
+                            />
+                          </a>
+                          <div class="media-body">
+                            <span class="text-muted pull-right">
+                              <small class="text-muted"
+                                >4-20-2020 11:30am</small
+                              >
+                            </span>
+                            <p>
+                              Lorem ipsum dolor sit amet, consectetur adipiscing
+                              elit. Lorem ipsum dolor
+                              <a href="#">#ipsumdolor </a>adipiscing elit.
+                            </p>
+                          </div>
+                        </li>
+                        <li class="media">
+                          <a href="#" class="pull-left">
+                            <img
+                              src="https://bootdey.com/img/Content/user_3.jpg"
+                              alt=""
+                              class="rounded-circle"
+                            />
+                          </a>
+                          <div class="media-body">
+                            <span class="text-muted pull-right">
+                              <small class="text-muted"
+                                >4-20-2020 11:35am</small
+                              >
+                            </span>
+                            <p>
+                              Lorem ipsum dolor <a href="#">#sitamet</a> sit
+                              amet, consectetur adipiscing elit.
+                            </p>
+                          </div>
+                        </li>
+                      </ul>
+                      <textarea
+                        class="form-control"
+                        placeholder="write a comment..."
+                        rows="3"
+                      ></textarea>
+                      <br />
+                      <button type="button" class="btn btn-info pull-right">
+                        Post
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Grid row -->
+        </ng-template>
+      </li>
+
+      <!-- Reviews Link and body -->
+      <li [ngbNavItem]="3">
+        <a ngbNavLink>My Reviews</a>
+        <ng-template ngbNavContent>
+          <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+              <div class="row row-cols-1 row-cols-md-3">
+                <div class="col mb-4">
+                  <div class="card h-100">
+                    <div
+                      class="card-body row justify-content-center align-items-center"
+                    >
+                      <div class="col-md-5">
+                        <h5>Sushi King</h5>
+                        <p>
+                          420 Sushi Road <br />
+                          Denver, CO 80023 <br />
+                          (303) 781-2922
+                        </p>
+                      </div>
+                      <div class="col-md-7">
+                        <span style="display: inline;"
+                          >4-20-2020<br />Rated 4 Stars</span
+                        ><br />
+
+                        <span><strong>Sushi was amazeballs!</strong></span>
+                        <blockquote
+                          class="card-text"
+                          style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 3;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "
+                        >
+                          Prompt & Friendly Service Quick delivery of food
+                          (10min or less) Kind, attentive server(s) Fresh, great
+                          quality Cleanliness What can I say my palate was quite
+                          satisfied and left me only wanting more! I had the
+                          low-carb cucumber rainbow roll which was cold, fresh,
+                          amazing! No after taste of fish you knew it was FRESH-
+                          thank God! Had "the kiss of fire" roll as well- damn
+                          son it was hot and oh so good! Also, had hot saki,
+                          can't go wrong there. Their service was exceptional.
+                          Amy was kind, happy and very attentive. She answered
+                          my questions with knowledge & joy. Great experience!!!
+                        </blockquote>
+                        <a href="">continue reading</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col mb-4">
+                  <div class="card h-100">
+                    <div
+                      class="card-body row justify-content-center align-items-center"
+                    >
+                      <div class="col-md-5">
+                        <h5>Sushi King</h5>
+                        <p>
+                          420 Sushi Road <br />
+                          Denver, CO 80023 <br />
+                          (303) 781-2922
+                        </p>
+                      </div>
+                      <div class="col-md-7">
+                        <span style="display: inline;"
+                          >4-20-2020<br />Rated 4 Stars</span
+                        ><br />
+
+                        <span><strong>Sushi was amazeballs!</strong></span>
+                        <blockquote
+                          class="card-text"
+                          style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 3;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "
+                        >
+                          Prompt & Friendly Service Quick delivery of food
+                          (10min or less) Kind, attentive server(s) Fresh, great
+                          quality Cleanliness What can I say my palate was quite
+                          satisfied and left me only wanting more! I had the
+                          low-carb cucumber rainbow roll which was cold, fresh,
+                          amazing! No after taste of fish you knew it was FRESH-
+                          thank God! Had "the kiss of fire" roll as well- damn
+                          son it was hot and oh so good! Also, had hot saki,
+                          can't go wrong there. Their service was exceptional.
+                          Amy was kind, happy and very attentive. She answered
+                          my questions with knowledge & joy. Great experience!!!
+                        </blockquote>
+                        <a href="">continue reading</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col mb-4">
+                  <div class="card h-100">
+                    <div
+                      class="card-body row justify-content-center align-items-center"
+                    >
+                      <div class="col-md-5">
+                        <h5>Sushi King</h5>
+                        <p>
+                          420 Sushi Road <br />
+                          Denver, CO 80023 <br />
+                          (303) 781-2922
+                        </p>
+                      </div>
+                      <div class="col-md-7">
+                        <span style="display: inline;"
+                          >4-20-2020<br />Rated 4 Stars</span
+                        ><br />
+
+                        <span><strong>Sushi was amazeballs!</strong></span>
+                        <blockquote
+                          class="card-text"
+                          style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 3;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "
+                        >
+                          Prompt & Friendly Service Quick delivery of food
+                          (10min or less) Kind, attentive server(s) Fresh, great
+                          quality Cleanliness What can I say my palate was quite
+                          satisfied and left me only wanting more! I had the
+                          low-carb cucumber rainbow roll which was cold, fresh,
+                          amazing! No after taste of fish you knew it was FRESH-
+                          thank God! Had "the kiss of fire" roll as well- damn
+                          son it was hot and oh so good! Also, had hot saki,
+                          can't go wrong there. Their service was exceptional.
+                          Amy was kind, happy and very attentive. She answered
+                          my questions with knowledge & joy. Great experience!!!
+                        </blockquote>
+                        <a href="">continue reading</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col mb-4">
+                  <div class="card h-100">
+                    <div
+                      class="card-body row justify-content-center align-items-center"
+                    >
+                      <div class="col-md-5">
+                        <h5>Sushi King</h5>
+                        <p>
+                          420 Sushi Road <br />
+                          Denver, CO 80023 <br />
+                          (303) 781-2922
+                        </p>
+                      </div>
+                      <div class="col-md-7">
+                        <span style="display: inline;"
+                          >4-20-2020<br />Rated 4 Stars</span
+                        ><br />
+
+                        <span><strong>Sushi was amazeballs!</strong></span>
+                        <blockquote
+                          class="card-text"
+                          style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 3;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "
+                        >
+                          Prompt & Friendly Service Quick delivery of food
+                          (10min or less) Kind, attentive server(s) Fresh, great
+                          quality Cleanliness What can I say my palate was quite
+                          satisfied and left me only wanting more! I had the
+                          low-carb cucumber rainbow roll which was cold, fresh,
+                          amazing! No after taste of fish you knew it was FRESH-
+                          thank God! Had "the kiss of fire" roll as well- damn
+                          son it was hot and oh so good! Also, had hot saki,
+                          can't go wrong there. Their service was exceptional.
+                          Amy was kind, happy and very attentive. She answered
+                          my questions with knowledge & joy. Great experience!!!
+                        </blockquote>
+                        <a href="">continue reading</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col mb-4">
+                  <div class="card h-100">
+                    <div
+                      class="card-body row justify-content-center align-items-center"
+                    >
+                      <div class="col-md-5">
+                        <h5>Sushi King</h5>
+                        <p>
+                          420 Sushi Road <br />
+                          Denver, CO 80023 <br />
+                          (303) 781-2922
+                        </p>
+                      </div>
+                      <div class="col-md-7">
+                        <span style="display: inline;"
+                          >4-20-2020<br />Rated 4 Stars</span
+                        ><br />
+
+                        <span><strong>Sushi was amazeballs!</strong></span>
+                        <blockquote
+                          class="card-text"
+                          style="
+                            display: -webkit-box;
+                            -webkit-line-clamp: 3;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                          "
+                        >
+                          Prompt & Friendly Service Quick delivery of food
+                          (10min or less) Kind, attentive server(s) Fresh, great
+                          quality Cleanliness What can I say my palate was quite
+                          satisfied and left me only wanting more! I had the
+                          low-carb cucumber rainbow roll which was cold, fresh,
+                          amazing! No after taste of fish you knew it was FRESH-
+                          thank God! Had "the kiss of fire" roll as well- damn
+                          son it was hot and oh so good! Also, had hot saki,
+                          can't go wrong there. Their service was exceptional.
+                          Amy was kind, happy and very attentive. She answered
+                          my questions with knowledge & joy. Great experience!!!
+                        </blockquote>
+                        <a href="">continue reading</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </li>
+
+      <!-- Favorites Link and Body -->
+      <li [ngbNavItem]="4">
+        <a ngbNavLink>My Favorites</a>
+        <ng-template ngbNavContent>
+          <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+              <div class="row row-cols-1 row-cols-md-3">
+                <div class="col mb-4">
+                  <div class="card h-100">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-5">
+                          <h5 class="card-title">Sushi King</h5>
+                          <div>
+                            <p>
+                              420 Sushi Road <br />
+                              Denver, CO 80023 <br />
+                              (303) 781-2922
+                            </p>
+                          </div>
+                        </div>
+                        <div class="col-md-5">
+                          <img
+                            src="assets/images/bistro.png"
+                            class="img-thumbnail"
+                            alt=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-footer">
+                      <small class="text-muted">Open Now</small>
+                    </div>
+                  </div>
+                </div>
+                <div class="col mb-4">
+                  <div class="card h-100">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-5">
+                          <h5 class="card-title">Sushi King</h5>
+                          <div>
+                            <p>
+                              420 Sushi Road <br />
+                              Denver, CO 80023 <br />
+                              (303) 781-2922
+                            </p>
+                          </div>
+                        </div>
+                        <div class="col-md-5">
+                          <img
+                            src="assets/images/bistro.png"
+                            class="img-thumbnail"
+                            alt=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-footer">
+                      <small class="text-muted">Open Now</small>
+                    </div>
+                  </div>
+                </div>
+                <div class="col mb-4">
+                  <div class="card h-100">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-5">
+                          <h5 class="card-title">Sushi King</h5>
+                          <div>
+                            <p>
+                              420 Sushi Road <br />
+                              Denver, CO 80023 <br />
+                              (303) 781-2922
+                            </p>
+                          </div>
+                        </div>
+                        <div class="col-md-5">
+                          <img
+                            src="assets/images/bistro.png"
+                            class="img-thumbnail"
+                            alt=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-footer">
+                      <small class="text-muted">Open Now</small>
+                    </div>
+                  </div>
+                </div>
+                <div class="col mb-4">
+                  <div class="card h-100">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-5">
+                          <h5 class="card-title">Sushi King</h5>
+                          <div>
+                            <p>
+                              420 Sushi Road <br />
+                              Denver, CO 80023 <br />
+                              (303) 781-2922
+                            </p>
+                          </div>
+                        </div>
+                        <div class="col-md-5">
+                          <img
+                            src="assets/images/bistro.png"
+                            class="img-thumbnail"
+                            alt=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-footer">
+                      <small class="text-muted">Open Now</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </li>
+      <li [ngbNavItem]="5">
+        <a ngbNavLink>Edit Profile</a>
+        <ng-template ngbNavContent class="mx-2">
+          <div class="jumbotron jumbotron-fluid text-center">
+            <div class="container">
+              <h1 class="display-4">Chrissy Rowland</h1>
+              <p class="lead">
+                Chrissy@EvilDead.com <br />
+                (555) 555-5555 <br />
+              </p>
+            </div>
+          </div>
+        </ng-template>
+      </li>
+      <li [ngbNavItem]="6">
+        <a ngbNavLink>Write Article</a>
+        <ng-template ngbNavContent class="mx-2">
+          <div class="jumbotron jumbotron-fluid text-center">
+            <div class="container">
+              <h1 class="display-4">Chrissy Rowland</h1>
+              <p class="lead">
+                Chrissy@EvilDead.com <br />
+                (555) 555-5555 <br />
+              </p>
+            </div>
+          </div>
+        </ng-template>
+      </li>
+    </ul>
+
+    <div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+    <!-- Grid column -->
+
+    <!-- Grid column -->
+    <!-- </div> -->
+    <!-- Grid row -->
+    <!-- </div> -->
+    <!-- News jumbotron -->
+    <!-- News jumbotron -->
   </div>
   <app-right-side-bar></app-right-side-bar>
 </div>
-<script>
-  $("#menu-toggle").click(function (e) {
-    e.preventDefault();
-    $("#wrapper").toggleClass("toggled");
-  });
-</script>
 <!-- /#page-content-wrapper -->

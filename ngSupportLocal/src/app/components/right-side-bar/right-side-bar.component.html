@@ -1,11 +1,11 @@
 <!-- Sidebar -->
 <div class="bg-light border-left" id="sidebar-wrapper">
   <div class="sidebar-heading">Favorites</div>
-  <div class="list-group list-group-flush">
-    <a href="#" class="list-group-item list-group-item-action bg-light"
-      >Dashboard</a
+  <div class="list-group list-group-flush" *ngFor="let favorite of favorites">
+    <a href="business/{{favorite.id}}" class="list-group-item list-group-item-action bg-light"
+      >{{favorite.name}}</a
     >
-    <a href="#" class="list-group-item list-group-item-action bg-light"
+    <!-- <a href="#" class="list-group-item list-group-item-action bg-light"
       >Shortcuts</a
     >
     <a href="#" class="list-group-item list-group-item-action bg-light"
@@ -19,7 +19,7 @@
     >
     <a href="#" class="list-group-item list-group-item-action bg-light"
       >Status</a
-    >
+    > -->
   </div>
 </div>
 <!-- /#sidebar-wrapper -->
