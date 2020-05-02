@@ -64,37 +64,44 @@
                   </h6>
                 </a>
 
-                <h4 class="h4 mb-4">This is title of the Article</h4>
+                <h4 class="h4 mb-4">TITLE</h4>
                 <h5 class="font-weight-normal">
                   by <a><strong>Chrissy Rowland</strong></a
                   >, 19/08/2016
                 </h5>
 
-                <p>
+                <p
+                  id="dots"
+                  style="
+                    display: -webkit-box;
+                    -webkit-line-clamp: 3;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                  "
+                >
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                   Phasellus imperdiet, nulla et dictum interdum, nisi lorem
-                  egestas vitae scel<span id="dots">...</span
-                  ><span id="more"
-                    >erisque enim ligula venenatis dolor. Maecenas nisl est,
-                    ultrices nec congue eget, auctor vitae massa. Fusce luctus
-                    vestibulum augue ut aliquet. Nunc sagittis dictum nisi, sed
-                    ullamcorper ipsum dignissim ac. In at libero sed nunc
-                    venenatis imperdiet sed ornare turpis. Donec vitae dui eget
-                    tellus gravida venenatis. Integer fringilla congue eros non
-                    fermentum. Sed dapibus pulvinar nibh tempor porta. ultrices
-                    nec congue eget, auctor vitae massa. Fusce luctus vestibulum
-                    augue ut aliquet. Nunc sagittis dictum nisi, sed ullamcorper
-                    ipsum dignissim ac. In at libero sed nunc venenatis
-                    imperdiet sed ornare turpis. Donec vitae dui eget tellus
-                    gravida venenatis. Integer fringilla congue eros non
-                    fermentum. Sed dapibus pulvinar nibh tempor porta. ultrices
-                    nec congue eget, auctor vitae massa. Fusce luctus vestibulum
-                    augue ut aliquet. Nunc sagittis dictum nisi, sed ullamcorper
-                    ipsum dignissim ac. In at libero sed nunc venenatis
-                    imperdiet sed ornare turpis. Donec vitae dui eget tellus
-                    gravida venenatis. Integer fringilla congue eros non
-                    fermentum. Sed dapibus pulvinar nibh tempor porta.
-                  </span>
+                  <!-- egestas vitae scel<span id="dots">...</span
+                  ><span id="more" -->
+                  erisque enim ligula venenatis dolor. Maecenas nisl est,
+                  ultrices nec congue eget, auctor vitae massa. Fusce luctus
+                  vestibulum augue ut aliquet. Nunc sagittis dictum nisi, sed
+                  ullamcorper ipsum dignissim ac. In at libero sed nunc
+                  venenatis imperdiet sed ornare turpis. Donec vitae dui eget
+                  tellus gravida venenatis. Integer fringilla congue eros non
+                  fermentum. Sed dapibus pulvinar nibh tempor porta. ultrices
+                  nec congue eget, auctor vitae massa. Fusce luctus vestibulum
+                  augue ut aliquet. Nunc sagittis dictum nisi, sed ullamcorper
+                  ipsum dignissim ac. In at libero sed nunc venenatis imperdiet
+                  sed ornare turpis. Donec vitae dui eget tellus gravida
+                  venenatis. Integer fringilla congue eros non fermentum. Sed
+                  dapibus pulvinar nibh tempor porta. ultrices nec congue eget,
+                  auctor vitae massa. Fusce luctus vestibulum augue ut aliquet.
+                  Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac.
+                  In at libero sed nunc venenatis imperdiet sed ornare turpis.
+                  Donec vitae dui eget tellus gravida venenatis. Integer
+                  fringilla congue eros non fermentum. Sed dapibus pulvinar nibh
+                  tempor porta.
                 </p>
                 <button (click)="myFunction()" id="myBtn">Read more</button>
               </div>
@@ -105,9 +112,15 @@
                 <div class="comment-wrapper">
                   <div class="panel panel-info">
                     <div class="panel-heading">
-                      Comment panel
+                      <button (click)="showComments()" id="divBtn">
+                        Show Comment
+                      </button>
                     </div>
-                    <div class="panel-body">
+                    <div
+                      class="panel-body"
+                      id="commentDiv"
+                      style="display: none;"
+                    >
                       <div class="clearfix"></div>
                       <hr />
                       <ul class="media-list">
