@@ -9,22 +9,18 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-admin-landing',
   templateUrl: './admin-landing.component.html',
-  styleUrls: ['./admin-landing.component.css']
+  styleUrls: ['./admin-landing.component.css'],
 })
 export class AdminLandingComponent implements OnInit {
-
   users: User[] = [];
   selectedUser: User = null;
   user: User = null;
   updateUser: User = null;
   disableUser: User = null;
 
-
   businessList: Business[] = [];
   business: Business = null;
   selectedBusiness: Business = null;
-
-
 
   admin: User = null;
 
@@ -36,23 +32,19 @@ export class AdminLandingComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.authSvc
-      .getUserByEmail(this.authSvc.getLoggedInEmail())
-      .subscribe(
-        good => {
-          this.user = good;
-          console.log(this.user);
-          if (this.user.role !== "admin") {
-            this.router.navigateByUrl("/login");
-          }
-        },
-        error => {}
-      );
+    this.authSvc.getUserByEmail(this.authSvc.getLoggedInEmail()).subscribe(
+      (good) => {
+        this.user = good;
+        console.log(this.user);
+        if (this.user.role !== 'Admin') {
+          this.router.navigateByUrl('/login');
+        }
+      },
+      (error) => {}
+    );
 
     this.loadUsers();
     this.loadBusiness();
-
-
   }
 
   // Admin Check here not good
@@ -64,11 +56,11 @@ export class AdminLandingComponent implements OnInit {
     const userList: [] = [];
 
     this.userSvc.index().subscribe(
-      good => {
+      (good) => {
         console.log(good);
         this.users = good;
       },
-      bad => {
+      (bad) => {
         console.log(bad);
       }
     );
@@ -93,23 +85,23 @@ export class AdminLandingComponent implements OnInit {
   }
 
   public updatedUserEnabled(user: User) {
-    if (user.role !== "admin") {
+    if (user.role !== 'admin') {
       if (user.active) {
         user.active = false;
       } else {
         user.active = true;
       }
       this.userSvc.updateUserAsAdmin(user).subscribe(
-        uData => {
+        (uData) => {
           console.log(user);
 
           // this.loadUsers();
           // this.selectedUser = null;
           // this.updatedUserEnabled = null;
         },
-        uErr => {
+        (uErr) => {
           this.loadUsers();
-          console.error("updatedUser: Error");
+          console.error('updatedUser: Error');
           console.error(uErr);
           console.log(user);
         }
@@ -122,11 +114,11 @@ export class AdminLandingComponent implements OnInit {
   public loadBusiness() {
     // this.clearSearch();
     this.gearSvc.index().subscribe(
-      bData => {
+      (bData) => {
         console.log(bData);
         this.businessList = bData;
       },
-      didntWork => {
+      (didntWork) => {
         console.log(didntWork);
       }
     );
@@ -153,23 +145,4 @@ export class AdminLandingComponent implements OnInit {
       return count;
     }
   }
-
-
-
-
-  // Business Reviews **************************
-
-  public loadReviews() {
-    // this.revSvc.index().subscribe(
-    //   good => {
-    //     console.log(good);
-    //     this.gearReviewList = good;
-    //   },
-    //   bad => {
-    //     console.log(bad);
-    //     console.log('loadReviews Error');
-    //   }
-    // );
-  }
-
 }

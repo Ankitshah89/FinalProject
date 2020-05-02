@@ -105,6 +105,7 @@ public class BusinesServiceImpl implements BusinessService {
 				&& (user.getRole().equals(Role.Admin) || user.getRole().equals(Role.Business))) {
 			try {
 				business.setManager(user);
+				business.setActive(true);
 				return busRepo.saveAndFlush(business);
 			} catch (Exception e) {
 				System.out.println("Could not create new business");
