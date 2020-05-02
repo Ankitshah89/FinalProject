@@ -12,4 +12,6 @@ public interface ArticleRepository extends JpaRepository<Article, Integer> {
 	
 	List<Article> findByUserId(int id);
 	
+	List<Article> findByUser_Email(String email);
+	
 }

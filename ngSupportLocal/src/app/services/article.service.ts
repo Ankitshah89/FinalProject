@@ -33,6 +33,9 @@ export class ArticleService {
       );
   }
 
+
+
+
   //Get Index By Business URL + business/ + bid -- No Auth
   public indexBusArt(bid: number) {
     return this.http.get<Article[]>(this.url + "business/" + bid)
@@ -45,13 +48,21 @@ export class ArticleService {
       );
   }
 
-  //Get Index by User - URL + user/ + uid -- No Auth
-  public indexUserArt(aid: number) {
-    return this.http.get<Article[]>(this.url + 'user' + aid)
+  //Get Index by User - URL + user/ -- No Auth
+  public indexUserArt() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Access-Control-Allow-Headers': 'Content-Type',
+        // 'Content-Type': 'application/json',
+        Authorization: `Basic ` + this.authService.getCredentials(),
+        'X-Requested-With': 'XMLHttpRequest',
+      }),
+    };
+    return this.http.get<Article[]>(this.url + 'user', httpOptions)
       .pipe(
         catchError((err: any) => {
           console.log(err);
-          return throwError('Could not retrieve list of articles by user id: ' + aid)
+          return throwError('Could not retrieve list of articles by user id: ')
 
         })
       );
