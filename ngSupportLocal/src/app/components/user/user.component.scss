@@ -1,5 +1,6 @@
 .profile-img {
   height: 200px;
+  width: auto;
 }
 
 /* Tabs panel */
@@ -93,6 +94,7 @@
   display: inline-block;
   *display: inline;
   zoom: 1;
+  text-align: center;
 }
 
 .nav-tabs,

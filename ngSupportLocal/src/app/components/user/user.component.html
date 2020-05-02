@@ -12,81 +12,211 @@
           class="img-thumbnail float-left profile-img"
           height=""
         /> -->
-    <div class="row justify-content-center align-self-center">
-      <div class="card mb-3" style="max-width: 540px;">
-        <div class="row no-gutters">
-          <div class="col-md-4">
-            <img
-              src="assets/images/chrissy.jpg"
-              class="card-img img-thumbnail"
-              alt="..."
-            />
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">
-                This is a wider card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
-              <p class="card-text">
-                <small class="text-muted">Last updated 3 mins ago</small>
-              </p>
-            </div>
-          </div>
+    <div class="row justify-content-center align-self-center mt-5 mb-4">
+      <div class="row no-gutters">
+        <div class="col-md-12">
+          <img
+            src="assets/images/chrissy.jpg"
+            class="card-img rounded-circle img-thumbnail profile-img"
+            alt="..."
+          />
         </div>
       </div>
     </div>
-    <ul ngbNav #nav="ngbNav" class="nav-tabs">
-      <li [ngbNavItem]="1">
-        <a ngbNavLink>One</a>
-        <ng-template ngbNavContent>
-          <p>
-            Raw denim you probably haven't heard of them jean shorts Austin.
-            Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache
-            cliche tempor, williamsburg carles vegan helvetica. Reprehenderit
-            butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi,
-            qui irure terry richardson ex squid. Aliquip placeat salvia cillum
-            iphone. Seitan aliquip quis cardigan american apparel, butcher
-            voluptate nisi qui.
+    <div class="row justify-content-center align-self-center">
+      <div class="row no-gutters">
+        <div class="col-md-12">
+          <p class="lead">
+            <small class="text-muted"></small>
           </p>
+        </div>
+      </div>
+    </div>
+    <ul ngbNav #nav="ngbNav" class="nav-tabs justify-content-center">
+      <li [ngbNavItem]="1">
+        <a ngbNavLink>My Info</a>
+        <ng-template ngbNavContent class="mx-2">
+          <div class="jumbotron jumbotron-fluid text-center">
+            <div class="container">
+              <h1 class="display-4">Chrissy Rowland</h1>
+              <p class="lead">
+                Chrissy@EvilDead.com <br />
+                (555) 555-5555 <br />
+              </p>
+            </div>
+          </div>
         </ng-template>
       </li>
       <li [ngbNavItem]="2">
-        <a ngbNavLink>Two</a>
+        <a ngbNavLink>My Articles</a>
         <ng-template ngbNavContent>
-          <p>
-            Exercitation +1 labore velit, blog sartorial PBR leggings next level
-            wes anderson artisan four loko farm-to-table craft beer twee. Qui
-            photo booth letterpress, commodo enim craft beer mlkshk aliquip jean
-            shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda
-            labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia
-            yr, vero magna velit sapiente labore stumptown. Vegan fanny pack
-            odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY
-            ethical culpa terry richardson biodiesel. Art party scenester
-            stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed
-            echo park.
-          </p>
+          <div class="jumbotron-fluid text-center hoverable p-4">
+            <!-- Grid row -->
+            <div class="row">
+              <!-- Grid column -->
+              <div class="col-md-4 offset-md-1 mx-3 my-3">
+                <!-- Featured image -->
+                <div class="view overlay">
+                  <img
+                    src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg"
+                    class="img-fluid"
+                    alt="Sample image for first version of blog listing"
+                  />
+                  <a>
+                    <div class="mask rgba-white-slight"></div>
+                  </a>
+                </div>
+              </div>
+              <!-- Grid column -->
+
+              <!-- Grid column -->
+              <div class="col-md-7 text-md-left ml-3 mt-3">
+                <!-- Excerpt -->
+                <a href="#!" class="green-text">
+                  <h6 class="h6 pb-1">
+                    <i class="fas fa-desktop pr-1"></i> Articles
+                  </h6>
+                </a>
+
+                <h4 class="h4 mb-4">This is title of the Article</h4>
+                <h5 class="font-weight-normal">
+                  by <a><strong>Chrissy Rowland</strong></a
+                  >, 19/08/2016
+                </h5>
+
+                <p class="font-weight-normal">
+                  Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                  accusantium doloremque, totam rem aperiam, eaque ipsa quae ab
+                  illo inventore veritatis et quasi architecto beatae vitae
+                  dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas
+                  sit aspernatur.
+                </p>
+
+                <a class="btn btn-success">Read more</a>
+              </div>
+              <!-- Grid column -->
+            </div>
+            <!-- Grid row -->
+          </div>
         </ng-template>
       </li>
       <li [ngbNavItem]="3">
-        <a ngbNavLink>Three</a>
+        <a ngbNavLink>My Reviews</a>
         <ng-template ngbNavContent>
-          <p>
-            Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget
-            sodales nibh elit id diam. Nulla facilisi. Donec egestas ligula
-            vitae odio interdum aliquet. Duis lectus turpis, luctus eget
-            tincidunt eu, congue et odio. Duis pharetra et nisl at faucibus.
-            Quisque luctus pulvinar arcu, et molestie lectus ultrices et. Sed
-            diam urna, egestas ut ipsum vel, volutpat volutpat neque. Praesent
-            fringilla tortor arcu. Vivamus faucibus nisl enim, nec tristique
-            ipsum euismod facilisis. Morbi ut bibendum est, eu tincidunt odio.
-            Orci varius natoque penatibus et magnis dis parturient montes,
-            nascetur ridiculus mus. Mauris aliquet odio ac lorem aliquet
-            ultricies in eget neque. Phasellus nec tortor vel tellus pulvinar
-            feugiat.
-          </p>
+          <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+              <div class="row row-cols-1 row-cols-md-3">
+                <div class="col mb-4">
+                  <div class="card h-100">
+                    <img src="..." class="card-img-top" alt="..." />
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">
+                        This is a longer card with supporting text below as a
+                        natural lead-in to additional content. This content is a
+                        little bit longer.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col mb-4">
+                  <div class="card h-100">
+                    <img src="..." class="card-img-top" alt="..." />
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">This is a short card.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col mb-4">
+                  <div class="card h-100">
+                    <img src="..." class="card-img-top" alt="..." />
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">
+                        This is a longer card with supporting text below as a
+                        natural lead-in to additional content.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col mb-4">
+                  <div class="card h-100">
+                    <img src="..." class="card-img-top" alt="..." />
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">
+                        This is a longer card with supporting text below as a
+                        natural lead-in to additional content. This content is a
+                        little bit longer.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </li>
+      <li [ngbNavItem]="4">
+        <a ngbNavLink>My Favorites</a>
+        <ng-template ngbNavContent>
+          <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+              <div class="row row-cols-1 row-cols-md-3">
+                <div class="col mb-4">
+                  <div class="card h-100">
+                    <img src="..." class="card-img-top" alt="..." />
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">
+                        This is a wider card with supporting text below as a
+                        natural lead-in to additional content. This content is a
+                        little bit longer.
+                      </p>
+                    </div>
+                    <div class="card-footer">
+                      <small class="text-muted">Last updated 3 mins ago</small>
+                    </div>
+                  </div>
+                </div>
+                <div class="col mb-4">
+                  <div class="card h-100">
+                    <img src="..." class="card-img-top" alt="..." />
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">This is a short card.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col mb-4">
+                  <div class="card h-100">
+                    <img src="..." class="card-img-top" alt="..." />
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">
+                        This is a longer card with supporting text below as a
+                        natural lead-in to additional content.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col mb-4">
+                  <div class="card h-100">
+                    <img src="..." class="card-img-top" alt="..." />
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">
+                        This is a longer card with supporting text below as a
+                        natural lead-in to additional content. This content is a
+                        little bit longer.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </ng-template>
       </li>
     </ul>
@@ -101,53 +231,6 @@
     <!-- </div> -->
     <!-- News jumbotron -->
     <!-- News jumbotron -->
-    <div class="jumbotron text-center hoverable p-4">
-      <!-- Grid row -->
-      <div class="row">
-        <!-- Grid column -->
-        <div class="col-md-4 offset-md-1 mx-3 my-3">
-          <!-- Featured image -->
-          <div class="view overlay">
-            <img
-              src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg"
-              class="img-fluid"
-              alt="Sample image for first version of blog listing"
-            />
-            <a>
-              <div class="mask rgba-white-slight"></div>
-            </a>
-          </div>
-        </div>
-        <!-- Grid column -->
-
-        <!-- Grid column -->
-        <div class="col-md-7 text-md-left ml-3 mt-3">
-          <!-- Excerpt -->
-          <a href="#!" class="green-text">
-            <h6 class="h6 pb-1">
-              <i class="fas fa-desktop pr-1"></i> Articles
-            </h6>
-          </a>
-
-          <h4 class="h4 mb-4">This is title of the Article</h4>
-
-          <p class="font-weight-normal">
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-            accusantium doloremque, totam rem aperiam, eaque ipsa quae ab illo
-            inventore veritatis et quasi architecto beatae vitae dicta sunt
-            explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur.
-          </p>
-          <p class="font-weight-normal">
-            by <a><strong>Carine Fox</strong></a
-            >, 19/08/2016
-          </p>
-
-          <a class="btn btn-success">Read more</a>
-        </div>
-        <!-- Grid column -->
-      </div>
-      <!-- Grid row -->
-    </div>
   </div>
   <app-right-side-bar></app-right-side-bar>
 </div>
