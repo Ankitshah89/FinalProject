@@ -25,6 +25,7 @@ const routes: Routes = [
   { path: 'businesses', component: BusinessComponent },
   { path: 'articles', component: ArticlesComponent },
   { path: 'reviews', component: ReviewsComponent },
+  { path: 'articles/:id', component: ArticlesComponent}
 ];
 
 @NgModule({
