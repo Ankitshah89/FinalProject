@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/models/user';
+import { Business } from 'src/app/models/business';
+import { UserService } from 'src/app/services/user.service';
+import { BusinessService } from 'src/app/services/business.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-landing',
@@ -13,35 +19,25 @@ export class AdminLandingComponent implements OnInit {
   updateUser: User = null;
   disableUser: User = null;
 
-  // Gear
-  gearList: Gear[] = [];
-  gear: Gear = null;
-  selectedGear: Gear = null;
 
-  // Reservations
-  resvList: Reservation[] = [];
-  resv: Reservation = null;
-  selectedResv: Reservation = null;
+  businessList: Business[] = [];
+  business: Business = null;
+  selectedBusiness: Business = null;
 
-  // Reviews of Gear
-  gearReviewList: ReviewOfGear[] = [];
-  gearReview: ReviewOfGear = null;
-  selectedGearReview: ReviewOfGear = null;
+
 
   admin: User = null;
 
   constructor(
     private userSvc: UserService,
-    private gearSvc: GearService,
-    private resvSvc: ReservationService,
+    private gearSvc: BusinessService,
     private authSvc: AuthService,
-    private revSvc: ReviewOfLenderService,
     private router: Router
   ) {}
 
   ngOnInit() {
     this.authSvc
-      .getUserByUsername(this.authSvc.getLoggedInUsername())
+      .getUserByEmail(this.authSvc.getLoggedInEmail())
       .subscribe(
         good => {
           this.user = good;
@@ -54,9 +50,9 @@ export class AdminLandingComponent implements OnInit {
       );
 
     this.loadUsers();
-    this.loadGear();
-    this.loadReservations();
-    // this.loadReviews();
+    this.loadBusiness();
+
+
   }
 
   // Admin Check here not good
@@ -88,7 +84,7 @@ export class AdminLandingComponent implements OnInit {
     // tslint:disable-next-line: prefer-for-of
     for (let i = 0; i < this.users.length; i++) {
       for (this.user of this.users) {
-        if (this.user.enabled) {
+        if (this.user.active) {
           count++;
         }
       }
@@ -98,10 +94,10 @@ export class AdminLandingComponent implements OnInit {
 
   public updatedUserEnabled(user: User) {
     if (user.role !== "admin") {
-      if (user.enabled) {
-        user.enabled = false;
+      if (user.active) {
+        user.active = false;
       } else {
-        user.enabled = true;
+        user.active = true;
       }
       this.userSvc.updateUserAsAdmin(user).subscribe(
         uData => {
@@ -121,14 +117,14 @@ export class AdminLandingComponent implements OnInit {
     }
   }
 
-  // Gear **************************
+  // Business **************************
 
-  public loadGear() {
+  public loadBusiness() {
     // this.clearSearch();
     this.gearSvc.index().subscribe(
-      gData => {
-        console.log(gData);
-        this.gearList = gData;
+      bData => {
+        console.log(bData);
+        this.businessList = bData;
       },
       didntWork => {
         console.log(didntWork);
@@ -136,21 +132,21 @@ export class AdminLandingComponent implements OnInit {
     );
   }
 
-  public displayGearItem(gear: Gear) {
-    this.selectedGear = gear;
+  public displayBusinessItem(business: Business) {
+    this.selectedBusiness = business;
   }
 
-  public countGear() {
-    return this.gearList.length;
+  public countBusiness() {
+    return this.businessList.length;
     // Add data aggr. for active count.
   }
 
   public countActiveG() {
     let count = 0;
     // tslint:disable-next-line: prefer-for-of
-    for (let i = 0; i < this.gearList.length; i++) {
-      for (this.gear of this.gearList) {
-        if (this.gear.active) {
+    for (let i = 0; i < this.businessList.length; i++) {
+      for (this.business of this.businessList) {
+        if (this.business.active) {
           count++;
         }
       }
@@ -158,77 +154,10 @@ export class AdminLandingComponent implements OnInit {
     }
   }
 
-  public countAvailableG() {
-    let count = 0;
-    // tslint:disable-next-line: prefer-for-of
-    for (let i = 0; i < this.gearList.length; i++) {
-      for (this.gear of this.gearList) {
-        if (this.gear.available) {
-          count++;
-        }
-      }
-      return count;
-    }
-  }
 
-  // RESERVATIONS **************************
 
-  public loadReservations() {
-    this.resvSvc.index().subscribe(
-      rData => {
-        console.log(rData);
-        this.resvList = rData;
-      },
-      rErr => {
-        console.log(rErr);
-      }
-    );
-  }
 
-  public countResv() {
-    return this.resvList.length;
-  }
-
-  public countActiveR() {
-    let count = 0;
-    // tslint:disable-next-line: prefer-for-of
-    // for (let i = 0; i < this.resvList.length; i++) {
-    for (let resv of this.resvList) {
-      if (resv.approved && !resv.completed) {
-        count++;
-      }
-      // }
-    }
-    return count;
-  }
-
-  public countCompletedR() {
-    let count = 0;
-    // tslint:disable-next-line: prefer-for-of
-    // for (let i = 0; i < this.resvList.length; i++) {
-    for (let resv of this.resvList) {
-      if (resv.completed) {
-        count++;
-      }
-      // }
-    }
-    return count;
-  }
-
-  public countNeedsApproval() {
-    let count = 0;
-    // tslint:disable-next-line: prefer-for-of
-    // for (let i = 0; i < this.resvList.length; i++) {
-    for (let resv of this.resvList) {
-      if (!resv.approved) {
-        count++;
-      }
-      // }
-    }
-    return count;
-  }
-
-  // Gear Reviews **************************
+  // Business Reviews **************************
 
   public loadReviews() {
     // this.revSvc.index().subscribe(
