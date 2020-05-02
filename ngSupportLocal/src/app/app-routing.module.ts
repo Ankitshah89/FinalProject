@@ -12,21 +12,22 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { BusinessLandingComponent } from './components/business-landing/business-landing.component';
 import { UserLandingComponent } from './components/user-landing/user-landing.component';
 import { AdminLandingComponent } from './components/admin-landing/admin-landing.component';
-
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomeComponent },
-  { path: 'user', component: UserComponent },
-  { path: 'user-landing', component: UserLandingComponent },
+  { path: 'user', component: UserComponent }, //Non-owner user view
+  { path: 'user-landing', component: UserLandingComponent }, //Logged in user
+  { path: 'business', component: BusinessComponent }, //Non-owner view
+  { path: 'business-landing', component: BusinessLandingComponent }, //Logged in Business
   { path: 'admin-landing', component: AdminLandingComponent },
-  { path: 'business', component: BusinessComponent },
-  { path: 'business-landing', component: BusinessLandingComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'businesses', component: BusinessComponent },
   { path: 'articles', component: ArticlesComponent },
-  { path: 'reviews', component: ReviewsComponent }
+  { path: 'reviews', component: ReviewsComponent },
+  { path: 'articles/:id', component: ArticlesComponent},
+  { path: 'business/:id/articles', component: ArticlesComponent}
 ];
 
 @NgModule({
