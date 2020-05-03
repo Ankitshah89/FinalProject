@@ -139,5 +139,20 @@ public class BusinessController {
 		return managedBus;
 	}
 	
+	@GetMapping("/business/search/category/{category}")
+	public List<Business> businessesByCategory(@PathVariable String category, HttpServletResponse response){
+		List<Business> managedBus = null;
+		try {
+			managedBus = bServ.findByPreferenceCategory(category);
+			response.setStatus(200);
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("Business Controller: Failed to retrieve businesses by category");
+			response.setStatus(404);
+		}
+		
+		return managedBus;
+	}
+	
 //	@PutMapping("businesses/{id}/manager")
 }
