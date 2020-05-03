@@ -66,6 +66,7 @@
                 </a>
 
                 <h4 class="h4 mb-4">{{item.title}}</h4>
+                <h4 class="h4 mb-4">TITLE</h4>
                 <h5 class="font-weight-normal">
                   by <a><strong>USER NAME</strong></a
                   >, {{item.createAt}}
@@ -76,6 +77,38 @@
                   ><span id="more"
                   >
                   </span>
+                <p
+                  id="dots"
+                  style="
+                    display: -webkit-box;
+                    -webkit-line-clamp: 3;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                  "
+                >
+                  <!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Phasellus imperdiet, nulla et dictum interdum, nisi lorem -->
+                  <!-- egestas vitae scel<span id="dots">...</span
+                  ><span id="more" -->
+                  <!-- erisque enim ligula venenatis dolor. Maecenas nisl est,
+                  ultrices nec congue eget, auctor vitae massa. Fusce luctus
+                  vestibulum augue ut aliquet. Nunc sagittis dictum nisi, sed
+                  ullamcorper ipsum dignissim ac. In at libero sed nunc
+                  venenatis imperdiet sed ornare turpis. Donec vitae dui eget
+                  tellus gravida venenatis. Integer fringilla congue eros non
+                  fermentum. Sed dapibus pulvinar nibh tempor porta. ultrices
+                  nec congue eget, auctor vitae massa. Fusce luctus vestibulum
+                  augue ut aliquet. Nunc sagittis dictum nisi, sed ullamcorper
+                  ipsum dignissim ac. In at libero sed nunc venenatis imperdiet
+                  sed ornare turpis. Donec vitae dui eget tellus gravida
+                  venenatis. Integer fringilla congue eros non fermentum. Sed
+                  dapibus pulvinar nibh tempor porta. ultrices nec congue eget,
+                  auctor vitae massa. Fusce luctus vestibulum augue ut aliquet.
+                  Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac.
+                  In at libero sed nunc venenatis imperdiet sed ornare turpis.
+                  Donec vitae dui eget tellus gravida venenatis. Integer
+                  fringilla congue eros non fermentum. Sed dapibus pulvinar nibh
+                  tempor porta. -->
                 </p>
                 <button (click)="myFunction()" id="myBtn">Read more</button>
               </div>
@@ -88,8 +121,15 @@
                     <div class="panel-heading">
                       <br>
                       Comment panel
+                      <button (click)="showComments()" id="divBtn">
+                        Show Comment
+                      </button>
                     </div>
-                    <div class="panel-body">
+                    <div
+                      class="panel-body"
+                      id="commentDiv"
+                      style="display: none;"
+                    >
                       <div class="clearfix"></div>
                       <hr />
                       <ul class="media-list">
@@ -541,28 +581,83 @@
       <li [ngbNavItem]="5">
         <a ngbNavLink>Edit Profile</a>
         <ng-template ngbNavContent class="mx-2">
-          <div class="jumbotron jumbotron-fluid text-center">
-            <div class="container">
-              <h1 class="display-4">Chrissy Rowland</h1>
-              <p class="lead">
-                Chrissy@EvilDead.com <br />
-                (555) 555-5555 <br />
-              </p>
-            </div>
+          <div class="container">
+            <form name="user-info" class="mr-auto">
+              <div class="form-group">
+                <label for="email">Email:</label>
+                <input
+                  type="email"
+                  name="email"
+                  class="form-control"
+                  placeholder="Email"
+                />
+              </div>
+              <div class="form-group">
+                <label for="password">Password:</label>
+                <input
+                  type="password"
+                  name="password"
+                  class="form-control"
+                  placeholder="Password"
+                />
+              </div>
+              <div class="form-group">
+                <label for="email">First Name:</label>
+                <input
+                  type="email"
+                  name="email"
+                  class="form-control"
+                  placeholder="Email"
+                />
+              </div>
+              <div class="form-group">
+                <label for="password">Last Name:</label>
+                <input
+                  type="password"
+                  name="password"
+                  class="form-control"
+                  placeholder="Password"
+                />
+              </div>
+              <div class="form-group">
+                <label for="password">Phone:</label>
+                <input
+                  type="password"
+                  name="password"
+                  class="form-control"
+                  placeholder="Password"
+                />
+              </div>
+              <a href="#" class="pull-right btn btn-danger">Submit</a>
+            </form>
           </div>
         </ng-template>
       </li>
       <li [ngbNavItem]="6">
         <a ngbNavLink>Write Article</a>
         <ng-template ngbNavContent class="mx-2">
-          <div class="jumbotron jumbotron-fluid text-center">
-            <div class="container">
-              <h1 class="display-4">Chrissy Rowland</h1>
-              <p class="lead">
-                Chrissy@EvilDead.com <br />
-                (555) 555-5555 <br />
-              </p>
-            </div>
+          <div class="container">
+            <form name="user-info" class="mr-auto">
+              <div class="form-group">
+                <label for="email">Title:</label>
+                <input
+                  type="email"
+                  name="email"
+                  class="form-control"
+                  placeholder="Email"
+                />
+              </div>
+              <div class="form-group">
+                <label for="password">Article Content:</label>
+                <textarea
+                  class="form-control"
+                  id="exampleFormControlTextarea1"
+                  rows="3"
+                ></textarea>
+              </div>
+
+              <a href="#" class="pull-right btn btn-danger">Submit</a>
+            </form>
           </div>
         </ng-template>
       </li>

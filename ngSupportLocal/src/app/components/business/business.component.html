@@ -1,116 +1,69 @@
-
 <div class="d-flex" id="wrapper">
   <app-left-side-bar></app-left-side-bar>
-  <div id="page-content-wrapper">
+  <div id="page-content-wrapper" *ngIf="!selected">
     <!-- News jumbotron -->
-    <div class="jumbotron text-center hoverable p-4">
-      <!-- Grid row -->
-      <div class="row">
-        <!-- Grid column -->
-        <div class="col-md-4 offset-md-1 mx-1 my-1">
-          <!-- Featured image -->
-          <div class="view overlay">
-            <img
-              src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg"
-              class="img-fluid"
-              alt="Sample image for first version of blog listing"
-            />
-            <a>
-              <div class="mask rgba-white-slight"></div>
-            </a>
+    <div *ngFor="let item of businessList">
+      <div class="jumbotron text-center hoverable p-4">
+        <!-- Grid row -->
+        <div class="row">
+          <!-- Grid column -->
+          <div class="col-md-4 offset-md-1 mx-1 my-1">
+            <!-- Featured image -->
+            <div class="view overlay">
+              <img
+                src={{item.imageUrl}}
+                class="img-fluid"
+                alt="Sample image for first version of blog listing"
+              />
+              <a>
+                <div class="mask rgba-white-slight"></div>
+              </a>
+            </div>
           </div>
-        </div>
-        <!-- Grid column -->
+          <!-- Grid column -->
 
-        <!-- Grid column -->
-        <div class="col-md-4 text-md-center my-auto">
-          <!-- Excerpt -->
-          <a href="#!" class="green-text">
-            <h6 class="h6 pb-1">
-              <i class="fas fa-desktop pr-1"></i> Edit Info
-            </h6>
-          </a>
+          <!-- Grid column -->
+          <div class="col-md-4 text-md-center my-auto">
+            <!-- Excerpt -->
+            <a href="#!" class="green-text">
+              <h6 class="h6 pb-1">
+                <i class="fas fa-desktop pr-1"></i>
+                {{item.webUrl}}
+              </h6>
+            </a>
 
-          <h4 class="h4 mb-3">Kurosawa Asian Bistro</h4>
-          <p>
-            17002 E Main St <br />
-            Parker, CO 80134 <br />
-            (303) 805-5985
-          </p>
-          <p class="font-weight-normal">
-            <a><strong>Manager</strong></a
-            ><br />
-            Jackie Chan
-          </p>
-        </div>
-        <!-- Grid column -->
-        <div class="col-md-3 text-md-center my-auto">
+            <h4 class="h4 mb-3">{{ item.name }}</h4>
+            <p>
+                <br />
+              Parker, CO 80134 <br />
+              {{item.phone}}
+            </p>
+            <p class="font-weight-normal">
+              <a><strong>Manager</strong></a
+              ><br />
+              {{ item.manager }}
+            </p>
+          </div>
+          <!-- Grid column -->
+           <div class="col-md-3 text-md-center my-auto">
           <p>
             History <br />
             Established in 2014.
+            {{item.descripiton}}
           </p>
           <p></p>
 
           <p class="font-weight-normal">
-            Kurosawa fuse traditional Japanese food with inventive French
-            inspired nonvelle cuisines topped with talented chefs with years of
-            industry experience, making Kurosawa's dishes extremely exquisite to
-            the taste buds. what makes us unique is our quality of service &
-            100% organic vegetables, a warm atmosphere and our prices.
+            {{ item.descripiton }}
           </p>
-        </div>
-      </div>
-      <!-- Grid row -->
-    </div>
-    <!-- News jumbotron -->
-    <!-- News jumbotron -->
-    <div class="jumbotron text-center hoverable p-4">
-      <!-- Grid row -->
-      <div class="row">
-        <!-- Grid column -->
-        <div class="col-md-4 offset-md-1 mx-3 my-3">
-          <!-- Featured image -->
-          <div class="view overlay">
-            <img
-              src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg"
-              class="img-fluid"
-              alt="Sample image for first version of blog listing"
-            />
-            <a>
-              <div class="mask rgba-white-slight"></div>
-            </a>
           </div>
         </div>
-        <!-- Grid column -->
-
-        <!-- Grid column -->
-        <div class="col-md-7 text-md-left ml-3 mt-3">
-          <!-- Excerpt -->
-          <a href="#!" class="green-text">
-            <h6 class="h6 pb-1">
-              <i class="fas fa-desktop pr-1"></i> Articles
-            </h6>
-          </a>
-
-          <h4 class="h4 mb-4">This is title of the Article</h4>
-
-          <p class="font-weight-normal">
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-            accusantium doloremque, totam rem aperiam, eaque ipsa quae ab illo
-            inventore veritatis et quasi architecto beatae vitae dicta sunt
-            explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur.
-          </p>
-          <p class="font-weight-normal">
-            by <a><strong>Carine Fox</strong></a
-            >, 19/08/2016
-          </p>
-
-          <a class="btn btn-success">Read more</a>
-        </div>
-        <!-- Grid column -->
+        <!-- Grid row -->
       </div>
-      <!-- Grid row -->
     </div>
+    <!-- News jumbotron -->
+    <!-- News jumbotron -->
+
   </div>
   <app-right-side-bar></app-right-side-bar>
 </div>
@@ -121,4 +74,3 @@
   });
 </script> -->
 <!-- /#page-content-wrapper -->
-

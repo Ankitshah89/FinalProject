@@ -141,7 +141,7 @@ export class BusinessService {
 
   //Search by Name
   public searchName(keyword: string){
-    return this.http.get<Business[]>(this.url + "search/name" + keyword)
+    return this.http.get<Business[]>(this.url + "search/name/" + keyword)
         .pipe(
           catchError((err: any) => {
             console.log(err);
@@ -150,7 +150,7 @@ export class BusinessService {
         );
   }
   public searchDescription(keyword: string){
-    return this.http.get<Business[]>(this.url + "search/description" + keyword)
+    return this.http.get<Business[]>(this.url + "search/description/" + keyword)
         .pipe(
           catchError((err: any) => {
             console.log(err);
@@ -159,7 +159,7 @@ export class BusinessService {
         );
   }
   public searchZip(keyword: string){
-    return this.http.get<Business[]>(this.url + "search/zip" + keyword)
+    return this.http.get<Business[]>(this.url + "search/zip/" + keyword)
         .pipe(
           catchError((err: any) => {
             console.log(err);
