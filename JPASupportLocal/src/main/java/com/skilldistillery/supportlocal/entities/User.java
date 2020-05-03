@@ -58,7 +58,7 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<Article> articles;
 
-//	@JsonBackReference(value = "businessToUserManager")
+//	@JsonManagedReference(value = "businessToUserManager")
 	@JsonIgnore
 	@OneToMany(mappedBy = "manager")
 	private List<Business> businesses;
