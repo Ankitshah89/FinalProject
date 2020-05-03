@@ -13,6 +13,8 @@ import { ArticleService } from 'src/app/services/article.service';
   styleUrls: ['./user-landing.component.scss'],
 })
 export class UserLandingComponent implements OnInit {
+  // commentList : Article[] =[];
+
   articleList: Article[] = [];
   newArticle: Article = new Article();
   articles: Article[] = [];
@@ -46,6 +48,19 @@ export class UserLandingComponent implements OnInit {
       (no) => {}
     );
   }
+
+  // loadArticleComments(){
+  //   this.articleList =[];
+  //   this.articleSvc.loadArticleComments().subscribe(
+  //   good => {
+  //     this.articleList = good;
+  //   },
+  //   bad =>{
+
+  //   }
+  //   )
+
+  // }
 
   myFunction() {
     var dots = document.getElementById('dots');

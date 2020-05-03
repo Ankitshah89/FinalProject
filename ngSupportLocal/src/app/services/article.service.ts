@@ -1,3 +1,4 @@
+import { ReviewComment } from './../models/review-comment';
 import { Article } from './../models/article';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -6,11 +7,15 @@ import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { ArticleComment } from '../models/article-comment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ArticleService {
+
+
+  selected : Article;
 
   constructor(
     private http: HttpClient,
@@ -169,6 +174,23 @@ export class ArticleService {
     } else{
       this.router.navigateByUrl(`/home`);
     }
+  }
+
+
+  loadArticleComments() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Basic ` + this.authService.getCredentials(),
+        'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+    return this.http.get<ArticleComment[]>(this.url + 'api/articles/' + this.selected.id + '/comments', httpOptions).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('ArticleService.loadReviewComments(): Error');
+      })
+    );
   }
 
 }

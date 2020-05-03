@@ -24,6 +24,10 @@ public class ArticleCommentServiceImpl implements ArticleCommentService {
 
 	@Autowired
 	private ArticleCommentRepository commentRepo;
+	
+	
+	
+	
 
 	@Override
 	public List<ArticleComment> index() {
@@ -31,11 +35,17 @@ public class ArticleCommentServiceImpl implements ArticleCommentService {
 	}
 
 	@Override
-	public ArticleComment show(int cid) {
-		Optional<ArticleComment> optArticle = commentRepo.findById(cid);
+	public ArticleComment show(int aid) {
+		Optional<ArticleComment> optArticle = commentRepo.findById(aid);
 		ArticleComment article = optArticle.get();
 		return article;
 	}
+	
+	@Override
+	public List<ArticleComment> showByArticleId(Integer aid) {
+		return commentRepo.findByArticle_Id(aid);
+	}
+ 
 
 	@Override
 	public ArticleComment create(String email, ArticleComment comment, Integer aid) {

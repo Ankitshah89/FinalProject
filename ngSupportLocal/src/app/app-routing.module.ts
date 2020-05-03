@@ -1,3 +1,4 @@
+import { SearchComponent } from './components/search/search.component';
 import { LeftSideBarComponent } from './components/left-side-bar/left-side-bar.component';
 import { UserComponent } from './components/user/user.component';
 import { BusinessComponent } from './components/business/business.component';
@@ -13,7 +14,8 @@ import { BusinessLandingComponent } from './components/business-landing/business
 import { UserLandingComponent } from './components/user-landing/user-landing.component';
 import { AdminLandingComponent } from './components/admin-landing/admin-landing.component';
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'home' },
+
+  { path: 'search/:keyword', component: SearchComponent},
   { path: 'home', component: HomeComponent },
   { path: 'user', component: UserComponent }, //Non-owner user view
   { path: 'user-landing', component: UserLandingComponent }, //Logged in user
@@ -27,7 +29,9 @@ const routes: Routes = [
   { path: 'articles', component: ArticlesComponent },
   { path: 'reviews', component: ReviewsComponent },
   { path: 'articles/:id', component: ArticlesComponent},
-  { path: 'business/:id/articles', component: ArticlesComponent}
+  { path: 'business/:id/articles', component: ArticlesComponent},
+  { path: '', pathMatch: 'full', redirectTo: 'home' }
+
 ];
 
 @NgModule({
