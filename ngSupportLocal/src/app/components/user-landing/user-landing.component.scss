@@ -254,3 +254,14 @@ form {
     display: none;
   }
 }
+
+.content {
+  width: 240px;
+  overflow: hidden;
+  word-wrap: break-word;
+  text-overflow: ellipsis;
+  line-height: 18px;
+}
+.less {
+  max-height: 54px;
+}
