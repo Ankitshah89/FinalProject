@@ -1,0 +1,40 @@
+<div class="d-flex" id="wrapper">
+  <app-left-side-bar></app-left-side-bar>
+
+  <div id="page-content-wrapper" >
+    <!-- News jumbotron -->
+    <div class="jumbotron text-center hoverable p-4"  *ngFor="let item of businessList">
+      <!-- Grid row -->
+      <div class="row">
+        <!-- Grid column -->
+        <div class="col-md-4 offset-md-1 mx-1 my-1">
+          <!-- Featured image -->
+          <div class="view overlay">
+            <img
+              src={{item.imageUrl}}
+              class="img-fluid"
+              alt="Sample image for first version of blog listing"
+            />
+            <a>
+              <div class="mask rgba-white-slight"></div>
+            </a>
+          </div>
+        </div>
+        <!-- Grid column -->
+        <!-- Grid column -->
+        <div class="col-md-4 text-md-center my-auto">
+          <!-- Excerpt -->
+          <a href="#!" class="green-text"> </a>
+          <h4 class="h4 mb-3"><Strong>{{item.name}}</Strong></h4>
+          <p>
+            17002 E Main St <br />
+            Parker, CO 80134 <br />
+            (303) 805-5985
+          </p>
+          <p class="font-weight-normal">
+            <a><strong>Manager</strong></a
+            ><br />
+            Jackie Chan
+          </p>
+        </div>
+        </div>
