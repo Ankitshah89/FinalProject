@@ -70,6 +70,9 @@ export class AuthService {
     return localStorage.getItem('credentials');
   }
 
+  getCurrentUserId(){
+    return localStorage.getItem('currentUserId');
+  }
   getLoggedInEmail() {
     console.log('This is the email: ' + localStorage.getItem('email'));
 
