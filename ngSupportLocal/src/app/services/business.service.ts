@@ -187,10 +187,16 @@ export class BusinessService {
         )
     }
   }
-
-  //Search by Preference
-
-  //Search by zip
+  //Get BusinessesBy Category - URL + search/category/ + category -- No Auth
+  public businessesByCategory(category: String){
+    return this.http.get<Business[]>(this.url + 'search/category/' + category)
+    .pipe(
+      catchError((err: any) =>{
+        console.log(err);
+        return throwError('Business Service: Failed to retrieve list by category');
+      })
+    );
+  }
 }
 
 

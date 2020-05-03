@@ -1,5 +1,6 @@
 package com.skilldistillery.supportlocal.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.supportlocal.entities.Business;
+import com.skilldistillery.supportlocal.entities.PreferenceCategory;
 import com.skilldistillery.supportlocal.entities.Role;
 import com.skilldistillery.supportlocal.entities.User;
 import com.skilldistillery.supportlocal.repositories.BusinessRepository;
@@ -41,19 +43,18 @@ public class BusinesServiceImpl implements BusinessService {
 	@Override // Done
 	public Business updateBusiness(String email, Business business, int id) {
 		User user = userRepo.findUserByEmail(email);
-		
+
 //		Business existing = null;
 
 		if (user != null) {
-			
+
 			Optional<Business> optBus = busRepo.findById(id);
-			
+
 			if (optBus.isPresent()) {
 				if (business.getName() != null) {
 					Business manBus = optBus.get();
-					if(manBus.getManager().getId() == user.getId() ||
-							user.getRole().equals(Role.Admin)) {
-						
+					if (manBus.getManager().getId() == user.getId() || user.getRole().equals(Role.Admin)) {
+
 						manBus.setName(business.getName());
 						manBus.setDescription(business.getDescription());
 						manBus.setPhone(business.getPhone());
@@ -64,7 +65,7 @@ public class BusinesServiceImpl implements BusinessService {
 				}
 			}
 		}
-	
+
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -74,22 +75,21 @@ public class BusinesServiceImpl implements BusinessService {
 		User user = userRepo.findUserByEmail(email);
 		boolean deleted = false;
 
-		if (user != null)  {
+		if (user != null) {
 
 			Optional<Business> optBus = busRepo.findById(id);
 
 			if (optBus.isPresent()) {
 				Business manBus = optBus.get();
-				if(manBus.getManager().getId() == user.getId() ||
-			 user.getRole().equals(Role.Admin)) {
-					
-				try {
-					busRepo.delete(manBus);
-					deleted = true;
-				} catch (Exception e) {
-					System.out.println("Could not delete business with id:" + id);
-					deleted = false;
-				}
+				if (manBus.getManager().getId() == user.getId() || user.getRole().equals(Role.Admin)) {
+
+					try {
+						busRepo.delete(manBus);
+						deleted = true;
+					} catch (Exception e) {
+						System.out.println("Could not delete business with id:" + id);
+						deleted = false;
+					}
 				}
 			}
 		}
@@ -165,12 +165,35 @@ public class BusinesServiceImpl implements BusinessService {
 	public List<Business> findByManager(User user) {
 		System.out.println("************************** FOUND USER: " + user);
 		List<Business> manBus = null;
-		if(user != null) {
+		if (user != null) {
 			manBus = busRepo.findByManager(user);
 			System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& FOUND BUSINESSES: " + manBus);
 		}
-				
+
 		return manBus;
+	}
+
+	@Override
+	public List<Business> findByPreferenceCategory(String categoryStr) {
+		List<Business> busCat = new ArrayList<>();
+		PreferenceCategory category = null;
+		for(PreferenceCategory cat: PreferenceCategory.values()) {
+			if(cat.toString().equals(categoryStr)) {
+				category = cat;
+				break;
+			}
+		}
+		if(category != null) {
+			try {
+				busCat = busRepo.findByPreferencesPreferenceCategory(category);
+				System.out.println("Retrieved values for Businesses By Category: " + category.toString());
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("Failed to retrieve of list of Businesses by Category: " + categoryStr);
+				
+			}
+		}
+		return busCat;
 	}
 
 }
