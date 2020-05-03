@@ -35,8 +35,6 @@ import { LoginComponent } from './components/login/login.component';
 import { AdminLandingComponent } from './components/admin-landing/admin-landing.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ArticleDetailComponent } from './components/article-detail/article-detail.component';
-import { BusinessListComponent } from './components/business-list/business-list.component';
-
 
 @NgModule({
   declarations: [
@@ -59,8 +57,6 @@ import { BusinessListComponent } from './components/business-list/business-list.
     LoginComponent,
     AdminLandingComponent,
     ArticleDetailComponent,
-    BusinessListComponent
-
   ],
   imports: [
     BrowserModule,
