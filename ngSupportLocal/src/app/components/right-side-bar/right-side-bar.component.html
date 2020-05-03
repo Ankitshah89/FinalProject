@@ -1,16 +1,23 @@
 <!-- Sidebar -->
-<div class="bg-light border-left " id="sidebar-wrapper" *ngIf="user">
+<div class="bg-light border-left" id="sidebar-wrapper" *ngIf="user">
   <div class="sidebar-heading">Favorites</div>
-  <div class="list-group list-group-flush" *ngFor="let favorite of favorites">
-    <a href="business/{{favorite.id}}" class="list-group-item list-group-item-action bg-light"
-      >{{favorite.name}}</a
-    >
-    <!-- <a href="#" class="list-group-item list-group-item-action bg-light"
-      >Shortcuts</a
-    >
+
+  <div class="list-group list-group-flush" **ngIf="noFavs">
     <a href="#" class="list-group-item list-group-item-action bg-light"
-      >Overview</a
+      >No Favorites Yet</a
     >
+  </div>
+  <div class="list-group list-group-flush" *ngFor="let favorite of favorites">
+    <a
+      href="business/{{ favorite.id }}"
+      class="list-group-item list-group-item-action bg-light"
+      >{{ favorite.name }}</a
+    >
+
+    <!--
+      <a href="#" class="list-group-item list-group-item-action bg-light"
+        >Overview</a
+      >
     <a href="#" class="list-group-item list-group-item-action bg-light"
       >Events</a
     >
@@ -21,5 +28,5 @@
       >Status</a
     > -->
   </div>
+  <!-- /#sidebar-wrapper -->
 </div>
-<!-- /#sidebar-wrapper -->

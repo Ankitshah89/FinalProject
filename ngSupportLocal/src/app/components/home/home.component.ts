@@ -43,10 +43,12 @@ export class HomeComponent implements OnInit {
       }
     }
   }
-
-  // public spliceArticleContent(content: string){
-  //   return content.slice(0,101);
-  // }
-
-  //Function to grab Articles for Carousel //Stretch Goal
 }
+
+// new WOW().init();
+
+// public spliceArticleContent(content: string){
+//   return content.slice(0,101);
+// }
+
+//Function to grab Articles for Carousel //Stretch Goal
