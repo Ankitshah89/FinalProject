@@ -49,7 +49,6 @@ public class UserController {
 		return users;
 	}
 	
-
 	@GetMapping("users/{email}")
 	public User getExistingUserByUsername(@PathVariable String email, HttpServletRequest req, Principal principal,
 			HttpServletResponse resp) {
@@ -72,8 +71,8 @@ public class UserController {
 	}
 	
 
-	@PutMapping("users/{id}")
-	public User replaceExistingUser(@PathVariable Integer id ,@RequestBody User user, HttpServletRequest req, Principal principal,
+	@PutMapping("users")
+	public User replaceExistingUser(@RequestBody User user, HttpServletRequest req, Principal principal,
 			HttpServletResponse resp) {
 		
 		

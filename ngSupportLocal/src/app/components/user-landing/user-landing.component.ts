@@ -6,6 +6,7 @@ import { BusinessService } from 'src/app/services/business.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { ArticleService } from 'src/app/services/article.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-user-landing',
@@ -19,6 +20,9 @@ export class UserLandingComponent implements OnInit {
   newArticle: Article = new Article();
   articles: Article[] = [];
   loggedInUser: User = new User();
+  editUser = null;
+  currentUser = null;
+  newUserArticle = null;
 
   categories = ['Sports', 'Food', 'Entertainment', 'Shopping'];
 
@@ -61,6 +65,61 @@ export class UserLandingComponent implements OnInit {
   //   )
 
   // }
+
+  setEditUser(){
+    this.editUser = Object.assign({}, this.currentUser);
+  }
+
+  updateUser(user: User){
+    this.userService.updateUser(user).subscribe(
+      yes => {
+         this.reload();
+        //this.currentUser = yes;
+        this.editUser = null;
+      },
+      no => {
+        console.error('UserProfileComponent.updateUser(): error');
+        console.error(no);
+
+      }
+    );
+
+  }
+
+  postUserArticle(articleForm : NgForm){
+    const articleData = articleForm.value;
+    this.articleSvc.postArticle(articleData).subscribe(
+      go =>{
+
+      console.log('good to go')
+      this.newUserArticle = go;
+      },
+      nogo=>{
+        console.error('PostArticleComponent: error');
+        console.error(nogo);
+
+
+      }
+    )
+
+  }
+
+
+  reload(){
+    this.userService.index().subscribe(
+      data => {
+        this.currentUser = data;
+        console.log(data);
+      },
+      error =>{
+        console.log("error inside show logged in user");
+      }
+    );
+  }
+
+
+
+
 
   myFunction() {
     var dots = document.getElementById('dots');
