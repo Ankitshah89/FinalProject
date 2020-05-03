@@ -13,8 +13,6 @@ import { ArticleService } from 'src/app/services/article.service';
   styleUrls: ['./user-landing.component.scss'],
 })
 export class UserLandingComponent implements OnInit {
-
-
   articleList: Article[] = [];
   newArticle: Article = new Article();
   articles: Article[] = [];
@@ -23,7 +21,7 @@ export class UserLandingComponent implements OnInit {
   categories = ['Sports', 'Food', 'Entertainment', 'Shopping'];
 
   constructor(
-    private userService : UserService,
+    private userService: UserService,
     private businessSvc: BusinessService,
     private router: Router,
     private authService: AuthService,
@@ -47,23 +45,30 @@ export class UserLandingComponent implements OnInit {
       },
       (no) => {}
     );
-
   }
 
   myFunction() {
     var dots = document.getElementById('dots');
-    var moreText = document.getElementById('more');
     var btnText = document.getElementById('myBtn');
 
-    if (dots.style.display === 'none') {
+    if (dots.style.display === '-webkit-box') {
       dots.style.display = 'inline';
       btnText.innerHTML = 'Read more';
-      moreText.style.display = 'none';
     } else {
-      dots.style.display = 'none';
+      dots.style.display = '-webkit-box';
       btnText.innerHTML = 'Read less';
-      moreText.style.display = 'inline';
     }
   }
+  showComments() {
+    var commentBox = document.getElementById('commentDiv');
+    var btnText = document.getElementById('divBtn');
 
+    if (commentBox.style.display === 'none') {
+      commentBox.style.display = 'block';
+      btnText.innerHTML = 'Hide Comments';
+    } else {
+      commentBox.style.display = 'none';
+      btnText.innerHTML = 'Show Comments';
+    }
+  }
 }

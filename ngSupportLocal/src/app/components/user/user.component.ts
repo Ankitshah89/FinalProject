@@ -13,25 +13,32 @@ import { User } from 'src/app/models/user';
   styleUrls: ['./user.component.scss'],
 })
 export class UserComponent implements OnInit {
-
-
   constructor() {}
 
   ngOnInit(): void {}
 
   myFunction() {
     var dots = document.getElementById('dots');
-    var moreText = document.getElementById('more');
     var btnText = document.getElementById('myBtn');
 
-    if (dots.style.display === 'none') {
+    if (dots.style.display === '-webkit-box') {
       dots.style.display = 'inline';
       btnText.innerHTML = 'Read more';
-      moreText.style.display = 'none';
     } else {
-      dots.style.display = 'none';
+      dots.style.display = '-webkit-box';
       btnText.innerHTML = 'Read less';
-      moreText.style.display = 'inline';
+    }
+  }
+  showComments() {
+    var commentBox = document.getElementById('commentDiv');
+    var btnText = document.getElementById('divBtn');
+
+    if (commentBox.style.display === 'none') {
+      commentBox.style.display = 'block';
+      btnText.innerHTML = 'Hide Comments';
+    } else {
+      commentBox.style.display = 'none';
+      btnText.innerHTML = 'Show Comments';
     }
   }
 }
