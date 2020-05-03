@@ -35,6 +35,8 @@ public class Business {
 	
 	private boolean active;
 	
+	@Column(name="web_url")
+	private String webUrl;
 	
 	@Column(name = "create_date")
 	@CreationTimestamp
@@ -172,6 +174,8 @@ public class Business {
 		builder.append(active);
 		builder.append(", imageUrl=");
 		builder.append(imageUrl);
+		builder.append(", webUrl=");
+		builder.append(webUrl);
 		builder.append(", manager=");
 		builder.append(manager);
 		builder.append("]");
@@ -232,5 +236,13 @@ public class Business {
 
 	public void setCreatedAt(LocalDate createdAt) {
 		this.createdAt = createdAt;
+	}
+
+	public String getWebUrl() {
+		return webUrl;
+	}
+
+	public void setWebUrl(String webUrl) {
+		this.webUrl = webUrl;
 	}
 }

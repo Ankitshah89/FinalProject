@@ -53,11 +53,11 @@ export class UserService {
       })
     };
     if (this.authService.checkLogin()){
-      return this.http.put<User>(this.url + user.id, user, httpOptions)
+      return this.http.put<User>(this.url , user, httpOptions)
       .pipe(
         catchError((err: any) => {
           console.log(err);
-          return throwError('Could not update user with id: ' + user.id)
+          return throwError('Could not update user ')
 
         })
       )
