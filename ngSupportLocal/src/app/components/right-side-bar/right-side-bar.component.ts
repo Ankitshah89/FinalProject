@@ -9,39 +9,37 @@ import { User } from 'src/app/models/user';
   styleUrls: ['./right-side-bar.component.scss'],
 })
 export class RightSideBarComponent implements OnInit {
+
   favorites = [];
   user: User;
-  noFavs = false;
-  constructor(private authService: AuthService) {}
+  loggedIn;
+  constructor(
+    private authService: AuthService,
+  ) { }
 
   ngOnInit(): void {
     // if (this.authService.checkLogin) {
     //   console.log('Getting User Email for Favorites');
 
-    this.authService
-      .getUserByEmail(this.authService.getLoggedInEmail())
-      .subscribe((data) => {
-        this.user = data;
-        console.log(data);
-        console.log('This is the information coming into the right-nav bar');
+      this.authService.getUserByEmail(this.authService.getLoggedInEmail()).subscribe(
+        data => {
+          this.user = data;
+          console.log('This is the information coming into the right-nav bar');
 
-        console.log(this.user);
+          console.log(this.user);
+          if(this.user != null){
 
-        this.favorites = this.user.favoriteBusinesses;
-        console.log(this.favorites.length);
+            this.loggedIn = true;
+            console.log('Has a logged in User: ' + this.loggedIn);
 
-        if (this.favorites.length === 0) {
-          this.noFavs = true;
-        } else {
-          this.noFavs = false;
+          }
         }
-
-        // this.favorites.push(data.favoriteBusinesses);
-        console.log(this.favorites);
-      }),
-      (error) => {
+      ), error => {
         console.log(error);
-      };
+
+      }
     // }
   }
+
+
 }

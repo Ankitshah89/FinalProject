@@ -25,7 +25,7 @@
         <!-- Grid column -->
 
         <!-- Grid column -->
-        <div class="col-md-4 text-md-center my-auto">
+        <div class="col-md-4 text-md-center my-auto" >
           <!-- Excerpt -->
           <a href="#!" class="green-text">
             <h6 class="h6 pb-1">
@@ -88,38 +88,33 @@
         <!-- Grid column -->
         <div class="col-md-4 text-md-center my-auto">
           <!-- Excerpt -->
-          <a href="business/" class="green-text">
+          <a href="business/{{result.business.id}}" class="green-text">
             <h6 class="h6 pb-1">
               <i class="fas fa-desktop pr-1"></i> View Info
             </h6>
           </a>
 
-          <h4 class="h4 mb-3">{{result.name}}</h4>
+          <h4 class="h4 mb-3">{{result.business.name}}</h4>
           <p>
-            {{result.name}}<br />
-            {{result.name}}, {{result.name}} {{result.name}} <br />
-            (303) 805-5985
+            {{result.street}}<br />
+            {{result.city}}, {{result.state}} {{result.postalCode}} <br />
+            {{result.business.phone}}
           </p>
           <p class="font-weight-normal">
             <a><strong>Manager</strong></a
             ><br />
-            Jackie Chan
+            {{result.business.manager.firstName}} {{result.business.manager.lastName}}
           </p>
         </div>
         <!-- Grid column -->
         <div class="col-md-3 text-md-center my-auto">
           <p>
-            History <br />
-            Established in 2014.
+            Description <br />
           </p>
           <p></p>
 
           <p class="font-weight-normal">
-            Kurosawa fuse traditional Japanese food with inventive French
-            inspired nonvelle cuisines topped with talented chefs with years of
-            industry experience, making Kurosawa's dishes extremely exquisite to
-            the taste buds. what makes us unique is our quality of service &
-            100% organic vegetables, a warm atmosphere and our prices.
+           {{result.business.description}}
           </p>
         </div>
       </div>

@@ -11,6 +11,7 @@ public interface AddressService {
 	Address updateAddress(String email,Address address);
 	boolean deleteAddress(String email,int id);
 	Address findById(int id);
+	List<Address> generalSearch(String keywrod);
 	
 
 	

@@ -148,4 +148,11 @@ public class AddressServiceImpl implements AddressService {
 		return address;
 	}
 
+	@Override
+	public List<Address> generalSearch(String keyword) {
+		List<Address> genSearch = addRepo.findByBusinessDescriptionLikeOrPostalCodeLikeOrBusinessNameLike(keyword, keyword, keyword);
+		// TODO Auto-generated method stub
+		return genSearch;
+	}
+
 }

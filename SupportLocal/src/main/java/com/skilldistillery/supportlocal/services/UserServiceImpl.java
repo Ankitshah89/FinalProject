@@ -20,6 +20,8 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private PasswordEncoder encoder;
 	
+	@Autowired BusinessService busServ;
+	
 	@Override
 	public List<User> findByEmail(String email) {
 		User user = userRepo.findUserByEmail(email);
@@ -57,8 +59,10 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User findUserByEmail(String email) {
-
-		return userRepo.findUserByEmail(email);
+		User manUser = userRepo.findUserByEmail(email);
+		manUser.setBusinesses(busServ.findByManager(manUser));
+		System.out.println(manUser.getBusinesses());
+		return manUser;
 	}
 
 	@Override
