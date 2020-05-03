@@ -9,10 +9,8 @@ import { ArticleService } from 'src/app/services/article.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-   artList = [];
-  constructor(
-    private artServ: ArticleService
-  ) { }
+  artList = [];
+  constructor(private artServ: ArticleService) {}
 
   ngOnInit(): void {
     this.recentArticles();
@@ -22,23 +20,22 @@ export class HomeComponent implements OnInit {
   public recentArticles() {
     var newArticle = [];
     this.artServ.index().subscribe(
-      results => {
-         newArticle = results;
-         console.log(newArticle);
-         this.loadRecentArticles(newArticle);
+      (results) => {
+        newArticle = results;
+        console.log(newArticle);
+        this.loadRecentArticles(newArticle);
       },
-      error =>{
+      (error) => {
         console.log('Loading recent articles failed');
         console.log(error);
       }
     );
-
-
   }
-  public loadRecentArticles(newArticle: Article[]){
-    for(var i = 0; i < 4; i++){
-      if(newArticle.length > 0){
-        var art = newArticle.pop()
+
+  public loadRecentArticles(newArticle: Article[]) {
+    for (var i = 0; i < 4; i++) {
+      if (newArticle.length > 0) {
+        var art = newArticle.pop();
         console.log(art.business);
 
         this.artList.push(art);
@@ -52,5 +49,4 @@ export class HomeComponent implements OnInit {
   // }
 
   //Function to grab Articles for Carousel //Stretch Goal
-
 }
