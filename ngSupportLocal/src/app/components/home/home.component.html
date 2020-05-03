@@ -13,7 +13,7 @@
     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
   </ol>
   <div class="carousel-inner">
-    <div class="carousel-item active">
+    <div class="carousel-item active mb-4">
       <img
         class="d-block w-100"
         src="assets/images/unionstation.jpg"
@@ -28,7 +28,7 @@
       </div>
     </div>
     <div
-      class="carousel-item flex-column align-items-center justify-content-center"
+      class="carousel-item flex-column align-items-center justify-content-center mb-4"
     >
       <img
         class="d-block w-100"
@@ -44,7 +44,7 @@
       </div>
     </div>
     <div
-      class="carousel-item d-flex h-100 justify-content-center align-items-center"
+      class="carousel-item d-flex h-100 justify-content-center align-items-center mb-4"
     >
       <img
         class="d-block w-100"
@@ -84,73 +84,43 @@
   </a>
 </div>
 
-<div class="container-fluid row mb-2">
-  <!-- <div class="col-md-6">
-    <div
-      class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
-    >
-      <div class="col p-4 d-flex flex-column position-static">
-        <strong class="d-inline-block mb-2 text-primary">World</strong>
-        <h3 class="mb-0">Featured post</h3>
-        <div class="mb-1 text-muted">Nov 12</div>
-        <p class="card-text mb-auto">
-          This is a wider card with supporting text below as a natural lead-in
-          to additional content.
-        </p>
-        <a href="#" class="stretched-link">Continue reading</a>
-      </div>
-      <div class="col-auto d-none d-lg-block"></div>
-    </div>
-  </div>
-  <div class="col-md-6">
-    <div
-      class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
-    >
-      <div class="col p-4 d-flex flex-column position-static">
-        <strong class="d-inline-block mb-2 text-primary">World</strong>
-        <h3 class="mb-0">Featured post</h3>
-        <div class="mb-1 text-muted">Nov 12</div>
-        <p class="card-text mb-auto">
-          This is a wider card with supporting text below as a natural lead-in
-          to additional content.
-        </p>
-        <a href="#" class="stretched-link">Continue reading</a>
-      </div>
-      <div class="col-auto d-none d-lg-block"></div>
-    </div>
-  </div> -->
-
-  <div class="col-md-6" *ngFor="let article of artList">
-    <div
-      class="row no-gutters border rounded text-truncate flex-md-row mb-4 shadow-sm h-md-250 position-relative"
-    >
-      <div class="col p-4 d-flex flex-column position-static">
-        <strong class="d-inline-block mb-2 text-success">{{
-          article.business.name
-        }}</strong>
-        <h3 class="mb-0">{{ article.title }}</h3>
-        <div class="mb-1 text-muted">{{ article.createAt }}</div>
-
-        <p
-          class="mb-auto"
-          style="
-            display: inline-block;
-            white-space: wrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 200ch;
-          "
-        >
-          {{ article.content }}
-
+<!-- Populated List of Articles -->
+<div class="container-fluid">
+  <div class="row row-cols-1 row-cols-md-2">
+    <div class="col-mb-4 my-4" *ngFor="let article of artList">
+      <!-- Start of new card -->
+      <div class="card shadow rounded h-100 mx-4">
+        <div class="card-body">
+          <a href="#!" class="green-text">
+            <h6 class="h6 pb-1">
+              <i class="fas fa-desktop pr-1"></i> Articles
+            </h6>
+          </a>
+          <h5 class="card-title">{{ article.title }}</h5>
+          <h5 class="font-weight-normal">
+            by
+            <a
+              ><strong>{{ article.business.name }}</strong></a
+            >
+            on {{ article.createAt | date: "MMM d, y h:mm a" }}
+          </h5>
+          <p
+            id="dots"
+            style="
+              display: -webkit-box;
+              -webkit-line-clamp: 3;
+              -webkit-box-orient: vertical;
+              overflow: hidden;
+            "
+          >
+            {{ article.content }}
+          </p>
           <br />
           <a href="#/article/{{ article.id }}" class="stretched-link"
-            >Continue reading</a
+            >Continue reading...</a
           >
-        </p>
+        </div>
       </div>
-
-      <div class="col-auto d-none d-lg-block"></div>
     </div>
   </div>
 </div>

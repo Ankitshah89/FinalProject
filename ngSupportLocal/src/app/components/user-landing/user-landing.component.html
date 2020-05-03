@@ -36,155 +36,154 @@
       <li [ngbNavItem]="2">
         <a ngbNavLink (click)="loadUserArticles()">My Articles</a>
         <ng-template ngbNavContent>
-          <div *ngFor="let item of articleList ">
-          <div class="jumbotron-fluid text-center hoverable p-4">
-            <!-- Grid row -->
-            <div class="row">
-              <!-- Grid column -->
-              <div class="col-md-4 offset-md-1 mx-3 my-3">
-                <!-- Featured image -->
-                <div class="view overlay">
-                  <img
-                    src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg"
-                    class="img-fluid"
-                    alt="Sample image for first version of blog listing"
-                  />
-                  <a>
-                    <div class="mask rgba-white-slight"></div>
-                  </a>
+          <div *ngFor="let item of articleList">
+            <div class="jumbotron-fluid text-center hoverable p-4">
+              <!-- Grid row -->
+              <div class="row">
+                <!-- Grid column -->
+                <div class="col-md-4 offset-md-1 mx-3 my-3">
+                  <!-- Featured image -->
+                  <div class="view overlay">
+                    <img
+                      src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg"
+                      class="img-fluid"
+                      alt="Sample image for first version of blog listing"
+                    />
+                    <a>
+                      <div class="mask rgba-white-slight"></div>
+                    </a>
+                  </div>
                 </div>
-              </div>
-              <!-- Grid column -->
+                <!-- Grid column -->
 
-              <!-- Grid column -->
-              <div class="col-md-7 text-md-left ml-3 mt-3">
-                <!-- Excerpt -->
-                <a href="#!" class="green-text">
-                  <h6 class="h6 pb-1">
-                    <i class="fas fa-desktop pr-1"></i> Articles
-                  </h6>
-                </a>
+                <!-- Grid column -->
+                <div class="col-md-7 text-md-left ml-3 mt-3">
+                  <!-- Excerpt -->
+                  <a href="#!" class="green-text">
+                    <h6 class="h6 pb-1">
+                      <i class="fas fa-desktop pr-1"></i> Articles
+                    </h6>
+                  </a>
 
-                <h4 class="h4 mb-4">{{item.title}}</h4>
+                  <h4 class="h4 mb-4">{{ item.title }}</h4>
 
-                <h5 class="font-weight-normal">
-                  by <a><strong>USER NAME</strong></a
-                  >, {{item.createAt}}
-                </h5>
+                  <h5 class="font-weight-normal">
+                    by <a><strong>USER NAME</strong></a
+                    >, {{ item.createAt }}
+                  </h5>
 
-
-                <p>
-                  {{item.content}}<span id="dots">...</span
-                  ><span id="more"
+                  <p
+                    id="dots"
+                    style="
+                      display: -webkit-box;
+                      -webkit-line-clamp: 3;
+                      -webkit-box-orient: vertical;
+                      overflow: hidden;
+                    "
                   >
-                  </span>
-
-                </p>
-                <button (click)="myFunction()" id="myBtn">Read more</button>
+                    {{ item.content }}
+                  </p>
+                  <button (click)="myFunction()" id="myBtn">Read more</button>
+                </div>
+                <!-- Grid column -->
               </div>
-              <!-- Grid column -->
-            </div>
-            <div class="row bootstrap snippets">
-              <div class="col-md-12 col-md-offset-2 col-sm-12">
-                <div class="comment-wrapper">
-                  <div class="panel panel-info">
-                    <div class="panel-heading">
-
-                      <br>
-                      Comment panel
-
-                      <button (click)="showComments()" id="divBtn">
-                        Show Comment
-                      </button>
-                    </div>
-                    <div
-                      class="panel-body"
-                      id="commentDiv"
-                      style="display: none;"
-                    >
-                      <div class="clearfix"></div>
-                      <hr />
-                      <ul class="media-list">
-                        <li class="media">
-                          <a href="#" class="pull-left">
-                            <img
-                            src="https://bootdey.com/img/Content/user_1.jpg"
-                            alt=""
-                            class="rounded-circle"
-                            />
-                          </a>
-                          <div class="media-body">
-                            <span class="text-muted pull-right">
-                              <small class="text-muted"
-                              >4-20-2020 11:15am</small
-                              >
-                            </span>
-                            <p>
-                              Lorem ipsum dolor sit amet, consectetur adipiscing
-                              elit. Lorem ipsum dolor sit amet,
-                              <a href="#">#consecteturadipiscing </a>.
-                            </p>
-                          </div>
-                        </li>
-                        <li class="media">
-                          <a href="#" class="pull-left">
-                            <img
-                            src="assets/images/chrissy.jpg"
-                            alt=""
-                            class="rounded-circle"
-                            />
-                          </a>
-                          <div class="media-body">
-                            <span class="text-muted pull-right">
-                              <small class="text-muted"
-                              >4-20-2020 11:30am</small
-                              >
-                            </span>
-                            <p>
-                              Lorem ipsum dolor sit amet, consectetur adipiscing
-                              elit. Lorem ipsum dolor
-                              <a href="#">#ipsumdolor </a>adipiscing elit.
-                            </p>
-                          </div>
-                        </li>
-                        <li class="media">
-                          <a href="#" class="pull-left">
-                            <img
-                            src="https://bootdey.com/img/Content/user_3.jpg"
-                            alt=""
-                            class="rounded-circle"
-                            />
-                          </a>
-                          <div class="media-body">
-                            <span class="text-muted pull-right">
-                              <small class="text-muted"
-                              >4-20-2020 11:35am</small
-                              >
-                            </span>
-                            <p>
-                              Lorem ipsum dolor <a href="#">#sitamet</a> sit
-                              amet, consectetur adipiscing elit.
-                            </p>
-                          </div>
-                        </li>
-                      </ul>
-                      <textarea
-                      class="form-control"
-                      placeholder="write a comment..."
-                      rows="3"
-                      ></textarea>
-                      <br />
-                      <button type="button" class="btn btn-info pull-right">
-                        Post
-                      </button>
+              <div class="row bootstrap snippets">
+                <div class="col-md-12 col-md-offset-2 col-sm-12">
+                  <div class="comment-wrapper">
+                    <div class="panel panel-info">
+                      <div class="panel-heading">
+                        <button (click)="showComments()" id="divBtn">
+                          Show Comment
+                        </button>
+                      </div>
+                      <div
+                        class="panel-body"
+                        id="commentDiv"
+                        style="display: none;"
+                      >
+                        <div class="clearfix"></div>
+                        <hr />
+                        <ul class="media-list">
+                          <li class="media">
+                            <a href="#" class="pull-left">
+                              <img
+                                src="https://bootdey.com/img/Content/user_1.jpg"
+                                alt=""
+                                class="rounded-circle"
+                              />
+                            </a>
+                            <div class="media-body">
+                              <span class="text-muted pull-right">
+                                <small class="text-muted"
+                                  >4-20-2020 11:15am</small
+                                >
+                              </span>
+                              <p>
+                                Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit. Lorem ipsum dolor sit amet,
+                                <a href="#">#consecteturadipiscing </a>.
+                              </p>
+                            </div>
+                          </li>
+                          <li class="media">
+                            <a href="#" class="pull-left">
+                              <img
+                                src="assets/images/chrissy.jpg"
+                                alt=""
+                                class="rounded-circle"
+                              />
+                            </a>
+                            <div class="media-body">
+                              <span class="text-muted pull-right">
+                                <small class="text-muted"
+                                  >4-20-2020 11:30am</small
+                                >
+                              </span>
+                              <p>
+                                Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit. Lorem ipsum dolor
+                                <a href="#">#ipsumdolor </a>adipiscing elit.
+                              </p>
+                            </div>
+                          </li>
+                          <li class="media">
+                            <a href="#" class="pull-left">
+                              <img
+                                src="https://bootdey.com/img/Content/user_3.jpg"
+                                alt=""
+                                class="rounded-circle"
+                              />
+                            </a>
+                            <div class="media-body">
+                              <span class="text-muted pull-right">
+                                <small class="text-muted"
+                                  >4-20-2020 11:35am</small
+                                >
+                              </span>
+                              <p>
+                                Lorem ipsum dolor <a href="#">#sitamet</a> sit
+                                amet, consectetur adipiscing elit.
+                              </p>
+                            </div>
+                          </li>
+                        </ul>
+                        <textarea
+                          class="form-control"
+                          placeholder="write a comment..."
+                          rows="3"
+                        ></textarea>
+                        <br />
+                        <button type="button" class="btn btn-info pull-right">
+                          Post
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+            <!-- Grid row -->
           </div>
-          <!-- Grid row -->
-        </div>
         </ng-template>
       </li>
 
