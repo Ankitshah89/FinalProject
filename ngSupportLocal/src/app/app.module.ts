@@ -57,8 +57,12 @@ import { BusinessesComponent } from './components/businesses/businesses.componen
     RegisterComponent,
     LoginComponent,
     AdminLandingComponent,
+<<<<<<< HEAD
+    ArticleDetailComponent,
+=======
     BusinessesComponent
 
+>>>>>>> d5cef53864fd8da34733a30a01b2390679b610b4
   ],
   imports: [
     BrowserModule,
