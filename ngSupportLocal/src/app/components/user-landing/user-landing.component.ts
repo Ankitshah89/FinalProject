@@ -83,7 +83,7 @@ export class UserLandingComponent implements OnInit {
 
       }
     );
-    //this.todos = this.todoService.index();
+
   }
 
   postUserArticle(articleForm : NgForm){
