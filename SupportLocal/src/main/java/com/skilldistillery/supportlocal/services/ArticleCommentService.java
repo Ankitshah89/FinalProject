@@ -19,6 +19,8 @@ public interface ArticleCommentService {
 //
 			boolean destroy(String email, int cid);
 
+			List<ArticleComment> showByArticleId(Integer aid);
+
 
 }
 
