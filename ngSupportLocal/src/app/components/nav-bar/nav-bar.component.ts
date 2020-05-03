@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./nav-bar.component.scss'],
 })
 export class NavBarComponent implements OnInit {
-
+  keyword = null;
   constructor(
     private router: Router,
     private auth: AuthService,
@@ -29,6 +29,16 @@ export class NavBarComponent implements OnInit {
     this.router.navigateByUrl('/home');
   }
 
+  search(keyword: string){
+
+    console.log(keyword);
+
+    this.router.navigate(['search/'+keyword]);
+    // this.router.navigateByUrl()
+    console.log('Navigating to search');
+
+    this.keyword = null;
+  }//"search(keyword)"
 
 
 }
