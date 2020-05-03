@@ -49,16 +49,14 @@ public class User {
 	
 	private boolean active;
 	
-	
 	@OneToMany(mappedBy="user")
 	private List<Review> reviews;
-	
 	
 	
 	@OneToMany(mappedBy="user")
 	private List<ReviewComment> reviewComments;
 	
-	
+	@JsonIgnore
 	@OneToMany(mappedBy="user")
 	private List<Article> articles; 
 	
@@ -67,7 +65,7 @@ public class User {
 	private List<Business> businesses;
 	
 
-	
+	@JsonIgnore
     @OneToMany(mappedBy="user")
     private List<ArticleComment> articleComments;
 	
