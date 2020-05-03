@@ -1,8 +1,13 @@
 <!-- Sidebar -->
-<div class="bg-light border-left" id="sidebar-wrapper" *ngIf="user">
-  <div class="sidebar-heading">Favorites</div>
-
-  <div class="list-group list-group-flush" **ngIf="noFavs">
+<div class="bg-light border-left " id="sidebar-wrapper" *ngIf="loggedIn">
+  <div class="sidebar-heading">Discover Businesses</div>
+  <div class="list-group list-group-flush" >
+    <!-- <a href="business/{{favorite.id}}" class="list-group-item list-group-item-action bg-light"
+      >{{favorite.name}}</a
+    > -->
+    <a href="#" class="list-group-item list-group-item-action bg-light"
+      >Shortcuts</a
+    >
     <a href="#" class="list-group-item list-group-item-action bg-light"
       >No Favorites Yet</a
     >
@@ -26,7 +31,7 @@
     >
     <a href="#" class="list-group-item list-group-item-action bg-light"
       >Status</a
-    > -->
+    >
   </div>
   <!-- /#sidebar-wrapper -->
 </div>

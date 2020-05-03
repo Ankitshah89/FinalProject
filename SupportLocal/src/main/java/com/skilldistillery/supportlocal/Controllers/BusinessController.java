@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.supportlocal.entities.Business;
+import com.skilldistillery.supportlocal.entities.User;
 import com.skilldistillery.supportlocal.services.BusinessService;
 
 @RestController
@@ -121,6 +122,21 @@ public class BusinessController {
 			
 		}
 		return listBus;
+	}
+	
+	@PostMapping("businesses/manager")
+	public List<Business> businessByManager(@RequestBody User user, HttpServletResponse response){
+		List<Business> managedBus = null;
+		try {
+			managedBus = bServ.findByManager(user);
+			System.out.println("_*_*_*_*_*_*_*_*_*_*_* Finding businesses through API");
+			response.setStatus(200);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Could not retrieve businesses by manager");
+			response.setStatus(404);
+		}
+		return managedBus;
 	}
 	
 //	@PutMapping("businesses/{id}/manager")

@@ -108,5 +108,16 @@ export class AddressService {
     };
   }
 
+  public generalSearch(keyword: string){
+    return this.http.get<Address[]>(this.url + 'search/' + keyword).
+    pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Could not retrieve list of Addresses using search: ' + keyword);
+
+      })
+    )
+  }
+
 
 }

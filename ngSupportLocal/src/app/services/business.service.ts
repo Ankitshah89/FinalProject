@@ -140,32 +140,52 @@ export class BusinessService {
   }
 
   //Search by Name
-  public searchName(keyword: string){
+  public searchName(keyword: string) {
     return this.http.get<Business[]>(this.url + "search/name/" + keyword)
-        .pipe(
-          catchError((err: any) => {
-            console.log(err);
-            return throwError('Could not find Business with name: ' + keyword);
-          })
-        );
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('Could not find Business with name: ' + keyword);
+        })
+      );
   }
-  public searchDescription(keyword: string){
+  public searchDescription(keyword: string) {
     return this.http.get<Business[]>(this.url + "search/description/" + keyword)
-        .pipe(
-          catchError((err: any) => {
-            console.log(err);
-            return throwError('Could not find Business with description: ' + keyword);
-          })
-        );
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('Could not find Business with description: ' + keyword);
+        })
+      );
   }
-  public searchZip(keyword: string){
+  public searchZip(keyword: string) {
     return this.http.get<Business[]>(this.url + "search/zip/" + keyword)
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('Could not find Business with zip: ' + keyword);
+        })
+      );
+  }
+
+  public businessByManager(user: User) {
+    const credentials = this.authService.getCredentials();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Basic ${credentials}`
+      })
+    };
+    if (this.authService.checkLogin()) {
+      return this.http.post<Business[]>(this.url + "manager", user, httpOptions)
         .pipe(
           catchError((err: any) => {
             console.log(err);
-            return throwError('Could not find Business with zip: ' + keyword);
+            return throwError('Could not retrieve list of Businesses from this user');
+
           })
-        );
+        )
+    }
   }
 
   //Search by Preference

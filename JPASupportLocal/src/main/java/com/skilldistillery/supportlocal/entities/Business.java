@@ -19,6 +19,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Business {
@@ -52,7 +53,7 @@ public class Business {
 	
 	@JoinColumn(name="manager_id")
 	@ManyToOne
-	@JsonBackReference(value = "businessToUserManager")
+//	@JsonManagedReference(value = "businessToUserManager")
 	private User manager;
 	
 	
@@ -76,7 +77,7 @@ public class Business {
 	@JoinTable(name = "business_preference",
 	joinColumns = @JoinColumn(name="business_id"),
 	inverseJoinColumns = @JoinColumn(name = "preference_id"))
-	@JsonIgnore
+//	@JsonIgnore
 	private List<Preference> preferences;
 	///Methods Begin
 
