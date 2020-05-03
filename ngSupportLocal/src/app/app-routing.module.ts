@@ -13,6 +13,7 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { BusinessLandingComponent } from './components/business-landing/business-landing.component';
 import { UserLandingComponent } from './components/user-landing/user-landing.component';
 import { AdminLandingComponent } from './components/admin-landing/admin-landing.component';
+import { BusinessesComponent } from './components/businesses/businesses.component';
 const routes: Routes = [
 
   { path: 'search/:keyword', component: SearchComponent},
@@ -25,7 +26,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'logout', component: LogoutComponent },
-  { path: 'businesses', component: BusinessComponent },
+  { path: 'businesses', component: BusinessesComponent },
   { path: 'articles', component: ArticlesComponent },
   { path: 'reviews', component: ReviewsComponent },
   { path: 'articles/:id', component: ArticlesComponent},
