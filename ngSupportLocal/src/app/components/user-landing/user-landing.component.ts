@@ -14,7 +14,7 @@ import { ArticleService } from 'src/app/services/article.service';
 })
 export class UserLandingComponent implements OnInit {
 
-
+  // commentList : Article[] =[];
   articleList: Article[] = [];
   newArticle: Article = new Article();
   articles: Article[] = [];
@@ -49,6 +49,19 @@ export class UserLandingComponent implements OnInit {
     );
 
   }
+
+  // loadArticleComments(){
+  //   this.articleList =[];
+  //   this.articleSvc.loadArticleComments().subscribe(
+  //   good => {
+  //     this.articleList = good;
+  //   },
+  //   bad =>{
+
+  //   }
+  //   )
+
+  // }
 
   myFunction() {
     var dots = document.getElementById('dots');

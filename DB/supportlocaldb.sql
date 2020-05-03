@@ -311,9 +311,11 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `supportlocaldb`;
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `phone`, `created_at`, `active`) VALUES (1, 'Jason', 'Nash', 'abc@xyz.com', '$2a$10$iFcq7QU0MTFhsMESWUkkzeb2HR66wDjyt0gkMzbJFYNbmSylBX/Ce', 'Admin', '1234567890', NULL, 1);
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `phone`, `created_at`, `active`) VALUES (2, 'Devin', 'Homie', 'xyz@abc.com', '$2a$10$iFcq7QU0MTFhsMESWUkkzeb2HR66wDjyt0gkMzbJFYNbmSylBX/Ce', 'User', '5675432341', NULL, 1);
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `phone`, `created_at`, `active`) VALUES (3, 'Ankit', 'Shah', 'ankit@ankit.com', '$2a$10$iFcq7QU0MTFhsMESWUkkzeb2HR66wDjyt0gkMzbJFYNbmSylBX/Ce', 'Business', '1234567799', NULL, 1);
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `phone`, `created_at`, `active`) VALUES (1, 'Jason', 'Nash', 'abc@xyz.com', '$2a$10$iFcq7QU0MTFhsMESWUkkzeb2HR66wDjyt0gkMzbJFYNbmSylBX/Ce', 'Admin', '1234567890', '2020-04-29', 1);
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `phone`, `created_at`, `active`) VALUES (2, 'Devin', 'Homie', 'xyz@abc.com', '$2a$10$iFcq7QU0MTFhsMESWUkkzeb2HR66wDjyt0gkMzbJFYNbmSylBX/Ce', 'User', '5675432341', '2020-05-01', 1);
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `phone`, `created_at`, `active`) VALUES (3, 'Ankit', 'Shah', 'ankit@ankit.com', '$2a$10$iFcq7QU0MTFhsMESWUkkzeb2HR66wDjyt0gkMzbJFYNbmSylBX/Ce', 'Business', '1234567799', '2020-05-01', 1);
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `phone`, `created_at`, `active`) VALUES (4, 'Steve', 'King', 'steve@steve.com', '$2a$10$iFcq7QU0MTFhsMESWUkkzeb2HR66wDjyt0gkMzbJFYNbmSylBX/Ce', 'Business', '4352671611', '2020-05-01', 1);
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `phone`, `created_at`, `active`) VALUES (5, 'Lewis', 'Hamilton', 'lewis@lewis.com', '$2a$10$iFcq7QU0MTFhsMESWUkkzeb2HR66wDjyt0gkMzbJFYNbmSylBX/Ce', 'Business', '1345823452', '2020-05-01', 1);
 
 COMMIT;
 
@@ -344,8 +346,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `supportlocaldb`;
-INSERT INTO `business` (`id`, `name`, `description`, `phone`, `active`, `image_url`, `manager_id`, `create_date`) VALUES (1, 'Mount Rushmore', 'Rock climbing', '123456789', 1, NULL, 1, NULL);
-INSERT INTO `business` (`id`, `name`, `description`, `phone`, `active`, `image_url`, `manager_id`, `create_date`) VALUES (2, 'Mrs. Cooper', 'Boutique', '234512312', 1, NULL, 2, NULL);
+INSERT INTO `business` (`id`, `name`, `description`, `phone`, `active`, `image_url`, `manager_id`, `create_date`) VALUES (1, 'Monkey Business Burritos', 'Denver Restaurants - Burritos', '3033829710', 1, 'http://www.lynnkehr.com/wp-content/uploads/2016/05/MBB-600x300.jpg', NULL, '2020-05-01');
+INSERT INTO `business` (`id`, `name`, `description`, `phone`, `active`, `image_url`, `manager_id`, `create_date`) VALUES (2, 'Water 2 Wine ', 'Winery', '3037999463', 1, 'https://www.visitbrookfield.com/wp-content/sabai/File/files/fb5c8da09c77d509a2d64282c58b33ba.jpg', NULL, '2020-05-01');
+INSERT INTO `business` (`id`, `name`, `description`, `phone`, `active`, `image_url`, `manager_id`, `create_date`) VALUES (3, 'Pug Ryan\'s Steakhouse & Brewery', 'Microbrews, Catering', '9704682145', 1, 'http://coloradobeer.org/wp-content/uploads/gravity_forms/14-9c9fca815a9748a9d553b5c66056473a/2015/09/264x264WebLogo.png', 3, '2020-05-01');
 
 COMMIT;
 
@@ -365,8 +368,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `supportlocaldb`;
-INSERT INTO `address` (`id`, `street`, `street_2`, `city`, `state`, `postal_code`, `country`, `business_id`) VALUES (1, '123 Street', NULL, 'Centennail', 'CO', '80112', 'USA', 1);
-INSERT INTO `address` (`id`, `street`, `street_2`, `city`, `state`, `postal_code`, `country`, `business_id`) VALUES (2, '234 Street', NULL, 'Omaha', 'NE', '12345', 'USA', 2);
+INSERT INTO `address` (`id`, `street`, `street_2`, `city`, `state`, `postal_code`, `country`, `business_id`) VALUES (1, '585 S Pecos St', NULL, 'Denver', 'CO', '80223', 'USA', 1);
+INSERT INTO `address` (`id`, `street`, `street_2`, `city`, `state`, `postal_code`, `country`, `business_id`) VALUES (2, '8130 S University Blvd', 'Suite 110', 'Centennial', 'CO', '80112', 'USA', 2);
+INSERT INTO `address` (`id`, `street`, `street_2`, `city`, `state`, `postal_code`, `country`, `business_id`) VALUES (3, ' 104 Village Pl', NULL, 'Dillon', 'CO', '80435', 'USA', 3);
 
 COMMIT;
 
@@ -413,6 +417,7 @@ USE `supportlocaldb`;
 INSERT INTO `article` (`id`, `user_id`, `business_id`, `title`, `content`, `create_at`, `image_url`, `active`) VALUES (1, 1, 1, 'Hello World', 'Trial and Error', '2020-04-27', 'https://www.digitalmeetsculture.net/wp-content/uploads/2015/04/article.jpg', 1);
 INSERT INTO `article` (`id`, `user_id`, `business_id`, `title`, `content`, `create_at`, `image_url`, `active`) VALUES (2, 2, 2, 'Some Small Businesses That Got Aid Fear the Rules Too Much to Spend It', 'When a $192,000 loan from the federal government’s small-business aid program arrived in his bank account last month, George Evageliou, the founder of a custom woodworking company, felt like one of the lucky ones.\n\nUnder the program’s rules, Mr. Evageliou has eight weeks from the day he received the cash to spend it. But nearly three weeks after the clock started on April 14, he hasn’t used a penny.', '2020-05-01', 'https://cdn.the-scientist.com/assets/articleNo/30636/iImg/2186/b531a5bf-c7af-43de-9fc1-3560813f9d49-online.jpg', 1);
 INSERT INTO `article` (`id`, `user_id`, `business_id`, `title`, `content`, `create_at`, `image_url`, `active`) VALUES (3, 1, 1, 'There’s a more accurate way to compare coronavirus deaths to the flu', 'Months into the coronavirus pandemic, some politicians and pundits continue to promote ham-handed comparisons between covid-19 and the seasonal flu to score political points.\n\nThough there are many ways to debunk this fundamentally flawed comparison, one of the clearest was put forth this week by Jeremy Samuel Faust, an emergency room physician at Brigham and Women’s Hospital at Harvard Medical School', '2020-05-01', 'https://images.wisegeek.com/pile-of-newspapers.jpg', 1);
+INSERT INTO `article` (`id`, `user_id`, `business_id`, `title`, `content`, `create_at`, `image_url`, `active`) VALUES (4, 2, 1, '\'Tesla Stock Price Is Too High,\' Elon Musk Tweeted. Then Came the Stock Plunge\n\'Tesla Stock Price Is Too High,\' Elon Musk Tweeted. Then Came the Stock Plunge\n', 'Tesla shares plunged as much as 13% as of noon Friday in New York trading. The stock is still up about 65% for the year, an advance that’s put him in position to meet the final performance threshold needed to be awarded stock options that would yield him a windfall of about $730 million.\n\nMusk, 48, didn’t immediately respond to an email seeking further comment. He joked about Tesla’s stock being “so high” in December, and has said in the past the company has a higher market capitalization than it deserves.\n\nMusk settled a securities-fraud lawsuit the U.S. Securities and Exchange Commission brought in 2018 over his tweets claiming that he had the funding to take Tesla private. The two sides carried on their dispute into last year, when they amended an earlier agreement to add specific topics that Musk isn’t supposed to tweet about without advance approval from a Tesla lawyer.\n\nThe topics subject to the agreement include the company’s financial condition, potential mergers or acquisitions, production and sales numbers, new or proposed business lines, projections and forecasts that haven’t been previously published, and Musk’s purchase or sale of Tesla securities.', '2020-05-01', 'https://specials-images.forbesimg.com/imageserve/5db8f9cbb2a63d000793abc2/960x0.jpg?fit=scale', 1);
 
 COMMIT;
 
@@ -422,8 +427,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `supportlocaldb`;
-INSERT INTO `article_comment` (`id`, `article_id`, `content`, `create_date`, `inreply_to_id`, `user_id`) VALUES (1, 1, 'Check Check', '2020-04-27', NULL, 1);
-INSERT INTO `article_comment` (`id`, `article_id`, `content`, `create_date`, `inreply_to_id`, `user_id`) VALUES (2, 1, 'Reply to Check Check', '2020-04-29', 1, 2);
+INSERT INTO `article_comment` (`id`, `article_id`, `content`, `create_date`, `inreply_to_id`, `user_id`) VALUES (1, 1, 'Great Article', '2020-04-27', NULL, 1);
+INSERT INTO `article_comment` (`id`, `article_id`, `content`, `create_date`, `inreply_to_id`, `user_id`) VALUES (2, 1, 'Loved it', '2020-04-29', 1, 2);
+INSERT INTO `article_comment` (`id`, `article_id`, `content`, `create_date`, `inreply_to_id`, `user_id`) VALUES (3, 2, 'Love your work', '2020-05-01', NULL, 3);
+INSERT INTO `article_comment` (`id`, `article_id`, `content`, `create_date`, `inreply_to_id`, `user_id`) VALUES (4, 2, 'Thank you for the comment', '2020-05-01', 2, 2);
 
 COMMIT;
 

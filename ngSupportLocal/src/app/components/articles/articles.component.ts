@@ -1,3 +1,4 @@
+import { ArticleComment } from './../../models/article-comment';
 import { User } from './../../models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { BusinessService } from 'src/app/services/business.service';
@@ -20,6 +21,9 @@ export class ArticlesComponent implements OnInit {
   list = false;
   rating = 0;
   averageRating = 0;
+
+
+  articleComments: ArticleComment[];
 
   constructor(
     private articleSvc: ArticleService,
@@ -56,11 +60,20 @@ export class ArticlesComponent implements OnInit {
     });
   }
 
-  // displayArticleItem(article : Article){
-  //   this.selected = article;
+   displayArticleComments(article : Article){
+     this.selected = article;
+     this.articleSvc.selected = article;
+     this.articleSvc.loadArticleComments().subscribe(
+       good => {
+        this.articleComments = good;
+       },
+       bad =>{
+
+       }
+     )
 
 
 
-  // }
+  }
 
 }

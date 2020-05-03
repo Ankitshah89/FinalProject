@@ -47,10 +47,10 @@ public class ArticleCommentController {
 
 	}
 
-	@GetMapping("articles/comments/{cid}")
-	public ArticleComment show(HttpServletRequest req, HttpServletResponse resp, Principal principal,
-			@PathVariable int cid) {
-		ArticleComment comments = commentSvc.show(cid);
+	@GetMapping("articles/{aid}/comments")
+	public List<ArticleComment> show(HttpServletRequest req, HttpServletResponse resp, Principal principal,
+			@PathVariable int aid) {
+		List<ArticleComment> comments = commentSvc.showByArticleId(aid);
 		if (comments == null) {
 			resp.setStatus(404);
 		} else {
