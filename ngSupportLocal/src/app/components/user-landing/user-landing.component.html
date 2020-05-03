@@ -36,63 +36,62 @@
       <li [ngbNavItem]="2">
         <a ngbNavLink (click)="loadUserArticles()">My Articles</a>
         <ng-template ngbNavContent>
-          <div *ngFor="let item of articleList ">
-          <div class="jumbotron-fluid text-center hoverable p-4">
-            <!-- Grid row -->
-            <div class="row">
-              <!-- Grid column -->
-              <div class="col-md-4 offset-md-1 mx-3 my-3">
-                <!-- Featured image -->
-                <div class="view overlay">
-                  <img
-                    src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg"
-                    class="img-fluid"
-                    alt="Sample image for first version of blog listing"
-                  />
-                  <a>
-                    <div class="mask rgba-white-slight"></div>
-                  </a>
+          <div *ngFor="let item of articleList">
+            <div class="jumbotron-fluid text-center hoverable p-4">
+              <!-- Grid row -->
+              <div class="row">
+                <!-- Grid column -->
+                <div class="col-md-4 offset-md-1 mx-3 my-3">
+                  <!-- Featured image -->
+                  <div class="view overlay">
+                    <img
+                      src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg"
+                      class="img-fluid"
+                      alt="Sample image for first version of blog listing"
+                    />
+                    <a>
+                      <div class="mask rgba-white-slight"></div>
+                    </a>
+                  </div>
                 </div>
-              </div>
-              <!-- Grid column -->
+                <!-- Grid column -->
 
-              <!-- Grid column -->
-              <div class="col-md-7 text-md-left ml-3 mt-3">
-                <!-- Excerpt -->
-                <a href="#!" class="green-text">
-                  <h6 class="h6 pb-1">
-                    <i class="fas fa-desktop pr-1"></i> Articles
-                  </h6>
-                </a>
+                <!-- Grid column -->
+                <div class="col-md-7 text-md-left ml-3 mt-3">
+                  <!-- Excerpt -->
+                  <a href="#!" class="green-text">
+                    <h6 class="h6 pb-1">
+                      <i class="fas fa-desktop pr-1"></i> Articles
+                    </h6>
+                  </a>
 
-                <h4 class="h4 mb-4">{{item.title}}</h4>
-                <h4 class="h4 mb-4">TITLE</h4>
+                  <h4 class="h4 mb-4">{{ item.title }}</h4>
+                  <h4 class="h4 mb-4">TITLE</h4>
 
-                <h5 class="font-weight-normal">
-                  by <a><strong>USER NAME</strong></a
-                  >, {{item.createAt}}
-                </h5>
+                  <h5 class="font-weight-normal">
+                    by <a><strong>USER NAME</strong></a
+                    >, {{ item.createAt }}
+                  </h5>
 
+                  <p>
+                    {{ item.content }}<span id="dots">...</span
+                    ><span id="more"> </span>
+                  </p>
 
-                <p>
-                  {{item.content}}<span id="dots">...</span
-                  ><span id="more"
+                  <p
+                    id="dots"
+                    style="
+                      display: -webkit-box;
+                      -webkit-line-clamp: 3;
+                      -webkit-box-orient: vertical;
+                      overflow: hidden;
+                    "
                   >
-                  </span>
-                <p
-                  id="dots"
-                  style="
-                    display: -webkit-box;
-                    -webkit-line-clamp: 3;
-                    -webkit-box-orient: vertical;
-                    overflow: hidden;
-                  "
-                >
-                  <!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    <!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                   Phasellus imperdiet, nulla et dictum interdum, nisi lorem -->
-                  <!-- egestas vitae scel<span id="dots">...</span
+                    <!-- egestas vitae scel<span id="dots">...</span
                   ><span id="more" -->
-                  <!-- erisque enim ligula venenatis dolor. Maecenas nisl est,
+                    <!-- erisque enim ligula venenatis dolor. Maecenas nisl est,
                   ultrices nec congue eget, auctor vitae massa. Fusce luctus
                   vestibulum augue ut aliquet. Nunc sagittis dictum nisi, sed
                   ullamcorper ipsum dignissim ac. In at libero sed nunc
@@ -111,115 +110,114 @@
                   Donec vitae dui eget tellus gravida venenatis. Integer
                   fringilla congue eros non fermentum. Sed dapibus pulvinar nibh
                   tempor porta. -->
-
-                </p>
-                <button (click)="myFunction()" id="myBtn">Read more</button>
+                  </p>
+                  <button (click)="myFunction()" id="myBtn">Read more</button>
+                </div>
+                <!-- Grid column -->
               </div>
-              <!-- Grid column -->
-            </div>
-            <div class="row bootstrap snippets">
-              <div class="col-md-12 col-md-offset-2 col-sm-12">
-                <div class="comment-wrapper">
-                  <div class="panel panel-info">
-                    <div class="panel-heading">
-                      <br>
-                      Comment panel
+              <div class="row bootstrap snippets">
+                <div class="col-md-12 col-md-offset-2 col-sm-12">
+                  <div class="comment-wrapper">
+                    <div class="panel panel-info">
+                      <div class="panel-heading">
+                        <br />
+                        Comment panel
 
-                      <br>
-                      Comment panel
+                        <br />
+                        Comment panel
 
-                      <button (click)="showComments()" id="divBtn">
-                        Show Comment
-                      </button>
-                    </div>
-                    <div
-                      class="panel-body"
-                      id="commentDiv"
-                      style="display: none;"
-                    >
-                      <div class="clearfix"></div>
-                      <hr />
-                      <ul class="media-list">
-                        <li class="media">
-                          <a href="#" class="pull-left">
-                            <img
-                            src="https://bootdey.com/img/Content/user_1.jpg"
-                            alt=""
-                            class="rounded-circle"
-                            />
-                          </a>
-                          <div class="media-body">
-                            <span class="text-muted pull-right">
-                              <small class="text-muted"
-                              >4-20-2020 11:15am</small
-                              >
-                            </span>
-                            <p>
-                              Lorem ipsum dolor sit amet, consectetur adipiscing
-                              elit. Lorem ipsum dolor sit amet,
-                              <a href="#">#consecteturadipiscing </a>.
-                            </p>
-                          </div>
-                        </li>
-                        <li class="media">
-                          <a href="#" class="pull-left">
-                            <img
-                            src="assets/images/chrissy.jpg"
-                            alt=""
-                            class="rounded-circle"
-                            />
-                          </a>
-                          <div class="media-body">
-                            <span class="text-muted pull-right">
-                              <small class="text-muted"
-                              >4-20-2020 11:30am</small
-                              >
-                            </span>
-                            <p>
-                              Lorem ipsum dolor sit amet, consectetur adipiscing
-                              elit. Lorem ipsum dolor
-                              <a href="#">#ipsumdolor </a>adipiscing elit.
-                            </p>
-                          </div>
-                        </li>
-                        <li class="media">
-                          <a href="#" class="pull-left">
-                            <img
-                            src="https://bootdey.com/img/Content/user_3.jpg"
-                            alt=""
-                            class="rounded-circle"
-                            />
-                          </a>
-                          <div class="media-body">
-                            <span class="text-muted pull-right">
-                              <small class="text-muted"
-                              >4-20-2020 11:35am</small
-                              >
-                            </span>
-                            <p>
-                              Lorem ipsum dolor <a href="#">#sitamet</a> sit
-                              amet, consectetur adipiscing elit.
-                            </p>
-                          </div>
-                        </li>
-                      </ul>
-                      <textarea
-                      class="form-control"
-                      placeholder="write a comment..."
-                      rows="3"
-                      ></textarea>
-                      <br />
-                      <button type="button" class="btn btn-info pull-right">
-                        Post
-                      </button>
+                        <button (click)="showComments()" id="divBtn">
+                          Show Comment
+                        </button>
+                      </div>
+                      <div
+                        class="panel-body"
+                        id="commentDiv"
+                        style="display: none;"
+                      >
+                        <div class="clearfix"></div>
+                        <hr />
+                        <ul class="media-list">
+                          <li class="media">
+                            <a href="#" class="pull-left">
+                              <img
+                                src="https://bootdey.com/img/Content/user_1.jpg"
+                                alt=""
+                                class="rounded-circle"
+                              />
+                            </a>
+                            <div class="media-body">
+                              <span class="text-muted pull-right">
+                                <small class="text-muted"
+                                  >4-20-2020 11:15am</small
+                                >
+                              </span>
+                              <p>
+                                Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit. Lorem ipsum dolor sit amet,
+                                <a href="#">#consecteturadipiscing </a>.
+                              </p>
+                            </div>
+                          </li>
+                          <li class="media">
+                            <a href="#" class="pull-left">
+                              <img
+                                src="assets/images/chrissy.jpg"
+                                alt=""
+                                class="rounded-circle"
+                              />
+                            </a>
+                            <div class="media-body">
+                              <span class="text-muted pull-right">
+                                <small class="text-muted"
+                                  >4-20-2020 11:30am</small
+                                >
+                              </span>
+                              <p>
+                                Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit. Lorem ipsum dolor
+                                <a href="#">#ipsumdolor </a>adipiscing elit.
+                              </p>
+                            </div>
+                          </li>
+                          <li class="media">
+                            <a href="#" class="pull-left">
+                              <img
+                                src="https://bootdey.com/img/Content/user_3.jpg"
+                                alt=""
+                                class="rounded-circle"
+                              />
+                            </a>
+                            <div class="media-body">
+                              <span class="text-muted pull-right">
+                                <small class="text-muted"
+                                  >4-20-2020 11:35am</small
+                                >
+                              </span>
+                              <p>
+                                Lorem ipsum dolor <a href="#">#sitamet</a> sit
+                                amet, consectetur adipiscing elit.
+                              </p>
+                            </div>
+                          </li>
+                        </ul>
+                        <textarea
+                          class="form-control"
+                          placeholder="write a comment..."
+                          rows="3"
+                        ></textarea>
+                        <br />
+                        <button type="button" class="btn btn-info pull-right">
+                          Post
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+            <!-- Grid row -->
           </div>
-          <!-- Grid row -->
-        </div>
         </ng-template>
       </li>
 
@@ -462,7 +460,10 @@
       </li>
 
       <li [ngbNavItem]="4">
+<<<<<<< HEAD
+=======
 
+>>>>>>> 045a244204532be5d43e34b6c200b12e0d0002ed
         <a ngbNavLink>My Favorites</a>
         <ng-template ngbNavContent>
           <div class="jumbotron jumbotron-fluid">
@@ -586,12 +587,15 @@
         </ng-template>
       </li>
 
-
       <li [ngbNavItem]="5">
+<<<<<<< HEAD
+        <a ngbNavLink (click)="setEditUser()">Edit Profile</a>
+=======
         <a ngbNavLink (click) ="setEditUser()">Edit Profile</a>
+>>>>>>> 045a244204532be5d43e34b6c200b12e0d0002ed
         <ng-template ngbNavContent class="mx-2">
           <div class="container">
-            <form name="user-info" class="mr-auto" *ngIf="editUser" >
+            <form name="user-info" class="mr-auto" *ngIf="editUser">
               <div class="form-group">
                 <label for="email">Email:</label>
                 <input
@@ -599,7 +603,7 @@
                   name="email"
                   class="form-control"
                   placeholder="Email"
-                  [(ngModel)] ="editUser.email"
+                  [(ngModel)]="editUser.email"
                 />
               </div>
               <div class="form-group">
@@ -609,7 +613,7 @@
                   name="password"
                   class="form-control"
                   placeholder="Password"
-                  [(ngModel)] ="editUser.password"
+                  [(ngModel)]="editUser.password"
                 />
               </div>
               <div class="form-group">
@@ -619,7 +623,7 @@
                   name="firstName"
                   class="form-control"
                   placeholder="First Name"
-                  [(ngModel)] ="editUser.firstName"
+                  [(ngModel)]="editUser.firstName"
                 />
               </div>
               <div class="form-group">
@@ -629,7 +633,7 @@
                   name="lastName"
                   class="form-control"
                   placeholder="Last Name"
-                  [(ngModel)] ="editUser.lastName"
+                  [(ngModel)]="editUser.lastName"
                 />
               </div>
               <div class="form-group">
@@ -639,12 +643,15 @@
                   name="phone"
                   class="form-control"
                   placeholder="Phone"
-                  [(ngModel)] ="editUser.phone"
+                  [(ngModel)]="editUser.phone"
                 />
               </div>
-              <a href="#" class="pull-right btn btn-danger"
-              (click) ="updateUser(editUser)"
-             >Submit</a>
+              <a
+                href="#"
+                class="pull-right btn btn-danger"
+                (click)="updateUser(editUser)"
+                >Submit</a
+              >
             </form>
           </div>
         </ng-template>
@@ -653,8 +660,13 @@
         <a ngbNavLink>Write Article</a>
         <ng-template ngbNavContent class="mx-2">
           <div class="container">
-            <form name="user-info" class="mr-auto"
-            #articleForm="ngForm" ngNativeValidate id="articleForm">
+            <form
+              name="user-info"
+              class="mr-auto"
+              #articleForm="ngForm"
+              ngNativeValidate
+              id="articleForm"
+            >
               <div class="form-group">
                 <label for="email">Title:</label>
                 <input
@@ -662,21 +674,25 @@
                   name="title"
                   class="form-control"
                   placeholder="title"
-                 ngModel
-
+                  ngModel
                 />
               </div>
               <div class="form-group">
                 <label for="content">Article Content:</label>
                 <textarea
                   class="form-control"
-                  name ="content"
+                  name="content"
                   rows="3"
                   ngModel
                 ></textarea>
               </div>
 
-              <a href="#" class="pull-right btn btn-danger" (click) ="postUserArticle(newUserArticle)" >Submit</a>
+              <a
+                href="#"
+                class="pull-right btn btn-danger"
+                (click)="postUserArticle(newUserArticle)"
+                >Submit</a
+              >
             </form>
           </div>
         </ng-template>
