@@ -23,71 +23,61 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class User {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	@Column(name="first_name")
+
+	@Column(name = "first_name")
 	private String firstName;
-	
-	@Column(name="last_name")
+
+	@Column(name = "last_name")
 	private String lastName;
-	
+
 	private String email;
 	private String password;
-	
+
 	@Enumerated(EnumType.STRING)
 	private Role role;
-	
+
 	private String phone;
-	
-	
+
 	@Column(name = "created_at")
 	@CreationTimestamp
 	private LocalDate createdAt;
-	
+
 	private boolean active;
-	
-	@OneToMany(mappedBy="user")
+
+	@OneToMany(mappedBy = "user")
 	private List<Review> reviews;
-	
-	
-	@OneToMany(mappedBy="user")
+
+	@OneToMany(mappedBy = "user")
 	private List<ReviewComment> reviewComments;
-	
-	@JsonIgnore
-	@OneToMany(mappedBy="user")
-	private List<Article> articles; 
-	
-	@JsonManagedReference(value = "businessToUserManager")
-	@OneToMany(mappedBy="manager")
-	private List<Business> businesses;
-	
 
 	@JsonIgnore
-    @OneToMany(mappedBy="user")
-    private List<ArticleComment> articleComments;
-	
-	
+	@OneToMany(mappedBy = "user")
+	private List<Article> articles;
+
+//	@JsonBackReference(value = "businessToUserManager")
+	@JsonIgnore
+	@OneToMany(mappedBy = "manager")
+	private List<Business> businesses;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "user")
+	private List<ArticleComment> articleComments;
+
 	@ManyToMany
-	@JoinTable(name = "user_favourite_business",
-				joinColumns = @JoinColumn(name="user_id"),
-				inverseJoinColumns = @JoinColumn(name = "business_id"))
+	@JsonIgnore
+	@JoinTable(name = "user_favourite_business", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "business_id"))
 	private List<Business> favoriteBusinesses;
-	
+
 	@ManyToMany
-	@JoinTable(name = "user_preference",
-	joinColumns = @JoinColumn(name="user_id"),
-	inverseJoinColumns = @JoinColumn(name = "preference_id"))
-	
+	@JoinTable(name = "user_preference", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "preference_id"))
+
 	private List<Preference> preferences;
-	
-	
-	
+
 	////////////
-	
-	
 
 	public int getId() {
 		return id;
@@ -225,7 +215,6 @@ public class User {
 		return true;
 	}
 
-
 	public User(int id, String firstName, String lastName, String email, String password, Role role, String phone,
 			LocalDate createdAt, boolean active) {
 		super();
@@ -276,7 +265,6 @@ public class User {
 		this.businesses = businesses;
 	}
 
-
 	public List<Business> getFavoriteBusinesses() {
 		return favoriteBusinesses;
 	}
@@ -293,8 +281,6 @@ public class User {
 		this.preferences = preferences;
 	}
 
-
-
 	public List<ArticleComment> getArticleComments() {
 		return articleComments;
 	}
@@ -309,9 +295,5 @@ public class User {
 				+ ", password=" + password + ", role=" + role + ", phone=" + phone + ", createdAt=" + createdAt
 				+ ", active=" + active + "]";
 	}
-	
-	
-	
-	
 
 }

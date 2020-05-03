@@ -51,9 +51,9 @@ public class AddressController {
 	}
 
 	@PostMapping("addresses")
-	public Address createAddress(@RequestBody Address address, HttpServletResponse response,
-			HttpServletRequest request, Principal principal) {
-		Address newAddress = addServe.createAddress( principal.getName(),address);
+	public Address createAddress(@RequestBody Address address, HttpServletResponse response, HttpServletRequest request,
+			Principal principal) {
+		Address newAddress = addServe.createAddress(principal.getName(), address);
 
 		if (newAddress != null) {
 			response.setStatus(201);
@@ -75,22 +75,35 @@ public class AddressController {
 			manAdd.setPostalCode(address.getPostalCode());
 			manAdd.setCountry(address.getCountry());
 			response.setStatus(200);
-			return addServe.updateAddress(principal.getName(),manAdd);
+			return addServe.updateAddress(principal.getName(), manAdd);
 		}
 
 		return null;
 	}
 
 	@DeleteMapping("addresses/{id}")
-	public boolean deleteAddress(@PathVariable int id, HttpServletResponse response,
-			Principal principal) {
-		boolean deleted = addServe.deleteAddress(principal.getName(),id);
+	public boolean deleteAddress(@PathVariable int id, HttpServletResponse response, Principal principal) {
+		boolean deleted = addServe.deleteAddress(principal.getName(), id);
 		if (deleted) {
 			response.setStatus(200);
 		} else {
 			response.setStatus(404);
 		}
 		return deleted;
+	}
+
+	@GetMapping("addresses/search/{keyword}")
+	public List<Address> generalSearch(@PathVariable String keyword, HttpServletResponse response) {
+		List<Address> genSearch = null;
+		if (keyword.length() > 0) {
+			genSearch = addServe.generalSearch("%" + keyword + "%");
+		}
+		if (genSearch != null) {
+			response.setStatus(200);
+		} else {
+			response.setStatus(404);
+		}
+		return genSearch;
 	}
 
 }
