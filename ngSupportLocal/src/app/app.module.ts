@@ -1,3 +1,4 @@
+import { ArticleDetailComponent } from './components/article-detail/article-detail.component';
 import { UserService } from './services/user.service';
 import { ReviewService } from './services/review.service';
 import { ReviewCommentService } from './services/review-comment.service';
@@ -36,7 +37,6 @@ import { AdminLandingComponent } from './components/admin-landing/admin-landing.
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BusinessesComponent } from './components/businesses/businesses.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,12 +57,8 @@ import { BusinessesComponent } from './components/businesses/businesses.componen
     RegisterComponent,
     LoginComponent,
     AdminLandingComponent,
-<<<<<<< HEAD
+    BusinessesComponent,
     ArticleDetailComponent,
-=======
-    BusinessesComponent
-
->>>>>>> d5cef53864fd8da34733a30a01b2390679b610b4
   ],
   imports: [
     BrowserModule,
