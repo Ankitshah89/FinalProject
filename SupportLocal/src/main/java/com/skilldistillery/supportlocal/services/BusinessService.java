@@ -3,6 +3,7 @@ package com.skilldistillery.supportlocal.services;
 import java.util.List;
 
 import com.skilldistillery.supportlocal.entities.Business;
+import com.skilldistillery.supportlocal.entities.User;
 
 public interface BusinessService {
 	//Index - Done
@@ -21,5 +22,7 @@ public interface BusinessService {
 	List<Business> findBusinessByDescription(String description);
 	//FindByZipCode
 	List<Business> findBusinessByZipCode(String zip);
+	
+	List<Business> findByManager(User user);
 
 }

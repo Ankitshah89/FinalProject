@@ -161,4 +161,16 @@ public class BusinesServiceImpl implements BusinessService {
 		return listByZip;
 	}
 
+	@Override
+	public List<Business> findByManager(User user) {
+		System.out.println("************************** FOUND USER: " + user);
+		List<Business> manBus = null;
+		if(user != null) {
+			manBus = busRepo.findByManager(user);
+			System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& FOUND BUSINESSES: " + manBus);
+		}
+				
+		return manBus;
+	}
+
 }
