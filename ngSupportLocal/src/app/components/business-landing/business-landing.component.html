@@ -24,16 +24,16 @@
         <!-- Grid column -->
         <div class="col-md-4 text-md-center my-auto">
           <!-- Excerpt -->
-          <a href="#!" class="green-text">
+          <!-- <a href="#!" class="green-text">
             <h6 class="h6 pb-1">
               <i class="fas fa-desktop pr-1"></i> Edit Info
             </h6>
-          </a>
+          </a> -->
 
           <a href="#!" class="green-text" (click)="showIndividualBusiness(item.id)"><h4 class="h4 mb-3"  > {{item.name}} </h4></a>
           <p>
-            <!-- 17002 E Main St <br /> -->
-            ADDRESS IS NOT MAPPED NEED TO WORK <br />
+             {{item.address.street}} <br />
+            {{item.address.city}} {{item.address.state}} {{item.address.postalCode}}<br />
            Phone:  {{item.phone}}
           </p>
           <p class="font-weight-normal">

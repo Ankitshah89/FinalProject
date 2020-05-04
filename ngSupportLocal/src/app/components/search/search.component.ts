@@ -14,12 +14,13 @@ export class SearchComponent implements OnInit {
   searchResults = [];
   unfilterList = [];
   keyword = '';
-  category = ''
+  category = '';
 
   constructor(
     private route: ActivatedRoute,
     private busServe: BusinessService,
-    private addServe: AddressService
+    private addServe: AddressService,
+    private router :  Router
   ) { }
 
   ngOnInit(): void {
@@ -43,6 +44,17 @@ export class SearchComponent implements OnInit {
 
 
   }
+
+
+
+
+  showIndividualBusiness(id){
+    console.log('******************showing individual business');
+    localStorage.setItem("businessId", "");
+    localStorage.setItem("businessId", String(id));
+    this.router.navigate(['business']);
+  }
+
   categorySearch(category: string){
     this.busServe.businessesByCategory(category).subscribe(
       results =>{

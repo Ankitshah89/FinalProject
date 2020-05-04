@@ -1,3 +1,4 @@
+import { AddressService } from 'src/app/services/address.service';
 import { Component, OnInit } from '@angular/core';
 import { Business } from 'src/app/models/business';
 import { Review } from 'src/app/models/review';
@@ -30,6 +31,7 @@ export class BusinessesComponent implements OnInit {
     private userSvc: UserService,
     private review: ReviewService,
     private yelpApi: YelpApiService,
+    private addressSvc : AddressService,
     private authService: AuthService
   ) {}
 
@@ -52,6 +54,7 @@ export class BusinessesComponent implements OnInit {
 
   loadBusiness() {
     this.businessList = [];
+
     this.businessSvc.index().subscribe((good) => {
       good.forEach((business) => {
         console.log(good);

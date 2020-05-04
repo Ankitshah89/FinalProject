@@ -1,3 +1,4 @@
+import { AddressService } from 'src/app/services/address.service';
 import { YelpReview } from './../../models/yelp-review';
 import { YelpApiService } from './../../services/yelp-api.service';
 import { Component, OnInit } from '@angular/core';
@@ -36,6 +37,7 @@ export class BusinessComponent implements OnInit {
     private router: Router,
     private userSvc: UserService,
     private review: ReviewService,
+    private addressSvc : AddressService,
     private yelpApiSvc: YelpApiService,
     private authService: AuthService,
     private actRouter: ActivatedRoute
@@ -64,7 +66,6 @@ export class BusinessComponent implements OnInit {
       'i will populate the business info for ' +
       localStorage.getItem('businessId')
       );
-
 
 
       this.businessSvc.businessById(localStorage.getItem('businessId')).subscribe(
