@@ -326,8 +326,12 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `supportlocaldb`;
-INSERT INTO `preference` (`id`, `preference_type`, `preference_category`) VALUES (1, 'climbing', 'Sports');
-INSERT INTO `preference` (`id`, `preference_type`, `preference_category`) VALUES (2, 'clothes', 'Shopping');
+INSERT INTO `preference` (`id`, `preference_type`, `preference_category`) VALUES (1, 'Burritos', 'Food');
+INSERT INTO `preference` (`id`, `preference_type`, `preference_category`) VALUES (2, 'Winery', 'Food');
+INSERT INTO `preference` (`id`, `preference_type`, `preference_category`) VALUES (3, 'Micobrews', 'Food');
+INSERT INTO `preference` (`id`, `preference_type`, `preference_category`) VALUES (4, 'Arts & crafts', 'Shopping');
+INSERT INTO `preference` (`id`, `preference_type`, `preference_category`) VALUES (5, 'Mini Golf', 'Entertainment');
+INSERT INTO `preference` (`id`, `preference_type`, `preference_category`) VALUES (6, 'Kids Activities', 'Sports');
 
 COMMIT;
 
@@ -350,6 +354,9 @@ USE `supportlocaldb`;
 INSERT INTO `business` (`id`, `name`, `description`, `phone`, `active`, `image_url`, `manager_id`, `create_date`, `web_url`) VALUES (1, 'Monkey Business Burritos', 'Denver Restaurants - Burritos', '3033829710', 1, 'http://www.lynnkehr.com/wp-content/uploads/2016/05/MBB-600x300.jpg', 4, '2020-05-01', 'http://monkeybusinessburritos.com/');
 INSERT INTO `business` (`id`, `name`, `description`, `phone`, `active`, `image_url`, `manager_id`, `create_date`, `web_url`) VALUES (2, 'Water 2 Wine ', 'Winery', '3037999463', 1, 'https://www.visitbrookfield.com/wp-content/sabai/File/files/fb5c8da09c77d509a2d64282c58b33ba.jpg', 3, '2020-05-01', 'https://www.water2wine.com/');
 INSERT INTO `business` (`id`, `name`, `description`, `phone`, `active`, `image_url`, `manager_id`, `create_date`, `web_url`) VALUES (3, 'Pug Ryan\'s Steakhouse & Brewery', 'Microbrews, Catering', '9704682145', 1, 'http://coloradobeer.org/wp-content/uploads/gravity_forms/14-9c9fca815a9748a9d553b5c66056473a/2015/09/264x264WebLogo.png', 5, '2020-05-01', 'https://www.pugryans.com/tiki-bar');
+INSERT INTO `business` (`id`, `name`, `description`, `phone`, `active`, `image_url`, `manager_id`, `create_date`, `web_url`) VALUES (4, 'The Artisan Center\n The Artisan Center\n The Artisan Center', 'Arts & Crafts, Gift Shop Accessories', '3033331201', 1, 'https://cherrycreeknorth.com/_files/images/artisan-center-2.jpg', NULL, '2020-05-02', 'http://www.artisancenterdenver.com/');
+INSERT INTO `business` (`id`, `name`, `description`, `phone`, `active`, `image_url`, `manager_id`, `create_date`, `web_url`) VALUES (5, 'Urban Putt', 'Mini Golf', '7203603020', 1, 'https://cdn.vox-cdn.com/thumbor/CQ-BvsWSFP7oFfh8alnpvFCeT30=/0x0:6720x4480/1200x800/filters:focal(2823x1703:3897x2777)/cdn.vox-cdn.com/uploads/chorus_image/image/65218017/UP.0.jpg', NULL, '2020-05-02', 'https://www.urbanputt.com/');
+INSERT INTO `business` (`id`, `name`, `description`, `phone`, `active`, `image_url`, `manager_id`, `create_date`, `web_url`) VALUES (6, 'Stapleton All Sports', 'Kids Activities, Summer Camps', '7209856642', 1, 'http://stapletonallsports.com/images/slide/43.jpg', NULL, '2020-05-02', 'http://stapletonallsports.com/');
 
 COMMIT;
 
@@ -360,6 +367,11 @@ COMMIT;
 START TRANSACTION;
 USE `supportlocaldb`;
 INSERT INTO `business_preference` (`business_id`, `preference_id`) VALUES (1, 1);
+INSERT INTO `business_preference` (`business_id`, `preference_id`) VALUES (2, 1);
+INSERT INTO `business_preference` (`business_id`, `preference_id`) VALUES (3, 1);
+INSERT INTO `business_preference` (`business_id`, `preference_id`) VALUES (4, 4);
+INSERT INTO `business_preference` (`business_id`, `preference_id`) VALUES (5, 5);
+INSERT INTO `business_preference` (`business_id`, `preference_id`) VALUES (6, 6);
 
 COMMIT;
 
