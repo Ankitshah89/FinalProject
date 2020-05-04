@@ -3,7 +3,7 @@
   <div class="sidebar-heading">Discover Businesses</div>
 
 
-  <a *ngFor="let business of randomBusinesses" href="#/businesses/{{business.id}}"  class="list-group-item list-group-item-action bg-light"
+  <a *ngFor="let business of randomBusinesses" (click)="showIndividualBusiness(business.id)"  class="list-group-item list-group-item-action bg-light"
       >{{business.name}}</a
     >
 

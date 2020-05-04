@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { Business } from 'src/app/models/business';
 import { Review } from 'src/app/models/review';
 import { BusinessService } from 'src/app/services/business.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { ReviewService } from 'src/app/services/review.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -37,7 +37,8 @@ export class BusinessComponent implements OnInit {
     private userSvc: UserService,
     private review: ReviewService,
     private yelpApiSvc: YelpApiService,
-    private authService: AuthService
+    private authService: AuthService,
+    private actRouter: ActivatedRoute
   ) {}
 
   categories = ['All', 'Sports', 'Entertainment', 'Shopping'];
@@ -45,7 +46,9 @@ export class BusinessComponent implements OnInit {
   selectedType = 'All';
 
   ngOnInit(): void {
-
+    this.actRouter.params.subscribe(routeParams => {
+      this.getIndividualBusiness();
+    });
 
     // localStorage.setItem('businessId', '3');
 
@@ -55,6 +58,7 @@ export class BusinessComponent implements OnInit {
     this.logReviews();
     this.loadBusiness();
   }
+
   getIndividualBusiness() {
     console.log(
       'i will populate the business info for ' +
