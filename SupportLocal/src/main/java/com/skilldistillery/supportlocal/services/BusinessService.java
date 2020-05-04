@@ -13,7 +13,7 @@ public interface BusinessService {
 	//Update
 	Business updateBusiness(String email,Business business, int id);
 	//Destroy
-	boolean deleteBusiness(String email,int id);
+
 	//Create - Done
 	Business createBusiness(String email,Business business);
 	//FindByName
@@ -25,6 +25,8 @@ public interface BusinessService {
 	
 	List<Business> findByManager(User user);
 	List<Business> findByPreferenceCategory(String categoryStr);
+	Boolean deactivateAndActivateBusiness(String email, int id);
+	
 	
 //	List<Business> findBusinessesByUsername(U)
 
