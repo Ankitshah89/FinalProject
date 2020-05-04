@@ -17,9 +17,8 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 public class User {
@@ -54,7 +53,6 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<ReviewComment> reviewComments;
 
-	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<Article> articles;
 
@@ -63,7 +61,6 @@ public class User {
 	@OneToMany(mappedBy = "manager")
 	private List<Business> businesses;
 
-	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<ArticleComment> articleComments;
 
@@ -110,11 +107,11 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
+	@JsonIgnore
 	public String getPassword() {
 		return password;
 	}
-
+    @JsonProperty
 	public void setPassword(String password) {
 		this.password = password;
 	}

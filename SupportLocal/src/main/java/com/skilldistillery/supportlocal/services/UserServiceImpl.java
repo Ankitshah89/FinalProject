@@ -33,6 +33,19 @@ public class UserServiceImpl implements UserService {
 
 		return null;
 	}
+	
+	@Override 
+	public User findById(int uid) {
+		Optional<User> optUser = userRepo.findById(uid);
+		if (optUser.isPresent()) {
+			User user = optUser.get();
+			if (user != null) {
+				return user;
+			}
+		}
+		return null;
+		
+	}
 
 	@Override
 	public User updateUser(User user, String email ) {
