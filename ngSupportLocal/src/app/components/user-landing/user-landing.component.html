@@ -374,12 +374,22 @@
               id="articleForm"
             >
               <div class="form-group">
-                <label for="email">Title:</label>
+                <label for="title">Title:</label>
                 <input
                   type="text"
                   name="title"
                   class="form-control"
-                  placeholder="title"
+                  placeholder="Title"
+                  ngModel
+                />
+              </div>
+              <div class="form-group">
+                <label for="imageUrl">Image Url:</label>
+                <input
+                  type="text"
+                  name="imageUrl"
+                  class="form-control"
+                  placeholder="Image Url"
                   ngModel
                 />
               </div>
@@ -396,7 +406,7 @@
               <a
                 href="#"
                 class="pull-right btn btn-danger"
-                (click)="postUserArticle(newUserArticle)"
+                (click)="postUserArticle(articleForm)"
                 >Submit</a
               >
             </form>

@@ -407,26 +407,49 @@
         <a ngbNavLink>Write Article</a>
         <ng-template ngbNavContent class="mx-2">
           <div class="container">
-            <form name="user-info" class="mr-auto">
+            <form
+              name="user-info"
+              class="mr-auto"
+              #articleForm="ngForm"
+              ngNativeValidate
+              id="articleForm"
+            >
               <div class="form-group">
-                <label for="email">Title:</label>
+                <label for="title">Title:</label>
                 <input
-                  type="email"
-                  name="email"
+                  type="text"
+                  name="title"
                   class="form-control"
-                  placeholder="Email"
+                  placeholder="Title"
+                  ngModel
                 />
               </div>
               <div class="form-group">
-                <label for="password">Article Content:</label>
+                <label for="imageUrl">Image Url:</label>
+                <input
+                  type="text"
+                  name="imageUrl"
+                  class="form-control"
+                  placeholder="Image Url"
+                  ngModel
+                />
+              </div>
+              <div class="form-group">
+                <label for="content">Article Content:</label>
                 <textarea
                   class="form-control"
-                  id="exampleFormControlTextarea1"
+                  name="content"
                   rows="3"
+                  ngModel
                 ></textarea>
               </div>
 
-              <a href="#" class="pull-right btn btn-danger">Submit</a>
+              <a
+                href="#"
+                class="pull-right btn btn-danger"
+                (click)="postBusinessArticle(articleForm)"
+                >Submit</a
+              >
             </form>
           </div>
         </ng-template>
