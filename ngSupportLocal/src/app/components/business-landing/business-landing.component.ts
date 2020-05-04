@@ -16,6 +16,8 @@ export class BusinessLandingComponent implements OnInit {
   user: User = new User();
   userId: Number;
 
+
+
   constructor(
     private businessSvc: BusinessService,
     private userSVc: UserService,
@@ -69,7 +71,9 @@ export class BusinessLandingComponent implements OnInit {
     this.businessListForOwner = [];
     this.businessSvc.businessByManager(this.user).subscribe((good) => {
       good.forEach((business) => {
+
         this.businessListForOwner.push(business);
+
         console.log('business list of manager');
         console.log(business);
       });
