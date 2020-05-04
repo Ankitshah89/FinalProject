@@ -39,10 +39,8 @@ ext {
 dependencies {
 implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
   compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.8.5'
   compile group: 'org.springframework', name: 'spring-context', version:"$springVersion"
-
   compile "mysql:mysql-connector-java:5.1.47"
   compile "log4j:log4j:1.2.17"
   compile "org.hibernate:hibernate-core:$hibernateVersion"
