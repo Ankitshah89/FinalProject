@@ -54,6 +54,7 @@ public class User {
 	private List<ReviewComment> reviewComments;
 
 	@OneToMany(mappedBy = "user")
+//	@JsonIgnore
 	private List<Article> articles;
 
 //	@JsonManagedReference(value = "businessToUserManager")
@@ -62,6 +63,7 @@ public class User {
 	private List<Business> businesses;
 
 	@OneToMany(mappedBy = "user")
+	@JsonIgnore
 	private List<ArticleComment> articleComments;
 
 	@ManyToMany
