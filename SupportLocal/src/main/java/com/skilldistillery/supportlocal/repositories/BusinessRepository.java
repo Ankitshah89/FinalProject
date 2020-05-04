@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.skilldistillery.supportlocal.entities.Business;
 import com.skilldistillery.supportlocal.entities.PreferenceCategory;
-import com.skilldistillery.supportlocal.entities.User;
 
 public interface BusinessRepository extends JpaRepository<Business, Integer> {
 
@@ -16,7 +15,7 @@ public interface BusinessRepository extends JpaRepository<Business, Integer> {
 
 	List<Business> findByAddressPostalCodeLike(String zip);
 	
-	List<Business> findByManager(User user);
+	List<Business> findByManagerId(Integer id);
 	
 	List<Business> findByPreferencesPreferenceCategory(PreferenceCategory category);
 

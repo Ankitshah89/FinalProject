@@ -14,4 +14,5 @@ public interface AddressRepository extends JpaRepository<Address, Integer> {
 	
 	List<Address> findByBusinessPreferencesPreferenceCategory(PreferenceCategory category);
 
+	Address findByBusinessId(int id);
 }

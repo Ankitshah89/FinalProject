@@ -65,7 +65,6 @@ public class BusinesServiceImpl implements BusinessService {
 				}
 			}
 		}
-		
 
 		// TODO Auto-generated method stub
 		return null;
@@ -164,10 +163,10 @@ public class BusinesServiceImpl implements BusinessService {
 
 	@Override
 	public List<Business> findByManager(User user) {
-		System.out.println("************************** FOUND USER: " + user);
+		System.out.println("\n\n************************** FOUND USER: " + user);
 		List<Business> manBus = null;
 		if (user != null) {
-			manBus = busRepo.findByManager(user);
+			manBus = busRepo.findByManagerId(user.getId());
 			System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& FOUND BUSINESSES: " + manBus);
 		}
 
@@ -178,20 +177,20 @@ public class BusinesServiceImpl implements BusinessService {
 	public List<Business> findByPreferenceCategory(String categoryStr) {
 		List<Business> busCat = new ArrayList<>();
 		PreferenceCategory category = null;
-		for(PreferenceCategory cat: PreferenceCategory.values()) {
-			if(cat.toString().equals(categoryStr)) {
+		for (PreferenceCategory cat : PreferenceCategory.values()) {
+			if (cat.toString().equals(categoryStr)) {
 				category = cat;
 				break;
 			}
 		}
-		if(category != null) {
+		if (category != null) {
 			try {
 				busCat = busRepo.findByPreferencesPreferenceCategory(category);
 				System.out.println("Retrieved values for Businesses By Category: " + category.toString());
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.out.println("Failed to retrieve of list of Businesses by Category: " + categoryStr);
-				
+
 			}
 		}
 		return busCat;
