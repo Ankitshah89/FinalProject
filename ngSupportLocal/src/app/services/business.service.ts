@@ -23,6 +23,9 @@ export class BusinessService {
   private url = environment.baseUrl + 'api/businesses/';
 
 
+
+
+
   public index() { //Shouldn't Need any Authorization
     // const credentials = this.authService.getCredentials();
     // const httpOptions = {
@@ -139,6 +142,8 @@ export class BusinessService {
     }
   }
 
+
+
   //Search by Name
   public searchName(keyword: string) {
     return this.http.get<Business[]>(this.url + "search/name/" + keyword)
@@ -187,6 +192,36 @@ export class BusinessService {
         )
     }
   }
+
+  //Search by Preference
+
+  //Search by zip
+
+
+  // business by id
+  public businessById(id:String) {
+    const credentials = this.authService.getCredentials();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Basic ${credentials}`
+      })
+    };
+    if (this.authService.checkLogin()) {
+      return this.http.get<Business>(this.url + "info/" + id, httpOptions)
+        .pipe(
+          catchError((err: any) => {
+            console.log(err);
+            return throwError('Could not retrieve list of Businesses from this user');
+
+          })
+        )
+    }
+  }
+
+
+
+
   //Get BusinessesBy Category - URL + search/category/ + category -- No Auth
   public businessesByCategory(category: String){
     return this.http.get<Business[]>(this.url + 'search/category/' + category)

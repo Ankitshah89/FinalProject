@@ -2,15 +2,15 @@
   <app-left-side-bar></app-left-side-bar>
   <div id="page-content-wrapper">
     <!-- News jumbotron -->
-    <div class="jumbotron text-center hoverable p-4">
+    <div class="jumbotron text-center hoverable p-4" *ngFor="let item of businessListForOwner">
       <!-- Grid row -->
-      <div class="row">
-        <!-- Grid column -->
-        <div class="col-md-4 offset-md-1 mx-1 my-1">
+      <!-- Grid column -->
+      <div class="row" >
+      <div class="col-md-4 offset-md-1 mx-1 my-1">
           <!-- Featured image -->
           <div class="view overlay">
             <img
-              src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg"
+              src={{item.imageUrl}}
               class="img-fluid"
               alt="Sample image for first version of blog listing"
             />
@@ -30,32 +30,28 @@
             </h6>
           </a>
 
-          <h4 class="h4 mb-3">Kurosawa Asian Bistro</h4>
+          <a href="#!" class="green-text" (click)="showIndividualBusiness(item.id)"><h4 class="h4 mb-3"  > {{item.name}} </h4></a>
           <p>
-            17002 E Main St <br />
-            Parker, CO 80134 <br />
-            (303) 805-5985
+            <!-- 17002 E Main St <br /> -->
+            ADDRESS IS NOT MAPPED NEED TO WORK <br />
+           Phone:  {{item.phone}}
           </p>
           <p class="font-weight-normal">
             <a><strong>Manager</strong></a
             ><br />
-            Jackie Chan
+            {{item.manager.firstName}}  {{item.manager.lastName}}
           </p>
         </div>
         <!-- Grid column -->
         <div class="col-md-3 text-md-center my-auto">
-          <p>
+          <!-- <p>
             History <br />
             Established in 2014.
           </p>
-          <p></p>
+          <p></p> -->
 
           <p class="font-weight-normal">
-            Kurosawa fuse traditional Japanese food with inventive French
-            inspired nonvelle cuisines topped with talented chefs with years of
-            industry experience, making Kurosawa's dishes extremely exquisite to
-            the taste buds. what makes us unique is our quality of service &
-            100% organic vegetables, a warm atmosphere and our prices.
+
           </p>
         </div>
       </div>
