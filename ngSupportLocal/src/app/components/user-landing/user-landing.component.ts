@@ -94,6 +94,9 @@ export class UserLandingComponent implements OnInit {
 
   postUserArticle(articleForm : NgForm){
     const articleData = articleForm.value;
+    console.log(articleData);
+    articleData.active = true;
+
     this.articleSvc.postArticle(articleData).subscribe(
       go =>{
 

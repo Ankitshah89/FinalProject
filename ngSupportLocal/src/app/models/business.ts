@@ -4,7 +4,7 @@ import { Address } from './address';
 export class Business {
   id: number;
   name: string;
-  descripiton: string;
+  description: string;
   phone: string;
   imageUrl: string;
   manager: User;
@@ -18,7 +18,7 @@ export class Business {
 
     this.id = id;
     this.name = name;
-    this.descripiton = description;
+    this.description = description;
     this.phone = phone;
     this.active = active;
     this.imageUrl = imageUrl;

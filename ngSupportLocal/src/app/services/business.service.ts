@@ -164,25 +164,27 @@ export class BusinessService {
   }
 
   public businessByManager(user: User) {
-    const credentials = this.authService.getCredentials();
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: `Basic ${credentials}`,
-      }),
-    };
+    let httpOptions = {};
     if (this.authService.checkLogin()) {
-      return this.http
-        .post<Business[]>(this.url + 'manager', user, httpOptions)
-        .pipe(
-          catchError((err: any) => {
-            console.log(err);
-            return throwError(
-              'Could not retrieve list of Businesses from this user'
-            );
-          })
-        );
+      const credentials = this.authService.getCredentials();
+      httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: `Basic ${credentials}`,
+        }),
+      };
     }
+
+    return this.http
+      .post<Business[]>(this.url + 'manager', user, httpOptions)
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(
+            'Could not retrieve list of Businesses from this user'
+          );
+        })
+      );
   }
 
   //Search by Preference
@@ -192,7 +194,6 @@ export class BusinessService {
   // business by id
   public businessById(id: String) {
     let httpOptions = {};
-
     if (this.authService.checkLogin()) {
       const credentials = this.authService.getCredentials();
       httpOptions = {

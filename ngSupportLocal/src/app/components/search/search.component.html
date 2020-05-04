@@ -17,7 +17,7 @@
           <!-- Featured image -->
           <div class="view overlay">
             <img
-              src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg"
+              src={{result.business.imageUrl}}
               class="img-fluid"
               alt="Sample image for first version of blog listing"
             />
@@ -31,13 +31,13 @@
         <!-- Grid column -->
         <div class="col-md-4 text-md-center my-auto">
           <!-- Excerpt -->
-          <a href="business/{{ result.business.id }}" class="green-text">
+          <!-- <a href="business/{{ result.business.id }}" class="green-text">
             <h6 class="h6 pb-1">
               <i class="fas fa-desktop pr-1"></i> View Info
             </h6>
-          </a>
+          </a> -->
 
-          <h4 class="h4 mb-3">{{ result.business.name }}</h4>
+          <a  href="#!" class="green-text" (click)="showIndividualBusiness(result.business.id)"><h4 class="h4 mb-3" >{{ result.business.name }}</h4></a>
           <p>
             {{ result.street }}<br />
             {{ result.city }}, {{ result.state }} {{ result.postalCode }} <br />

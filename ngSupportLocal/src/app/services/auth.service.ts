@@ -31,6 +31,7 @@ export class AuthService {
     return this.http.get<User>(this.baseUrl + 'authenticate', httpOptions).pipe(
       tap((res) => {
         localStorage.setItem('credentials', credentials);
+
         return res;
       }),
       catchError((err: any) => {

@@ -24,16 +24,16 @@
         <!-- Grid column -->
         <div class="col-md-4 text-md-center my-auto">
           <!-- Excerpt -->
-          <a href="#!" class="green-text">
+          <!-- <a href="#!" class="green-text">
             <h6 class="h6 pb-1">
               <i class="fas fa-desktop pr-1"></i> Edit Info
             </h6>
-          </a>
+          </a> -->
 
           <a href="#!" class="green-text" (click)="showIndividualBusiness(item.id)"><h4 class="h4 mb-3"  > {{item.name}} </h4></a>
           <p>
-            <!-- 17002 E Main St <br /> -->
-            ADDRESS IS NOT MAPPED NEED TO WORK <br />
+             {{item.address.street}} <br />
+            {{item.address.city}} {{item.address.state}} {{item.address.postalCode}}<br />
            Phone:  {{item.phone}}
           </p>
           <p class="font-weight-normal">
@@ -407,26 +407,49 @@
         <a ngbNavLink>Write Article</a>
         <ng-template ngbNavContent class="mx-2">
           <div class="container">
-            <form name="user-info" class="mr-auto">
+            <form
+              name="user-info"
+              class="mr-auto"
+              #articleForm="ngForm"
+              ngNativeValidate
+              id="articleForm"
+            >
               <div class="form-group">
-                <label for="email">Title:</label>
+                <label for="title">Title:</label>
                 <input
-                  type="email"
-                  name="email"
+                  type="text"
+                  name="title"
                   class="form-control"
-                  placeholder="Email"
+                  placeholder="Title"
+                  ngModel
                 />
               </div>
               <div class="form-group">
-                <label for="password">Article Content:</label>
+                <label for="imageUrl">Image Url:</label>
+                <input
+                  type="text"
+                  name="imageUrl"
+                  class="form-control"
+                  placeholder="Image Url"
+                  ngModel
+                />
+              </div>
+              <div class="form-group">
+                <label for="content">Article Content:</label>
                 <textarea
                   class="form-control"
-                  id="exampleFormControlTextarea1"
+                  name="content"
                   rows="3"
+                  ngModel
                 ></textarea>
               </div>
 
-              <a href="#" class="pull-right btn btn-danger">Submit</a>
+              <a
+                href="#"
+                class="pull-right btn btn-danger"
+                (click)="postBusinessArticle(articleForm)"
+                >Submit</a
+              >
             </form>
           </div>
         </ng-template>
