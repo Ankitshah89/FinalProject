@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.supportlocal.entities.Address;
+import com.skilldistillery.supportlocal.entities.Business;
 import com.skilldistillery.supportlocal.services.AddressService;
 
 @RestController
@@ -104,6 +105,21 @@ public class AddressController {
 			response.setStatus(404);
 		}
 		return genSearch;
+	}
+	
+	@GetMapping("/businesses/search/category/{category}")
+	public List<Address> businessesByCategory(@PathVariable String category, HttpServletResponse response){
+		List<Address> managedBus = null;
+		try {
+			managedBus = addServe.businessCategory(category);
+			response.setStatus(200);
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("Business Controller: Failed to retrieve businesses by category");
+			response.setStatus(404);
+		}
+		
+		return managedBus;
 	}
 
 }

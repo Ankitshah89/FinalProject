@@ -1,5 +1,6 @@
 package com.skilldistillery.supportlocal.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.supportlocal.entities.Address;
 import com.skilldistillery.supportlocal.entities.Business;
+import com.skilldistillery.supportlocal.entities.PreferenceCategory;
 import com.skilldistillery.supportlocal.entities.Role;
 import com.skilldistillery.supportlocal.entities.User;
 import com.skilldistillery.supportlocal.repositories.AddressRepository;
@@ -153,6 +155,29 @@ public class AddressServiceImpl implements AddressService {
 		List<Address> genSearch = addRepo.findByBusinessDescriptionLikeOrPostalCodeLikeOrBusinessNameLike(keyword, keyword, keyword);
 		// TODO Auto-generated method stub
 		return genSearch;
+	}
+
+	@Override
+	public List<Address> businessCategory(String categoryStr) {
+		List<Address> busCat = new ArrayList<>();
+		PreferenceCategory category = null;
+		for(PreferenceCategory cat: PreferenceCategory.values()) {
+			if(cat.toString().equals(categoryStr)) {
+				category = cat;
+				break;
+			}
+		}
+		if(category != null) {
+			try {
+				busCat = addRepo.findByBusinessPreferencesPreferenceCategory(category);
+				System.out.println("Retrieved values for Businesses By Category: " + category.toString());
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("Failed to retrieve of list of Businesses by Category: " + categoryStr);
+				
+			}
+		}
+		return busCat;
 	}
 
 }
