@@ -9,24 +9,18 @@ import { catchError, tap } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BusinessService {
-
   constructor(
     private http: HttpClient,
     private authService: AuthService,
     private router: Router
-  ) {
-
-  }
+  ) {}
   private url = environment.baseUrl + 'api/businesses/';
 
-
-
-
-
-  public index() { //Shouldn't Need any Authorization
+  public index() {
+    //Shouldn't Need any Authorization
     // const credentials = this.authService.getCredentials();
     // const httpOptions = {
     //   headers: new HttpHeaders({
@@ -46,23 +40,21 @@ export class BusinessService {
     //   this.router.navigateByUrl('/businesses');
 
     // }
-    return this.http.get<Business[]>(this.url)
-      .pipe(
-        catchError((err: any) => {
-          console.log(err);
-          return throwError('List of Businesses could not be found');
-        })
-      );
+    return this.http.get<Business[]>(this.url).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('List of Businesses could not be found');
+      })
+    );
   }
 
   public create(business: Business) {
-
     const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Basic ${credentials}`
-      })
+        Authorization: `Basic ${credentials}`,
+      }),
     };
     if (this.authService.checkLogin()) {
       return this.http.post<any>(this.url, business, httpOptions).pipe(
@@ -70,10 +62,9 @@ export class BusinessService {
           console.log(err);
           return throwError('Could not create new Business' + err);
         })
-      )
+      );
     } else {
       this.router.navigateByUrl(`/home`);
-
     }
   }
 
@@ -82,41 +73,43 @@ export class BusinessService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Basic ${credentials}`
-      })
+        Authorization: `Basic ${credentials}`,
+      }),
     };
     if (this.authService.checkLogin()) {
       return this.http.delete<any>(this.url + id, httpOptions).pipe(
         catchError((err: any) => {
           console.log(err);
-          return throwError('Business Service could not delete business: ' + id + err);
-
+          return throwError(
+            'Business Service could not delete business: ' + id + err
+          );
         })
       );
     } else {
       this.router.navigateByUrl(`/home`);
     }
-
   }
   public updateTodo(data: Business) {
     const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Basic ${credentials}`
-      })
+        Authorization: `Basic ${credentials}`,
+      }),
     };
     if (this.authService.checkLogin()) {
-      return this.http.put<Business>(this.url + data.id, data, httpOptions).pipe(
-        catchError((err: any) => {
-          console.log(err);
-          return throwError('Update Business with ID: ' + data.id + ' failed.' + err)
-
-        })
-      )
+      return this.http
+        .put<Business>(this.url + data.id, data, httpOptions)
+        .pipe(
+          catchError((err: any) => {
+            console.log(err);
+            return throwError(
+              'Update Business with ID: ' + data.id + ' failed.' + err
+            );
+          })
+        );
     } else {
       this.router.navigateByUrl(`/home`);
-
     }
   }
 
@@ -125,52 +118,49 @@ export class BusinessService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Basic ${credentials}`
-      })
+        Authorization: `Basic ${credentials}`,
+      }),
     };
     if (this.authService.checkLogin()) {
-      return this.http.get<Business>(this.url + id, httpOptions)
-        .pipe(
-          catchError((err: any) => {
-            console.log(err);
-            return throwError('Could not find Business with id: ' + id);
-          })
-        );
+      return this.http.get<Business>(this.url + id, httpOptions).pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('Could not find Business with id: ' + id);
+        })
+      );
     } else {
       this.router.navigateByUrl(`/home`);
-
     }
   }
 
-
-
   //Search by Name
   public searchName(keyword: string) {
-    return this.http.get<Business[]>(this.url + "search/name/" + keyword)
-      .pipe(
-        catchError((err: any) => {
-          console.log(err);
-          return throwError('Could not find Business with name: ' + keyword);
-        })
-      );
+    return this.http.get<Business[]>(this.url + 'search/name/' + keyword).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Could not find Business with name: ' + keyword);
+      })
+    );
   }
   public searchDescription(keyword: string) {
-    return this.http.get<Business[]>(this.url + "search/description/" + keyword)
+    return this.http
+      .get<Business[]>(this.url + 'search/description/' + keyword)
       .pipe(
         catchError((err: any) => {
           console.log(err);
-          return throwError('Could not find Business with description: ' + keyword);
+          return throwError(
+            'Could not find Business with description: ' + keyword
+          );
         })
       );
   }
   public searchZip(keyword: string) {
-    return this.http.get<Business[]>(this.url + "search/zip/" + keyword)
-      .pipe(
-        catchError((err: any) => {
-          console.log(err);
-          return throwError('Could not find Business with zip: ' + keyword);
-        })
-      );
+    return this.http.get<Business[]>(this.url + 'search/zip/' + keyword).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Could not find Business with zip: ' + keyword);
+      })
+    );
   }
 
   public businessByManager(user: User) {
@@ -178,18 +168,20 @@ export class BusinessService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Basic ${credentials}`
-      })
+        Authorization: `Basic ${credentials}`,
+      }),
     };
     if (this.authService.checkLogin()) {
-      return this.http.post<Business[]>(this.url + "manager", user, httpOptions)
+      return this.http
+        .post<Business[]>(this.url + 'manager', user, httpOptions)
         .pipe(
           catchError((err: any) => {
             console.log(err);
-            return throwError('Could not retrieve list of Businesses from this user');
-
+            return throwError(
+              'Could not retrieve list of Businesses from this user'
+            );
           })
-        )
+        );
     }
   }
 
@@ -197,41 +189,38 @@ export class BusinessService {
 
   //Search by zip
 
-
   // business by id
-  public businessById(id:String) {
+  public businessById(id: String) {
     const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Basic ${credentials}`
-      })
+        Authorization: `Basic ${credentials}`,
+      }),
     };
     if (this.authService.checkLogin()) {
-      return this.http.get<Business>(this.url + "info/" + id, httpOptions)
-        .pipe(
-          catchError((err: any) => {
-            console.log(err);
-            return throwError('Could not retrieve list of Businesses from this user');
-
-          })
-        )
+      return this.http.get<Business>(this.url + 'info/' + id, httpOptions).pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(
+            'Could not retrieve list of Businesses from this user'
+          );
+        })
+      );
     }
   }
 
-
-
-
   //Get BusinessesBy Category - URL + search/category/ + category -- No Auth
-  public businessesByCategory(category: String){
-    return this.http.get<Business[]>(this.url + 'search/category/' + category)
-    .pipe(
-      catchError((err: any) =>{
-        console.log(err);
-        return throwError('Business Service: Failed to retrieve list by category');
-      })
-    );
+  public businessesByCategory(category: String) {
+    return this.http
+      .get<Business[]>(this.url + 'search/category/' + category)
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(
+            'Business Service: Failed to retrieve list by category'
+          );
+        })
+      );
   }
 }
-
-
