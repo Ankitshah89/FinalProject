@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Article {
@@ -37,6 +38,7 @@ public class Article {
 	
 	
 	@ManyToOne
+	@JsonIgnoreProperties(value = "manager")
 	@JoinColumn(name="business_id")
 	private Business business;
 
@@ -49,7 +51,7 @@ public class Article {
 	private String imageUrl;
 	
 	@OneToMany(mappedBy="article")
-	@JsonIgnore
+	@JsonIgnoreProperties(value = "articles")
 	private List<ArticleComment> articleComments;
 
 	// M e t h o d s

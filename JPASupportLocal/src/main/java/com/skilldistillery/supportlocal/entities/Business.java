@@ -22,63 +22,58 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Business {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	private String name;
-	
+
 	private String description;
-	
+
 	private String phone;
-	
+
 	private boolean active;
-	
-	@Column(name="web_url")
+
+	@Column(name = "web_url")
 	private String webUrl;
-	
+
 	@Column(name = "create_date")
 	@CreationTimestamp
 	private LocalDate createdAt;
-	
-	
-	@OneToOne(mappedBy="business")
-	@JsonIgnoreProperties(value="business")
+
+	@OneToOne(mappedBy = "business")
+	@JsonIgnoreProperties(value = "business")
 	private Address address;
-	
-	@Column(name="image_url")
+
+	@Column(name = "image_url")
 	private String imageUrl;
-	
-	@JoinColumn(name="manager_id")
+
+	@JoinColumn(name = "manager_id")
 	@ManyToOne
+	@JsonIgnoreProperties(value = "articles")
 //	@JsonManagedReference(value = "businessToUserManager")
 	private User manager;
-	
-	
-	@OneToMany(mappedBy="business")
+
+	@OneToMany(mappedBy = "business")
 	@JsonIgnore
 	private List<Article> articles;
-	
-	@OneToMany(mappedBy="business")
+
+	@OneToMany(mappedBy = "business")
 //	@JsonBackReference(value="BusinessToReview")
 	@JsonIgnore
 	private List<Review> reviews;
-	
+
 	@ManyToMany
-	@JoinTable(name = "user_favourite_business",
-				joinColumns = @JoinColumn(name="business_id"),
-				inverseJoinColumns = @JoinColumn(name = "user_id"))
+	@JoinTable(name = "user_favourite_business", joinColumns = @JoinColumn(name = "business_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
 	@JsonIgnore
 	private List<User> users;
-	
+
 	@ManyToMany
-	@JoinTable(name = "business_preference",
-	joinColumns = @JoinColumn(name="business_id"),
-	inverseJoinColumns = @JoinColumn(name = "preference_id"))
+	@JoinTable(name = "business_preference", joinColumns = @JoinColumn(name = "business_id"), inverseJoinColumns = @JoinColumn(name = "preference_id"))
 //	@JsonIgnore
 	private List<Preference> preferences;
-	///Methods Begin
+	/// Methods Begin
 
 	public Business() {
 		super();
@@ -132,8 +127,6 @@ public class Business {
 		this.imageUrl = imageUrl;
 	}
 
-	
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -155,7 +148,6 @@ public class Business {
 			return false;
 		return true;
 	}
-
 
 	@Override
 	public String toString() {
