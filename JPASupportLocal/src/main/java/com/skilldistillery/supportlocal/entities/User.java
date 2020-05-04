@@ -18,6 +18,7 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
@@ -48,6 +49,7 @@ public class User {
 	private boolean active;
 
 	@OneToMany(mappedBy = "user")
+//	@JsonIgnoreProperties(value = )
 	private List<Review> reviews;
 
 	@OneToMany(mappedBy = "user")
@@ -55,6 +57,7 @@ public class User {
 
 	@OneToMany(mappedBy = "user")
 //	@JsonIgnore
+	@JsonIgnoreProperties(value = "user")
 	private List<Article> articles;
 
 //	@JsonManagedReference(value = "businessToUserManager")

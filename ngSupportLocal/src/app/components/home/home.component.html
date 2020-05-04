@@ -96,8 +96,12 @@
           <h5 class="card-title">{{ article.title }}</h5>
           <h5 class="font-weight-normal">
             by
-            <a
-              ><strong>{{ article.business.name }}</strong></a
+            <a>
+              <strong *ngIf="article.business">{{ article.business.name }}</strong>
+              <strong *ngIf="!article.business">{{ article.user.firstName }} {{ article.user.lastName }}</strong>
+
+
+              </a
             >
             on {{ article.createAt | date: "MMM d, y h:mm a" }}
           </h5>
