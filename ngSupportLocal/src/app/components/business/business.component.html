@@ -26,17 +26,17 @@
           <a href="#!" class="green-text"> </a>
           <h4 class="h4 mb-3">{{individualBusiness.name}}</h4>
           <p>
-            <!-- 17002 E Main St <br /> -->
-            ADDRESS IS NOT MAPPED NEED TO WORK <br />
+             {{individualBusiness.address.street}} <br />
+            {{individualBusiness.address.city}} {{individualBusiness.address.state}}  {{individualBusiness.address.postalCode}} <br />
             Phone : {{individualBusiness.phone}}
           </p>
           <p class="font-weight-normal">
             <a><strong>Manager</strong></a
             ><br />
             {{individualBusiness.manager.firstName}}  {{individualBusiness.manager.lastName}}
+
           </p>
         </div>
-        <!-- Grid column -->
         <div class="col-md-3 text-md-center my-auto">
           <!-- <p>
             History <br />
@@ -44,9 +44,14 @@
           </p> -->
           <p></p>
           <p class="font-weight-normal">
-            {{individualBusiness.descripiton}}
+            <a  target ="_blank" href="{{individualBusiness.webUrl }}" class="green-text" >{{ individualBusiness.webUrl }}</a>
+            <p>
+           {{individualBusiness.description}}
+
+
           </p>
         </div>
+        <!-- Grid column -->
       </div>
       <!-- Grid row -->
     </div>

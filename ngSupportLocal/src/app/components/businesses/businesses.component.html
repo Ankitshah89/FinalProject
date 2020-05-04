@@ -27,8 +27,8 @@
           <a href="#!" class="green-text"> </a>
           <a  href="#!" class="green-text" (click)="showIndividualBusiness(item.id)"><h4 class="h4 mb-3"><Strong>{{item.name}}</Strong></h4></a>
           <p>
-            <!-- 17002 E Main St <br /> -->
-            ADDRESS IS NOT MAPPED NEED TO WORK <br />
+            {{item.address.street}} <br />
+           {{item.address.city}} {{item.address.state}} {{item.address.postalCode}} <br />
             Phone: {{item.phone}}
           </p>
           <p class="font-weight-normal">

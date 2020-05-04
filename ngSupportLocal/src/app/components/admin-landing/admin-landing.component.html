@@ -167,7 +167,7 @@
               <tr *ngFor="let business of businessList" class="showHand" (click)="selectedBusiness = business">
                 <td>{{ business.id }}</td>
                 <td>{{ business.name }}</td>
-                <td>{{ business.descripiton }}</td>
+                <td>{{ business.description }}</td>
                 <td>{{ business.manager }}</td>
                 <td>{{ business.phone }}</td>
                 <td>{{ business.imageUrl }}</td>
@@ -193,7 +193,7 @@
               Manager Last Name: {{ selectedBusiness.manager.lastName }}
             </li>
             <li class="list-group-item">
-              Description: {{ selectedBusiness.descripiton }}
+              Description: {{ selectedBusiness.description }}
             </li>
 
             <li class="list-group-item">

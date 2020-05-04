@@ -17,9 +17,8 @@ import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Business {
@@ -45,7 +44,7 @@ public class Business {
 	
 	
 	@OneToOne(mappedBy="business")
-	@JsonBackReference(value="businessToAddress")
+	@JsonIgnoreProperties(value="business")
 	private Address address;
 	
 	@Column(name="image_url")

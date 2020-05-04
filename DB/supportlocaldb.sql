@@ -335,6 +335,8 @@ INSERT INTO `preference` (`id`, `preference_type`, `preference_category`) VALUES
 INSERT INTO `preference` (`id`, `preference_type`, `preference_category`) VALUES (4, 'Arts & crafts', 'Shopping');
 INSERT INTO `preference` (`id`, `preference_type`, `preference_category`) VALUES (5, 'Mini Golf', 'Entertainment');
 INSERT INTO `preference` (`id`, `preference_type`, `preference_category`) VALUES (6, 'Kids Activities', 'Sports');
+INSERT INTO `preference` (`id`, `preference_type`, `preference_category`) VALUES (7, 'Gastropubs', 'Entertainment');
+INSERT INTO `preference` (`id`, `preference_type`, `preference_category`) VALUES (8, 'Trainers, Gym, Sports Club', 'Sports');
 
 COMMIT;
 
@@ -354,12 +356,14 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `supportlocaldb`;
-INSERT INTO `business` (`id`, `name`, `description`, `phone`, `active`, `image_url`, `manager_id`, `create_date`, `web_url`) VALUES (1, 'Monkey Business Burritos', 'Denver Restaurants - Burritos', '3033829710', 1, 'http://www.lynnkehr.com/wp-content/uploads/2016/05/MBB-600x300.jpg', 4, '2020-05-01', 'http://monkeybusinessburritos.com/');
-INSERT INTO `business` (`id`, `name`, `description`, `phone`, `active`, `image_url`, `manager_id`, `create_date`, `web_url`) VALUES (2, 'Water 2 Wine ', 'Winery', '3037999463', 1, 'https://www.visitbrookfield.com/wp-content/sabai/File/files/fb5c8da09c77d509a2d64282c58b33ba.jpg', 3, '2020-05-01', 'https://www.water2wine.com/');
+INSERT INTO `business` (`id`, `name`, `description`, `phone`, `active`, `image_url`, `manager_id`, `create_date`, `web_url`) VALUES (1, 'Monkey Business Burritos', 'Denver Restaurants - Burritos', '3033829710', 1, 'http://www.lynnkehr.com/wp-content/uploads/2016/05/MBB-600x300.jpg', 3, '2020-05-01', 'http://monkeybusinessburritos.com/');
+INSERT INTO `business` (`id`, `name`, `description`, `phone`, `active`, `image_url`, `manager_id`, `create_date`, `web_url`) VALUES (2, 'Water 2 Wine ', 'Winery', '3037999463', 1, 'https://www.visitbrookfield.com/wp-content/sabai/File/files/fb5c8da09c77d509a2d64282c58b33ba.jpg', 4, '2020-05-01', 'https://www.water2wine.com/');
 INSERT INTO `business` (`id`, `name`, `description`, `phone`, `active`, `image_url`, `manager_id`, `create_date`, `web_url`) VALUES (3, 'Pug Ryan\'s Steakhouse & Brewery', 'Microbrews, Catering', '9704682145', 1, 'http://coloradobeer.org/wp-content/uploads/gravity_forms/14-9c9fca815a9748a9d553b5c66056473a/2015/09/264x264WebLogo.png', 5, '2020-05-01', 'https://www.pugryans.com/tiki-bar');
-INSERT INTO `business` (`id`, `name`, `description`, `phone`, `active`, `image_url`, `manager_id`, `create_date`, `web_url`) VALUES (4, 'The Artisan Center\n The Artisan Center\n The Artisan Center', 'Arts & Crafts, Gift Shop Accessories', '3033331201', 1, 'https://cherrycreeknorth.com/_files/images/artisan-center-2.jpg', 6, '2020-05-02', 'http://www.artisancenterdenver.com/');
+INSERT INTO `business` (`id`, `name`, `description`, `phone`, `active`, `image_url`, `manager_id`, `create_date`, `web_url`) VALUES (4, 'The Artisan Center', 'Arts & Crafts, Gift Shop Accessories', '3033331201', 1, 'https://cherrycreeknorth.com/_files/images/artisan-center-2.jpg', 6, '2020-05-02', 'http://www.artisancenterdenver.com/');
 INSERT INTO `business` (`id`, `name`, `description`, `phone`, `active`, `image_url`, `manager_id`, `create_date`, `web_url`) VALUES (5, 'Urban Putt', 'Mini Golf', '7203603020', 1, 'https://cdn.vox-cdn.com/thumbor/CQ-BvsWSFP7oFfh8alnpvFCeT30=/0x0:6720x4480/1200x800/filters:focal(2823x1703:3897x2777)/cdn.vox-cdn.com/uploads/chorus_image/image/65218017/UP.0.jpg', 7, '2020-05-02', 'https://www.urbanputt.com/');
 INSERT INTO `business` (`id`, `name`, `description`, `phone`, `active`, `image_url`, `manager_id`, `create_date`, `web_url`) VALUES (6, 'Stapleton All Sports', 'Kids Activities, Summer Camps', '7209856642', 1, 'http://stapletonallsports.com/images/slide/43.jpg', 8, '2020-05-02', 'http://stapletonallsports.com/');
+INSERT INTO `business` (`id`, `name`, `description`, `phone`, `active`, `image_url`, `manager_id`, `create_date`, `web_url`) VALUES (7, 'Punch Bowl Social Denver', 'American , Gastropubs', '3037652695', 1, 'https://www.restaurant-hospitality.com/sites/restaurant-hospitality.com/files/punch-bowl-social-exterior.jpg', 8, '2020-05-02', 'https://punchbowlsocial.com/');
+INSERT INTO `business` (`id`, `name`, `description`, `phone`, `active`, `image_url`, `manager_id`, `create_date`, `web_url`) VALUES (8, 'Icelandic Fitness', 'Trainers,Gyms,Sports Club', '3036418149', 1, 'http://www.icelandicfitness.com/wp-content/uploads/2014/04/icelanidcgroup.jpeg', 7, '2020-05-02', 'http://www.icelandicfitness.com/');
 
 COMMIT;
 
@@ -370,11 +374,13 @@ COMMIT;
 START TRANSACTION;
 USE `supportlocaldb`;
 INSERT INTO `business_preference` (`business_id`, `preference_id`) VALUES (1, 1);
-INSERT INTO `business_preference` (`business_id`, `preference_id`) VALUES (2, 1);
-INSERT INTO `business_preference` (`business_id`, `preference_id`) VALUES (3, 1);
+INSERT INTO `business_preference` (`business_id`, `preference_id`) VALUES (2, 2);
+INSERT INTO `business_preference` (`business_id`, `preference_id`) VALUES (3, 3);
 INSERT INTO `business_preference` (`business_id`, `preference_id`) VALUES (4, 4);
 INSERT INTO `business_preference` (`business_id`, `preference_id`) VALUES (5, 5);
 INSERT INTO `business_preference` (`business_id`, `preference_id`) VALUES (6, 6);
+INSERT INTO `business_preference` (`business_id`, `preference_id`) VALUES (7, 7);
+INSERT INTO `business_preference` (`business_id`, `preference_id`) VALUES (8, 8);
 
 COMMIT;
 
@@ -387,6 +393,11 @@ USE `supportlocaldb`;
 INSERT INTO `address` (`id`, `street`, `street_2`, `city`, `state`, `postal_code`, `country`, `business_id`) VALUES (1, '585 S Pecos St', NULL, 'Denver', 'CO', '80223', 'USA', 1);
 INSERT INTO `address` (`id`, `street`, `street_2`, `city`, `state`, `postal_code`, `country`, `business_id`) VALUES (2, '8130 S University Blvd', 'Suite 110', 'Centennial', 'CO', '80112', 'USA', 2);
 INSERT INTO `address` (`id`, `street`, `street_2`, `city`, `state`, `postal_code`, `country`, `business_id`) VALUES (3, ' 104 Village Pl', NULL, 'Dillon', 'CO', '80435', 'USA', 3);
+INSERT INTO `address` (`id`, `street`, `street_2`, `city`, `state`, `postal_code`, `country`, `business_id`) VALUES (4, '2757 E 3rd Ave', NULL, 'Denver', 'CO', '80206', 'USA', 4);
+INSERT INTO `address` (`id`, `street`, `street_2`, `city`, `state`, `postal_code`, `country`, `business_id`) VALUES (5, '1201 18th St', NULL, 'Denver', 'CO', '80202', 'USA', 5);
+INSERT INTO `address` (`id`, `street`, `street_2`, `city`, `state`, `postal_code`, `country`, `business_id`) VALUES (6, '2823 Havana St', NULL, 'Denver', 'CO', '80238', 'USA', 6);
+INSERT INTO `address` (`id`, `street`, `street_2`, `city`, `state`, `postal_code`, `country`, `business_id`) VALUES (7, '65 Broadway', NULL, 'Denver', 'CO', '80203', 'USA', 7);
+INSERT INTO `address` (`id`, `street`, `street_2`, `city`, `state`, `postal_code`, `country`, `business_id`) VALUES (8, '600 S Holly St', 'Unit 104', 'Denver', 'CO', '80246', 'USA', 8);
 
 COMMIT;
 

@@ -20,6 +20,8 @@ export class BusinessLandingComponent implements OnInit {
   userId: Number;
   newBusinessArticle: Article;
 
+
+
   constructor(
     private businessSvc: BusinessService,
     private userSVc: UserService,
