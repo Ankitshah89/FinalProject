@@ -1,3 +1,4 @@
+import { BusinessService } from 'src/app/services/business.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Business } from 'src/app/models/business';
@@ -12,9 +13,11 @@ export class RightSideBarComponent implements OnInit {
 
   favorites = [];
   user: User;
+  randomBusinesses = [];
   loggedIn;
   constructor(
     private authService: AuthService,
+    private busServ: BusinessService
   ) { }
 
   ngOnInit(): void {
@@ -25,7 +28,7 @@ export class RightSideBarComponent implements OnInit {
         data => {
           this.user = data;
           console.log('This is the information coming into the right-nav bar');
-
+          this.randomBus();
           console.log(this.user);
           if(this.user != null){
 
@@ -40,6 +43,24 @@ export class RightSideBarComponent implements OnInit {
       }
     // }
   }
+
+  randomBus(){
+    this.busServ.index().subscribe(
+      data => {
+        var toShuffle = data;
+        if(toShuffle.length < 6){
+          this.randomBusinesses = toShuffle;
+        } else {
+          for(var i = 0; i < 5; i++){
+            this.randomBusinesses.push(toShuffle.splice((Math.random() * toShuffle.length)), 1);
+          }
+        }
+      }
+    )
+
+  }
+
+
 
 
 }
