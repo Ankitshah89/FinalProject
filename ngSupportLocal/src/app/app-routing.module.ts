@@ -14,9 +14,10 @@ import { BusinessLandingComponent } from './components/business-landing/business
 import { UserLandingComponent } from './components/user-landing/user-landing.component';
 import { AdminLandingComponent } from './components/admin-landing/admin-landing.component';
 import { BusinessesComponent } from './components/businesses/businesses.component';
+import { ArticleDetailComponent } from './components/article-detail/article-detail.component';
 const routes: Routes = [
-
-  { path: 'search/:keyword', component: SearchComponent},
+  { path: 'search/:keyword', component: SearchComponent },
+  { path: 'businesses/search/category/:category', component:SearchComponent},
   { path: 'home', component: HomeComponent },
   { path: 'user', component: UserComponent }, //Non-owner user view
   { path: 'user-landing', component: UserLandingComponent }, //Logged in user
@@ -27,12 +28,13 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'businesses', component: BusinessesComponent },
+  { path: 'businesses/:id', component: BusinessComponent},
   { path: 'articles', component: ArticlesComponent },
+  { path: 'article-detail/:id', component: ArticleDetailComponent },
   { path: 'reviews', component: ReviewsComponent },
-  { path: 'articles/:id', component: ArticlesComponent},
-  { path: 'business/:id/articles', component: ArticlesComponent},
-  { path: '', pathMatch: 'full', redirectTo: 'home' }
-
+  { path: 'articles/:id', component: ArticlesComponent },
+  { path: 'business/:id/articles', component: ArticlesComponent },
+  { path: '', pathMatch: 'full', redirectTo: 'home' },
 ];
 
 @NgModule({

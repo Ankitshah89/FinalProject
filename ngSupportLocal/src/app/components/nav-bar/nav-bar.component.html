@@ -57,12 +57,13 @@
     </div>
   </header>
 
-  <div class="container nav-scroller py- mb-2">
+  <div class="container nav-scroller py- mb-2 border-bottom my-3">
+
     <nav class="nav d-flex justify-content-between">
-      <a class="p-2 text-muted" href="#">Entertainment</a>
-      <a class="p-2 text-muted" href="#">Food</a>
-      <a class="p-2 text-muted" href="#">Shopping</a>
-      <a class="p-2 text-muted" href="#">Sports</a>
+      <a class="p-2 text-muted" [routerLink]="['/businesses/search/category/Entertainment']" routerLinkActive="router-link-active" >Entertainment</a>
+      <a class="p-2 text-muted" [routerLink]="['/businesses/search/category/Food']" routerLinkActive="router-link-active" >Food</a>
+      <a class="p-2 text-muted" [routerLink]="['/businesses/search/category/Shopping']" routerLinkActive="router-link-active" >Shopping</a>
+      <a class="p-2 text-muted" [routerLink]="['/businesses/search/category/Sports']" routerLinkActive="router-link-active" >Sports</a>
       <!-- <a class="p-2 text-muted" href="#">Culture</a>
       <a class="p-2 text-muted" href="#">Business</a>
       <a class="p-2 text-muted" href="#">Politics</a>

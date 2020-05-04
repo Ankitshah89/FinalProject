@@ -23,6 +23,7 @@ export class UserLandingComponent implements OnInit {
   editUser = null;
   currentUser = null;
   newUserArticle = null;
+  userName = '';
 
   categories = ['Sports', 'Food', 'Entertainment', 'Shopping'];
 
@@ -40,6 +41,7 @@ export class UserLandingComponent implements OnInit {
       this.router.navigateByUrl('/login');
     }
     this.loadUserArticles();
+    this.setUsername();
   }
 
   loadUserArticles() {
@@ -51,6 +53,10 @@ export class UserLandingComponent implements OnInit {
       },
       (no) => {}
     );
+  }
+  setUsername(){
+    var user = localStorage.getItem('email').split('@', 1);
+    this.userName = user[0];
   }
 
   // loadArticleComments(){

@@ -12,6 +12,7 @@ public interface AddressService {
 	boolean deleteAddress(String email,int id);
 	Address findById(int id);
 	List<Address> generalSearch(String keywrod);
+	List<Address> businessCategory(String categoryStr);
 	
 
 	
