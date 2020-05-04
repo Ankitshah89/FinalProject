@@ -1,40 +1,78 @@
+import { NullTemplateVisitor } from '@angular/compiler';
+import { ArticleComment } from './../../models/article-comment';
+import { ArticleCommentService } from './../../services/article-comment.service';
+import { ArticleService } from 'src/app/services/article.service';
 import { UserService } from 'src/app/services/user.service';
-import { ArticleService } from './../../services/article.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { BusinessService } from 'src/app/services/business.service';
 import { Component, OnInit } from '@angular/core';
 import { Article } from 'src/app/models/article';
 import { Router, ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/models/user';
-user: new User();
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss'],
 })
 export class UserComponent implements OnInit {
-  user: User = new User();
+  user: User;
+  articles: Article[] = [];
+  articleComments: ArticleComment[] = [];
+  individualComments: ArticleComment[] = [];
   constructor(
     private currentRoute: ActivatedRoute,
-    private userService: UserService
+    private userService: UserService,
+    private articleService: ArticleService,
+    private articleCommentService: ArticleCommentService
   ) {}
 
   ngOnInit(): void {
+    this.getUserProfile();
+  }
+
+  getUserProfile() {
     const userIdStr = this.currentRoute.snapshot.paramMap.get('id');
     if (userIdStr) {
       const userId = Number.parseInt(userIdStr, 10);
       this.userService.show(userId).subscribe(
         (yay) => {
-          console.log('articles' + yay);
-
-          console.log(yay);
           this.user = yay;
+          this.getUserArticles();
         },
         (nay) => {
           console.log('error in user component get profile');
         }
       );
     }
+  }
+
+  getUserArticles() {
+    console.log('user articles' + this.user.articles);
+    this.articleService.articlesByUserId(this.user.id).subscribe(
+      (yay) => {
+        this.articles = yay;
+        console.log('articles' + yay);
+        this.getArticleComments();
+      },
+      (nay) => {
+        console.log('error in ts articlesbyuserid' + nay);
+      }
+    );
+  }
+
+  getArticleComments() {
+    this.articles.forEach((article) => {
+      const articleId = article.id;
+      this.articleCommentService.show(articleId).subscribe(
+        (yay) => {
+          article.articleComments = yay;
+          console.log(article.articleComments.length);
+        },
+        (nay) => {
+          console.log('error in getArticleComments');
+        }
+      );
+    });
   }
 
   myFunction() {

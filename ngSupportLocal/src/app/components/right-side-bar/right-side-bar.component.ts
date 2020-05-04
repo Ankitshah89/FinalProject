@@ -3,7 +3,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Business } from 'src/app/models/business';
 import { User } from 'src/app/models/user';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-right-side-bar',
@@ -19,7 +19,7 @@ export class RightSideBarComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private busServ: BusinessService,
-    private router : Router
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -43,7 +43,14 @@ export class RightSideBarComponent implements OnInit {
         console.log(error);
 
       }
-    // }
+
+
+  }
+  showIndividualBusiness(id) {
+    console.log('******************showing individual business');
+    localStorage.setItem("businessId", "");
+    localStorage.setItem("businessId", String(id));
+    this.router.navigate(['business/' + id]);
   }
 
 

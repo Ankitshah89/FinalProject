@@ -22,6 +22,8 @@ public interface ArticleService {
 
 		Article show(int aid);
 
+		List<Article> findByUserId(Integer uid);
+
 
 
 }
