@@ -16,25 +16,26 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserRepository userRepo;
-	
+
 	@Autowired
 	private PasswordEncoder encoder;
-	
-	@Autowired BusinessService busServ;
-	
+
+	@Autowired
+	BusinessService busServ;
+
 	@Override
 	public List<User> findByEmail(String email) {
 		User user = userRepo.findUserByEmail(email);
 		System.out.println(user.getRole());
-		
+
 		if (user.getRole().equals(Role.Admin)) {
 			return userRepo.findAll();
 		}
 
 		return null;
 	}
-	
-	@Override 
+
+	@Override
 	public User findById(int uid) {
 		Optional<User> optUser = userRepo.findById(uid);
 		if (optUser.isPresent()) {
@@ -44,17 +45,16 @@ public class UserServiceImpl implements UserService {
 			}
 		}
 		return null;
-		
+
 	}
 
 	@Override
-	public User updateUser(User user, String email ) {
+	public User updateUser(User user, String email) {
 		String encodedPW = encoder.encode(user.getPassword());
-		
-		Optional<User> userOpt = userRepo.findByEmail(email);
- 
 
-		if(userOpt.isPresent()) {
+		Optional<User> userOpt = userRepo.findByEmail(email);
+
+		if (userOpt.isPresent()) {
 			User managedUser = userOpt.get();
 			managedUser.setFirstName(user.getFirstName());
 			managedUser.setLastName(user.getLastName());
@@ -66,9 +66,6 @@ public class UserServiceImpl implements UserService {
 		}
 		return user;
 	}
-	
-	
-
 
 	@Override
 	public User findUserByEmail(String email) {
@@ -88,6 +85,18 @@ public class UserServiceImpl implements UserService {
 		return userRepo.saveAndFlush(user);
 	}
 
-	
+	@Override
+	public Boolean deactivateAndActivateUser(int userId, String email) {
+		User user = userRepo.findUserByEmail(email);
+		Optional<User> optUser = userRepo.findById(userId);
+		if (optUser.isPresent() && user != null) {
+			User updateUser = optUser.get();
+			updateUser.setActive(!updateUser.isActive());
+			userRepo.save(updateUser);
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 }

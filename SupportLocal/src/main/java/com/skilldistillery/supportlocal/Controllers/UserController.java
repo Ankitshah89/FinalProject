@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 //import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skilldistillery.supportlocal.entities.Article;
-import com.skilldistillery.supportlocal.entities.Business;
 import com.skilldistillery.supportlocal.entities.User;
 import com.skilldistillery.supportlocal.services.UserService;
 
@@ -69,6 +68,7 @@ public class UserController {
 		}
 
 		return user;
+		
 	}
 	
 	@GetMapping("users/profile/{uid}")
@@ -107,7 +107,16 @@ public class UserController {
 		return user;
 	}
 	
-	
+	@DeleteMapping("users/{userId}")
+	public boolean deactivateUser(HttpServletRequest req, HttpServletResponse res, @PathVariable int userId, Principal principal) {
+		boolean isEnabled = userSvc.deactivateAndActivateUser(userId, principal.getName());
+		if (isEnabled) {
+			res.setStatus(200);
+		}else {
+			res.setStatus(404);
+		}
+		return isEnabled;
+	}
 	
 	
 }

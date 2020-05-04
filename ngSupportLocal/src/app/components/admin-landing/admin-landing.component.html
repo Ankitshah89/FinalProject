@@ -97,31 +97,12 @@
               Email:
               <a href="mailto:{{ selectedUser.email }}"><u>{{ selectedUser.email }}</u></a>
             </li>
-            <!-- <li class="list-group-item">
-              Address: {{ selectedUser.address.address }}
-            </li>
-            <li class="list-group-item">
-              Address2: {{ selectedUser.address.address2 }}
-            </li>
-            <li class="list-group-item">
-              City: {{ selectedUser.address.city }}
-            </li>
-            <li class="list-group-item">
-              State: {{ selectedUser.address.state }}
-            </li>
-            <li class="list-group-item">
-              Country: {{ selectedUser.address.country }}
-            </li>
-            <li class="list-group-item">
-              Postal Code: {{ selectedUser.address.postalCode }}
-            </li> -->
+
             <li class="list-group-item">Phone: {{ selectedUser.phone }}</li>
             <li class="list-group-item">
               Created: {{ selectedUser.createdAt | date: "shortDate" }}
             </li>
-            <!-- <li class="list-group-item">
-              Last Updated: {{ selectedUser.updatedAt | date: "shortDate" }}
-            </li> -->
+
             <li class="list-group-item">Role: {{ selectedUser.role }}</li>
             <li class="list-group-item">Enabled: {{ selectedUser.active }}</li>
           </ul>
@@ -132,11 +113,11 @@
               Back
             </button>
             <button class="btn btn-outline-warning" *ngIf="!selectedUser.active"
-              (click)="updatedUserEnabled(selectedUser)">
+              (click)="deactivateOrActivateUser(selectedUser.id)">
               Enable
             </button>
             <button class="btn btn-outline-danger" *ngIf="selectedUser.active"
-              (click)="updatedUserEnabled(selectedUser)">
+              (click)="deactivateOrActivateUser(selectedUser.id)">
               Disable
             </button>
           </div>
@@ -157,9 +138,9 @@
                 <th>Id</th>
                 <th>Business</th>
                 <th>Description</th>
-                <th>Manager Id</th>
+
                 <th>Phone</th>
-                <th>Image</th>
+
                 <th>Active</th>
               </tr>
             </thead>
@@ -168,9 +149,9 @@
                 <td>{{ business.id }}</td>
                 <td>{{ business.name }}</td>
                 <td>{{ business.description }}</td>
-                <td>{{ business.manager }}</td>
+
                 <td>{{ business.phone }}</td>
-                <td>{{ business.imageUrl }}</td>
+
                 <td>{{ business.active }}</td>
               </tr>
             </tbody>
@@ -186,24 +167,24 @@
           <ul class="list-group">
             <li class="list-group-item">Business Id: {{ selectedBusiness.id }}</li>
             <li class="list-group-item">Active: {{ selectedBusiness.active }}</li>
-            <li class="list-group-item">
-              Manager First Name: {{ selectedBusiness.manager.firstName }}
-            </li>
-            <li class="list-group-item">
-              Manager Last Name: {{ selectedBusiness.manager.lastName }}
-            </li>
+
             <li class="list-group-item">
               Description: {{ selectedBusiness.description }}
             </li>
 
-            <li class="list-group-item">
-              IMG-1:<img class="img-thumbnail" src="{{ selectedBusiness.imageUrl }}" alt="" />
-            </li>
           </ul>
           <br />
           <div class="btn-group" role="group" aria-label="selected task">
             <button class="btn btn-outline-success" (click)="selectedBusiness = null">
               Back
+            </button>
+            <button class="btn btn-outline-warning" *ngIf="!selectedBusiness.active"
+              (click)="deactivateOrActivateBusiness(selectedBusiness.id)">
+              Enable
+            </button>
+            <button class="btn btn-outline-danger" *ngIf="selectedBusiness.active"
+              (click)="deactivateOrActivateBusiness(selectedBusiness.id)">
+              Disable
             </button>
           </div>
         </div>

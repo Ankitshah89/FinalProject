@@ -17,6 +17,9 @@ public interface UserService {
 	User create (User user);
 
 	User findById(int uid);
+
+
+	Boolean deactivateAndActivateUser(int userId, String email);
 	
 	
 }
