@@ -22,10 +22,12 @@
         <ng-template ngbNavContent class="mx-2">
           <div class="jumbotron jumbotron-fluid text-center">
             <div class="container">
-              <h1 class="display-4">Chrissy Rowland</h1>
+              <h1 class="display-4">
+                {{ user.firstName }} {{ user.lastName }}
+              </h1>
               <p class="lead">
-                Chrissy@EvilDead.com <br />
-                (555) 555-5555 <br />
+                {{ user.email }} <br />
+                {{ user.phone }} <br />
               </p>
             </div>
           </div>
@@ -37,7 +39,10 @@
         <a ngbNavLink>My Articles</a>
 
         <ng-template ngbNavContent>
-          <div class="jumbotron-fluid text-center hoverable p-4">
+          <div
+            class="jumbotron-fluid text-center hoverable p-4"
+            *ngFor="let article of user.articles"
+          >
             <!-- Grid row -->
             <div class="row">
               <!-- Grid column -->
@@ -65,10 +70,14 @@
                   </h6>
                 </a>
 
-                <h4 class="h4 mb-4">TITLE</h4>
+                <h4 class="h4 mb-4">{{ article.title }}</h4>
                 <h5 class="font-weight-normal">
-                  by <a><strong>Chrissy Rowland</strong></a
-                  >, 19/08/2016
+                  by
+                  <a
+                    ><strong
+                      >{{ user.firstName }} {{ user.lastName }}</strong
+                    ></a
+                  >, {{ article.createAt | date: "MMM d, y h:mm a" }}
                 </h5>
 
                 <p
@@ -80,27 +89,7 @@
                     overflow: hidden;
                   "
                 >
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Phasellus imperdiet, nulla et dictum interdum, nisi lorem
-                  erisque enim ligula venenatis dolor. Maecenas nisl est,
-                  ultrices nec congue eget, auctor vitae massa. Fusce luctus
-                  vestibulum augue ut aliquet. Nunc sagittis dictum nisi, sed
-                  ullamcorper ipsum dignissim ac. In at libero sed nunc
-                  venenatis imperdiet sed ornare turpis. Donec vitae dui eget
-                  tellus gravida venenatis. Integer fringilla congue eros non
-                  fermentum. Sed dapibus pulvinar nibh tempor porta. ultrices
-                  nec congue eget, auctor vitae massa. Fusce luctus vestibulum
-                  augue ut aliquet. Nunc sagittis dictum nisi, sed ullamcorper
-                  ipsum dignissim ac. In at libero sed nunc venenatis imperdiet
-                  sed ornare turpis. Donec vitae dui eget tellus gravida
-                  venenatis. Integer fringilla congue eros non fermentum. Sed
-                  dapibus pulvinar nibh tempor porta. ultrices nec congue eget,
-                  auctor vitae massa. Fusce luctus vestibulum augue ut aliquet.
-                  Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac.
-                  In at libero sed nunc venenatis imperdiet sed ornare turpis.
-                  Donec vitae dui eget tellus gravida venenatis. Integer
-                  fringilla congue eros non fermentum. Sed dapibus pulvinar nibh
-                  tempor porta.
+                  {{ article.content }}
                 </p>
                 <button (click)="myFunction()" id="myBtn">Read more</button>
               </div>
@@ -123,49 +112,10 @@
                       <div class="clearfix"></div>
                       <hr />
                       <ul class="media-list">
-                        <li class="media">
-                          <a href="#" class="pull-left">
-                            <img
-                              src="https://bootdey.com/img/Content/user_1.jpg"
-                              alt=""
-                              class="rounded-circle"
-                            />
-                          </a>
-                          <div class="media-body">
-                            <span class="text-muted pull-right">
-                              <small class="text-muted"
-                                >4-20-2020 11:15am</small
-                              >
-                            </span>
-                            <p>
-                              Lorem ipsum dolor sit amet, consectetur adipiscing
-                              elit. Lorem ipsum dolor sit amet,
-                              <a href="#">#consecteturadipiscing </a>.
-                            </p>
-                          </div>
-                        </li>
-                        <li class="media">
-                          <a href="#" class="pull-left">
-                            <img
-                              src="assets/images/chrissy.jpg"
-                              alt=""
-                              class="rounded-circle"
-                            />
-                          </a>
-                          <div class="media-body">
-                            <span class="text-muted pull-right">
-                              <small class="text-muted"
-                                >4-20-2020 11:30am</small
-                              >
-                            </span>
-                            <p>
-                              Lorem ipsum dolor sit amet, consectetur adipiscing
-                              elit. Lorem ipsum dolor
-                              <a href="#">#ipsumdolor </a>adipiscing elit.
-                            </p>
-                          </div>
-                        </li>
-                        <li class="media">
+                        <li
+                          class="media"
+                          *ngFor="let comment of user.articleComments"
+                        >
                           <a href="#" class="pull-left">
                             <img
                               src="https://bootdey.com/img/Content/user_3.jpg"
@@ -173,19 +123,20 @@
                               class="rounded-circle"
                             />
                           </a>
+                          Yo Yo
                           <div class="media-body">
                             <span class="text-muted pull-right">
-                              <small class="text-muted"
-                                >4-20-2020 11:35am</small
-                              >
+                              <small class="text-muted">{{
+                                comment.createDate | date: "MMM d, y h:mm a"
+                              }}</small>
                             </span>
                             <p>
-                              Lorem ipsum dolor <a href="#">#sitamet</a> sit
-                              amet, consectetur adipiscing elit.
+                              {{ comment.content }}
                             </p>
                           </div>
                         </li>
                       </ul>
+                      // Have to come back to this post comment
                       <textarea
                         class="form-control"
                         placeholder="write a comment..."
