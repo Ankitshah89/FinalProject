@@ -8,62 +8,62 @@ import { throwError } from 'rxjs';
 import { User } from '../models/user';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-
   constructor(
     private http: HttpClient,
     private authService: AuthService,
     private router: Router
-  ) {
-
-  }
+  ) {}
   private url = environment.baseUrl + 'api/users/';
 
   //Index of Users
 
-  public index(){
+  public index() {
     const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Basic ${credentials}`
-      })
+        Authorization: `Basic ${credentials}`,
+      }),
     };
-    if(this.authService.checkLogin()){
-      return this.http.get<User[]>(this.url, httpOptions)
-      .pipe(
-        catchError((err: any) =>{
+    if (this.authService.checkLogin()) {
+      return this.http.get<User[]>(this.url, httpOptions).pipe(
+        catchError((err: any) => {
           console.log(err);
           return throwError('Could retrieve list of Users');
-
         })
-      )
+      );
     }
+  }
+  public show(uid: number) {
+    return this.http.get<User>(this.url + 'profile/' + uid).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Could not retrieve user');
+      })
+    );
   }
 
   //Update Users
-  public updateUser(user: User){
+  public updateUser(user: User) {
     const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Basic ${credentials}`
-      })
+        Authorization: `Basic ${credentials}`,
+      }),
     };
-    if (this.authService.checkLogin()){
-      return this.http.put<User>(this.url , user, httpOptions)
-      .pipe(
+    if (this.authService.checkLogin()) {
+      return this.http.put<User>(this.url, user, httpOptions).pipe(
         catchError((err: any) => {
           console.log(err);
-          return throwError('Could not update user ')
-
+          return throwError('Could not update user ');
         })
-      )
-    };
+      );
+    }
   }
-
 
   updateUserAsAdmin(user: User) {
     if (localStorage.length === 0) {
@@ -73,8 +73,8 @@ export class UserService {
       headers: new HttpHeaders({
         Authorization: `Basic ` + this.authService.getCredentials(),
         'Content-Type': 'application/json',
-        'X-Requested-With': 'XMLHttpRequest'
-      })
+        'X-Requested-With': 'XMLHttpRequest',
+      }),
     };
     return this.http.put(this.url + '/admin', user, httpOptions).pipe(
       catchError((err: any) => {
@@ -85,32 +85,26 @@ export class UserService {
     );
   }
 
-
-
   //Create Users
 
-  public createUser(user: User){
+  public createUser(user: User) {
     const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Basic ${credentials}`
-      })
+        Authorization: `Basic ${credentials}`,
+      }),
     };
-    if (this.authService.checkLogin()){
-      return this.http.post<User>(this.url, user, httpOptions)
-      .pipe(
+    if (this.authService.checkLogin()) {
+      return this.http.post<User>(this.url, user, httpOptions).pipe(
         catchError((err: any) => {
           console.log(err);
           return throwError('Could not create new user');
-
         })
-      )
-    };
+      );
+    }
   }
   //Get - Business Favorites
 
   //Post - User Favorites
-
-
 }

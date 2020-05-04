@@ -18,7 +18,7 @@ import { ArticleDetailComponent } from './components/article-detail/article-deta
 const routes: Routes = [
   { path: 'search/:keyword', component: SearchComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'user', component: UserComponent }, //Non-owner user view
+  { path: 'user/:id', component: UserComponent }, //Non-owner user view
   { path: 'user-landing', component: UserLandingComponent }, //Logged in user
   { path: 'business', component: BusinessComponent }, //Non-owner view
   { path: 'business-landing', component: BusinessLandingComponent }, //Logged in Business

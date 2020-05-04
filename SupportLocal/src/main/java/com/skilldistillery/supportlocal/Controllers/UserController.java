@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skilldistillery.supportlocal.entities.Article;
 import com.skilldistillery.supportlocal.entities.Business;
 import com.skilldistillery.supportlocal.entities.User;
 import com.skilldistillery.supportlocal.services.UserService;
@@ -70,6 +71,17 @@ public class UserController {
 		return user;
 	}
 	
+	@GetMapping("users/profile/{uid}")
+	public User getUserById(HttpServletRequest req, HttpServletResponse resp, Principal principal, @PathVariable int uid) {
+		User user = userSvc.findById(uid);
+		if (user == null) {
+			resp.setStatus(404);
+		} else {
+			resp.setStatus(200);
+			return user;
+		}
+		return null;
+	}
 
 	@PutMapping("users")
 	public User replaceExistingUser(@RequestBody User user, HttpServletRequest req, Principal principal,
