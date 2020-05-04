@@ -3,7 +3,6 @@ package com.skilldistillery.supportlocal.services;
 import java.util.List;
 
 import com.skilldistillery.supportlocal.entities.Business;
-import com.skilldistillery.supportlocal.entities.PreferenceCategory;
 import com.skilldistillery.supportlocal.entities.User;
 
 public interface BusinessService {
@@ -25,7 +24,8 @@ public interface BusinessService {
 	List<Business> findBusinessByZipCode(String zip);
 	
 	List<Business> findByManager(User user);
-	
 	List<Business> findByPreferenceCategory(String categoryStr);
+	
+//	List<Business> findBusinessesByUsername(U)
 
 }

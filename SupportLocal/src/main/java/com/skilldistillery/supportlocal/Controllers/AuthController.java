@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.supportlocal.entities.User;
 import com.skilldistillery.supportlocal.services.AuthService;
+import com.skilldistillery.supportlocal.services.UserService;
 
 @RestController
 @CrossOrigin({ "*", "http://localhost:4220" })
@@ -20,6 +21,9 @@ public class AuthController {
 
 	@Autowired
 	private AuthService authSvc;
+	
+	@Autowired
+	private UserService userSvc;
 
 	@PostMapping("/register")
 	public User registerUser(@RequestBody User user, HttpServletResponse response) {
@@ -48,7 +52,7 @@ public class AuthController {
 	
 	
 	@GetMapping("/authenticate")
-	public Principal authenticate(Principal principal) {
-		return principal;
+	public User authenticate(Principal principal ) {
+		return userSvc.findUserByEmail(principal.getName());
 	}
 }

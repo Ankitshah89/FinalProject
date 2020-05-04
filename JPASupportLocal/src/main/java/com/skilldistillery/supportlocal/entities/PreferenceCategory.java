@@ -1,7 +1,8 @@
 package com.skilldistillery.supportlocal.entities;
 
 public enum PreferenceCategory {
-	Food, Sports, Entertainment, Shopping
+	Shopping, Food, Sports, Entertainment
+	
 
 //	Food("Food"), Sports("Sports"), Entertainment("Entertainment"), Shopping("Shopping");
 //
