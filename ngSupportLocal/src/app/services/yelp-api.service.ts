@@ -21,14 +21,16 @@ export class YelpApiService {
 
 
   public searchByPhone(phoneNumber : string){
+    let httpOptions = {};
+    if(this.authService.checkLogin()){
     const credentials = this.authService.getCredentials();
-    const httpOptions = {
+     httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': `Basic ${credentials}`
       })
     };
-    if(this.authService.checkLogin()){
+  }
       return this.http.get<any>(this.url + phoneNumber, httpOptions)
       .pipe(
         catchError((err: any) =>{
@@ -37,7 +39,6 @@ export class YelpApiService {
 
         })
       )
-    }
   }
 
 
