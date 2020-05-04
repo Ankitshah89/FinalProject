@@ -39,12 +39,12 @@ user : User = new User();
         console.log(next);
 
 
-        console.log(user.role);
+        console.log(next.role);
        if (next.role === 'Admin'){
           this.router.navigateByUrl('/admin-landing');
         }
         else if(next.role === 'Business'){
-          this.router.navigateByUrl('/businesses');
+          this.router.navigateByUrl('/business-landing');
         }
         else{
           this.router.navigateByUrl('/user-landing');

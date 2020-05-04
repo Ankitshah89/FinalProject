@@ -191,23 +191,26 @@ export class BusinessService {
 
   // business by id
   public businessById(id: String) {
-    const credentials = this.authService.getCredentials();
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: `Basic ${credentials}`,
-      }),
-    };
+    let httpOptions = {};
+
     if (this.authService.checkLogin()) {
-      return this.http.get<Business>(this.url + 'info/' + id, httpOptions).pipe(
-        catchError((err: any) => {
-          console.log(err);
-          return throwError(
-            'Could not retrieve list of Businesses from this user'
-          );
-        })
-      );
+      const credentials = this.authService.getCredentials();
+      httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: `Basic ${credentials}`,
+        }),
+      };
     }
+
+    return this.http.get<Business>(this.url + 'info/' + id, httpOptions).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          'Could not retrieve list of Businesses from this user'
+        );
+      })
+    );
   }
 
   //Get BusinessesBy Category - URL + search/category/ + category -- No Auth
