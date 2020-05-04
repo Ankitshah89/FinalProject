@@ -41,7 +41,7 @@
         <ng-template ngbNavContent>
           <div
             class="jumbotron-fluid text-center hoverable p-4"
-            *ngFor="let article of user.articles"
+            *ngFor="let article of articles"
           >
             <!-- Grid row -->
             <div class="row">
@@ -114,7 +114,7 @@
                       <ul class="media-list">
                         <li
                           class="media"
-                          *ngFor="let comment of user.articleComments"
+                          *ngFor="let comment of article.articleComments"
                         >
                           <a href="#" class="pull-left">
                             <img
@@ -123,7 +123,7 @@
                               class="rounded-circle"
                             />
                           </a>
-                          Yo Yo
+                          {{ comment.user.firstName }}
                           <div class="media-body">
                             <span class="text-muted pull-right">
                               <small class="text-muted">{{

@@ -40,6 +40,10 @@ public class ArticleServiceImpl implements ArticleService {
 	public List<Article> indexUser(String email) {
 		return articleRepo.findByUser_Email(email);
 	}
+	@Override
+	public List<Article> findByUserId(Integer uid) {
+		return articleRepo.findByUserId(uid);
+	}
 
 	@Override
 	public Article show(int aid) {
