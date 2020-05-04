@@ -1,73 +1,15 @@
-
 <div class="d-flex" id="wrapper">
   <app-left-side-bar></app-left-side-bar>
-  <div>
+  <div id="page-content-wrapper">
     <div class="jumbotron jumbotron-fluid">
       <h1 class="display-4 text-md-center">Search Results</h1>
-      <h2 class="display-4 text-md-center">{{keyword}}</h2>
+      <h2 class="display-4 text-md-center">{{ keyword }}</h2>
     </div>
-    <div class="jumbotron text-center hoverable p-4">
-      <!-- Grid row -->
-      <div class="row">
-        <!-- Grid column -->
-        <div class="col-md-4 offset-md-1 mx-1 my-1">
-          <!-- Featured image -->
-          <div class="view overlay">
-            <img
-              src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg"
-              class="img-fluid"
-              alt="Sample image for first version of blog listing"
-            />
-            <a>
-              <div class="mask rgba-white-slight"></div>
-            </a>
-          </div>
-        </div>
-        <!-- Grid column -->
-
-        <!-- Grid column -->
-        <div class="col-md-4 text-md-center my-auto" >
-          <!-- Excerpt -->
-          <a href="#!" class="green-text">
-            <h6 class="h6 pb-1">
-              <i class="fas fa-desktop pr-1"></i> Edit Info
-            </h6>
-          </a>
-
-          <h4 class="h4 mb-3">Kurosawa Asian Bistro</h4>
-          <p>
-            17002 E Main St <br />
-            Parker, CO 80134 <br />
-            (303) 805-5985
-          </p>
-          <p class="font-weight-normal">
-            <a><strong>Manager</strong></a
-            ><br />
-            Jackie Chan
-          </p>
-        </div>
-        <!-- Grid column -->
-        <div class="col-md-3 text-md-center my-auto">
-          <p>
-            History <br />
-            Established in 2014.
-          </p>
-          <p></p>
-
-          <p class="font-weight-normal">
-            Kurosawa fuse traditional Japanese food with inventive French
-            inspired nonvelle cuisines topped with talented chefs with years of
-            industry experience, making Kurosawa's dishes extremely exquisite to
-            the taste buds. what makes us unique is our quality of service &
-            100% organic vegetables, a warm atmosphere and our prices.
-          </p>
-        </div>
-      </div>
-      <!-- Grid row -->
-    </div>
-  <div id="page-content-wrapper" >
     <!-- News jumbotron -->
-    <div class="jumbotron text-center hoverable p-4" *ngFor="let result of searchResults">
+    <div
+      class="jumbotron text-center hoverable p-4"
+      *ngFor="let result of searchResults"
+    >
       <!-- Grid row -->
       <div class="row">
         <!-- Grid column -->
@@ -89,33 +31,32 @@
         <!-- Grid column -->
         <div class="col-md-4 text-md-center my-auto">
           <!-- Excerpt -->
-          <a href="business/{{result.business.id}}" class="green-text">
+          <a href="business/{{ result.business.id }}" class="green-text">
             <h6 class="h6 pb-1">
               <i class="fas fa-desktop pr-1"></i> View Info
             </h6>
           </a>
 
-          <h4 class="h4 mb-3">{{result.business.name}}</h4>
+          <h4 class="h4 mb-3">{{ result.business.name }}</h4>
           <p>
-            {{result.street}}<br />
-            {{result.city}}, {{result.state}} {{result.postalCode}} <br />
-            {{result.business.phone}}
+            {{ result.street }}<br />
+            {{ result.city }}, {{ result.state }} {{ result.postalCode }} <br />
+            {{ result.business.phone }}
           </p>
           <p class="font-weight-normal">
             <a><strong>Manager</strong></a
             ><br />
-            {{result.business.manager.firstName}} {{result.business.manager.lastName}}
+            {{ result.business.manager.firstName }}
+            {{ result.business.manager.lastName }}
           </p>
         </div>
         <!-- Grid column -->
         <div class="col-md-3 text-md-center my-auto">
-          <p>
-            Description <br />
-          </p>
+          <p>Description <br /></p>
           <p></p>
 
           <p class="font-weight-normal">
-           {{result.business.description}}
+            {{ result.business.description }}
           </p>
         </div>
       </div>
@@ -123,11 +64,8 @@
     </div>
     <!-- News jumbotron -->
     <!-- News jumbotron -->
-
   </div>
-</div>
   <app-right-side-bar></app-right-side-bar>
-
 </div>
 <!-- <script>
   $("#menu-toggle").click(function (e) {
@@ -136,4 +74,3 @@
   });
 </script> -->
 <!-- /#page-content-wrapper -->
-
