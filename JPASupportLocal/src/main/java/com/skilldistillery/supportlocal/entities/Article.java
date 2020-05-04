@@ -37,7 +37,6 @@ public class Article {
 	
 	
 	@ManyToOne
-//	@JsonIgnore
 	@JoinColumn(name="business_id")
 	private Business business;
 
