@@ -163,7 +163,9 @@ public class AddressServiceImpl implements AddressService {
 		PreferenceCategory category = null;
 		for(PreferenceCategory cat: PreferenceCategory.values()) {
 			if(cat.toString().equals(categoryStr)) {
+				
 				category = cat;
+				
 				break;
 			}
 		}
