@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "article_comment")
@@ -43,6 +44,7 @@ public class ArticleComment {
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
+	@JsonIgnoreProperties(value = "articles")
 	private User user;
 
 	// M e t h o d s
