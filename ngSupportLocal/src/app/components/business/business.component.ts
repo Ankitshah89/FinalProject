@@ -61,15 +61,11 @@ export class BusinessComponent implements OnInit {
 
     this.businessSvc.businessById(localStorage.getItem('businessId')).subscribe(
       (result) => {
-        // Handle result
-        // console.log('inside businessbyid down here')
-        // console.log(result);
+
         this.individualBusiness = Object.assign({}, result);
         localStorage.setItem('phone', result.phone);
         this.displayYelpReviews();
-        // let objCopy = Object.assign({}, result);
-        // console.log(objCopy);
-        // console.log(this.individualBusiness);
+
       },
       (error) => {
         console.log(error);
