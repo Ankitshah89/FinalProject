@@ -25,7 +25,7 @@ export class UserComponent implements OnInit {
       const userId = Number.parseInt(userIdStr, 10);
       this.userService.show(userId).subscribe(
         (yay) => {
-          console.log('articles' + yay.articles);
+          console.log('articles' + yay);
 
           console.log(yay);
           this.user = yay;
