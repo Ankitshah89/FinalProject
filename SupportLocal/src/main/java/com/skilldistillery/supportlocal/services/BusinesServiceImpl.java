@@ -70,33 +70,24 @@ public class BusinesServiceImpl implements BusinessService {
 		return null;
 	}
 
-	@Override // Done
-	public boolean deleteBusiness(String email, int id) {
+
+	@Override
+	public Boolean deactivateAndActivateBusiness(String email, int id) {
 		User user = userRepo.findUserByEmail(email);
-		boolean deleted = false;
-
-		if (user != null) {
-
-			Optional<Business> optBus = busRepo.findById(id);
-
-			if (optBus.isPresent()) {
-				Business manBus = optBus.get();
-				if (manBus.getManager().getId() == user.getId() || user.getRole().equals(Role.Admin)) {
-
-					try {
-						busRepo.delete(manBus);
-						deleted = true;
-					} catch (Exception e) {
-						System.out.println("Could not delete business with id:" + id);
-						deleted = false;
-					}
-				}
-			}
+		Optional<Business> opt = busRepo.findById(id);
+		if (opt.isPresent()) {
+			Business updateBusiness = opt.get();
+			updateBusiness.setActive(!updateBusiness.isActive());
+			busRepo.save(updateBusiness);
+			return true;
+		} else {
+			return false;
 		}
-		// TODO Auto-generated method stub
-		return deleted;
 	}
-
+	
+	
+	
+	
 	@Override // Done
 	public Business createBusiness(String email, Business business) {
 		User user = userRepo.findUserByEmail(email);
@@ -173,6 +164,7 @@ public class BusinesServiceImpl implements BusinessService {
 		return manBus;
 	}
 
+	
 	@Override
 	public List<Business> findByPreferenceCategory(String categoryStr) {
 		List<Business> busCat = new ArrayList<>();
@@ -195,5 +187,8 @@ public class BusinesServiceImpl implements BusinessService {
 		}
 		return busCat;
 	}
+	
+
+	
 
 }

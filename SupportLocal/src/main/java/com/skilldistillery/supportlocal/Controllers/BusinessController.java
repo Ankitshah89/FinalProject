@@ -3,6 +3,7 @@ package com.skilldistillery.supportlocal.Controllers;
 import java.security.Principal;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,16 +92,6 @@ public class BusinessController {
 		return manBus;
 	}
 
-	@DeleteMapping("businesses/{id}")
-	public boolean deleteById(@PathVariable int id, HttpServletResponse response, Principal principal) {
-		boolean deleted = bServ.deleteBusiness(principal.getName(), id);
-		if (deleted) {
-			response.setStatus(200);
-		} else {
-			response.setStatus(404);
-		}
-		return deleted;
-	}
 
 	@GetMapping("businesses/search/name/{keyword}")
 	public List<Business> findByName(@PathVariable String keyword, HttpServletResponse reponse) {
@@ -173,7 +164,20 @@ public class BusinessController {
 
 		return managedBus;
 	}
+	
+	@DeleteMapping("businesses/{bId}")
+	public boolean deactivateOrActivateBusiness(HttpServletRequest req, HttpServletResponse res, @PathVariable int bId, Principal principal) {
+		boolean isEnabled =bServ.deactivateAndActivateBusiness(principal.getName(), bId);
+			
+		if (isEnabled) {
+			res.setStatus(200);
+		}else {
+			res.setStatus(404);
+		}
+		return isEnabled;
+	}
+	
+	
 
-//	@PutMapping("businesses/{id}/manager")
 
 }

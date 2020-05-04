@@ -26,7 +26,7 @@ export class AdminLandingComponent implements OnInit {
 
   constructor(
     private userSvc: UserService,
-    private gearSvc: BusinessService,
+    private businessSvc: BusinessService,
     private authSvc: AuthService,
     private router: Router
   ) {}
@@ -83,37 +83,11 @@ export class AdminLandingComponent implements OnInit {
       return count;
     }
   }
-
-  public updatedUserEnabled(user: User) {
-    if (user.role !== 'admin') {
-      if (user.active) {
-        user.active = false;
-      } else {
-        user.active = true;
-      }
-      this.userSvc.updateUserAsAdmin(user).subscribe(
-        (uData) => {
-          console.log(user);
-
-          // this.loadUsers();
-          // this.selectedUser = null;
-          // this.updatedUserEnabled = null;
-        },
-        (uErr) => {
-          this.loadUsers();
-          console.error('updatedUser: Error');
-          console.error(uErr);
-          console.log(user);
-        }
-      );
-    }
-  }
-
   // Business **************************
 
   public loadBusiness() {
     // this.clearSearch();
-    this.gearSvc.index().subscribe(
+    this.businessSvc.index().subscribe(
       (bData) => {
         console.log(bData);
         this.businessList = bData;
@@ -144,5 +118,37 @@ export class AdminLandingComponent implements OnInit {
       }
       return count;
     }
+  }
+
+
+  deactivateOrActivateUser(id: number){
+    this.userSvc.disableUser(id).subscribe(
+      (good)=>{
+        this.loadUsers();
+        this.selectedUser = null;
+
+      },
+      (bad) =>{
+        console.error('error in deleting user component')
+
+      }
+    )
+
+  }
+
+
+  deactivateOrActivateBusiness(id: number){
+    this.businessSvc.destroy(id).subscribe(
+      (good)=>{
+        this.loadUsers();
+        this.selectedUser = null;
+
+      },
+      (bad) =>{
+        console.error('error in deleting user component')
+
+      }
+    )
+
   }
 }

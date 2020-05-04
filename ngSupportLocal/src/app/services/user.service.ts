@@ -65,18 +65,15 @@ export class UserService {
     }
   }
 
-  updateUserAsAdmin(user: User) {
-    if (localStorage.length === 0) {
-      this.router.navigateByUrl('/login');
-    }
+  updateUserAsAdmin(user: User, id:number) {
+    const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
-        Authorization: `Basic ` + this.authService.getCredentials(),
         'Content-Type': 'application/json',
-        'X-Requested-With': 'XMLHttpRequest',
+        Authorization: `Basic ${credentials}`,
       }),
     };
-    return this.http.put(this.url + '/admin', user, httpOptions).pipe(
+    return this.http.put(this.url + id, user, httpOptions).pipe(
       catchError((err: any) => {
         // console.log(err);
         // console.log('update method User Service');
@@ -124,5 +121,23 @@ export class UserService {
         return throwError('Could not find User with name: ' + email);
       })
     );
+  }
+
+  public disableUser(id: number) {
+    const credentials = this.authService.getCredentials();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Basic ${credentials}`,
+      }),
+    };
+    if (this.authService.checkLogin()) {
+      return this.http.delete<User>(this.url + id, httpOptions).pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('delete method in user service failed');
+        })
+      );
+    }
   }
 }

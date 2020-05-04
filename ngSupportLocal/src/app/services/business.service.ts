@@ -77,7 +77,7 @@ export class BusinessService {
       }),
     };
     if (this.authService.checkLogin()) {
-      return this.http.delete<any>(this.url + id, httpOptions).pipe(
+      return this.http.delete<Business>(this.url + id, httpOptions).pipe(
         catchError((err: any) => {
           console.log(err);
           return throwError(
@@ -89,6 +89,12 @@ export class BusinessService {
       this.router.navigateByUrl(`/home`);
     }
   }
+
+
+
+
+
+
   public updateTodo(data: Business) {
     const credentials = this.authService.getCredentials();
     const httpOptions = {
