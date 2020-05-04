@@ -6,6 +6,7 @@ public class YelpRating {
 	
 	private String rating; 
 	private List<YelpReview> reviews;
+	
 	public String getRating() {
 		return rating;
 	}

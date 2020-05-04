@@ -20,7 +20,7 @@ export class YelpApiService {
   private url = environment.baseUrl + 'api/yelp/';
 
 
-  public index(){
+  public searchByPhone(phoneNumber : string){
     const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
@@ -29,15 +29,17 @@ export class YelpApiService {
       })
     };
     if(this.authService.checkLogin()){
-      return this.http.get(this.url, httpOptions)
+      return this.http.get<any>(this.url + phoneNumber, httpOptions)
       .pipe(
         catchError((err: any) =>{
           console.log(err);
-          return throwError('Could retrieve list of Users');
+          return throwError('Could not retrieve list of Yelp reviews');
 
         })
       )
     }
   }
+
+
 
 }

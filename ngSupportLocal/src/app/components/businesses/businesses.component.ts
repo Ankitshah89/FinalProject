@@ -43,10 +43,18 @@ export class BusinessesComponent implements OnInit {
     this.loadBusiness();
   }
 
+  showIndividualBusiness(id){
+    console.log('******************showing individual business');
+    localStorage.setItem("businessId", "");
+    localStorage.setItem("businessId", String(id));
+    this.router.navigate(['business']);
+  }
+
   loadBusiness() {
     this.businessList = [];
     this.businessSvc.index().subscribe((good) => {
       good.forEach((business) => {
+        console.log(good);
         if (business.active) {
           this.businessList.push(business);
         }

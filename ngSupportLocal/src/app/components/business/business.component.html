@@ -10,7 +10,7 @@
           <!-- Featured image -->
           <div class="view overlay">
             <img
-              src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg"
+              src={{individualBusiness.imageUrl}}
               class="img-fluid"
               alt="Sample image for first version of blog listing"
             />
@@ -24,31 +24,27 @@
         <div class="col-md-4 text-md-center my-auto">
           <!-- Excerpt -->
           <a href="#!" class="green-text"> </a>
-          <h4 class="h4 mb-3">Kurosawa Asian Bistro</h4>
+          <h4 class="h4 mb-3">{{individualBusiness.name}}</h4>
           <p>
-            17002 E Main St <br />
-            Parker, CO 80134 <br />
-            (303) 805-5985
+            <!-- 17002 E Main St <br /> -->
+            ADDRESS IS NOT MAPPED NEED TO WORK <br />
+            Phone : {{individualBusiness.phone}}
           </p>
           <p class="font-weight-normal">
             <a><strong>Manager</strong></a
             ><br />
-            Jackie Chan
+            {{individualBusiness.manager.firstName}}  {{individualBusiness.manager.lastName}}
           </p>
         </div>
         <!-- Grid column -->
         <div class="col-md-3 text-md-center my-auto">
-          <p>
+          <!-- <p>
             History <br />
             Established in 2014.
-          </p>
+          </p> -->
           <p></p>
           <p class="font-weight-normal">
-            Kurosawa fuse traditional Japanese food with inventive French
-            inspired nonvelle cuisines topped with talented chefs with years of
-            industry experience, making Kurosawa's dishes extremely exquisite to
-            the taste buds. what makes us unique is our quality of service &
-            100% organic vegetables, a warm atmosphere and our prices.
+            {{individualBusiness.descripiton}}
           </p>
         </div>
       </div>
@@ -228,22 +224,55 @@
       </li>
       <!-- Reviews Link and body -->
       <li [ngbNavItem]="2">
-        <a ngbNavLink>My Reviews</a>
+        <a ngbNavLink (click)="displayYelpReviews()">Yelp Reviews</a>
+
         <ng-template ngbNavContent>
           <div class="jumbotron jumbotron-fluid">
             <div class="container">
-              <div class="row row-cols-1 row-cols-md-3">
-                <div class="col mb-4">
-                  <div class="card h-100">
-                    <div
-                      class="card-body row justify-content-center align-items-center"
-                    >
-                      <div class="col-md-5">
-                        <h5>Sushi King</h5>
-                        <p>
-                          420 Sushi Road <br />
-                          Denver, CO 80023 <br />
-                          (303) 781-2922
-                        </p>
-                      </div>
-                 ...
+
+              <p> Overall rating : {{rating}}  </p>
+              <table class="table table-hover">
+                <thead>
+                  <tr >
+                    <th scope="col">UserName</th>
+                    <th scope="col">Review</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor ="let item of yelpReviews[0]">
+
+
+                    <td>{{item.user}}</td>
+                    <td>{{item.text}}</td>
+                  </tr>
+
+                </tbody>
+              </table>
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+          </div>
+        </ng-template>
+      </li>
+    </ul>
+
+    <div [ngbNavOutlet]="nav" class="mt-2"></div>
+  </div>
+  <app-right-side-bar></app-right-side-bar>
+</div>
+<script>
+  $("#menu-toggle").click(function (e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
+  });
+</script>
