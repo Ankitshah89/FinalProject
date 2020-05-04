@@ -320,6 +320,7 @@ INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `role`
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `phone`, `created_at`, `active`) VALUES (6, 'Anthony', 'Hopkins', 'anthony@anthony.com', '$2a$10$iFcq7QU0MTFhsMESWUkkzeb2HR66wDjyt0gkMzbJFYNbmSylBX/Ce', 'Business', '7087675442', '2020-05-02', 1);
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `phone`, `created_at`, `active`) VALUES (7, 'Brandon', 'King', 'brandon@brandon.com', '$2a$10$iFcq7QU0MTFhsMESWUkkzeb2HR66wDjyt0gkMzbJFYNbmSylBX/Ce', 'Business', '4567283821', '2020-05-02', 1);
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `phone`, `created_at`, `active`) VALUES (8, 'Ramesh', 'Bhatt', 'ramesh@ramesh.com', '$2a$10$iFcq7QU0MTFhsMESWUkkzeb2HR66wDjyt0gkMzbJFYNbmSylBX/Ce', 'Business', '7542456799', '2020-05-02', 1);
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `phone`, `created_at`, `active`) VALUES (9, 'Jackie', 'Chan', 'hongkong@hongkong.com', '$2a$10$iFcq7QU0MTFhsMESWUkkzeb2HR66wDjyt0gkMzbJFYNbmSylBX/Ce', 'Business', '4562819132', '2020-05-02', 1);
 
 COMMIT;
 
@@ -337,6 +338,7 @@ INSERT INTO `preference` (`id`, `preference_type`, `preference_category`) VALUES
 INSERT INTO `preference` (`id`, `preference_type`, `preference_category`) VALUES (6, 'Kids Activities', 'Sports');
 INSERT INTO `preference` (`id`, `preference_type`, `preference_category`) VALUES (7, 'Gastropubs', 'Entertainment');
 INSERT INTO `preference` (`id`, `preference_type`, `preference_category`) VALUES (8, 'Trainers, Gym, Sports Club', 'Sports');
+INSERT INTO `preference` (`id`, `preference_type`, `preference_category`) VALUES (9, 'Chinese', 'Food');
 
 COMMIT;
 
@@ -364,6 +366,7 @@ INSERT INTO `business` (`id`, `name`, `description`, `phone`, `active`, `image_u
 INSERT INTO `business` (`id`, `name`, `description`, `phone`, `active`, `image_url`, `manager_id`, `create_date`, `web_url`) VALUES (6, 'Stapleton All Sports', 'Kids Activities, Summer Camps', '7209856642', 1, 'http://stapletonallsports.com/images/slide/43.jpg', 8, '2020-05-02', 'http://stapletonallsports.com/');
 INSERT INTO `business` (`id`, `name`, `description`, `phone`, `active`, `image_url`, `manager_id`, `create_date`, `web_url`) VALUES (7, 'Punch Bowl Social Denver', 'American , Gastropubs', '3037652695', 1, 'https://www.restaurant-hospitality.com/sites/restaurant-hospitality.com/files/punch-bowl-social-exterior.jpg', 8, '2020-05-02', 'https://punchbowlsocial.com/');
 INSERT INTO `business` (`id`, `name`, `description`, `phone`, `active`, `image_url`, `manager_id`, `create_date`, `web_url`) VALUES (8, 'Icelandic Fitness', 'Trainers,Gyms,Sports Club', '3036418149', 1, 'http://www.icelandicfitness.com/wp-content/uploads/2014/04/icelanidcgroup.jpeg', 7, '2020-05-02', 'http://www.icelandicfitness.com/');
+INSERT INTO `business` (`id`, `name`, `description`, `phone`, `active`, `image_url`, `manager_id`, `create_date`, `web_url`) VALUES (9, 'Hong Kong Cafe', 'Chinese, Cafes', '3036966688', 1, 'https://s3-media3.fl.yelpcdn.com/bphoto/kX4Remmst9c3CXJDBCPDTw/o.jpg', 7, '2020-05-02', 'https://www.denverhongkongcafe.com/');
 
 COMMIT;
 
@@ -381,6 +384,7 @@ INSERT INTO `business_preference` (`business_id`, `preference_id`) VALUES (5, 5)
 INSERT INTO `business_preference` (`business_id`, `preference_id`) VALUES (6, 6);
 INSERT INTO `business_preference` (`business_id`, `preference_id`) VALUES (7, 7);
 INSERT INTO `business_preference` (`business_id`, `preference_id`) VALUES (8, 8);
+INSERT INTO `business_preference` (`business_id`, `preference_id`) VALUES (9, 9);
 
 COMMIT;
 
@@ -398,6 +402,7 @@ INSERT INTO `address` (`id`, `street`, `street_2`, `city`, `state`, `postal_code
 INSERT INTO `address` (`id`, `street`, `street_2`, `city`, `state`, `postal_code`, `country`, `business_id`) VALUES (6, '2823 Havana St', NULL, 'Denver', 'CO', '80238', 'USA', 6);
 INSERT INTO `address` (`id`, `street`, `street_2`, `city`, `state`, `postal_code`, `country`, `business_id`) VALUES (7, '65 Broadway', NULL, 'Denver', 'CO', '80203', 'USA', 7);
 INSERT INTO `address` (`id`, `street`, `street_2`, `city`, `state`, `postal_code`, `country`, `business_id`) VALUES (8, '600 S Holly St', 'Unit 104', 'Denver', 'CO', '80246', 'USA', 8);
+INSERT INTO `address` (`id`, `street`, `street_2`, `city`, `state`, `postal_code`, `country`, `business_id`) VALUES (9, '10890 E Dartmouth Ave', NULL, 'Denver', 'CO', '80014', 'USA', 9);
 
 COMMIT;
 

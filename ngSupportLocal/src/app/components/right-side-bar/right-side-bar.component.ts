@@ -11,7 +11,6 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./right-side-bar.component.scss'],
 })
 export class RightSideBarComponent implements OnInit {
-
   favorites = [];
   user: User;
   randomBusinesses = [];
@@ -20,71 +19,50 @@ export class RightSideBarComponent implements OnInit {
     private authService: AuthService,
     private busServ: BusinessService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     // if (this.authService.checkLogin) {
     //   console.log('Getting User Email for Favorites');
 
-      this.authService.getUserByEmail(this.authService.getLoggedInEmail()).subscribe(
-        data => {
-          this.user = data;
-          console.log('This is the information coming into the right-nav bar');
-          this.randomBus();
-          console.log(this.user);
-          if(this.user != null){
-
-            this.loggedIn = true;
-            console.log('Has a logged in User: ' + this.loggedIn);
-
-          }
+    this.authService
+      .getUserByEmail(this.authService.getLoggedInEmail())
+      .subscribe((data) => {
+        this.user = data;
+        console.log('This is the information coming into the right-nav bar');
+        this.randomBus();
+        console.log(this.user);
+        if (this.user != null) {
+          this.loggedIn = true;
+          console.log('Has a logged in User: ' + this.loggedIn);
         }
-      ), error => {
+      }),
+      (error) => {
         console.log(error);
-
-      }
-
-
+      };
   }
   showIndividualBusiness(id) {
     console.log('******************showing individual business');
-    localStorage.setItem("businessId", "");
-    localStorage.setItem("businessId", String(id));
+    localStorage.setItem('businessId', '');
+    localStorage.setItem('businessId', String(id));
     this.router.navigate(['business/' + id]);
   }
 
+  randomBus() {
+    this.busServ.index().subscribe((data) => {
+      console.log(data);
 
-
-  showIndividualBusiness(id) {
-    console.log('******************showing individual business');
-    localStorage.setItem("businessId", "");
-    localStorage.setItem("businessId", String(id));
-    this.router.navigate(['business']);
-  }
-
-  randomBus(){
-    this.busServ.index().subscribe(
-      data => {
-        console.log(data);
-
-        var toShuffle = data;
-        if(toShuffle.length <5){
-          this.randomBusinesses = toShuffle;
-        } else {
-          for(var i = 0; i < 5; i++){
-            var random = (Math.floor(Math.random() * toShuffle.length));
-            var splice = toShuffle.splice(random, 1)
-            this.randomBusinesses.push(splice[0]);
-            console.log(this.randomBusinesses);
-
-          }
+      var toShuffle = data;
+      if (toShuffle.length < 5) {
+        this.randomBusinesses = toShuffle;
+      } else {
+        for (var i = 0; i < 5; i++) {
+          var random = Math.floor(Math.random() * toShuffle.length);
+          var splice = toShuffle.splice(random, 1);
+          this.randomBusinesses.push(splice[0]);
+          console.log(this.randomBusinesses);
         }
       }
-    )
-
+    });
   }
-
-
-
-
 }

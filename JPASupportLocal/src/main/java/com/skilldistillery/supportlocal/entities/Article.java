@@ -37,7 +37,10 @@ public class Article {
 	
 	
 	@ManyToOne
+<<<<<<< HEAD
 //	@JsonIgnore
+=======
+>>>>>>> 7cd831b39e41a397baa01c62d77392724227ddfe
 	@JoinColumn(name="business_id")
 	private Business business;
 

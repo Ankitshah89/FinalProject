@@ -124,6 +124,10 @@
         </div>
       </ng-template>
     </ngb-tab>
+
+
+
+
     <ngb-tab>
       <ng-template ngbTabTitle>
         <div (click)="selectedBusiness = null">Business</div>
@@ -145,7 +149,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let business of businessList" class="showHand" (click)="selectedBusiness = business">
+              <tr  *ngFor="let business of businessList" class="showHand" (click)="selectedBusiness = business">
                 <td>{{ business.id }}</td>
                 <td>{{ business.name }}</td>
                 <td>{{ business.description }}</td>
@@ -159,6 +163,7 @@
         </div>
 
       <!-- Single Business Display -->
+
 
         <div class="container" id="oneGear" *ngIf="selectedBusiness">
           <!-- && !updateResv element here -->
