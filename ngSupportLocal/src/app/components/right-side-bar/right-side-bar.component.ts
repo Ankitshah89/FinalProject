@@ -47,12 +47,18 @@ export class RightSideBarComponent implements OnInit {
   randomBus(){
     this.busServ.index().subscribe(
       data => {
+        console.log(data);
+
         var toShuffle = data;
-        if(toShuffle.length < 6){
+        if(toShuffle.length <5){
           this.randomBusinesses = toShuffle;
         } else {
           for(var i = 0; i < 5; i++){
-            this.randomBusinesses.push(toShuffle.splice((Math.random() * toShuffle.length)), 1);
+            var random = (Math.floor(Math.random() * toShuffle.length));
+            var splice = toShuffle.splice(random, 1)
+            this.randomBusinesses.push(splice[0]);
+            console.log(this.randomBusinesses);
+
           }
         }
       }
