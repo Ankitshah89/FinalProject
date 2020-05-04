@@ -36,6 +36,8 @@ export class HomeComponent implements OnInit {
     for (var i = 0; i < 4; i++) {
       if (newArticle.length > 0) {
         var art = newArticle.pop();
+        console.log(art);
+
         console.log(art.business);
 
         this.artList.push(art);
