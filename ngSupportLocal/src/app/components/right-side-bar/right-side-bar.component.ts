@@ -54,7 +54,7 @@ export class RightSideBarComponent implements OnInit {
           this.randomBusinesses = toShuffle;
         } else {
           for(var i = 0; i < 5; i++){
-            var random = (Math.floor(Math.random() * toShuffle.length));
+            var random = (Math.round(Math.random() * toShuffle.length));
             var splice = toShuffle.splice(random, 1)
             this.randomBusinesses.push(splice[0]);
             console.log(this.randomBusinesses);
