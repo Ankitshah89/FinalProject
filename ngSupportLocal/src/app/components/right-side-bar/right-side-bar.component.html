@@ -4,6 +4,7 @@
 
 
   <a *ngFor="let business of randomBusinesses" (click)="showIndividualBusiness(business.id)"  class="list-group-item list-group-item-action bg-light"
+
       >{{business.name}}</a
     >
 
@@ -18,7 +19,6 @@
   </div>
   <div class="list-group list-group-flush" *ngFor="let favorite of favorites">
     <a
-      href="business/{{ favorite.id }}"
       class="list-group-item list-group-item-action bg-light"
       >{{ favorite.name }}</a
     >

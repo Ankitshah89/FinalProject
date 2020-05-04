@@ -75,6 +75,21 @@ public class ArticleController {
 		return articles;
 		
 	}
+	@GetMapping("articles/user/{uid}")
+	public List<Article> findAllByUserId(HttpServletRequest req, HttpServletResponse resp,@PathVariable Integer uid) {
+		List<Article> articles = articleSvc.findByUserId(uid);
+		
+		if (articles == null) {
+			resp.setStatus(404);
+		}
+		if (articles != null) {
+			if (articles.size() == 0) {
+				resp.setStatus(200);
+			}
+		}
+		return articles;
+		
+	}
 
 	@GetMapping("articles/{aid}")
 	public Article show(HttpServletRequest req, HttpServletResponse resp, Principal principal, @PathVariable int aid) {

@@ -19,7 +19,7 @@ export class RightSideBarComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private busServ: BusinessService,
-    private router: Router,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -51,6 +51,15 @@ export class RightSideBarComponent implements OnInit {
     localStorage.setItem("businessId", "");
     localStorage.setItem("businessId", String(id));
     this.router.navigate(['business/' + id]);
+  }
+
+
+
+  showIndividualBusiness(id) {
+    console.log('******************showing individual business');
+    localStorage.setItem("businessId", "");
+    localStorage.setItem("businessId", String(id));
+    this.router.navigate(['business']);
   }
 
   randomBus(){

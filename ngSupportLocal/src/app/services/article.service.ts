@@ -10,47 +10,38 @@ import { catchError } from 'rxjs/operators';
 import { ArticleComment } from '../models/article-comment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ArticleService {
-
-
-  selected : Article;
+  selected: Article;
 
   constructor(
     private http: HttpClient,
     private authService: AuthService,
     private router: Router
-  ) {
-
-  }
+  ) {}
   private url = environment.baseUrl + 'api/articles/';
 
   //GetIndex - URL -- No Auth
   public index() {
-    return this.http.get<Article[]>(this.url)
-      .pipe(
-        catchError((err: any) => {
-          console.log(err);
-          return throwError('Could not retrieve full index of Articles');
-
-        })
-      );
+    return this.http.get<Article[]>(this.url).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Could not retrieve full index of Articles');
+      })
+    );
   }
-
-
-
 
   //Get Index By Business URL + business/ + bid -- No Auth
   public indexBusArt(bid: number) {
-    return this.http.get<Article[]>(this.url + "business/" + bid)
-      .pipe(
-        catchError((err: any) => {
-          console.log(err);
-          return throwError('Could not retrieve list of articles by business id: ' + bid);
-
-        })
-      );
+    return this.http.get<Article[]>(this.url + 'business/' + bid).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          'Could not retrieve list of articles by business id: ' + bid
+        );
+      })
+    );
   }
 
   //Get Index by User - URL + user/ -- No Auth
@@ -63,26 +54,30 @@ export class ArticleService {
         'X-Requested-With': 'XMLHttpRequest',
       }),
     };
-    return this.http.get<Article[]>(this.url + 'user', httpOptions)
-      .pipe(
-        catchError((err: any) => {
-          console.log(err);
-          return throwError('Could not retrieve list of articles by user id: ')
-
-        })
-      );
+    return this.http.get<Article[]>(this.url + 'user', httpOptions).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Could not retrieve list of articles by user id: ');
+      })
+    );
   }
 
   //Get Article by ID - URL + aid  -- No Auth
   public artByUser(uid: number) {
-    return this.http.get<Article>(this.url + uid)
-      .pipe(
-        catchError((err: any) => {
-          console.log(err);
-          return throwError('Could not retrieve article by id: ' + uid);
-
-        })
-      );
+    return this.http.get<Article>(this.url + uid).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Could not retrieve article by id: ' + uid);
+      })
+    );
+  }
+  public articlesByUserId(uid: number) {
+    return this.http.get<Article[]>(this.url + 'user/' + uid).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Could not retrieve article by id: ' + uid);
+      })
+    );
   }
 
   //Post Create New Article - URL -- Needs Auth
@@ -91,20 +86,18 @@ export class ArticleService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Basic ${credentials}`
-      })
+        Authorization: `Basic ${credentials}`,
+      }),
     };
     if (this.authService.checkLogin()) {
-      return this.http.post<Article>(this.url, article, httpOptions)
-        .pipe(
-          catchError((err: any) => {
-            console.log(err);
-            return throwError('Could not post new article');
-          })
-        );
+      return this.http.post<Article>(this.url, article, httpOptions).pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('Could not post new article');
+        })
+      );
     } else {
-      this.router.navigateByUrl(`/home`)
-
+      this.router.navigateByUrl(`/home`);
     }
   }
 
@@ -114,20 +107,22 @@ export class ArticleService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Basic ${credentials}`
-      })
+        Authorization: `Basic ${credentials}`,
+      }),
     };
     if (this.authService.checkLogin()) {
-      return this.http.post<Article>(this.url +'business/' + bid, article, httpOptions)
+      return this.http
+        .post<Article>(this.url + 'business/' + bid, article, httpOptions)
         .pipe(
           catchError((err: any) => {
             console.log(err);
-            return throwError('Could not post new article to Business id: ' + bid);
+            return throwError(
+              'Could not post new article to Business id: ' + bid
+            );
           })
         );
     } else {
-      this.router.navigateByUrl(`/home`)
-
+      this.router.navigateByUrl(`/home`);
     }
   }
 
@@ -137,60 +132,62 @@ export class ArticleService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Basic ${credentials}`
-      })
+        Authorization: `Basic ${credentials}`,
+      }),
     };
     if (this.authService.checkLogin()) {
-      return this.http.put<Article>(this.url + aid, article, httpOptions)
-        .pipe(
-          catchError((err: any) => {
-            console.log(err);
-            return throwError('Could not post new article to Business id: ' + aid);
-          })
-        );
-    } else {
-      this.router.navigateByUrl(`/home`)
-
-    }
-  }
-
-  //Delete Article by ID - URL + aid -- Needs Auth
-  public deleteArticleById(aid: number){
-    const credentials = this.authService.getCredentials();
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Basic ${credentials}`
-      })
-    };
-    if(this.authService.checkLogin()){
-      return this.http.delete<Article>(this.url + aid, httpOptions)
-      .pipe(
+      return this.http.put<Article>(this.url + aid, article, httpOptions).pipe(
         catchError((err: any) => {
           console.log(err);
-          return throwError('Could not delete article by id: ' + aid)
+          return throwError(
+            'Could not post new article to Business id: ' + aid
+          );
         })
-      )
-    } else{
+      );
+    } else {
       this.router.navigateByUrl(`/home`);
     }
   }
 
+  //Delete Article by ID - URL + aid -- Needs Auth
+  public deleteArticleById(aid: number) {
+    const credentials = this.authService.getCredentials();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Basic ${credentials}`,
+      }),
+    };
+    if (this.authService.checkLogin()) {
+      return this.http.delete<Article>(this.url + aid, httpOptions).pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('Could not delete article by id: ' + aid);
+        })
+      );
+    } else {
+      this.router.navigateByUrl(`/home`);
+    }
+  }
 
   loadArticleComments() {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: `Basic ` + this.authService.getCredentials(),
-        'X-Requested-With': 'XMLHttpRequest'
-      })
+        'X-Requested-With': 'XMLHttpRequest',
+      }),
     };
-    return this.http.get<ArticleComment[]>(this.url + 'api/articles/' + this.selected.id + '/comments', httpOptions).pipe(
-      catchError((err: any) => {
-        console.log(err);
-        return throwError('ArticleService.loadReviewComments(): Error');
-      })
-    );
+    return this.http
+      .get<ArticleComment[]>(
+        this.url + 'api/articles/' + this.selected.id + '/comments',
+        httpOptions
+      )
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('ArticleService.loadReviewComments(): Error');
+        })
+      );
   }
-
 }

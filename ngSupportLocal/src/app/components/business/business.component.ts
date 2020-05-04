@@ -24,8 +24,6 @@ export class BusinessComponent implements OnInit {
   averageRating = 0;
   individualBusiness: Business = null;
 
-
-
   yelpBusiness: Business = new Business();
 
   businessReviews: Review[];
@@ -37,7 +35,7 @@ export class BusinessComponent implements OnInit {
     private router: Router,
     private userSvc: UserService,
     private review: ReviewService,
-    private addressSvc : AddressService,
+    private addressSvc: AddressService,
     private yelpApiSvc: YelpApiService,
     private authService: AuthService,
     private actRouter: ActivatedRoute
@@ -52,9 +50,6 @@ export class BusinessComponent implements OnInit {
       this.getIndividualBusiness();
     });
 
-    // localStorage.setItem('businessId', '3');
-
-
     this.selected = null;
     this.getIndividualBusiness();
     this.logReviews();
@@ -62,27 +57,22 @@ export class BusinessComponent implements OnInit {
   }
 
   getIndividualBusiness() {
+
     console.log(
       'i will populate the business info for ' +
-      localStorage.getItem('businessId')
-      );
+        localStorage.getItem('businessId')
+    );
 
+    this.businessSvc.businessById(localStorage.getItem('businessId')).subscribe(
+      (result) => {
 
-      this.businessSvc.businessById(localStorage.getItem('businessId')).subscribe(
-        (result) => {
-          // Handle result
-          // console.log('inside businessbyid down here')
-          // console.log(result);
-          this.individualBusiness = Object.assign({}, result);
-          localStorage.setItem("phone", result.phone);
-          this.displayYelpReviews();
-        // let objCopy = Object.assign({}, result);
-        // console.log(objCopy);
-        // console.log(this.individualBusiness);
+        this.individualBusiness = Object.assign({}, result);
+        localStorage.setItem('phone', result.phone);
+        this.displayYelpReviews();
 
       },
       (error) => {
-        console.log(error)
+        console.log(error);
       }
     );
   }
@@ -113,7 +103,7 @@ export class BusinessComponent implements OnInit {
     this.yelpReviews = [];
     console.log(this.individualBusiness.phone);
     this.yelpApiSvc
-      .searchByPhone(localStorage.getItem("phone"))
+      .searchByPhone(localStorage.getItem('phone'))
       .subscribe((response) => {
         this.rating = response.rating;
         console.log('phone response was successful');
@@ -154,4 +144,9 @@ export class BusinessComponent implements OnInit {
       btnText.innerHTML = 'Show Comments';
     }
   }
-}
+
+
+
+
+  }
+
