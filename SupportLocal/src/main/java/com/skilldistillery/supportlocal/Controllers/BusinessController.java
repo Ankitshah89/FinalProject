@@ -38,11 +38,33 @@ public class BusinessController {
 		}
 		return index;
 	}
-
-	@GetMapping("businesses/{id}")
+	
+	
+	@GetMapping("businesses/{email}")
+	public List<Business> businessInfo(HttpServletResponse response, @PathVariable String email) {
+		List<Business> index = bServ.businessIndex();
+		
+		
+		if (index != null) {
+			response.setStatus(200);
+		} else {
+			response.setStatus(404);
+		}
+		return index;
+	}
+	
+	
+//	@GetMapping("businesses/info/{id}")
+//	public Business findBusiness(@PathVariable int id) {
+//		return bServ.findById(id);
+//	}
+	
+	
+	@GetMapping("businesses/info/{id}")
 	public Business findById(@PathVariable int id, HttpServletResponse response) {
 		Business business = bServ.findById(id);
 		if (business != null) {
+			System.out.println("not null business");
 			response.setStatus(200);
 		} else {
 			response.setStatus(404);
@@ -106,7 +128,7 @@ public class BusinessController {
 			
 		}catch (Exception e) {
 			System.out.println(e);
-			
+		
 		}
 		return listBus;
 	}
@@ -139,5 +161,24 @@ public class BusinessController {
 		return managedBus;
 	}
 	
+	@GetMapping("/business/search/category/{category}")
+	public List<Business> businessesByCategory(@PathVariable String category, HttpServletResponse response){
+		List<Business> managedBus = null;
+		try {
+			managedBus = bServ.findByPreferenceCategory(category);
+			response.setStatus(200);
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("Business Controller: Failed to retrieve businesses by category");
+			response.setStatus(404);
+		}
+		
+		return managedBus;
+	}
+	
 //	@PutMapping("businesses/{id}/manager")
+	
+	
+	
+	
 }

@@ -107,4 +107,22 @@ export class UserService {
   //Get - Business Favorites
 
   //Post - User Favorites
+
+  // search by eamil
+  public searchByEmail(email: string) {
+    const credentials = this.authService.getCredentials();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Basic ${credentials}`,
+      }),
+    };
+
+    return this.http.get<User>(this.url + email, httpOptions).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Could not find User with name: ' + email);
+      })
+    );
+  }
 }

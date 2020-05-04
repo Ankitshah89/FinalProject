@@ -17,6 +17,7 @@ import { BusinessesComponent } from './components/businesses/businesses.componen
 import { ArticleDetailComponent } from './components/article-detail/article-detail.component';
 const routes: Routes = [
   { path: 'search/:keyword', component: SearchComponent },
+  { path: 'businesses/search/category/:category', component:SearchComponent},
   { path: 'home', component: HomeComponent },
   { path: 'user/:id', component: UserComponent }, //Non-owner user view
   { path: 'user-landing', component: UserLandingComponent }, //Logged in user
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'businesses', component: BusinessesComponent },
+  { path: 'businesses/:id', component: BusinessComponent},
   { path: 'articles', component: ArticlesComponent },
   { path: 'article-detail/:id', component: ArticleDetailComponent },
   { path: 'reviews', component: ReviewsComponent },
