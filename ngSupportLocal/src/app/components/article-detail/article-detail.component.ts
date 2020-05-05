@@ -70,10 +70,15 @@ export class ArticleDetailComponent implements OnInit {
       (data) => {
         this.newComment = data;
         console.log('new comment success' + this.newComment);
+        this.reload();
       },
       (error) => {
         console.log('error posting new comment' + this.newComment);
       }
     );
+  }
+
+  reload() {
+    this.getArticleById();
   }
 }
