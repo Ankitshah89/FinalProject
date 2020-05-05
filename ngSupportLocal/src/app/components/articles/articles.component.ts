@@ -36,13 +36,20 @@ export class ArticlesComponent implements OnInit {
   }
 
   loadArticles() {
-    this.articleList = [];
+    // this.articleList = [];
     this.articleSvc.index().subscribe((good) => {
-      good.forEach((article) => {
-        if (article.active) {
-          this.articleList.push(article);
-        }
-      });
+      this.articleList = good;
+      // good.forEach((article) => {
+      //   if (article.active) {
+      //     console.log("ARTICLE TITLE" +article.title);
+
+
+
+      //     // this.articleList.push(article);
+
+      //     console.log("ARTICLE LIST LENGTH" +this.articleList.length)
+      //   }
+      // });
       (bad) => {
         console.log('didntWork');
       };
