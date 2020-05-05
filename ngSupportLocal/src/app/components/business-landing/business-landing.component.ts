@@ -123,10 +123,12 @@ export class BusinessLandingComponent implements OnInit {
           console.log('Using this user to find businesses:');
 
           console.log(user);
+          if(business.active){  ////new line
 
-          this.businessListForOwner.push(business);
-          console.log('business list of manager');
-          console.log(business);
+            this.businessListForOwner.push(business);
+            console.log('business list of manager');
+            console.log(business);
+          }    /// new line
         });
       },
       (bad) => {
@@ -136,13 +138,13 @@ export class BusinessLandingComponent implements OnInit {
   }
 
   getUserIdFromEmail() {
-    // localStorage.setItem('userId', "");
+
     console.log('getUserByemail is called');
 
     this.userSVc.searchByEmail(localStorage.getItem('email')).subscribe(
       (next) => {
         console.log('Success: Found User inside Business-Landing-Component');
-        localStorage.setItem('userId', String(next.id));
+
         this.userId = next.id;
         this.showBusinessInfo(next);
         this.reload();
