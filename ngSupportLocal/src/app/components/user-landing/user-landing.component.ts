@@ -23,6 +23,7 @@ export class UserLandingComponent implements OnInit {
   newComment: ArticleComment;
   reviews: Review[] = [];
   articleList: Article[] = [];
+
   newArticle: Article = new Article();
   articles: Article[] = [];
   loggedInUser: User = new User();
