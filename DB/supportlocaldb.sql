@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `phone` VARCHAR(45) NULL,
   `created_at` DATE NULL,
   `active` TINYINT(1) NULL DEFAULT 1,
+  `user_image` VARCHAR(1000) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -312,16 +313,16 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `supportlocaldb`;
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `phone`, `created_at`, `active`) VALUES (1, 'Jason', 'Nash', 'abc@xyz.com', '$2a$10$iFcq7QU0MTFhsMESWUkkzeb2HR66wDjyt0gkMzbJFYNbmSylBX/Ce', 'Admin', '1234567890', '2020-04-29', 1);
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `phone`, `created_at`, `active`) VALUES (2, 'Devin', 'Homie', 'xyz@abc.com', '$2a$10$iFcq7QU0MTFhsMESWUkkzeb2HR66wDjyt0gkMzbJFYNbmSylBX/Ce', 'User', '5675432341', '2020-05-01', 1);
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `phone`, `created_at`, `active`) VALUES (3, 'Ankit', 'Shah', 'ankit@ankit.com', '$2a$10$iFcq7QU0MTFhsMESWUkkzeb2HR66wDjyt0gkMzbJFYNbmSylBX/Ce', 'Business', '1234567799', '2020-05-01', 1);
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `phone`, `created_at`, `active`) VALUES (4, 'Steve', 'King', 'steve@steve.com', '$2a$10$iFcq7QU0MTFhsMESWUkkzeb2HR66wDjyt0gkMzbJFYNbmSylBX/Ce', 'Business', '4352671611', '2020-05-01', 1);
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `phone`, `created_at`, `active`) VALUES (5, 'Lewis', 'Hamilton', 'lewis@lewis.com', '$2a$10$iFcq7QU0MTFhsMESWUkkzeb2HR66wDjyt0gkMzbJFYNbmSylBX/Ce', 'Business', '1345823452', '2020-05-01', 1);
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `phone`, `created_at`, `active`) VALUES (6, 'Anthony', 'Hopkins', 'anthony@anthony.com', '$2a$10$iFcq7QU0MTFhsMESWUkkzeb2HR66wDjyt0gkMzbJFYNbmSylBX/Ce', 'Business', '7087675442', '2020-05-02', 1);
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `phone`, `created_at`, `active`) VALUES (7, 'Brandon', 'King', 'brandon@brandon.com', '$2a$10$iFcq7QU0MTFhsMESWUkkzeb2HR66wDjyt0gkMzbJFYNbmSylBX/Ce', 'Business', '4567283821', '2020-05-02', 1);
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `phone`, `created_at`, `active`) VALUES (8, 'Ramesh', 'Bhatt', 'ramesh@ramesh.com', '$2a$10$iFcq7QU0MTFhsMESWUkkzeb2HR66wDjyt0gkMzbJFYNbmSylBX/Ce', 'Business', '7542456799', '2020-05-02', 1);
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `phone`, `created_at`, `active`) VALUES (9, 'Jackie', 'Chan', 'hongkong@hongkong.com', '$2a$10$iFcq7QU0MTFhsMESWUkkzeb2HR66wDjyt0gkMzbJFYNbmSylBX/Ce', 'Business', '4562819132', '2020-05-02', 1);
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `phone`, `created_at`, `active`) VALUES (10, 'Robbie', 'Williams', 'robie@robie.com', '$2a$10$iFcq7QU0MTFhsMESWUkkzeb2HR66wDjyt0gkMzbJFYNbmSylBX/Ce', 'Business', '1231231333', '2020-05-03', 1);
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `phone`, `created_at`, `active`, `user_image`) VALUES (1, 'Jason', 'Nash', 'abc@xyz.com', '$2a$10$iFcq7QU0MTFhsMESWUkkzeb2HR66wDjyt0gkMzbJFYNbmSylBX/Ce', 'Admin', '1234567890', '2020-04-29', 1, 'https://pmchollywoodlife.files.wordpress.com/2020/03/howie-mandel-agt-hazmat-suit-coronavirus-rex-ftr.jpg');
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `phone`, `created_at`, `active`, `user_image`) VALUES (2, 'Devin', 'Homie', 'xyz@abc.com', '$2a$10$iFcq7QU0MTFhsMESWUkkzeb2HR66wDjyt0gkMzbJFYNbmSylBX/Ce', 'User', '5675432341', '2020-05-01', 1, 'https://lh3.googleusercontent.com/-6WuiiOSNyPo/WcJwbEbLCcI/AAAAAAAAwtE/3CWQX3r_hOMUh1pBEVOMcP4h_j0gLAHBwCHMYCw/s1600/Hugh-Jackman-awesome-dp-profile-pics-MyWhatsappImages.com-244.jpg');
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `phone`, `created_at`, `active`, `user_image`) VALUES (3, 'Ankit', 'Dude', 'ankit@ankit.com', '$2a$10$iFcq7QU0MTFhsMESWUkkzeb2HR66wDjyt0gkMzbJFYNbmSylBX/Ce', 'Business', '1234567799', '2020-05-01', 1, 'https://pmchollywoodlife.files.wordpress.com/2020/03/howie-mandel-agt-hazmat-suit-coronavirus-rex-ftr.jpg');
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `phone`, `created_at`, `active`, `user_image`) VALUES (4, 'Steve', 'King', 'steve@steve.com', '$2a$10$iFcq7QU0MTFhsMESWUkkzeb2HR66wDjyt0gkMzbJFYNbmSylBX/Ce', 'Business', '4352671611', '2020-05-01', 1, 'http://www.goodmorningimagesforlover.com/wp-content/uploads/2019/01/sfd54s.jpg');
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `phone`, `created_at`, `active`, `user_image`) VALUES (5, 'Lewis', 'Hamilton', 'lewis@lewis.com', '$2a$10$iFcq7QU0MTFhsMESWUkkzeb2HR66wDjyt0gkMzbJFYNbmSylBX/Ce', 'Business', '1345823452', '2020-05-01', 1, 'https://avatarfiles.alphacoders.com/107/107911.jpg');
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `phone`, `created_at`, `active`, `user_image`) VALUES (6, 'Anthony', 'Hopkins', 'anthony@anthony.com', '$2a$10$iFcq7QU0MTFhsMESWUkkzeb2HR66wDjyt0gkMzbJFYNbmSylBX/Ce', 'Business', '7087675442', '2020-05-02', 1, 'https://i3.kym-cdn.com/photos/images/facebook/000/409/177/4ab.png');
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `phone`, `created_at`, `active`, `user_image`) VALUES (7, 'Brandon', 'King', 'brandon@brandon.com', '$2a$10$iFcq7QU0MTFhsMESWUkkzeb2HR66wDjyt0gkMzbJFYNbmSylBX/Ce', 'Business', '4567283821', '2020-05-02', 1, 'https://m.media-amazon.com/images/M/MV5BMTMwNTAyMTYxM15BMl5BanBnXkFtZTYwNjQ1NDkz._V1_UY1200_CR85,0,630,1200_AL_.jpg');
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `phone`, `created_at`, `active`, `user_image`) VALUES (8, 'Ramesh', 'Bhatt', 'ramesh@ramesh.com', '$2a$10$iFcq7QU0MTFhsMESWUkkzeb2HR66wDjyt0gkMzbJFYNbmSylBX/Ce', 'Business', '7542456799', '2020-05-02', 1, 'https://lh3.googleusercontent.com/-rcvTUg2sz5U/VzKUZCb44WI/AAAAAAAACDA/8wKhhMLhDHI/s1600/Lara-Dutta-Dp-profile-pics-90.jpg');
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `phone`, `created_at`, `active`, `user_image`) VALUES (9, 'Jackie', 'Chan', 'jackie@jackie.com', '$2a$10$iFcq7QU0MTFhsMESWUkkzeb2HR66wDjyt0gkMzbJFYNbmSylBX/Ce', 'Business', '4562819132', '2020-05-02', 1, 'https://www.juvefc.com/wp-content/uploads/2018/08/RONALDO_501x752.png');
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `phone`, `created_at`, `active`, `user_image`) VALUES (10, 'Robbie', 'Williams', 'robie@robie.com', '$2a$10$iFcq7QU0MTFhsMESWUkkzeb2HR66wDjyt0gkMzbJFYNbmSylBX/Ce', 'Business', '1231231333', '2020-05-03', 1, 'https://lh3.googleusercontent.com/-H1UhNnAB_os/WXNicO6hZNI/AAAAAAAAvuE/zuNu4R8vsKgk0v1QpKZhMEiFCbMzozuKgCHMYCw/s1600/Mark-Wahlberg-awesome-profile-pics-MyWhatsappImages.com-dp-pics-whatsapp-Facebook-Instagram-813.jpg');
 
 COMMIT;
 
@@ -341,6 +342,9 @@ INSERT INTO `preference` (`id`, `preference_type`, `preference_category`) VALUES
 INSERT INTO `preference` (`id`, `preference_type`, `preference_category`) VALUES (8, 'Trainers, Gym, Sports Club', 'Sports');
 INSERT INTO `preference` (`id`, `preference_type`, `preference_category`) VALUES (9, 'Chinese', 'Food');
 INSERT INTO `preference` (`id`, `preference_type`, `preference_category`) VALUES (10, 'Shopping Centers', 'Shopping');
+INSERT INTO `preference` (`id`, `preference_type`, `preference_category`) VALUES (11, 'Sporting Goods', 'Sports');
+INSERT INTO `preference` (`id`, `preference_type`, `preference_category`) VALUES (12, 'Stadiums & Arenas', 'Sports');
+INSERT INTO `preference` (`id`, `preference_type`, `preference_category`) VALUES (13, 'Shopping Mall', 'Shopping');
 
 COMMIT;
 
@@ -370,6 +374,9 @@ INSERT INTO `business` (`id`, `name`, `description`, `phone`, `active`, `image_u
 INSERT INTO `business` (`id`, `name`, `description`, `phone`, `active`, `image_url`, `manager_id`, `create_date`, `web_url`) VALUES (8, 'Icelandic Fitness', 'Trainers,Gyms,Sports Club', '3036418149', 1, 'http://www.icelandicfitness.com/wp-content/uploads/2014/04/icelanidcgroup.jpeg', 7, '2020-05-02', 'http://www.icelandicfitness.com/');
 INSERT INTO `business` (`id`, `name`, `description`, `phone`, `active`, `image_url`, `manager_id`, `create_date`, `web_url`) VALUES (9, 'Hong Kong Cafe', 'Chinese, Cafes', '3036966688', 1, 'https://s3-media3.fl.yelpcdn.com/bphoto/kX4Remmst9c3CXJDBCPDTw/o.jpg', 9, '2020-05-02', 'https://www.denverhongkongcafe.com/');
 INSERT INTO `business` (`id`, `name`, `description`, `phone`, `active`, `image_url`, `manager_id`, `create_date`, `web_url`) VALUES (10, 'Larimer Square', 'Shopping Centers', '3036858120', 1, 'https://cdn.vox-cdn.com/thumbor/hGePka1ecEthWmRHxSJ5dA0Q2ZE=/0x0:800x534/1200x900/filters:focal(336x203:464x331)/cdn.vox-cdn.com/uploads/chorus_image/image/63718306/about_larimer_walkway.0.jpg', 10, '2020-05-03', 'https://www.larimersquare.com/');
+INSERT INTO `business` (`id`, `name`, `description`, `phone`, `active`, `image_url`, `manager_id`, `create_date`, `web_url`) VALUES (11, 'Big 5 Sporting Goods', 'Sporting Goods', '3037562212', 1, 'https://cdn.nevadaappeal.com/wp-content/uploads/sites/2/2016/10/Big5-LVN-062714.jpg', 10, '2020-05-03', 'https://www.big5sportinggoods.com/store/');
+INSERT INTO `business` (`id`, `name`, `description`, `phone`, `active`, `image_url`, `manager_id`, `create_date`, `web_url`) VALUES (12, 'Colorado Sports Hall of Fame', 'Stadiums & Arenas', '7202583888', 1, 'https://media-cdn.tripadvisor.com/media/photo-s/0e/d8/c1/af/hall-of-fame-logo.jpg', 10, '2020-05-03', 'https://www.coloradosports.org/');
+INSERT INTO `business` (`id`, `name`, `description`, `phone`, `active`, `image_url`, `manager_id`, `create_date`, `web_url`) VALUES (13, '16th Street Mall', 'Shopping Centers', '3035346161', 1, 'https://1063cowboycountry.com/files/2016/11/Facebook-16th-Street-Mall.jpg', 3, '2020-05-03', 'https://www.the16thstreetmall.com/');
 
 COMMIT;
 
@@ -389,6 +396,9 @@ INSERT INTO `business_preference` (`business_id`, `preference_id`) VALUES (7, 7)
 INSERT INTO `business_preference` (`business_id`, `preference_id`) VALUES (8, 8);
 INSERT INTO `business_preference` (`business_id`, `preference_id`) VALUES (9, 9);
 INSERT INTO `business_preference` (`business_id`, `preference_id`) VALUES (10, 10);
+INSERT INTO `business_preference` (`business_id`, `preference_id`) VALUES (11, 11);
+INSERT INTO `business_preference` (`business_id`, `preference_id`) VALUES (12, 12);
+INSERT INTO `business_preference` (`business_id`, `preference_id`) VALUES (13, 13);
 
 COMMIT;
 
@@ -408,6 +418,9 @@ INSERT INTO `address` (`id`, `street`, `street_2`, `city`, `state`, `postal_code
 INSERT INTO `address` (`id`, `street`, `street_2`, `city`, `state`, `postal_code`, `country`, `business_id`) VALUES (8, '600 S Holly St', 'Unit 104', 'Denver', 'CO', '80246', 'USA', 8);
 INSERT INTO `address` (`id`, `street`, `street_2`, `city`, `state`, `postal_code`, `country`, `business_id`) VALUES (9, '10890 E Dartmouth Ave', NULL, 'Denver', 'CO', '80014', 'USA', 9);
 INSERT INTO `address` (`id`, `street`, `street_2`, `city`, `state`, `postal_code`, `country`, `business_id`) VALUES (10, '1430 Larimer St', NULL, 'Denver', 'CO', '80202', 'USA', 10);
+INSERT INTO `address` (`id`, `street`, `street_2`, `city`, `state`, `postal_code`, `country`, `business_id`) VALUES (11, '1430 S Colorado Blvd', NULL, 'Denver', 'CO', '80222', 'USA', 11);
+INSERT INTO `address` (`id`, `street`, `street_2`, `city`, `state`, `postal_code`, `country`, `business_id`) VALUES (12, '1701 Mile High Stadium Cir', 'Se 500', 'Denver', 'CO', '80204', 'USA', 12);
+INSERT INTO `address` (`id`, `street`, `street_2`, `city`, `state`, `postal_code`, `country`, `business_id`) VALUES (13, '1515 Arapahoe St', NULL, 'Denver', 'CO', '80202', 'USA', 13);
 
 COMMIT;
 
