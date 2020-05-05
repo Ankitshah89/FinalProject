@@ -1,3 +1,5 @@
+import { Review } from './../../models/review';
+import { ReviewService } from 'src/app/services/review.service';
 import { NullTemplateVisitor } from '@angular/compiler';
 import { ArticleComment } from './../../models/article-comment';
 import { ArticleCommentService } from './../../services/article-comment.service';
@@ -19,11 +21,13 @@ export class UserComponent implements OnInit {
   articles: Article[] = [];
   articleComments: ArticleComment[] = [];
   individualComments: ArticleComment[] = [];
+  reviews: Review[] = [];
   constructor(
     private currentRoute: ActivatedRoute,
     private userService: UserService,
     private articleService: ArticleService,
-    private articleCommentService: ArticleCommentService
+    private articleCommentService: ArticleCommentService,
+    private reviewService: ReviewService
   ) {}
 
   ngOnInit(): void {
@@ -67,12 +71,25 @@ export class UserComponent implements OnInit {
         (yay) => {
           article.articleComments = yay;
           console.log(article.articleComments.length);
+          this.getUserReviews();
         },
         (nay) => {
           console.log('error in getArticleComments');
         }
       );
     });
+  }
+
+  getUserReviews() {
+    this.reviewService.indexReviewById(this.user.id).subscribe(
+      (yay) => {
+        this.reviews = yay;
+        console.log('reviews' + yay.length);
+      },
+      (nay) => {
+        console.log('error retrieving user profile reviews');
+      }
+    );
   }
 
   myFunction() {

@@ -43,6 +43,19 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
+	public List<Review> findUserReviewsById(int uid) {
+		Optional<User> optUser = userRepo.findById(uid);
+		if (optUser.isPresent()) {
+			User user = optUser.get();
+			if (user != null) {
+				List<Review> reviews = reviewRepo.findByActiveTrueAndUser_Id(user.getId());
+				return reviews;
+			}
+		}
+		return null;
+	}
+
+	@Override
 	public Review createReview(String email, Review review, Integer bid) {
 		User user = userRepo.findUserByEmail(email);
 		if (user != null || user.getRole().equals(Role.Admin)) {
@@ -95,7 +108,6 @@ public class ReviewServiceImpl implements ReviewService {
 	public List<Review> findBusinessReviews(Integer id) {
 		return reviewRepo.findByBusinessId(id);
 	}
-
 
 	@Override
 	public Boolean deleteReview(String email, Integer id) {

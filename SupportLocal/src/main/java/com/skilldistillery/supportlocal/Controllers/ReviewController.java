@@ -41,6 +41,19 @@ public class ReviewController {
 		}
 		return reviews;
 	}
+	@GetMapping("users/{uid}/reviews")
+	public List<Review> userReviewsById(HttpServletRequest request, HttpServletResponse response,@PathVariable int uid) {
+		
+		List<Review> reviews = reviewSvc.findUserReviewsById(uid);
+		System.out.println("from controller" + reviews);
+		if (reviews != null && reviews.size() == 0) {
+			response.setStatus(204);
+		}
+		if (reviews == null) {
+			response.setStatus(404);
+		}
+		return reviews;
+	}
 
 	@GetMapping("business/{businessId}/reviews")
 	public List<Review> businessReviews(@PathVariable Integer businessId, HttpServletRequest request,

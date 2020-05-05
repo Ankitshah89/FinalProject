@@ -91,7 +91,12 @@
                 >
                   {{ article.content }}
                 </p>
-                <button (click)="myFunction()" id="myBtn">Read more</button>
+                <a
+                  href="#/article-detail/{{ article.id }}"
+                  class="stretched-link"
+                >
+                  continue reading...
+                </a>
               </div>
               <!-- Grid column -->
             </div>
@@ -136,16 +141,6 @@
                           </div>
                         </li>
                       </ul>
-                      // Have to come back to this post comment
-                      <textarea
-                        class="form-control"
-                        placeholder="write a comment..."
-                        rows="3"
-                      ></textarea>
-                      <br />
-                      <button type="button" class="btn btn-info pull-right">
-                        Post
-                      </button>
                     </div>
                   </div>
                 </div>
@@ -163,25 +158,27 @@
           <div class="jumbotron jumbotron-fluid">
             <div class="container">
               <div class="row row-cols-1 row-cols-md-3">
-                <div class="col mb-4">
+                <div class="col mb-4" *ngFor="let review of reviews">
                   <div class="card h-100">
                     <div
                       class="card-body row justify-content-center align-items-center"
                     >
                       <div class="col-md-5">
-                        <h5>Sushi King</h5>
+                        <h5>{{ review.business.name }}</h5>
                         <p>
-                          420 Sushi Road <br />
-                          Denver, CO 80023 <br />
-                          (303) 781-2922
+                          {{ review.business.address.street }}<br />
+                          {{ review.business.address.city }},
+                          {{ review.business.address.state }}
+                          {{ review.business.address.postalCode }} <br />
+                          {{ review.business.phone }}
                         </p>
                       </div>
                       <div class="col-md-7">
                         <span style="display: inline;"
-                          >4-20-2020<br />Rated 4 Stars</span
+                          >{{ review.createDate | date: "MMM d, y" }}<br />Rated
+                          4 Stars</span
                         ><br />
 
-                        <span><strong>Sushi was amazeballs!</strong></span>
                         <blockquote
                           class="card-text"
                           style="
@@ -191,17 +188,7 @@
                             overflow: hidden;
                           "
                         >
-                          Prompt & Friendly Service Quick delivery of food
-                          (10min or less) Kind, attentive server(s) Fresh, great
-                          quality Cleanliness What can I say my palate was quite
-                          satisfied and left me only wanting more! I had the
-                          low-carb cucumber rainbow roll which was cold, fresh,
-                          amazing! No after taste of fish you knew it was FRESH-
-                          thank God! Had "the kiss of fire" roll as well- damn
-                          son it was hot and oh so good! Also, had hot saki,
-                          can't go wrong there. Their service was exceptional.
-                          Amy was kind, happy and very attentive. She answered
-                          my questions with knowledge & joy. Great experience!!!
+                          {{ review.description }}
                         </blockquote>
                         <a href="">continue reading</a>
                       </div>

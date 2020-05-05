@@ -1,55 +1,144 @@
-<button
-  id="modalActivate"
-  type="button"
-  class="btn btn-danger"
-  data-toggle="modal"
-  data-target="#exampleModalPreview"
->
-  Launch demo modal
-</button>
-<!-- Modal -->
-<div
-  class="modal fade right"
-  id="exampleModalPreview"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="exampleModalPreviewLabel"
-  aria-hidden="true"
->
-  <div
-    class="modal-dialog-full-width modal-dialog momodel modal-fluid"
-    role="document"
+<div class="jumbotron-fluid text-center hoverable p-4">
+  <!-- Grid row -->
+  <div class="row">
+    <!-- Grid column -->
+    <div class="col-md-4 offset-md-1 mx-3 my-3">
+      <!-- Featured image -->
+      <div class="view overlay">
+        <img
+          src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg"
+          class="img-fluid"
+          alt="Sample image for first version of blog listing"
+        />
+        <a>
+          <div class="mask rgba-white-slight"></div>
+        </a>
+      </div>
+    </div>
+    <!-- Grid column -->
+
+    <!-- Grid column -->
+    <div class="col-md-7 text-md-left ml-3 mt-3">
+      <!-- Excerpt -->
+      <a href="#!" class="green-text">
+        <h6 class="h6 pb-1"><i class="fas fa-desktop pr-1"></i> Articles</h6>
+      </a>
+
+      <h4 class="h4 mb-4">{{ article.title }}</h4>
+      <h5 class="font-weight-normal">
+        by
+        <a
+          ><strong
+            >{{ article.user.firstName }} {{ article.user.lastName }}</strong
+          ></a
+        >, {{ article.createAt | date: "MMM d, y h:mm a" }}
+      </h5>
+
+      <p id="dots">
+        {{ article.content }}
+      </p>
+    </div>
+    <!-- Grid column -->
+  </div>
+
+  <div class="row bootstrap snippets">
+    <div class="col-md-12 col-md-offset-2 col-sm-12">
+      <div class="comment-wrapper">
+        <div class="panel panel-info">
+          <div class="panel-body" id="commentDiv">
+            <hr />
+            <ul class="media-list">
+              <li class="media" *ngFor="let comment of article.articleComments">
+                <a href="#" class="pull-left">
+                  <img
+                    src="https://bootdey.com/img/Content/user_3.jpg"
+                    alt=""
+                    class="rounded-circle"
+                  />
+                </a>
+                {{ comment.user.firstName }}
+                <div class="media-body">
+                  <span class="text-muted pull-right">
+                    <small class="text-muted">{{
+                      comment.createDate | date: "MMM d, y h:mm a"
+                    }}</small>
+                  </span>
+                  <p>
+                    {{ comment.content }}
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- //articleId: number; // content: string; //inreplyToId: number; // user: User; -->
+  <textarea
+    class="form-control"
+    placeholder="write a comment..."
+    rows="3"
+  ></textarea>
+  <br />
+  <button type="button" class="btn btn-info pull-right">
+    Post
+  </button>
+
+  <button
+    id="modalActivate"
+    type="button"
+    class="btn btn-danger"
+    data-toggle="modal"
+    data-target="#exampleModalPreview"
   >
-    <div class="modal-content-full-width modal-content">
-      <div class="modal-header-full-width modal-header text-center">
-        <h5 class="modal-title w-100" id="exampleModalPreviewLabel">
-          Material Design Full Screen Modal
-        </h5>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span style="font-size: 1.3em;" aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <h1 class="section-heading text-center wow fadeIn my-5 pt-3">
-          Not for money, but for humanity
-        </h1>
-      </div>
-      <div class="modal-footer-full-width modal-footer">
-        <button
-          type="button"
-          class="btn btn-danger btn-md btn-rounded"
-          data-dismiss="modal"
-        >
-          Close
-        </button>
-        <button type="button" class="btn btn-primary btn-md btn-rounded">
-          Save changes
-        </button>
+    Example Modal
+  </button>
+  <!-- Modal -->
+  <div
+    class="modal fade right"
+    id="exampleModalPreview"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalPreviewLabel"
+    aria-hidden="true"
+  >
+    <div
+      class="modal-dialog-full-width modal-dialog momodel modal-fluid"
+      role="document"
+    >
+      <div class="modal-content-full-width modal-content">
+        <div class="modal-header-full-width modal-header text-center">
+          <h5 class="modal-title w-100" id="exampleModalPreviewLabel">
+            Material Design Full Screen Modal
+          </h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span style="font-size: 1.3em;" aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h1 class="section-heading text-center wow fadeIn my-5 pt-3">
+            Not for money, but for humanity
+          </h1>
+        </div>
+        <div class="modal-footer-full-width modal-footer">
+          <button
+            type="button"
+            class="btn btn-danger btn-md btn-rounded"
+            data-dismiss="modal"
+          >
+            Close
+          </button>
+          <button type="button" class="btn btn-primary btn-md btn-rounded">
+            Save changes
+          </button>
+        </div>
       </div>
     </div>
   </div>

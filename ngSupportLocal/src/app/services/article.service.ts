@@ -31,6 +31,15 @@ export class ArticleService {
       })
     );
   }
+  //GetIndex - URL -- No Auth
+  public showById(aid: number) {
+    return this.http.get<Article>(this.url + aid).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Could not retrieve article by id');
+      })
+    );
+  }
 
   //Get Index By Business URL + business/ + bid -- No Auth
   public indexBusArt(bid: number) {

@@ -16,4 +16,6 @@ public interface ReviewService {
 	
 	Boolean deleteReview (String email, Integer id);
 
+	List<Review> findUserReviewsById(int uid);
+
 }
