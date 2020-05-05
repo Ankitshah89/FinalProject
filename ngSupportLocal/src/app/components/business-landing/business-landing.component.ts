@@ -1,3 +1,4 @@
+import { AddressService } from 'src/app/services/address.service';
 import { Article } from 'src/app/models/article';
 import { UserService } from './../../services/user.service';
 import { User } from 'src/app/models/user';
@@ -8,6 +9,8 @@ import { userInfo } from 'os';
 import { Router } from '@angular/router';
 import { ArticleService } from 'src/app/services/article.service';
 import { NgForm } from '@angular/forms';
+import { Address } from 'src/app/models/address';
+import { Preference } from 'src/app/models/preference';
 
 @Component({
   selector: 'app-business-landing',
@@ -26,7 +29,9 @@ export class BusinessLandingComponent implements OnInit {
     private businessSvc: BusinessService,
     private userSVc: UserService,
     private router: Router,
-    private articleSvc: ArticleService
+    private articleSvc: ArticleService,
+    private addSvc: AddressService
+
 
   ) { }
 
@@ -36,6 +41,45 @@ export class BusinessLandingComponent implements OnInit {
     // this.showBusinessInfo();
     this.getUserIdFromEmail();
 
+  }
+  updateBusiness(business){
+    var updateBusiness: Business = new Business;
+    updateBusiness.id = business.id;
+    updateBusiness.name = business.name;
+    updateBusiness.description = business.description;
+    updateBusiness.phone = business.phone;
+    updateBusiness.imageUrl = business.imageUrl;
+    this.businessSvc.updateBusiness(updateBusiness).subscribe(
+      update =>{
+        console.log(update);
+
+      }, failure =>{
+        console.log(failure);
+        console.log('Could not update business in Business-Landing-Component');
+
+
+      }
+    )
+
+  }
+  updateBusinessAddress(address){
+    var updateAddress: Address = new Address();
+    updateAddress.id = address.id;
+    updateAddress.street = address.street;
+    updateAddress.street2 = address.street2;
+    updateAddress.city = address.city;
+    updateAddress.state = address.state;
+    updateAddress.postalCode = address.postalCode;
+    updateAddress.country = address.country;
+    this.addSvc.updateAddress(updateAddress).subscribe(
+      success =>{
+        console.log(success);
+
+      }, failure =>{
+        console.log(failure);
+
+      }
+    )
   }
 
 
