@@ -29,16 +29,9 @@ export class BusinessLandingComponent implements OnInit {
 
   currentUser = null;
 
-
-
   newComment: ArticleComment;
   reviews: Review[] = [];
   articleList: Article[] = [];
-
-
-
-
-
 
   constructor(
     private businessSvc: BusinessService,
@@ -46,9 +39,9 @@ export class BusinessLandingComponent implements OnInit {
     private router: Router,
     private articleSvc: ArticleService,
     private userService: UserService,
-    private articleCommentService : ArticleCommentService,
+    private articleCommentService: ArticleCommentService,
     private addSvc: AddressService,
-    private reviewService : ReviewService
+    private reviewService: ReviewService
   ) {}
 
   ngOnInit(): void {
@@ -99,19 +92,17 @@ export class BusinessLandingComponent implements OnInit {
     this.router.navigate(['business']);
   }
 
-
   loadUserArticles() {
     this.articleList = [];
     this.articleSvc.indexUserArt().subscribe(
       (yes) => {
         this.articleList = yes;
-        this. getArticleComments();
+        this.getArticleComments();
         console.log(this.articleList);
       },
       (no) => {}
     );
   }
-
 
   getArticleComments() {
     this.articleList.forEach((article) => {
@@ -130,7 +121,6 @@ export class BusinessLandingComponent implements OnInit {
   }
 
   getUserReviews() {
-
     this.reviewService.indexReviewById(this.user.id).subscribe(
       (yay) => {
         this.reviews = yay;
@@ -142,18 +132,16 @@ export class BusinessLandingComponent implements OnInit {
     );
   }
 
+  postArticleComment(articleCommentForm: NgForm, articleId: number) {
+    //  this.articleList.forEach((article) => {
 
-
- postArticleComment(articleCommentForm: NgForm,articleId :number) {
-  //  this.articleList.forEach((article) => {
-
-console.log(articleId);
-  console.log(articleCommentForm);
-  console.log(articleCommentForm.value);
+    console.log(articleId);
+    console.log(articleCommentForm);
+    console.log(articleCommentForm.value);
     var commentData: ArticleComment = articleCommentForm.value;
 
-  console.log(commentData);
-    delete  commentData.articleId;
+    console.log(commentData);
+    delete commentData.articleId;
 
     console.log('this is the comment content' + commentData.content);
     console.log('this is the comment articleid' + articleId);
@@ -169,7 +157,6 @@ console.log(articleId);
         console.log('error posting new comment' + this.newComment);
       }
     );
-
   }
 
   reloadAgain() {
@@ -188,9 +175,9 @@ console.log(articleId);
       btnText.innerHTML = 'Read less';
     }
   }
-  showComments() {
-    var commentBox = document.getElementById('commentDiv');
-    var btnText = document.getElementById('divBtn');
+  showComments(aid: string) {
+    var commentBox = document.getElementById('commentDiv' + aid);
+    var btnText = document.getElementById('divBtn' + aid);
 
     if (commentBox.style.display === 'none') {
       commentBox.style.display = 'block';
@@ -217,12 +204,13 @@ console.log(articleId);
           console.log('Using this user to find businesses:');
 
           console.log(user);
-          if(business.active){  ////new line
+          if (business.active) {
+            ////new line
 
             this.businessListForOwner.push(business);
             console.log('business list of manager');
             console.log(business);
-          }    /// new line
+          } /// new line
         });
       },
       (bad) => {
@@ -232,7 +220,6 @@ console.log(articleId);
   }
 
   getUserIdFromEmail() {
-
     console.log('getUserByemail is called');
 
     this.userSVc.searchByEmail(localStorage.getItem('email')).subscribe(
