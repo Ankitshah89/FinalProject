@@ -1,12 +1,16 @@
+import { ReviewService } from 'src/app/services/review.service';
+import { ArticleCommentService } from './../../services/article-comment.service';
 import { Component, OnInit } from '@angular/core';
 import { Article } from 'src/app/models/article';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 import { BusinessService } from 'src/app/services/business.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { ArticleService } from 'src/app/services/article.service';
 import { NgForm } from '@angular/forms';
+import { Review } from 'src/app/models/review';
+import { ArticleComment } from 'src/app/models/article-comment';
 
 @Component({
   selector: 'app-user-landing',
@@ -16,6 +20,8 @@ import { NgForm } from '@angular/forms';
 export class UserLandingComponent implements OnInit {
   // commentList : Article[] =[];
 
+  newComment: ArticleComment;
+  reviews: Review[] = [];
   articleList: Article[] = [];
   newArticle: Article = new Article();
   articles: Article[] = [];
@@ -24,6 +30,7 @@ export class UserLandingComponent implements OnInit {
   currentUser = null;
   newUserArticle = null;
   userName = '';
+  user: User;
 
 
   categories = ['Sports', 'Food', 'Entertainment', 'Shopping'];
@@ -33,7 +40,12 @@ export class UserLandingComponent implements OnInit {
     private businessSvc: BusinessService,
     private router: Router,
     private authService: AuthService,
-    private articleSvc: ArticleService
+    private articleSvc: ArticleService,
+    private articleCommentService : ArticleCommentService,
+    private currentRoute: ActivatedRoute,
+    private reviewService : ReviewService
+
+
   ) { }
 
   ngOnInit(): void {
@@ -44,7 +56,9 @@ export class UserLandingComponent implements OnInit {
     this.loadUserArticles();
     this.setUsername();
     this.setUser();
+
   }
+
   setUser() {
     this.loggedInUser = null;
     this.authService.getUserByEmail(this.authService.getLoggedInEmail()).subscribe(
@@ -67,11 +81,79 @@ export class UserLandingComponent implements OnInit {
     this.articleSvc.indexUserArt().subscribe(
       (yes) => {
         this.articleList = yes;
+        this. getArticleComments();
         console.log(this.articleList);
       },
       (no) => { }
     );
   }
+
+
+  getArticleComments() {
+    this.articleList.forEach((article) => {
+      const articleId = article.id;
+      this.articleCommentService.show(articleId).subscribe(
+        (yay) => {
+          article.articleComments = yay;
+          console.log(article.articleComments.length);
+          this.getUserReviews();
+        },
+        (nay) => {
+          console.log('error in getArticleComments');
+        }
+      );
+    });
+  }
+
+  getUserReviews() {
+
+    this.reviewService.indexReviewById(this.user.id).subscribe(
+      (yay) => {
+        this.reviews = yay;
+        console.log('reviews' + yay.length);
+      },
+      (nay) => {
+        console.log('error retrieving user profile reviews');
+      }
+    );
+  }
+
+
+
+ postArticleComment(articleCommentForm: NgForm,articleId :number) {
+  //  this.articleList.forEach((article) => {
+
+console.log(articleId);
+  console.log(articleCommentForm);
+  console.log(articleCommentForm.value);
+    var commentData: ArticleComment = articleCommentForm.value;
+
+  console.log(commentData);
+    delete  commentData.articleId;
+
+    console.log('this is the comment content' + commentData.content);
+    console.log('this is the comment articleid' + articleId);
+
+    commentData.user = this.user;
+    this.articleCommentService.postComment(commentData, articleId).subscribe(
+      (data) => {
+        this.newComment = data;
+        console.log('new comment success' + this.newComment);
+        this.reloadAgain();
+      },
+      (error) => {
+        console.log('error posting new comment' + this.newComment);
+      }
+    );
+
+  }
+
+  reloadAgain() {
+    this.getArticleComments();
+  }
+
+
+
   setUsername() {
     var user = localStorage.getItem('email').split('@', 1);
     this.userName = user[0];
@@ -149,6 +231,9 @@ export class UserLandingComponent implements OnInit {
       }
     );
   }
+
+
+
 
 
 

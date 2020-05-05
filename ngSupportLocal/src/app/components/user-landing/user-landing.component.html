@@ -46,7 +46,7 @@
                   <!-- Featured image -->
                   <div class="view overlay">
                     <img
-                      src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg"
+                      src={{item.imageUrl}}
                       class="img-fluid"
                       alt="Sample image for first version of blog listing"
                     />
@@ -60,23 +60,24 @@
                 <!-- Grid column -->
                 <div class="col-md-7 text-md-left ml-3 mt-3">
                   <!-- Excerpt -->
-                  <a href="#!" class="green-text">
+                  <!-- <a href="#!" class="green-text">
                     <h6 class="h6 pb-1">
                       <i class="fas fa-desktop pr-1"></i> Articles
                     </h6>
-                  </a>
+                  </a> -->
 
                   <h4 class="h4 mb-4">{{ item.title }}</h4>
                   <!-- <h4 class="h4 mb-4">TITLE</h4> -->
 
                   <h5 class="font-weight-normal">
-                    by <a><strong>{{userName}}</strong></a
+                    by <a><strong>{{item.user.firstName}} {{item.user.lastName}}</strong></a
                     >, {{ item.createAt }}
                   </h5>
 
                   <p>
-                    {{ item.content }}<span id="dots">...</span
-                    ><span id="more"> </span>
+                    {{ item.content }}
+                    <!-- <span id="dots">...</span
+                    ><span id="more"> </span> -->
                   </p>
 
                   <p
@@ -88,25 +89,128 @@
                       overflow: hidden;
                     "
                   ></p>
-                  <button (click)="myFunction()" id="myBtn">Read more</button>
+                   <!-- <button (click)="myFunction()" id="myBtn">Read more</button> -->
                 </div>
                 <!-- Grid column -->
               </div>
+
+               <div class="row bootstrap snippets">
+                <div class="col-md-12 col-md-offset-2 col-sm-12">
+                  <div class="comment-wrapper">
+                    <div class="panel panel-info">
+                      <div class="panel-body" id="commentDiv">
+                        <hr />
+                        <ul class="media-list">
+                          <li class="media" *ngFor="let comment of item.articleComments">
+                            <a href="#" class="pull-left">
+                              <img
+                                src={{comment.user.userImageUrl}}
+                                alt=""
+                                class="rounded-circle"
+                              />
+                            </a>
+                            {{ comment.user.firstName }}
+                            <div class="media-body">
+                              <span class="text-muted pull-right">
+                                <small class="text-muted">{{
+                                  comment.createDate | date: "MMM d, y h:mm a"
+                                }}</small>
+                              </span>
+                              <p>
+                                {{ comment.content }}
+                              </p>
+                            </div>
+                          </li>
+                        </ul>
+
+
+                        <form
+                        name="article-comment"
+                        class="mr-auto"
+                        #articleCommentForm="ngForm"
+                        ngNativeValidate
+                        id="articleCommentForm"
+                      >
+                        <input type="hidden" name="articleId" value="{{item.id}}"
+                        ngModel />
+                        <div class="form-group">
+                          <textarea
+                            name="content"
+                            class="form-control"
+                            placeholder="write a comment..."
+                            rows="3"
+
+                            ngModel
+                          ></textarea>
+
+                        </div>
+                        <button
+                          class="pull-right btn btn-danger"
+                          (click)="postArticleComment(articleCommentForm, item.id)"
+                          type = "reset"
+                        >
+                          Submit
+                        </button>
+                      </form>
+                      <br />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
               <div class="row bootstrap snippets">
                 <div class="col-md-12 col-md-offset-2 col-sm-12">
                   <div class="comment-wrapper">
                     <div class="panel panel-info">
                       <div class="panel-heading">
                         <br />
-                        Comment panel
+                        <!-- Comment panel -->
 
                         <br />
-                        Comment panel
+<!-- //////////////////// New section for comments////////////// -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ???????????????????????????????????????????????????????????????????? -->
+                        <!-- Comment panel -->
 
                         <button (click)="showComments()" id="divBtn">
                           Show Comment
                         </button>
                       </div>
+
+
+
                       <div
                         class="panel-body"
                         id="commentDiv"
@@ -193,7 +297,7 @@
                 </div>
               </div>
             </div>
-            <!-- Grid row -->
+
           </div>
         </ng-template>
       </li>
