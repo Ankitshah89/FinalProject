@@ -30,8 +30,11 @@ export class AuthService {
     // create request to authenticate credentials
     return this.http.get<User>(this.baseUrl + 'authenticate', httpOptions).pipe(
       tap((res) => {
+        console.log(' ***********************************');
+        console.log(res);
         localStorage.setItem('credentials', credentials);
-
+        localStorage.setItem('userId', String(res.id));
+        console.log('USER ID --> ' + localStorage.getItem('userId'));
         return res;
       }),
       catchError((err: any) => {
@@ -54,6 +57,8 @@ export class AuthService {
   logout() {
     localStorage.removeItem('email');
     localStorage.removeItem('credentials');
+    localStorage.removeItem('currentUserId');
+    localStorage.removeItem('userId');
   }
 
   checkLogin() {
@@ -71,14 +76,13 @@ export class AuthService {
     return localStorage.getItem('credentials');
   }
 
-  getCurrentUserId(){
+  getCurrentUserId() {
     return localStorage.getItem('currentUserId');
   }
 
-  getLoggedInUserId(){
+  getLoggedInUserId() {
     return localStorage.getItem('userId');
   }
-
 
   getLoggedInEmail() {
     console.log('This is the email: ' + localStorage.getItem('email'));
@@ -99,7 +103,9 @@ export class AuthService {
       .pipe(
         catchError((err: any) => {
           // console.log(err);
-          return throwError('AuthService.getUserByEmail(): error finding user.');
+          return throwError(
+            'AuthService.getUserByEmail(): error finding user.'
+          );
         })
       );
   }
