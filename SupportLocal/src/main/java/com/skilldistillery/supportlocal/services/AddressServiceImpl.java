@@ -152,7 +152,7 @@ public class AddressServiceImpl implements AddressService {
 
 	@Override
 	public List<Address> generalSearch(String keyword) {
-		List<Address> genSearch = addRepo.findByBusinessDescriptionLikeOrPostalCodeLikeOrBusinessNameLike(keyword, keyword, keyword);
+		List<Address> genSearch = addRepo.findByBusinessDescriptionLikeOrPostalCodeLikeOrBusinessNameLikeAndBusinessActiveIsTrue(keyword, keyword, keyword);
 		// TODO Auto-generated method stub
 		return genSearch;
 	}
@@ -171,7 +171,7 @@ public class AddressServiceImpl implements AddressService {
 		}
 		if(category != null) {
 			try {
-				busCat = addRepo.findByBusinessPreferencesPreferenceCategory(category);
+				busCat = addRepo.findByBusinessPreferencesPreferenceCategoryAndBusinessActiveIsTrue(category);
 				System.out.println("Retrieved values for Businesses By Category: " + category.toString());
 			} catch (Exception e) {
 				e.printStackTrace();

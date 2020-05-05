@@ -87,7 +87,6 @@ public class UserController {
 	public User replaceExistingUser(@RequestBody User user, HttpServletRequest req, Principal principal,
 			HttpServletResponse resp) {
 		
-		
 		try {
 			user = userSvc.updateUser(user, principal.getName());
 			if (user == null) {

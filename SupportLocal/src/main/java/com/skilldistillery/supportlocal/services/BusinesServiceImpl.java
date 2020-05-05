@@ -28,6 +28,10 @@ public class BusinesServiceImpl implements BusinessService {
 	public List<Business> businessIndex() {
 
 		// TODO Auto-generated method stub
+		return busRepo.findByActiveIsTrue();
+	}
+	
+	public List<Business> adminIndexBusiness(){
 		return busRepo.findAll();
 	}
 

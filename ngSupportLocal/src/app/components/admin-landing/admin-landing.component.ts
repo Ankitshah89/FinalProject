@@ -86,7 +86,7 @@ export class AdminLandingComponent implements OnInit {
 
   public loadBusiness() {
     // this.clearSearch();
-    this.businessSvc.index().subscribe(
+    this.businessSvc.adminIndex().subscribe(
       (bData) => {
         console.log(bData);
         this.businessList = bData;
