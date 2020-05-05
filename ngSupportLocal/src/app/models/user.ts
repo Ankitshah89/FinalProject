@@ -13,6 +13,7 @@ export class User {
   password: string;//
   role: string;//
   phone: string;//
+  userImageUrl : string;
   createdAt: Date;//
   active: boolean;//
   reviews: Review[];//
@@ -22,7 +23,7 @@ export class User {
   articleComments: ArticleComment[]; //
   favoriteBusinesses: Business[];//
   preferences: Preference[]; //
-  userImageUrl : string;
+
 
   constructor(id?: number,
               firstName?: string,
@@ -31,6 +32,7 @@ export class User {
               password?: string,
               role?: string,
               phone?: string,
+              userImageUrl?: string,
               createdAt?: Date,
               active?: boolean,
               favoriteBusinesses?: Business[],
@@ -39,8 +41,8 @@ export class User {
               articles?: Article[],
               businesses?: Business[],
               articleComments?: ArticleComment[],
-              preferences?: Preference[],
-              userImageUrl?: string){
+              preferences?: Preference[]
+              ){
 
         this.id = id;
         this.firstName = firstName;
@@ -49,6 +51,7 @@ export class User {
         this.password = password;
         this.role = role;
         this.phone = phone;
+        this.userImageUrl = userImageUrl;
         this.createdAt = createdAt;
         this.active = active;
         this.favoriteBusinesses = favoriteBusinesses;
@@ -58,6 +61,6 @@ export class User {
         this.businesses = businesses;
         this.articleComments = articleComments;
         this.preferences = preferences;
-        this.userImageUrl = userImageUrl;
+
   }
 }

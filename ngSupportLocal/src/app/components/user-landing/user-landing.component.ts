@@ -100,7 +100,7 @@ export class UserLandingComponent implements OnInit {
 
     this.userService.updateUser(updateUser).subscribe(
       yes => {
-        this.reload();
+         this.reload();
         console.log(yes);
 
         //this.currentUser = yes;
@@ -139,9 +139,9 @@ export class UserLandingComponent implements OnInit {
   reload(){
     this.userService.showLoggedInUser().subscribe(
       data => {
-        this.currentUser = data;
+        this.loggedInUser = data;
         console.log("NEW USER")
-        console.log("LOGGED IN USER --->" +this.currentUser)
+        console.log("LOGGED IN USER --->" +this.loggedInUser)
         console.log(data);
       },
       error => {

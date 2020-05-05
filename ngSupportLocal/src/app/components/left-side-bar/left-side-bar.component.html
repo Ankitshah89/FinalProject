@@ -1,31 +1,39 @@
 <!-- Sidebar -->
-<div class="bg-light border-right border-top my-1 border-bottom my-1" id="sidebar-wrapper"  *ngIf="user">
+<div
+  class="bg-light border-right border-top my-1 border-bottom my-1"
+  id="sidebar-wrapper"
+  *ngIf="user"
+>
   <div class="sidebar-heading">Links</div>
   <div class="list-group list-group-flush">
-    <div *ngIf='user.role === "Admin"'>
-    <a
-      href="#/admin-landing"
-      class="list-group-item list-group-item-action bg-light"
-      >Admin Dashboard</a
-    >
-  </div>
+    <div *ngIf="user.role === 'Admin'">
+      <a
+        href="#/admin-landing"
+        class="list-group-item list-group-item-action bg-light"
+        >Admin Dashboard</a
+      >
+    </div>
     <a href="#/home" class="list-group-item list-group-item-action bg-light"
       >Home</a
     >
-    <a href="#/user-landing" class="list-group-item list-group-item-action bg-light"
+    <a
+      href="#/user-landing"
+      class="list-group-item list-group-item-action bg-light"
       >User</a
     >
-    <div *ngIf="user.businesses.length > 0 ">
-    <a  href="#/business-landing" class="list-group-item list-group-item-action bg-light"
-      >Business</a
-    >
-  </div>
     <a href="#/articles" class="list-group-item list-group-item-action bg-light"
       >Articles</a
     >
     <a href="#/reviews" class="list-group-item list-group-item-action bg-light"
       >Reviews</a
     >
+    <div *ngIf="user.role === 'Business'">
+      <a
+        href="#/business-landing"
+        class="list-group-item list-group-item-action bg-light"
+        >Business</a
+      >
+    </div>
   </div>
 </div>
 <!-- /#sidebar-wrapper -->
