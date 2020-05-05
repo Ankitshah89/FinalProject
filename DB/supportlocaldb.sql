@@ -483,4 +483,3 @@ INSERT INTO `article_comment` (`id`, `article_id`, `content`, `create_date`, `in
 INSERT INTO `article_comment` (`id`, `article_id`, `content`, `create_date`, `inreply_to_id`, `user_id`) VALUES (4, 2, 'Thank you for the comment', '2020-05-01', 2, 2);
 
 COMMIT;
-

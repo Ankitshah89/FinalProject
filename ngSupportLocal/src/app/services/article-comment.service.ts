@@ -59,7 +59,7 @@ export class ArticleCommentService {
     };
     if (this.authService.checkLogin()) {
       return this.http
-        .post<ArticleComment>(this.url + 'comments/' + aid, httpOptions)
+        .post<ArticleComment>(this.url + aid + '/comments', httpOptions)
         .pipe(
           catchError((err: any) => {
             console.log(err);
