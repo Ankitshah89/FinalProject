@@ -25,7 +25,6 @@ export class UserLandingComponent implements OnInit {
   newUserArticle = null;
   userName = '';
 
-
   categories = ['Sports', 'Food', 'Entertainment', 'Shopping'];
 
   constructor(
@@ -34,7 +33,7 @@ export class UserLandingComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     private articleSvc: ArticleService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     const cred = this.authService.getCredentials();
@@ -47,19 +46,19 @@ export class UserLandingComponent implements OnInit {
   }
   setUser() {
     this.loggedInUser = null;
-    this.authService.getUserByEmail(this.authService.getLoggedInEmail()).subscribe(
-      foundUser => {
-        this.loggedInUser = foundUser;
-        console.log("The following was found for user:");
+    this.authService
+      .getUserByEmail(this.authService.getLoggedInEmail())
+      .subscribe(
+        (foundUser) => {
+          this.loggedInUser = foundUser;
+          console.log('The following was found for user:');
 
-        console.log(foundUser);
-
-      }, failure => {
-        console.log(failure);
-
-
-      }
-    )
+          console.log(foundUser);
+        },
+        (failure) => {
+          console.log(failure);
+        }
+      );
   }
 
   loadUserArticles() {
@@ -69,14 +68,13 @@ export class UserLandingComponent implements OnInit {
         this.articleList = yes;
         console.log(this.articleList);
       },
-      (no) => { }
+      (no) => {}
     );
   }
   setUsername() {
     var user = localStorage.getItem('email').split('@', 1);
     this.userName = user[0];
   }
-
 
   setEditUser() {
     this.editUser = Object.assign({}, this.loggedInUser);
@@ -96,23 +94,21 @@ export class UserLandingComponent implements OnInit {
     updateUser.phone = user.phone;
     updateUser.role = user.role;
     updateUser.createdAt = user.createdAt;
-    updateUser.active = user.active
+    updateUser.active = user.active;
 
     this.userService.updateUser(updateUser).subscribe(
-      yes => {
-         this.reload();
+      (yes) => {
+        this.reload();
         console.log(yes);
 
         //this.currentUser = yes;
         this.editUser = null;
       },
-      no => {
+      (no) => {
         console.error('UserProfileComponent.updateUser(): error');
         console.error(no);
-
       }
     );
-
   }
 
   postUserArticle(articleForm: NgForm) {
@@ -121,38 +117,31 @@ export class UserLandingComponent implements OnInit {
     articleData.active = true;
 
     this.articleSvc.postArticle(articleData).subscribe(
-      go => {
-
-        console.log('good to go')
+      (go) => {
+        console.log('good to go');
         this.newUserArticle = go;
+        location.reload();
       },
-      nogo => {
+      (nogo) => {
         console.error('PostArticleComponent: error');
         console.error(nogo);
-
-
-      }
-    )
-
-  }
-
-  reload(){
-    this.userService.showLoggedInUser().subscribe(
-      data => {
-        this.loggedInUser = data;
-        console.log("NEW USER")
-        console.log("LOGGED IN USER --->" +this.loggedInUser)
-        console.log(data);
-      },
-      error => {
-        console.log("error inside show logged in user");
       }
     );
   }
 
-
-
-
+  reload() {
+    this.userService.showLoggedInUser().subscribe(
+      (data) => {
+        this.loggedInUser = data;
+        console.log('NEW USER');
+        console.log('LOGGED IN USER --->' + this.loggedInUser);
+        console.log(data);
+      },
+      (error) => {
+        console.log('error inside show logged in user');
+      }
+    );
+  }
 
   myFunction() {
     var dots = document.getElementById('dots');
