@@ -10,9 +10,9 @@ import com.skilldistillery.supportlocal.entities.PreferenceCategory;
 
 public interface AddressRepository extends JpaRepository<Address, Integer> {
 	Business findBusinessByBusinessId(int id);
-	List<Address> findByBusinessDescriptionLikeOrPostalCodeLikeOrBusinessNameLike(String des, String post, String name);
+	List<Address> findByBusinessDescriptionLikeOrPostalCodeLikeOrBusinessNameLikeAndBusinessActiveIsTrue(String des, String post, String name);
 	
-	List<Address> findByBusinessPreferencesPreferenceCategory(PreferenceCategory category);
+	List<Address> findByBusinessPreferencesPreferenceCategoryAndBusinessActiveIsTrue(PreferenceCategory category);
 
-	Address findByBusinessId(int id);
+	Address findByBusinessIdAndBusinessActiveIsTrue(int id);
 }
