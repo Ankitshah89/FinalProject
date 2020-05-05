@@ -6,14 +6,13 @@
       <div class="row no-gutters">
         <div class="col-md-12">
           <img
-          src={{loggedInUser.userImageUrl}}
-          class="card-img rounded-circle img-thumbnail profile-img"
+            src="{{ loggedInUser.userImageUrl }}"
+            class="card-img rounded-circle img-thumbnail profile-img"
             alt="..."
           />
         </div>
       </div>
     </div>
-
 
     <!-- Navigation Links and body -->
     <ul ngbNav #nav="ngbNav" class="nav-tabs justify-content-center">
@@ -23,10 +22,12 @@
         <ng-template ngbNavContent class="mx-2">
           <div class="jumbotron jumbotron-fluid text-center">
             <div class="container">
-              <h1 class="display-4">{{loggedInUser.firstName}} {{loggedInUser.lastName}}</h1>
+              <h1 class="display-4">
+                {{ loggedInUser.firstName }} {{ loggedInUser.lastName }}
+              </h1>
               <p class="lead">
-                {{loggedInUser.email}} <br />
-                {{loggedInUser.phone}}<br />
+                {{ loggedInUser.email }} <br />
+                {{ loggedInUser.phone }}<br />
               </p>
             </div>
           </div>
@@ -457,7 +458,6 @@
                 />
               </div>
               <a
-
                 class="pull-right btn btn-danger"
                 (click)="updateUser(editUser)"
                 >Submit</a
@@ -508,12 +508,12 @@
                 ></textarea>
               </div>
 
-              <a
-                href="#"
+              <button
                 class="pull-right btn btn-danger"
                 (click)="postUserArticle(articleForm)"
-                >Submit</a
               >
+                Submit
+              </button>
             </form>
           </div>
         </ng-template>
