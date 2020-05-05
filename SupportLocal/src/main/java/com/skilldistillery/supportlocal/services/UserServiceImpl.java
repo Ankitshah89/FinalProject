@@ -50,8 +50,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User updateUser(User user, String email) {
-		String encodedPW = encoder.encode(user.getPassword());
-
+		System.out.println("++++++++++++++ TRYING TO UPDATE USER +++++++++++++++++++++");
+		String encodedPW = null;
+		if (user.getPassword() != null) {
+			encodedPW = encoder.encode(user.getPassword());
+		}
 		Optional<User> userOpt = userRepo.findByEmail(email);
 
 		if (userOpt.isPresent()) {
@@ -60,7 +63,9 @@ public class UserServiceImpl implements UserService {
 			managedUser.setLastName(user.getLastName());
 			managedUser.setPhone(user.getPhone());
 			managedUser.setEmail(user.getEmail());
-			managedUser.setPassword(encodedPW);
+			if (encodedPW != null) {
+				managedUser.setPassword(encodedPW);
+			}
 			userRepo.saveAndFlush(managedUser);
 			return managedUser;
 		}

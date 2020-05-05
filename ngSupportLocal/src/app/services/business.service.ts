@@ -75,7 +75,7 @@ export class BusinessService {
 
 
 
-  public updateTodo(data: Business) {
+  public updateBusiness(data: Business) {
     const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({

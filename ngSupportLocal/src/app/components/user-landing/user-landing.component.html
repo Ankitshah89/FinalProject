@@ -6,7 +6,7 @@
       <div class="row no-gutters">
         <div class="col-md-12">
           <img
-            src="{{currentUser.userImageUrl}}"
+            src="{{loggedInUser.userImageUrl}}"
 
             class="card-img rounded-circle img-thumbnail profile-img"
             alt="..."
@@ -23,10 +23,10 @@
         <ng-template ngbNavContent class="mx-2">
           <div class="jumbotron jumbotron-fluid text-center">
             <div class="container">
-              <h1 class="display-4">{{currentUser.firstName}} {{currentUser.lastName}}</h1>
+              <h1 class="display-4">{{loggedInUser.firstName}} {{loggedInUser.lastName}}</h1>
               <p class="lead">
-                {{currentUser.email}}<br />
-                {{currentUser.phone}} <br />
+                {{loggedInUser.email}} <br />
+                {{loggedInUser.phone}}<br />
               </p>
             </div>
           </div>
@@ -353,7 +353,7 @@
                 />
               </div>
               <a
-                href="#"
+
                 class="pull-right btn btn-danger"
                 (click)="updateUser(editUser)"
                 >Submit</a
