@@ -27,6 +27,8 @@ public interface BusinessService {
 	List<Business> findByPreferenceCategory(String categoryStr);
 	Boolean deactivateAndActivateBusiness(String email, int id);
 	
+	List<Business> adminIndexBusiness();
+	
 	
 //	List<Business> findBusinessesByUsername(U)
 

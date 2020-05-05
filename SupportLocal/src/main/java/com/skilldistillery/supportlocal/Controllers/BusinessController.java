@@ -177,6 +177,19 @@ public class BusinessController {
 		return isEnabled;
 	}
 	
+	@GetMapping("businesses/admin")
+	public List<Business> adminBusinessIndex(HttpServletResponse response){
+		
+		List<Business> adminIndex = bServ.adminIndexBusiness();
+		if(adminIndex != null) {
+			response.setStatus(200);
+		} else {
+			response.setStatus(404);
+		}
+		return adminIndex;
+		
+	}
+	
 	
 
 

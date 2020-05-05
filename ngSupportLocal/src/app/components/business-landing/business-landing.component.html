@@ -2,10 +2,10 @@
   <app-left-side-bar></app-left-side-bar>
   <div id="page-content-wrapper">
     <!-- News jumbotron -->
-    <div
-      class="jumbotron text-center hoverable p-4"
-      *ngFor="let item of businessListForOwner"
-    >
+    <div class="jumbotron text-center hoverable p-4" *ngFor="let item of businessListForOwner">
+      <div class="alert alert-danger" role="alert" *ngIf="!item.active">
+        This business has been deactivated. Please contact an administrator for information.
+      </div>
       <!-- Grid row -->
       <!-- Grid column -->
       <div class="row">
@@ -50,6 +50,7 @@
             ><br />
             {{ item.manager.firstName }} {{ item.manager.lastName }}
           </p>
+
         </div>
         <!-- Grid column -->
         <div class="col-md-3 text-md-center my-auto">

@@ -27,6 +27,16 @@ export class BusinessService {
       })
     );
   }
+  public adminIndex(){
+
+    return this.http.get<Business[]>(this.url + "admin").pipe(
+      catchError((err: any) =>{
+        console.log(err);
+        return throwError('Could not retrieve Admin List of Businesses')
+
+      })
+    );
+  }
 
   public create(business: Business) {
     const credentials = this.authService.getCredentials();

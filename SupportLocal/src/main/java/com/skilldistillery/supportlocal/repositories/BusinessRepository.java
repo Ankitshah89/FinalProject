@@ -18,5 +18,7 @@ public interface BusinessRepository extends JpaRepository<Business, Integer> {
 	List<Business> findByManagerId(Integer id);
 	
 	List<Business> findByPreferencesPreferenceCategory(PreferenceCategory category);
+	
+	List<Business> findByActiveIsTrue();
 
 }
