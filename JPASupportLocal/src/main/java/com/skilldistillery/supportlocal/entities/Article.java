@@ -38,14 +38,11 @@ public class Article {
 	
 	
 	@ManyToOne
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 //	@JsonIgnore
-=======
->>>>>>> 7cd831b39e41a397baa01c62d77392724227ddfe
-=======
+
 	@JsonIgnoreProperties(value = "manager")
->>>>>>> 5ffabe91725152184cc8303ba8f4568ade86c476
+
 	@JoinColumn(name="business_id")
 	private Business business;
 

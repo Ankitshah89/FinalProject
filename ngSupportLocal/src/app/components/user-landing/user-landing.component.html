@@ -6,7 +6,8 @@
       <div class="row no-gutters">
         <div class="col-md-12">
           <img
-            src="assets/images/chrissy.jpg"
+            src="{{currentUser.userImageUrl}}"
+
             class="card-img rounded-circle img-thumbnail profile-img"
             alt="..."
           />
@@ -22,10 +23,10 @@
         <ng-template ngbNavContent class="mx-2">
           <div class="jumbotron jumbotron-fluid text-center">
             <div class="container">
-              <h1 class="display-4">Chrissy Rowland</h1>
+              <h1 class="display-4">{{currentUser.firstName}} {{currentUser.lastName}}</h1>
               <p class="lead">
-                Chrissy@EvilDead.com <br />
-                (555) 555-5555 <br />
+                {{currentUser.email}}<br />
+                {{currentUser.phone}} <br />
               </p>
             </div>
           </div>
