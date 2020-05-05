@@ -2,15 +2,18 @@
   <app-left-side-bar></app-left-side-bar>
   <div id="page-content-wrapper">
     <!-- News jumbotron -->
-    <div class="jumbotron text-center hoverable p-4" *ngFor="let item of businessListForOwner">
+    <div
+      class="jumbotron text-center hoverable p-4"
+      *ngFor="let item of businessListForOwner"
+    >
       <!-- Grid row -->
       <!-- Grid column -->
-      <div class="row" >
-      <div class="col-md-4 offset-md-1 mx-1 my-1">
+      <div class="row">
+        <div class="col-md-4 offset-md-1 mx-1 my-1">
           <!-- Featured image -->
           <div class="view overlay">
             <img
-              src={{item.imageUrl}}
+              src="{{ item.imageUrl }}"
               class="img-fluid"
               alt="Sample image for first version of blog listing"
             />
@@ -30,16 +33,22 @@
             </h6>
           </a> -->
 
-          <a href="#!" class="green-text" (click)="showIndividualBusiness(item.id)"><h4 class="h4 mb-3"  > {{item.name}} </h4></a>
+          <a
+            href="#!"
+            class="green-text"
+            (click)="showIndividualBusiness(item.id)"
+            ><h4 class="h4 mb-3">{{ item.name }}</h4></a
+          >
           <p>
-             {{item.address.street}} <br />
-            {{item.address.city}} {{item.address.state}} {{item.address.postalCode}}<br />
-           Phone:  {{item.phone}}
+            {{ item.address.street }} <br />
+            {{ item.address.city }} {{ item.address.state }}
+            {{ item.address.postalCode }}<br />
+            Phone: {{ item.phone }}
           </p>
           <p class="font-weight-normal">
             <a><strong>Manager</strong></a
             ><br />
-            {{item.manager.firstName}}  {{item.manager.lastName}}
+            {{ item.manager.firstName }} {{ item.manager.lastName }}
           </p>
         </div>
         <!-- Grid column -->
@@ -50,9 +59,7 @@
           </p>
           <p></p> -->
 
-          <p class="font-weight-normal">
-
-          </p>
+          <p class="font-weight-normal"></p>
         </div>
       </div>
       <!-- Grid row -->
@@ -66,10 +73,12 @@
         <ng-template ngbNavContent class="mx-2">
           <div class="jumbotron jumbotron-fluid text-center">
             <div class="container">
-              <h1 class="display-4">{{currentUser.firstName}} {{currentUser.lastName}}</h1>
+              <h1 class="display-4">
+                {{ currentUser.firstName }} {{ currentUser.lastName }}
+              </h1>
               <p class="lead">
-                {{currentUser.email}}<br />
-                {{currentUser.phone}} <br />
+                {{ currentUser.email }}<br />
+                {{ currentUser.phone }} <br />
               </p>
             </div>
           </div>
@@ -412,7 +421,7 @@
                   name="name"
                   class="form-control"
                   placeholder="Name"
-                  value="{{business.name}}"
+                  value="{{ business.name }}"
                   [(ngModel)]="business.name"
                 />
               </div>
@@ -424,9 +433,8 @@
                   class="form-control"
                   placeholder="Description"
                   rows="3"
-                  value="{{business.description}}"
+                  value="{{ business.description }}"
                   [(ngModel)]="business.description"
-
                 />
               </div>
               <div class="form-group">
@@ -436,9 +444,8 @@
                   name="phone"
                   class="form-control"
                   placeholder="Phone"
-                  value="{{business.phone}}"
+                  value="{{ business.phone }}"
                   [(ngModel)]="business.phone"
-
                 />
               </div>
               <div class="form-group">
@@ -448,12 +455,15 @@
                   name="imageUrl"
                   class="form-control"
                   placeholder="Image Url"
-                  value="{{business.imageUrl}}"
+                  value="{{ business.imageUrl }}"
                   [(ngModel)]="business.imageUrl"
-
                 />
               </div>
-              <a (click)="updateBusiness(business)" class="pull-right btn btn-danger">Submit</a>
+              <a
+                (click)="updateBusiness(business)"
+                class="pull-right btn btn-danger"
+                >Submit</a
+              >
             </form>
           </div>
         </ng-template>
@@ -462,18 +472,21 @@
         <a ngbNavLink>Edit Address</a>
         <ng-template ngbNavContent class="mx-2">
           <div class="container">
-            <form name="user-info" class="mr-auto" *ngFor="let business of businessListForOwner">
+            <form
+              name="user-info"
+              class="mr-auto"
+              *ngFor="let business of businessListForOwner"
+            >
               <div class="form-group">
-                <h3>{{business.name}} Address:</h3>
+                <h3>{{ business.name }} Address:</h3>
                 <label for="street">Street:</label>
                 <input
                   type="text"
                   name="street"
                   class="form-control"
                   placeholder="Street Address"
-                  value="{{business.address.street}}"
+                  value="{{ business.address.street }}"
                   [(ngModel)]="business.address.street"
-
                 />
               </div>
               <div class="form-group">
@@ -483,9 +496,8 @@
                   name="street2"
                   class="form-control"
                   placeholder="Street 2"
-                  value="{{business.address.street2}}"
+                  value="{{ business.address.street2 }}"
                   [(ngModel)]="business.address.street2"
-
                 />
               </div>
               <div class="form-group">
@@ -495,9 +507,8 @@
                   name="city"
                   class="form-control"
                   placeholder="Xity"
-                  value="{{business.address.city}}"
+                  value="{{ business.address.city }}"
                   [(ngModel)]="business.address.city"
-
                 />
               </div>
               <div class="form-group">
@@ -507,9 +518,8 @@
                   name="state"
                   class="form-control"
                   placeholder="State"
-                  value="{{business.address.state}}"
+                  value="{{ business.address.state }}"
                   [(ngModel)]="business.address.state"
-
                 />
               </div>
               <div class="form-group">
@@ -519,9 +529,8 @@
                   name="postalCode"
                   class="form-control"
                   placeholder="Postal Code"
-                  value="{{business.address.postalCode}}"
+                  value="{{ business.address.postalCode }}"
                   [(ngModel)]="business.address.postalCode"
-
                 />
               </div>
               <div class="form-group">
@@ -531,17 +540,19 @@
                   name="country"
                   class="form-control"
                   placeholder="Country"
-                  value="{{business.address.country}}"
+                  value="{{ business.address.country }}"
                   [(ngModel)]="business.address.country"
-
                 />
               </div>
-              <a (click)="updateBusinessAddress(business.address)" class="pull-right btn btn-danger">Submit</a>
+              <a
+                (click)="updateBusinessAddress(business.address)"
+                class="pull-right btn btn-danger"
+                >Submit</a
+              >
             </form>
           </div>
         </ng-template>
       </li>
-
     </ul>
 
     <div [ngbNavOutlet]="nav" class="mt-2"></div>
