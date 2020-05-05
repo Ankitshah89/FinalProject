@@ -37,3 +37,7 @@ h6,
 .modal-footer-full-width {
   border-top: 1px solid #9ea2a2 !important;
 }
+
+.modal-open .fullscreen .modal-dialog {
+  max-width: 95%;
+}
