@@ -11,6 +11,10 @@ import { ArticleService } from 'src/app/services/article.service';
 import { NgForm } from '@angular/forms';
 import { Address } from 'src/app/models/address';
 import { Preference } from 'src/app/models/preference';
+import { ArticleComment } from 'src/app/models/article-comment';
+import { Review } from 'src/app/models/review';
+import { ArticleCommentService } from 'src/app/services/article-comment.service';
+import { ReviewService } from 'src/app/services/review.service';
 
 @Component({
   selector: 'app-business-landing',
@@ -25,13 +29,26 @@ export class BusinessLandingComponent implements OnInit {
 
   currentUser = null;
 
+
+
+  newComment: ArticleComment;
+  reviews: Review[] = [];
+  articleList: Article[] = [];
+
+
+
+
+
+
   constructor(
     private businessSvc: BusinessService,
     private userSVc: UserService,
     private router: Router,
     private articleSvc: ArticleService,
     private userService: UserService,
-    private addSvc: AddressService
+    private articleCommentService : ArticleCommentService,
+    private addSvc: AddressService,
+    private reviewService : ReviewService
   ) {}
 
   ngOnInit(): void {
@@ -80,6 +97,83 @@ export class BusinessLandingComponent implements OnInit {
     localStorage.setItem('businessId', '');
     localStorage.setItem('businessId', String(id));
     this.router.navigate(['business']);
+  }
+
+
+  loadUserArticles() {
+    this.articleList = [];
+    this.articleSvc.indexUserArt().subscribe(
+      (yes) => {
+        this.articleList = yes;
+        this. getArticleComments();
+        console.log(this.articleList);
+      },
+      (no) => {}
+    );
+  }
+
+
+  getArticleComments() {
+    this.articleList.forEach((article) => {
+      const articleId = article.id;
+      this.articleCommentService.show(articleId).subscribe(
+        (yay) => {
+          article.articleComments = yay;
+          console.log(article.articleComments.length);
+          this.getUserReviews();
+        },
+        (nay) => {
+          console.log('error in getArticleComments');
+        }
+      );
+    });
+  }
+
+  getUserReviews() {
+
+    this.reviewService.indexReviewById(this.user.id).subscribe(
+      (yay) => {
+        this.reviews = yay;
+        console.log('reviews' + yay.length);
+      },
+      (nay) => {
+        console.log('error retrieving user profile reviews');
+      }
+    );
+  }
+
+
+
+ postArticleComment(articleCommentForm: NgForm,articleId :number) {
+  //  this.articleList.forEach((article) => {
+
+console.log(articleId);
+  console.log(articleCommentForm);
+  console.log(articleCommentForm.value);
+    var commentData: ArticleComment = articleCommentForm.value;
+
+  console.log(commentData);
+    delete  commentData.articleId;
+
+    console.log('this is the comment content' + commentData.content);
+    console.log('this is the comment articleid' + articleId);
+
+    commentData.user = this.user;
+    this.articleCommentService.postComment(commentData, articleId).subscribe(
+      (data) => {
+        this.newComment = data;
+        console.log('new comment success' + this.newComment);
+        this.reloadAgain();
+      },
+      (error) => {
+        console.log('error posting new comment' + this.newComment);
+      }
+    );
+
+  }
+
+  reloadAgain() {
+    this.getArticleComments();
   }
 
   myFunction() {
