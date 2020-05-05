@@ -74,6 +74,12 @@ export class AuthService {
   getCurrentUserId(){
     return localStorage.getItem('currentUserId');
   }
+
+  getLoggedInUserId(){
+    return localStorage.getItem('userId');
+  }
+
+
   getLoggedInEmail() {
     console.log('This is the email: ' + localStorage.getItem('email'));
 

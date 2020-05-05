@@ -1,6 +1,6 @@
+import { UserService } from 'src/app/services/user.service';
 import { AddressService } from 'src/app/services/address.service';
 import { Article } from 'src/app/models/article';
-import { UserService } from './../../services/user.service';
 import { User } from 'src/app/models/user';
 import { Business } from 'src/app/models/business';
 import { Component, OnInit } from '@angular/core';
@@ -23,46 +23,40 @@ export class BusinessLandingComponent implements OnInit {
   userId: Number;
   newBusinessArticle: Article;
 
-
+  currentUser = null;
 
   constructor(
     private businessSvc: BusinessService,
     private userSVc: UserService,
     private router: Router,
     private articleSvc: ArticleService,
+    private userService: UserService,
     private addSvc: AddressService
-
-
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     // populate the user
-
     // this.showBusinessInfo();
     this.getUserIdFromEmail();
-
   }
-  updateBusiness(business){
-    var updateBusiness: Business = new Business;
+  updateBusiness(business) {
+    var updateBusiness: Business = new Business();
     updateBusiness.id = business.id;
     updateBusiness.name = business.name;
     updateBusiness.description = business.description;
     updateBusiness.phone = business.phone;
     updateBusiness.imageUrl = business.imageUrl;
     this.businessSvc.updateBusiness(updateBusiness).subscribe(
-      update =>{
+      (update) => {
         console.log(update);
-
-      }, failure =>{
+      },
+      (failure) => {
         console.log(failure);
         console.log('Could not update business in Business-Landing-Component');
-
-
       }
-    )
-
+    );
   }
-  updateBusinessAddress(address){
+  updateBusinessAddress(address) {
     var updateAddress: Address = new Address();
     updateAddress.id = address.id;
     updateAddress.street = address.street;
@@ -72,21 +66,19 @@ export class BusinessLandingComponent implements OnInit {
     updateAddress.postalCode = address.postalCode;
     updateAddress.country = address.country;
     this.addSvc.updateAddress(updateAddress).subscribe(
-      success =>{
+      (success) => {
         console.log(success);
-
-      }, failure =>{
+      },
+      (failure) => {
         console.log(failure);
-
       }
-    )
+    );
   }
-
 
   showIndividualBusiness(id) {
     console.log('******************showing individual business');
-    localStorage.setItem("businessId", "");
-    localStorage.setItem("businessId", String(id));
+    localStorage.setItem('businessId', '');
+    localStorage.setItem('businessId', String(id));
     this.router.navigate(['business']);
   }
 
@@ -116,14 +108,16 @@ export class BusinessLandingComponent implements OnInit {
   }
 
   showBusinessInfo(user: User) {
-    console.log('Attempting to Retrieve list of Businesses inside Business-Landing-Component');
+    console.log(
+      'Attempting to Retrieve list of Businesses inside Business-Landing-Component'
+    );
     // this.user.id = Number(localStorage.getItem("userId"));
 
     console.log(user);
 
     this.businessListForOwner = [];
     this.businessSvc.businessByManager(user).subscribe(
-      good => {
+      (good) => {
         const randomArray = good;
         randomArray.forEach((business) => {
           console.log('Using this user to find businesses:');
@@ -133,22 +127,25 @@ export class BusinessLandingComponent implements OnInit {
           this.businessListForOwner.push(business);
           console.log('business list of manager');
           console.log(business);
-        })
-      }, bad => {
+        });
+      },
+      (bad) => {
         console.log('didntWork');
-      });
+      }
+    );
   }
 
   getUserIdFromEmail() {
     // localStorage.setItem('userId', "");
     console.log('getUserByemail is called');
 
-    this.userSVc.searchByEmail(localStorage.getItem("email")).subscribe(
+    this.userSVc.searchByEmail(localStorage.getItem('email')).subscribe(
       (next) => {
         console.log('Success: Found User inside Business-Landing-Component');
-        localStorage.setItem("userId", String(next.id));
+        localStorage.setItem('userId', String(next.id));
         this.userId = next.id;
         this.showBusinessInfo(next);
+        this.reload();
       },
       (error) => {
         console.log('inside error');
@@ -158,28 +155,34 @@ export class BusinessLandingComponent implements OnInit {
     );
   }
 
-
   postBusinessArticle(articleForm: NgForm) {
-    var articleData:Article = articleForm.value;
+    var articleData: Article = articleForm.value;
     articleData.business = this.businessListForOwner[0];
     console.log(articleData);
     articleData.active = true;
 
     this.articleSvc.postArticle(articleData).subscribe(
-      go => {
-
-        console.log('good to go')
+      (go) => {
+        console.log('good to go');
         this.newBusinessArticle = go;
       },
-      nogo => {
+      (nogo) => {
         console.error('PostArticleComponent: error');
         console.error(nogo);
-
-
       }
-    )
-
+    );
   }
-
-
+  reload() {
+    this.userService.showLoggedInUser().subscribe(
+      (data) => {
+        this.currentUser = data;
+        console.log('NEW USER');
+        console.log('LOGGED IN USER --->' + this.currentUser);
+        console.log(data);
+      },
+      (error) => {
+        console.log('error inside show logged in user');
+      }
+    );
+  }
 }

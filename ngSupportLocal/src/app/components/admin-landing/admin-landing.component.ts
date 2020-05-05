@@ -47,8 +47,7 @@ export class AdminLandingComponent implements OnInit {
     this.loadBusiness();
   }
 
-  // Admin Check here not good
-  adminLoggedInCheck() {}
+
 
   // Users **************************
 
@@ -136,12 +135,11 @@ export class AdminLandingComponent implements OnInit {
 
   }
 
-
   deactivateOrActivateBusiness(id: number){
     this.businessSvc.destroy(id).subscribe(
       (good)=>{
-        this.loadUsers();
-        this.selectedUser = null;
+        this.loadBusiness();
+        this.selectedBusiness = null;
 
       },
       (bad) =>{

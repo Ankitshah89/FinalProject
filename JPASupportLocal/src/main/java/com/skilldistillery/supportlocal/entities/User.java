@@ -36,6 +36,9 @@ public class User {
 
 	private String email;
 	private String password;
+	
+	@Column (name ="user_image")
+	private String userImageUrl;
 
 	@Enumerated(EnumType.STRING)
 	private Role role;
@@ -296,6 +299,14 @@ public class User {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
 				+ ", password=" + password + ", role=" + role + ", phone=" + phone + ", createdAt=" + createdAt
 				+ ", active=" + active + "]";
+	}
+
+	public String getUserImageUrl() {
+		return userImageUrl;
+	}
+
+	public void setUserImageUrl(String userImageUrl) {
+		this.userImageUrl = userImageUrl;
 	}
 
 }

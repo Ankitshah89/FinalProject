@@ -25,6 +25,7 @@ export class UserLandingComponent implements OnInit {
   newUserArticle = null;
   userName = '';
 
+
   categories = ['Sports', 'Food', 'Entertainment', 'Shopping'];
 
   constructor(
@@ -76,18 +77,6 @@ export class UserLandingComponent implements OnInit {
     this.userName = user[0];
   }
 
-  // loadArticleComments(){
-  //   this.articleList =[];
-  //   this.articleSvc.loadArticleComments().subscribe(
-  //   good => {
-  //     this.articleList = good;
-  //   },
-  //   bad =>{
-
-  //   }
-  //   )
-
-  // }
 
   setEditUser() {
     this.editUser = Object.assign({}, this.loggedInUser);
@@ -147,11 +136,12 @@ export class UserLandingComponent implements OnInit {
 
   }
 
-
-  reload() {
-    this.userService.index().subscribe(
+  reload(){
+    this.userService.showLoggedInUser().subscribe(
       data => {
         this.currentUser = data;
+        console.log("NEW USER")
+        console.log("LOGGED IN USER --->" +this.currentUser)
         console.log(data);
       },
       error => {

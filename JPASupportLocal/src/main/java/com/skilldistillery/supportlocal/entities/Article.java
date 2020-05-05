@@ -14,7 +14,6 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -28,29 +27,28 @@ public class Article {
 
 	@JsonIgnoreProperties(value = "businesses")
 	@ManyToOne
-	@JoinColumn(name="user_id")
+	@JoinColumn(name = "user_id")
 	private User user;
 
 	private String title;
 
 	private String content;
 	private boolean active;
-	
-	
+
 	@ManyToOne
+//	@JsonIgnore
 	@JsonIgnoreProperties(value = "manager")
-	@JoinColumn(name="business_id")
+	@JoinColumn(name = "business_id")
 	private Business business;
 
-
-	@Column(name="create_at")
+	@Column(name = "create_at")
 	@CreationTimestamp
 	private LocalDateTime createAt;
 
-	@Column(name="image_url")
+	@Column(name = "image_url")
 	private String imageUrl;
-	
-	@OneToMany(mappedBy="article")
+
+	@OneToMany(mappedBy = "article")
 	@JsonIgnoreProperties(value = "articles")
 	private List<ArticleComment> articleComments;
 
@@ -59,7 +57,7 @@ public class Article {
 	public Article() {
 		super();
 	}
-	
+
 	public List<ArticleComment> getArticleComments() {
 		return articleComments;
 	}
@@ -172,7 +170,8 @@ public class Article {
 
 	@Override
 	public String toString() {
-		return "Article [id=" + id + ", title=" + title + ", content=" + content + ", createAt=" + active + ", active=" + createAt+ ", imageUrl=" + imageUrl + "]";
+		return "Article [id=" + id + ", title=" + title + ", content=" + content + ", createAt=" + active + ", active="
+				+ createAt + ", imageUrl=" + imageUrl + "]";
 	}
 
 	public boolean isActive() {
