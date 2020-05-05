@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <header class="blog-header py-3 px-3">
     <div class="row flex-nowrap justify-content-between align-items-center">
-      <div class="col-4 pt-1">
+      <div class="col-4 pt-1" *ngIf="!userLogInCheck()">
         <a
           class="text-muted"
           href="#"
@@ -9,6 +9,13 @@
           data-target="#exampleModalCenter"
           >Subscribe</a
         >
+      </div>
+      <div class="col-4 pt-1" *ngIf="userLogInCheck()">
+        <a [routerLink]="['/user-landing']">
+          <a class="text-muted" data-toggle="modal" data-target="#loginModal">
+            User Home
+          </a>
+        </a>
       </div>
       <!-- Modal -->
       <div

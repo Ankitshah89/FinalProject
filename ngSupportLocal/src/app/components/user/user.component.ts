@@ -104,9 +104,9 @@ export class UserComponent implements OnInit {
       btnText.innerHTML = 'Read less';
     }
   }
-  showComments() {
-    var commentBox = document.getElementById('commentDiv');
-    var btnText = document.getElementById('divBtn');
+  showComments(aid: string) {
+    var commentBox = document.getElementById('commentDiv' + aid);
+    var btnText = document.getElementById('divBtn' + aid);
 
     if (commentBox.style.display === 'none') {
       commentBox.style.display = 'block';

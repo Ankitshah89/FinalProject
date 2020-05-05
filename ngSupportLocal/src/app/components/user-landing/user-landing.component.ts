@@ -41,12 +41,10 @@ export class UserLandingComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     private articleSvc: ArticleService,
-    private articleCommentService : ArticleCommentService,
+    private articleCommentService: ArticleCommentService,
     private currentRoute: ActivatedRoute,
-    private reviewService : ReviewService
-
-
-  ) { }
+    private reviewService: ReviewService
+  ) {}
 
   ngOnInit(): void {
     const cred = this.authService.getCredentials();
@@ -56,7 +54,6 @@ export class UserLandingComponent implements OnInit {
     this.loadUserArticles();
     this.setUsername();
     this.setUser();
-
   }
 
   setUser() {
@@ -81,13 +78,12 @@ export class UserLandingComponent implements OnInit {
     this.articleSvc.indexUserArt().subscribe(
       (yes) => {
         this.articleList = yes;
-        this. getArticleComments();
+        this.getArticleComments();
         console.log(this.articleList);
       },
       (no) => {}
     );
   }
-
 
   getArticleComments() {
     this.articleList.forEach((article) => {
@@ -106,7 +102,6 @@ export class UserLandingComponent implements OnInit {
   }
 
   getUserReviews() {
-
     this.reviewService.indexReviewById(this.user.id).subscribe(
       (yay) => {
         this.reviews = yay;
@@ -118,18 +113,16 @@ export class UserLandingComponent implements OnInit {
     );
   }
 
+  postArticleComment(articleCommentForm: NgForm, articleId: number) {
+    //  this.articleList.forEach((article) => {
 
-
- postArticleComment(articleCommentForm: NgForm,articleId :number) {
-  //  this.articleList.forEach((article) => {
-
-console.log(articleId);
-  console.log(articleCommentForm);
-  console.log(articleCommentForm.value);
+    console.log(articleId);
+    console.log(articleCommentForm);
+    console.log(articleCommentForm.value);
     var commentData: ArticleComment = articleCommentForm.value;
 
-  console.log(commentData);
-    delete  commentData.articleId;
+    console.log(commentData);
+    delete commentData.articleId;
 
     console.log('this is the comment content' + commentData.content);
     console.log('this is the comment articleid' + articleId);
@@ -145,14 +138,11 @@ console.log(articleId);
         console.log('error posting new comment' + this.newComment);
       }
     );
-
   }
 
   reloadAgain() {
     this.getArticleComments();
   }
-
-
 
   setUsername() {
     var user = localStorage.getItem('email').split('@', 1);
@@ -238,9 +228,9 @@ console.log(articleId);
       btnText.innerHTML = 'Read less';
     }
   }
-  showComments() {
-    var commentBox = document.getElementById('commentDiv');
-    var btnText = document.getElementById('divBtn');
+  showComments(aid: string) {
+    var commentBox = document.getElementById('commentDiv' + aid);
+    var btnText = document.getElementById('divBtn' + aid);
 
     if (commentBox.style.display === 'none') {
       commentBox.style.display = 'block';

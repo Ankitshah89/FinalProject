@@ -6,7 +6,7 @@
       <div class="row no-gutters">
         <div class="col-md-12">
           <img
-            src={{user.userImageUrl}}
+            src="{{ user.userImageUrl }}"
             class="card-img rounded-circle img-thumbnail profile-img"
             alt="..."
           />
@@ -105,13 +105,18 @@
                 <div class="comment-wrapper">
                   <div class="panel panel-info">
                     <div class="panel-heading">
-                      <button (click)="showComments()" id="divBtn">
+                      <a
+                        href=""
+                        onclick="return false"
+                        (click)="showComments(article.id)"
+                        id="divBtn{{ article.id }}"
+                      >
                         Show Comment
-                      </button>
+                      </a>
                     </div>
                     <div
                       class="panel-body"
-                      id="commentDiv"
+                      id="commentDiv{{ article.id }}"
                       style="display: none;"
                     >
                       <div class="clearfix"></div>
@@ -141,6 +146,12 @@
                           </div>
                         </li>
                       </ul>
+                      <a
+                        href="#/article-detail/{{ article.id }}"
+                        class="stretched-link"
+                      >
+                        write a comment
+                      </a>
                     </div>
                   </div>
                 </div>
