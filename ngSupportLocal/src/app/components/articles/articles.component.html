@@ -1,65 +1,59 @@
 <div class="d-flex" id="wrapper">
   <app-left-side-bar></app-left-side-bar>
-  <div id="page-content-wrapper">
-    <div class="container-fluid">
-      <div *ngIf="!selected">
-        <div *ngFor="let item of articleList">
-          <div class="jumbotron text-center hoverable p-4">
-            <!-- Grid row -->
-            <div class="row">
-              <!-- Grid column -->
-              <div class="col-md-4 offset-md-1 mx-3 my-3">
-                <!-- Featured image -->
-                <div class="view overlay">
-                  <img
-                    src="{{ item.imageUrl }}"
-                    class="img-fluid"
-                    alt="Sample image for first version of blog listing"
-                  />
-                  <a>
-                    <div class="mask rgba-white-slight"></div>
-                  </a>
-                </div>
-              </div>
-              <!-- Grid column -->
-              <!-- Grid column -->
-              <div class="col-md-7 text-md-left ml-3 mt-3">
-                <!-- Excerpt -->
-                <a href="#!" class="green-text">
-                  <h6 class="h6 pb-1">
-                    <i class="fas fa-desktop pr-1"></i> Articles
-                  </h6>
-                </a>
-                <h4 class="h4 mb-4">{{ item.title }}</h4>
-                <p class="font-weight-normal">
-                  {{ item.content }}
-                </p>
-                <p class="font-weight-normal">
-                  by
-                  <a
-                    ><strong
-                      >{{ item.business.manager.firstName }}
-                      {{ item.business.manager.lastName }}</strong
-                    ></a
-                  >, {{ item.createAt }}
-                </p>
-                <a class="btn btn-success">Read more</a>
-              </div>
-              <!-- Grid column -->
-            </div>
-            <!-- Grid row -->
+  <div>
+    <div
+      class="jumbotron text-center hoverable p-4"
+      *ngFor="let item of articleList"
+    >
+      <!-- Grid row -->
+      <div class="row">
+        <!-- Grid column -->
+        <div class="col-md-4 offset-md-1 mx-3 my-3">
+          <!-- Featured image -->
+          <div class="view overlay">
+            <img
+              src="{{ item.imageUrl }}"
+              class="img-fluid"
+              alt="article image"
+            />
+            <a>
+              <div class="mask rgba-white-slight"></div>
+            </a>
           </div>
         </div>
+        <!-- Grid column -->
+        <!-- Grid column -->
+        <div class="col-md-7 text-md-left ml-3 mt-3">
+          <!-- Excerpt -->
+          <!-- <a href="#!" class="green-text">
+              <h6 class="h6 pb-1">
+                <i class="fas fa-desktop pr-1"></i> Articles
+              </h6>
+            </a> -->
+          <h4 class="h4 mb-4">{{ item.title }}</h4>
+          <p class="font-weight-normal">
+            {{ item.content }}
+          </p>
+          <p class="font-weight-normal">
+            <!-- by <a><strong>{{item.business.manager.firstName}}  {{item.business.manager.lastName}}</strong></a>,  -->
+            {{ item.createAt }}
+          </p>
+          <a class="btn btn-success" routerLink="/article-detail/{{ item.id }}"
+            >Read more</a
+          >
+        </div>
+        <!-- Grid column -->
       </div>
+      <!-- Grid row -->
     </div>
   </div>
   <app-right-side-bar></app-right-side-bar>
-
-  <script>
-    $("#menu-toggle").click(function (e) {
-      e.preventDefault();
-      $("#wrapper").toggleClass("toggled");
-    });
-  </script>
-  <!-- /#page-content-wrapper -->
 </div>
+<!-- </div> -->
+<script>
+  $("#menu-toggle").click(function (e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
+  });
+</script>
+<!-- /#page-content-wrapper -->

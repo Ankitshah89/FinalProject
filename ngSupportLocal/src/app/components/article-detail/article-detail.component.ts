@@ -15,6 +15,7 @@ import { ArticleComment } from 'src/app/models/article-comment';
 })
 export class ArticleDetailComponent implements OnInit {
   article: Article;
+
   user: User;
   newComment: ArticleComment;
   constructor(

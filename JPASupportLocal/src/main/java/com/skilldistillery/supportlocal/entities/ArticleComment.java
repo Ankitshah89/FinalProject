@@ -44,7 +44,7 @@ public class ArticleComment {
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
-	@JsonIgnoreProperties(value = "articles")
+	@JsonIgnoreProperties(value = { "articles", "reviews"})
 	private User user;
 
 	// M e t h o d s

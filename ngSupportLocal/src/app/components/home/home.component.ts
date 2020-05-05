@@ -11,6 +11,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+  modalArticle:Article;
   artList = [];
   constructor(
     private artServ: ArticleService,
@@ -53,6 +54,8 @@ export class HomeComponent implements OnInit {
   }
 
   public openModal(targetModal, article) {
+    this.modalArticle = null;
+    this.modalArticle = article;
     this.modalService.open(targetModal, {
       centered: true,
       backdrop: 'static',
