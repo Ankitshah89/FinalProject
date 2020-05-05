@@ -1,87 +1,82 @@
 <div class="d-flex" id="wrapper">
   <app-left-side-bar></app-left-side-bar>
   <div id="page-content-wrapper">
-    <!-- News jumbotron -->
-    <div class="jumbotron text-center hoverable p-4" *ngFor="let item of businessListForOwner">
-      <div class="alert alert-danger" role="alert" *ngIf="!item.active">
-        This business has been deactivated. Please contact an administrator for information.
-      </div>
-      <!-- Grid row -->
-      <!-- Grid column -->
-      <div class="row">
-        <div class="col-md-4 offset-md-1 mx-1 my-1">
-          <!-- Featured image -->
-          <div class="view overlay">
-            <img
-              src="{{ item.imageUrl }}"
-              class="img-fluid"
-              alt="Sample image for first version of blog listing"
-            />
-            <a>
-              <div class="mask rgba-white-slight"></div>
-            </a>
-          </div>
-        </div>
-        <!-- Grid column -->
-
-        <!-- Grid column -->
-        <div class="col-md-4 text-md-center my-auto">
-          <!-- Excerpt -->
-          <!-- <a href="#!" class="green-text">
-            <h6 class="h6 pb-1">
-              <i class="fas fa-desktop pr-1"></i> Edit Info
-            </h6>
-          </a> -->
-
-          <a
-            href="#!"
-            class="green-text"
-            (click)="showIndividualBusiness(item.id)"
-            ><h4 class="h4 mb-3">{{ item.name }}</h4></a
-          >
-          <p>
-            {{ item.address.street }} <br />
-            {{ item.address.city }} {{ item.address.state }}
-            {{ item.address.postalCode }}<br />
-            Phone: {{ item.phone }}
-          </p>
-          <p class="font-weight-normal">
-            <a><strong>Manager</strong></a
-            ><br />
-            {{ item.manager.firstName }} {{ item.manager.lastName }}
-          </p>
-
-        </div>
-        <!-- Grid column -->
-        <div class="col-md-3 text-md-center my-auto">
-          <!-- <p>
-            History <br />
-            Established in 2014.
-          </p>
-          <p></p> -->
-
-          <p class="font-weight-normal"></p>
-        </div>
-      </div>
-      <!-- Grid row -->
-    </div>
-
     <!-- Navigation Links and body -->
     <ul ngbNav #nav="ngbNav" class="nav-tabs justify-content-center">
       <!-- Info Link tab and body -->
       <li [ngbNavItem]="1">
         <a ngbNavLink>My Info</a>
         <ng-template ngbNavContent class="mx-2">
-          <div class="jumbotron jumbotron-fluid text-center">
-            <div class="container">
-              <h1 class="display-4">
-                {{ currentUser.firstName }} {{ currentUser.lastName }}
-              </h1>
-              <p class="lead">
-                {{ currentUser.email }}<br />
-                {{ currentUser.phone }} <br />
-              </p>
+          <!-- News jumbotron -->
+          <div
+            class="jumbotron text-center hoverable p-4"
+            *ngFor="let item of businessListForOwner"
+          >
+            <div class="alert alert-danger" role="alert" *ngIf="!item.active">
+              This business has been deactivated. Please contact an
+              administrator for information.
             </div>
+            <!-- Grid row -->
+            <!-- Grid column -->
+            <div class="row">
+              <div class="col-md-4 offset-md-1 mx-1 my-1">
+                <!-- Featured image -->
+                <div class="view overlay">
+                  <img
+                    src="{{ item.imageUrl }}"
+                    class="img-fluid"
+                    alt="Sample image for first version of blog listing"
+                  />
+                  <a>
+                    <div class="mask rgba-white-slight"></div>
+                  </a>
+                </div>
+              </div>
+              <!-- Grid column -->
+
+              <!-- Grid column -->
+              <div class="col-md-4 text-md-center my-auto">
+                <!-- Excerpt -->
+                <!-- <a href="#!" class="green-text">
+            <h6 class="h6 pb-1">
+              <i class="fas fa-desktop pr-1"></i> Edit Info
+            </h6>
+          </a> -->
+
+                <a
+                  href="#!"
+                  class="green-text"
+                  (click)="showIndividualBusiness(item.id)"
+                  ><h4 class="h4 mb-3">{{ item.name }}</h4></a
+                >
+                <p>
+                  {{ item.address.street }} <br />
+                  {{ item.address.city }} {{ item.address.state }}
+                  {{ item.address.postalCode }}<br />
+                  Phone: {{ item.phone }}
+                </p>
+                <p class="font-weight-normal">
+                  <a><strong>Manager</strong></a
+                  ><br />
+                  {{ item.manager.firstName }} {{ item.manager.lastName }}
+                </p>
+                <p class="lead">
+                  {{ currentUser.email }}<br />
+                  {{ currentUser.phone }} <br />
+                </p>
+              </div>
+              <!-- Grid column -->
+              <div class="col-md-3 text-md-center my-auto">
+                <!-- <p>
+            History <br />
+            Established in 2014.
+          </p>
+          <p></p> -->
+
+                <p class="font-weight-normal"></p>
+              </div>
+            </div>
+            <!-- Grid row -->
           </div>
         </ng-template>
       </li>
@@ -525,6 +520,9 @@
         <!-- How do I do a selector for business? -->
         <ng-template ngbNavContent class="mx-2">
           <div class="container" *ngFor="let business of businessListForOwner">
+            <br />
+            <hr />
+
             <form name="business-info" class="mr-auto">
               <div class="form-group">
                 <label for="email">Name:</label>
@@ -576,6 +574,7 @@
                 class="pull-right btn btn-danger"
                 >Submit</a
               >
+              <br />
             </form>
           </div>
         </ng-template>
@@ -659,6 +658,7 @@
               <a
                 (click)="updateBusinessAddress(business.address)"
                 class="pull-right btn btn-danger"
+                style="display: block;"
                 >Submit</a
               >
             </form>
