@@ -20,26 +20,6 @@ export class BusinessService {
   private url = environment.baseUrl + 'api/businesses/';
 
   public index() {
-    //Shouldn't Need any Authorization
-    // const credentials = this.authService.getCredentials();
-    // const httpOptions = {
-    //   headers: new HttpHeaders({
-    //     'Content-Type': 'application/json',
-    //     'Authorization': `Basic ${credentials}`
-    //   })
-    // };
-    // if (this.authService.checkLogin()) {
-    //   return this.http.get<Business[]>(this.url, httpOptions)
-    //     .pipe(
-    //       catchError((err: any) => {
-    //         console.log(err);
-    //         return throwError('Todo list could not be found');
-    //       })
-    //     );
-    // } else {
-    //   this.router.navigateByUrl('/businesses');
-
-    // }
     return this.http.get<Business[]>(this.url).pipe(
       catchError((err: any) => {
         console.log(err);
@@ -95,7 +75,7 @@ export class BusinessService {
 
 
 
-  public updateTodo(data: Business) {
+  public updateBusiness(data: Business) {
     const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({

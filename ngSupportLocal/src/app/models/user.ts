@@ -22,6 +22,7 @@ export class User {
   articleComments: ArticleComment[]; //
   favoriteBusinesses: Business[];//
   preferences: Preference[]; //
+  userImageUrl : string;
 
   constructor(id?: number,
               firstName?: string,
@@ -38,7 +39,8 @@ export class User {
               articles?: Article[],
               businesses?: Business[],
               articleComments?: ArticleComment[],
-              preferences?: Preference[]){
+              preferences?: Preference[],
+              userImageUrl?: string){
 
         this.id = id;
         this.firstName = firstName;
@@ -56,5 +58,6 @@ export class User {
         this.businesses = businesses;
         this.articleComments = articleComments;
         this.preferences = preferences;
+        this.userImageUrl = userImageUrl;
   }
 }

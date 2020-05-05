@@ -1,4 +1,88 @@
 <div
+  id="homeCarousel"
+  class="carousel slide carousel-fade"
+  data-ride="carousel"
+>
+  <ol class="carousel-indicators">
+    <li data-target="#homeCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#homeCarousel" data-slide-to="1"></li>
+    <li data-target="#homeCarousel" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item shadow active mb-4">
+      <img
+        class="d-block w-100"
+        src="assets/images/unionstation.jpg"
+        alt="First slide"
+      />
+      <div class="carousel-caption custom-caption1">
+        <div>
+          <h2 class="display-2">Top Articles Today</h2>
+          <p class="lead">Presenting the Best of Local Colorado</p>
+          <span class="btn btn-sm btn-warning">Learn More</span>
+        </div>
+      </div>
+    </div>
+    <div
+      class="carousel-item shadow flex-column align-items-center justify-content-center mb-4"
+    >
+      <img
+        class="d-block w-100"
+        src="assets/images/culture.jpg"
+        alt="Second slide"
+      />
+      <div class="carousel-caption custom-caption2">
+        <div>
+          <h2 class="display-2">Top Articles Today</h2>
+          <p class="lead">Presenting the Best of Local Colorado</p>
+          <span class="btn btn-sm btn-warning">Learn More</span>
+        </div>
+      </div>
+    </div>
+    <div
+      class="carousel-item shadow d-flex h-100 justify-content-center align-items-center mb-4"
+    >
+      <img
+        class="d-block w-100"
+        src="assets/images/bluebird.jpg"
+        alt="Third slide"
+      />
+      <div class="carousel-caption">
+        <div>
+          <h2 class="display-2">Top Articles Today</h2>
+          <p class="lead">
+            <strong>
+              Presenting the Best of Local Colorado
+            </strong>
+          </p>
+          <span class="btn btn-sm btn-warning">Learn More</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a
+    class="carousel-control-prev"
+    href="#homeCarousel"
+    role="button"
+    data-slide="prev"
+  >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a
+    class="carousel-control-next"
+    href="#homeCarousel"
+    role="button"
+    data-slide="next"
+  >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+<!-- ///////////////////////////////////////////// -->
+
+<div
   class="modal fade"
   id="loginModal"
   tabindex="-1"
@@ -8,53 +92,69 @@
 >
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="loginModalTitle">Login</h5>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
+      <div class="card-body">
+        <h4 class="card-title text-center mb-0">
+          <strong>Sign In</strong>
+        </h4>
+        <div *ngIf="accessDenied">
+          <br />
+          <h4 class="card-title text-center mb-0 red-text">
+            <strong>Invalid Username/Password</strong>
+          </h4>
+        </div>
+        <hr />
+        <form
+          #loginForm="ngForm"
+          ngNativeValidate
+          id="login-form"
+          class="text-center"
         >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+          <div class="login-form-main-message"></div>
+          <div class="main-login-form">
+            <div class="login-group">
+              <div class="form-group mx-sm-3 mb-3">
+                <label for="email">Enter your Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  name="email"
+                  ngModel
+                  required
+                />
+              </div>
 
-      <div class="modal-body">
-        <form #loginForm="ngForm" ngNativeValidate id="login-form">
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="text" class="form-control" name="email" ngModel />
-          </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input
-              type="password"
-              class="form-control"
-              name="password"
-              ngModel
-            />
-          </div>
-          <div class="modal-footer">
+              <div class="form-group mx-sm-3 mb-2">
+                <label for="password">Enter your Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  name="password"
+                  ngModel
+                  required
+                />
+              </div>
+            </div>
+            <hr />
             <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              Close
-            </button>
-            <button
-              type="button"
-              class="btn btn-primary"
+              id="btn"
+              type="submit"
+              class="login-button btn btn-dark"
               (click)="login(loginForm)"
-              onclick="$('#loginModal').modal('hide')">
-
+              onclick="$('#loginModal').modal('hide')"
+            >
               Login
             </button>
           </div>
+          <br />
+          <div class="etc-login-form"></div>
         </form>
       </div>
     </div>
   </div>
 </div>
 
+<!-- ///////////////////////////////  -->
+
+<!-- </div>
+</div>
+ -->

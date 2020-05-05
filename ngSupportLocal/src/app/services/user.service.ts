@@ -46,6 +46,28 @@ export class UserService {
     );
   }
 
+
+
+  public showLoggedInUser(){
+    const credentials = this.authService.getCredentials();
+    const id = this.authService.getLoggedInUserId();
+    console.log("IDDDDDDDD----->" + id);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Basic ${credentials}`,
+      }),
+    };
+    console.log("ShowLoggedInUser "+id);
+      return this.http.get<User>(this.url +"profile/" +id, httpOptions)
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('show logged in user in user service failed');
+        })
+      );
+    }
+
   //Update Users
   public updateUser(user: User) {
     const credentials = this.authService.getCredentials();

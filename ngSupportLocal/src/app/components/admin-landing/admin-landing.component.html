@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col">
-      <h1 align ="center">Admin Dashboard</h1>
+      <h1 align="center">Admin Dashboard</h1>
     </div>
     <div class="col" align="right">
       <button type="button" class="btn btn-light" onClick="history.go(0);">
@@ -19,10 +19,14 @@
     <div class="card-body">
       <h1 class="card-title">User Status</h1>
       <h4>
-        <span class="badge badge-secondary border shadow">Total Users: {{ countUsers() }}</span>
+        <span class="badge badge-secondary border shadow"
+          >Total Users: {{ countUsers() }}</span
+        >
       </h4>
       <h4>
-        <span class="badge badge-success border shadow">Active Users: {{ countActiveU() }}</span>
+        <span class="badge badge-success border shadow"
+          >Active Users: {{ countActiveU() }}</span
+        >
       </h4>
     </div>
     <div class="card-footer">
@@ -34,10 +38,14 @@
     <div class="card-body">
       <h1 class="card-title">Business Status</h1>
       <h4>
-        <span class="badge badge-secondary border shadow">Total Business: {{ countBusiness() }}</span>
+        <span class="badge badge-secondary border shadow"
+          >Total Business: {{ countBusiness() }}</span
+        >
       </h4>
       <h4>
-        <span class="badge badge-success border shadow">Active Business: {{ countActiveG() }}</span>
+        <span class="badge badge-success border shadow"
+          >Active Business: {{ countActiveG() }}</span
+        >
       </h4>
     </div>
     <div class="card-footer">
@@ -68,7 +76,11 @@
               </tr>
             </thead>
             <tbody>
-              <tr class="showHand" *ngFor="let user of users" (click)="selectedUser = user">
+              <tr
+                class="showHand"
+                *ngFor="let user of users"
+                (click)="selectedUser = user"
+              >
                 <td>{{ user.id }}</td>
                 <td>{{ user.lastName }}</td>
                 <td>{{ user.firstName }}</td>
@@ -95,7 +107,9 @@
             <li class="list-group-item">User Id: {{ selectedUser.id }}</li>
             <li class="list-group-item">
               Email:
-              <a href="mailto:{{ selectedUser.email }}"><u>{{ selectedUser.email }}</u></a>
+              <a href="mailto:{{ selectedUser.email }}"
+                ><u>{{ selectedUser.email }}</u></a
+              >
             </li>
 
             <li class="list-group-item">Phone: {{ selectedUser.phone }}</li>
@@ -109,24 +123,30 @@
 
           <br />
           <div class="btn-group" role="group" aria-label="selected task">
-            <button class="btn btn-outline-success" (click)="selectedUser = null">
+            <button
+              class="btn btn-outline-success"
+              (click)="selectedUser = null"
+            >
               Back
             </button>
-            <button class="btn btn-outline-warning" *ngIf="!selectedUser.active"
-              (click)="deactivateOrActivateUser(selectedUser.id)">
+            <button
+              class="btn btn-outline-warning"
+              *ngIf="!selectedUser.active"
+              (click)="deactivateOrActivateUser(selectedUser.id)"
+            >
               Enable
             </button>
-            <button class="btn btn-outline-danger" *ngIf="selectedUser.active"
-              (click)="deactivateOrActivateUser(selectedUser.id)">
+            <button
+              class="btn btn-outline-danger"
+              *ngIf="selectedUser.active"
+              (click)="deactivateOrActivateUser(selectedUser.id)"
+            >
               Disable
             </button>
           </div>
         </div>
       </ng-template>
     </ngb-tab>
-
-
-
 
     <ngb-tab>
       <ng-template ngbTabTitle>
@@ -142,53 +162,64 @@
                 <th>Id</th>
                 <th>Business</th>
                 <th>Description</th>
-
                 <th>Phone</th>
-
                 <th>Active</th>
               </tr>
             </thead>
             <tbody>
-              <tr  *ngFor="let business of businessList" class="showHand" (click)="selectedBusiness = business">
+              <tr
+                *ngFor="let business of businessList"
+                class="showHand"
+                (click)="selectedBusiness = business"
+              >
                 <td>{{ business.id }}</td>
                 <td>{{ business.name }}</td>
                 <td>{{ business.description }}</td>
-
                 <td>{{ business.phone }}</td>
-
                 <td>{{ business.active }}</td>
               </tr>
             </tbody>
           </table>
         </div>
 
-      <!-- Single Business Display -->
-
+        <!-- Single Business Display -->
 
         <div class="container" id="oneGear" *ngIf="selectedBusiness">
           <!-- && !updateResv element here -->
           <h1>{{ selectedBusiness.name | uppercase }}</h1>
           <br />
           <ul class="list-group">
-            <li class="list-group-item">Business Id: {{ selectedBusiness.id }}</li>
-            <li class="list-group-item">Active: {{ selectedBusiness.active }}</li>
+            <li class="list-group-item">
+              Business Id: {{ selectedBusiness.id }}
+            </li>
+            <li class="list-group-item">
+              Active: {{ selectedBusiness.active }}
+            </li>
 
             <li class="list-group-item">
               Description: {{ selectedBusiness.description }}
             </li>
-
           </ul>
           <br />
           <div class="btn-group" role="group" aria-label="selected task">
-            <button class="btn btn-outline-success" (click)="selectedBusiness = null">
+            <button
+              class="btn btn-outline-success"
+              (click)="selectedBusiness = null"
+            >
               Back
             </button>
-            <button class="btn btn-outline-warning" *ngIf="!selectedBusiness.active"
-              (click)="deactivateOrActivateBusiness(selectedBusiness.id)">
+            <button
+              class="btn btn-outline-warning"
+              *ngIf="!selectedBusiness.active"
+              (click)="deactivateOrActivateBusiness(selectedBusiness.id)"
+            >
               Enable
             </button>
-            <button class="btn btn-outline-danger" *ngIf="selectedBusiness.active"
-              (click)="deactivateOrActivateBusiness(selectedBusiness.id)">
+            <button
+              class="btn btn-outline-danger"
+              *ngIf="selectedBusiness.active"
+              (click)="deactivateOrActivateBusiness(selectedBusiness.id)"
+            >
               Disable
             </button>
           </div>
@@ -196,9 +227,6 @@
       </ng-template>
     </ngb-tab>
 
-
     <!-- Business Review List Tab -->
-
-
   </ngb-tabset>
 </div>
