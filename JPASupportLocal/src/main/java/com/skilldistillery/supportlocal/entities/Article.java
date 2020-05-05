@@ -25,7 +25,7 @@ public class Article {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@JsonIgnoreProperties(value = "businesses")
+	@JsonIgnoreProperties(value = {"businesses", "reviews", "articles", "reviewComments"})
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
