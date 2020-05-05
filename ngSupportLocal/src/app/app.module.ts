@@ -10,7 +10,7 @@ import { ArticleCommentService } from './services/article-comment.service';
 import { AddressService } from './services/address.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -67,6 +67,7 @@ import { BusinessesComponent } from './components/businesses/businesses.componen
     NgbModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     AddressService,

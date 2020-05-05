@@ -36,7 +36,8 @@ export class RegisterComponent implements OnInit {
       formData.email,
       formData.password,
       formData.role,
-      formData.phone
+      formData.phone,
+      formData.userImageUrl
     );
 
     const address: Address = new Address(

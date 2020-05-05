@@ -49,14 +49,6 @@ public class Review {
 //	@JsonManagedReference(value="BusinessToReview")
 //	@JsonIgnore
 	private Business business;
-	
-	
-	
-	
-	
-	
-	
-	//////////////////////////
 
 	public Review(int id, LocalDate createdAt, String description, int rating, boolean notification, boolean active,
 			User user, List<ReviewComment> reviewComments, Business business) {

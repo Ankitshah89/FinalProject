@@ -50,25 +50,24 @@ export class ArticleCommentService {
 
   //Post Commment on Article - Url + aid + "/comments" -- Needs Auth
   public postComment(artComm: ArticleComment, aid: number) {
-    const credentials = this.authService.getCredentials();
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: `Basic ${credentials}`,
-      }),
-    };
+    let httpOptions = {};
     if (this.authService.checkLogin()) {
-      return this.http
-        .post<ArticleComment>(this.url + 'comments/' + aid, httpOptions)
-        .pipe(
-          catchError((err: any) => {
-            console.log(err);
-            return throwError('Could not post new comment to Article: ' + aid);
-          })
-        );
-    } else {
-      this.router.navigateByUrl(`/home`);
+      const credentials = this.authService.getCredentials();
+      httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: `Basic ${credentials}`,
+        }),
+      };
     }
+    return this.http
+      .post<ArticleComment>(this.url + aid + '/comments', artComm, httpOptions)
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('Could not post new comment to Article: ' + aid);
+        })
+      );
   }
 
   //Post Reply to comment on Article - URL + aid + /comments/ + cid -- Needs Auth

@@ -2,6 +2,8 @@ import { logging } from 'protractor';
 import { Article } from './../../models/article';
 import { Component, OnInit } from '@angular/core';
 import { ArticleService } from 'src/app/services/article.service';
+import { FormBuilder } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +12,11 @@ import { ArticleService } from 'src/app/services/article.service';
 })
 export class HomeComponent implements OnInit {
   artList = [];
-  constructor(private artServ: ArticleService) {}
+  constructor(
+    private artServ: ArticleService,
+    private fb: FormBuilder,
+    private modalService: NgbModal
+  ) {}
 
   ngOnInit(): void {
     this.recentArticles();
@@ -44,6 +50,14 @@ export class HomeComponent implements OnInit {
         console.log(newArticle);
       }
     }
+  }
+
+  public openModal(targetModal, article) {
+    this.modalService.open(targetModal, {
+      centered: true,
+      backdrop: 'static',
+      windowClass: 'fullscreen',
+    });
   }
 }
 

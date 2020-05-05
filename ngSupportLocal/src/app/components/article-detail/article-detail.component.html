@@ -76,15 +76,31 @@
   </div>
 
   <!-- //articleId: number; // content: string; //inreplyToId: number; // user: User; -->
-  <textarea
-    class="form-control"
-    placeholder="write a comment..."
-    rows="3"
-  ></textarea>
+  <form
+    name="article-comment"
+    class="mr-auto"
+    #articleCommentForm="ngForm"
+    ngNativeValidate
+    id="articleCommentForm"
+  >
+    <input type="hidden" name="articleId" />
+    <div class="form-group">
+      <textarea
+        name="content"
+        class="form-control"
+        placeholder="write a comment..."
+        rows="3"
+        ngModel
+      ></textarea>
+    </div>
+    <button
+      class="pull-right btn btn-danger"
+      (click)="postArticleComment(articleCommentForm)"
+    >
+      Submit
+    </button>
+  </form>
   <br />
-  <button type="button" class="btn btn-info pull-right">
-    Post
-  </button>
 
   <button
     id="modalActivate"
