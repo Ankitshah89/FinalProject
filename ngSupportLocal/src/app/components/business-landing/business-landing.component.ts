@@ -248,6 +248,7 @@ export class BusinessLandingComponent implements OnInit {
       (go) => {
         console.log('good to go');
         this.newBusinessArticle = go;
+        location.reload();
       },
       (nogo) => {
         console.error('PostArticleComponent: error');

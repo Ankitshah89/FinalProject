@@ -87,20 +87,8 @@
                     </a>
                   </div>
                 </div>
-                <!-- Grid column -->
-
-                <!-- Grid column -->
                 <div class="col-md-7 text-md-left ml-3 mt-3">
-                  <!-- Excerpt -->
-                  <!-- <a href="#!" class="green-text">
-                    <h6 class="h6 pb-1">
-                      <i class="fas fa-desktop pr-1"></i> Articles
-                    </h6>
-                  </a> -->
-
                   <h4 class="h4 mb-4">{{ item.title }}</h4>
-                  <!-- <h4 class="h4 mb-4">TITLE</h4> -->
-
                   <h5 class="font-weight-normal">
                     by
                     <a
@@ -110,22 +98,15 @@
                       ></a
                     >, {{ item.createAt }}
                   </h5>
-
                   <p>
                     {{ item.content }}
-                    <!-- <span id="dots">...</span
-                    ><span id="more"> </span> -->
                   </p>
-
-                  <p
-                    id="dots"
-                    style="
-                      display: -webkit-box;
-                      -webkit-line-clamp: 3;
-                      -webkit-box-orient: vertical;
-                      overflow: hidden;
-                    "
-                  ></p>
+                  <a
+                    href="#/article-detail/{{ item.id }}"
+                    class="stretched-link"
+                  >
+                    continue reading...
+                  </a>
                   <!-- <button (click)="myFunction()" id="myBtn">Read more</button> -->
                 </div>
                 <!-- Grid column -->

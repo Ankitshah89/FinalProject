@@ -131,10 +131,13 @@
                   <p>
                     {{ item.content }}
                   </p>
-
-                  <!-- <button (click)="myFunction()" id="myBtn">Read more</button> -->
+                  <a
+                    href="#/article-detail/{{ item.id }}"
+                    class="stretched-link"
+                  >
+                    continue reading...
+                  </a>
                 </div>
-                <!-- Grid column -->
               </div>
 
               <div class="row bootstrap snippets">
@@ -151,7 +154,11 @@
                           Show Comment
                         </a>
                       </div>
-                      <div class="panel-body" id="commentDiv{{ item.id }}">
+                      <div
+                        class="panel-body"
+                        id="commentDiv{{ item.id }}"
+                        style="display: none;"
+                      >
                         <hr />
                         <ul class="media-list">
                           <li
@@ -178,12 +185,6 @@
                             </div>
                           </li>
                         </ul>
-                        <a
-                          href="#/article-detail/{{ item.id }}"
-                          class="stretched-link"
-                        >
-                          write a comment
-                        </a>
 
                         <form
                           name="article-comment"
@@ -218,114 +219,6 @@
                           </button>
                         </form>
                         <br />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="row bootstrap snippets">
-                <div class="col-md-12 col-md-offset-2 col-sm-12">
-                  <div class="comment-wrapper">
-                    <div class="panel panel-info">
-                      <div class="panel-heading">
-                        <br />
-                        <!-- Comment panel -->
-
-                        <br />
-                        <!-- //////////////////// New section for comments////////////// -->
-
-                        <!-- ???????????????????????????????????????????????????????????????????? -->
-                        <!-- Comment panel -->
-
-                        <button
-                          (click)="showComments(item.id)"
-                          id="divBtn{{ item.id }}"
-                        >
-                          Show Comment
-                        </button>
-                      </div>
-
-                      <div
-                        class="panel-body"
-                        id="commentDiv"
-                        style="display: none;"
-                      >
-                        <div class="clearfix"></div>
-                        <hr />
-                        <ul class="media-list">
-                          <li class="media">
-                            <a href="#" class="pull-left">
-                              <img
-                                src="https://bootdey.com/img/Content/user_1.jpg"
-                                alt=""
-                                class="rounded-circle"
-                              />
-                            </a>
-                            <div class="media-body">
-                              <span class="text-muted pull-right">
-                                <small class="text-muted"
-                                  >4-20-2020 11:15am</small
-                                >
-                              </span>
-                              <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Lorem ipsum dolor sit amet,
-                                <a href="#">#consecteturadipiscing </a>.
-                              </p>
-                            </div>
-                          </li>
-                          <li class="media">
-                            <a href="#" class="pull-left">
-                              <img
-                                src="assets/images/chrissy.jpg"
-                                alt=""
-                                class="rounded-circle"
-                              />
-                            </a>
-                            <div class="media-body">
-                              <span class="text-muted pull-right">
-                                <small class="text-muted"
-                                  >4-20-2020 11:30am</small
-                                >
-                              </span>
-                              <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Lorem ipsum dolor
-                                <a href="#">#ipsumdolor </a>adipiscing elit.
-                              </p>
-                            </div>
-                          </li>
-                          <li class="media">
-                            <a href="#" class="pull-left">
-                              <img
-                                src="https://bootdey.com/img/Content/user_3.jpg"
-                                alt=""
-                                class="rounded-circle"
-                              />
-                            </a>
-                            <div class="media-body">
-                              <span class="text-muted pull-right">
-                                <small class="text-muted"
-                                  >4-20-2020 11:35am</small
-                                >
-                              </span>
-                              <p>
-                                Lorem ipsum dolor <a href="#">#sitamet</a> sit
-                                amet, consectetur adipiscing elit.
-                              </p>
-                            </div>
-                          </li>
-                        </ul>
-                        <textarea
-                          class="form-control"
-                          placeholder="write a comment..."
-                          rows="3"
-                        ></textarea>
-                        <br />
-                        <button type="button" class="btn btn-info pull-right">
-                          Post
-                        </button>
                       </div>
                     </div>
                   </div>
@@ -393,8 +286,8 @@
           </div>
         </ng-template>
       </li>
-
-      <!-- Favorites Link and Body -->
+      <!--
+      <!-- Favorites Link and Body
       <li [ngbNavItem]="4">
         <a ngbNavLink>My Favorites</a>
         <ng-template ngbNavContent>
@@ -433,8 +326,8 @@
             </div>
           </div>
         </ng-template>
-      </li>
-      <li [ngbNavItem]="5">
+      </li> -->
+      <li [ngbNavItem]="4">
         <a ngbNavLink>Write Article</a>
         <ng-template ngbNavContent class="mx-2">
           <div class="container">
@@ -476,7 +369,6 @@
               </div>
 
               <a
-                href="#"
                 class="pull-right btn btn-danger"
                 (click)="postBusinessArticle(articleForm)"
                 >Submit</a
@@ -485,7 +377,7 @@
           </div>
         </ng-template>
       </li>
-      <li [ngbNavItem]="6">
+      <li [ngbNavItem]="5">
         <a ngbNavLink>Edit Business Profile</a>
         <!-- How do I do a selector for business? -->
         <ng-template ngbNavContent class="mx-2">
@@ -549,7 +441,7 @@
           </div>
         </ng-template>
       </li>
-      <li [ngbNavItem]="7">
+      <li [ngbNavItem]="6">
         <a ngbNavLink>Edit Address</a>
         <ng-template ngbNavContent class="mx-2">
           <div class="container">
