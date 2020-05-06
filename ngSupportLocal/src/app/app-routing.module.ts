@@ -15,10 +15,12 @@ import { UserLandingComponent } from './components/user-landing/user-landing.com
 import { AdminLandingComponent } from './components/admin-landing/admin-landing.component';
 import { BusinessesComponent } from './components/businesses/businesses.component';
 import { ArticleDetailComponent } from './components/article-detail/article-detail.component';
+import { MeetTheTeamComponent } from './components/meet-the-team/meet-the-team.component';
 const routes: Routes = [
   { path: 'search/:keyword', component: SearchComponent },
   { path: 'businesses/search/category/:category', component:SearchComponent},
   { path: 'home', component: HomeComponent },
+  { path: 'meetTheTeam', component: MeetTheTeamComponent },
   { path: 'user/:id', component: UserComponent }, //Non-owner user view
   { path: 'user-landing', component: UserLandingComponent }, //Logged in user
   { path: 'business', component: BusinessComponent }, //Non-owner view

@@ -36,6 +36,7 @@ import { LoginComponent } from './components/login/login.component';
 import { AdminLandingComponent } from './components/admin-landing/admin-landing.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BusinessesComponent } from './components/businesses/businesses.component';
+import { MeetTheTeamComponent } from './components/meet-the-team/meet-the-team.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { BusinessesComponent } from './components/businesses/businesses.componen
     AdminLandingComponent,
     BusinessesComponent,
     ArticleDetailComponent,
+    MeetTheTeamComponent,
   ],
   imports: [
     BrowserModule,
