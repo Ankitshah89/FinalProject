@@ -48,6 +48,7 @@ public class YelpApiController {
 		String responseForReviews = callYelp(url2);
 
 		// set reviews
+		// convert JSON string to `JsonNode`
 		JsonNode jsonNode2 = objectMapper.readTree(responseForReviews);
 
 		JsonNode arrNode = jsonNode2.get("reviews");
