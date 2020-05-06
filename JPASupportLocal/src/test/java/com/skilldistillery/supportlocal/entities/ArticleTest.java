@@ -47,15 +47,15 @@ class ArticleTest {
 		assertNotNull(article);
 		
 	}
-	@Test
-	@DisplayName("Article to User mapping")
-	void test1() {
-		assertEquals("Jason", article.getUser().getFirstName());
-	}
-	@Test
-	@DisplayName("Article to Business Mapping")
-	void test2() {
-		assertEquals("Mount Rushmore", article.getBusiness().getName());
-	}
+//	@Test
+//	@DisplayName("Article to User mapping")
+//	void test1() {
+//		assertEquals("Jason", article.getUser().getFirstName());
+//	}
+//	@Test
+//	@DisplayName("Article to Business Mapping")
+//	void test2() {
+//		assertEquals("Mount Rushmore", article.getBusiness().getName());
+//	}
 
 }

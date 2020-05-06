@@ -37,8 +37,8 @@ ext {
 
 // define project specific dependencies
 dependencies {
-implementation 'org.springframework.boot:spring-boot-starter-web'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	//implementation 'org.springframework.boot:spring-boot-starter-web'
+	//testImplementation 'org.springframework.boot:spring-boot-starter-test'
   compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.8.5'
   compile group: 'org.springframework', name: 'spring-context', version:"$springVersion"
   compile "mysql:mysql-connector-java:5.1.47"

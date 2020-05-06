@@ -46,6 +46,7 @@ export class AddressService {
 
   public createAddress(newAddress: Address) {
 
+    console.log(newAddress);
 
     const credentials = this.authService.getCredentials();
     const httpOptions = {

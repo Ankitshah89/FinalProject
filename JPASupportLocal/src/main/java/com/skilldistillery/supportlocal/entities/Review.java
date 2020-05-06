@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Review {
@@ -47,7 +48,7 @@ public class Review {
 	@ManyToOne
 	@JoinColumn(name="business_id")
 //	@JsonManagedReference(value="BusinessToReview")
-//	@JsonIgnore
+	@JsonIgnoreProperties(value = {"user", "manager"})
 	private Business business;
 
 	public Review(int id, LocalDate createdAt, String description, int rating, boolean notification, boolean active,
