@@ -11,6 +11,7 @@ import { Component, OnInit } from '@angular/core';
 import { Article } from 'src/app/models/article';
 import { Router, ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/models/user';
+import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -18,10 +19,12 @@ import { User } from 'src/app/models/user';
 })
 export class UserComponent implements OnInit {
   user: User;
+  phone: string;
   articles: Article[] = [];
   articleComments: ArticleComment[] = [];
   individualComments: ArticleComment[] = [];
   reviews: Review[] = [];
+  newComment: ArticleComment;
   constructor(
     private currentRoute: ActivatedRoute,
     private userService: UserService,
@@ -41,6 +44,7 @@ export class UserComponent implements OnInit {
       this.userService.show(userId).subscribe(
         (yay) => {
           this.user = yay;
+          this.phone = this.formatPhoneNumber(yay.phone);
           this.getUserArticles();
         },
         (nay) => {
@@ -92,6 +96,37 @@ export class UserComponent implements OnInit {
     );
   }
 
+  postArticleComment(articleCommentForm: NgForm, articleId: number) {
+    //  this.articleList.forEach((article) => {
+
+    console.log(articleId);
+    console.log(articleCommentForm);
+    console.log(articleCommentForm.value);
+    var commentData: ArticleComment = articleCommentForm.value;
+
+    console.log(commentData);
+    delete commentData.articleId;
+
+    console.log('this is the comment content' + commentData.content);
+    console.log('this is the comment articleid' + articleId);
+
+    commentData.user = this.user;
+    this.articleCommentService.postComment(commentData, articleId).subscribe(
+      (data) => {
+        this.newComment = data;
+        console.log('new comment success' + this.newComment);
+        this.reloadAgain();
+      },
+      (error) => {
+        console.log('error posting new comment' + this.newComment);
+      }
+    );
+  }
+
+  reloadAgain() {
+    this.getArticleComments();
+  }
+
   myFunction() {
     var dots = document.getElementById('dots');
     var btnText = document.getElementById('myBtn');
@@ -116,4 +151,18 @@ export class UserComponent implements OnInit {
       btnText.innerHTML = 'Show Comments';
     }
   }
+
+  formatPhoneNumber = (str) => {
+    //Filter only numbers from the input
+    let cleaned = ('' + str).replace(/\D/g, '');
+
+    //Check if the input is of correct length
+    let match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+
+    if (match) {
+      return '(' + match[1] + ') ' + match[2] + '-' + match[3];
+    }
+
+    return null;
+  };
 }

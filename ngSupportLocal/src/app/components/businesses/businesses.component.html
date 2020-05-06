@@ -1,9 +1,12 @@
 <div class="d-flex" id="wrapper">
   <app-left-side-bar></app-left-side-bar>
 
-  <div id="page-content-wrapper" >
+  <div id="page-content-wrapper">
     <!-- News jumbotron -->
-    <div class="jumbotron text-center hoverable p-4"  *ngFor="let item of businessList">
+    <div
+      class="jumbotron text-center hoverable p-4"
+      *ngFor="let item of businessList"
+    >
       <!-- Grid row -->
       <div class="row">
         <!-- Grid column -->
@@ -11,7 +14,7 @@
           <!-- Featured image -->
           <div class="view overlay">
             <img
-              src={{item.imageUrl}}
+              src="{{ item.imageUrl }}"
               class="img-fluid"
               alt="Sample image for first version of blog listing"
             />
@@ -25,22 +28,35 @@
         <div class="col-md-4 text-md-center my-auto">
           <!-- Excerpt -->
           <a href="#!" class="green-text"> </a>
-          <a  href="#!" class="green-text" (click)="showIndividualBusiness(item.id)"><h4 class="h4 mb-3"><Strong>{{item.name}}</Strong></h4></a>
+          <a
+            href="#!"
+            class="green-text"
+            (click)="showIndividualBusiness(item.id)"
+            ><h4 class="h4 mb-3">
+              <Strong>{{ item.name }}</Strong>
+            </h4></a
+          >
           <p>
-            {{item.address.street}} <br />
-           {{item.address.city}} {{item.address.state}} {{item.address.postalCode}} <br />
-            Phone: {{item.phone}}
+            {{ item.address.street }} <br />
+            {{ item.address.city }} {{ item.address.state }}
+            {{ item.address.postalCode }} <br />
+            Phone: {{ item.phone }}
           </p>
           <p class="font-weight-normal">
             <a><strong>Manager</strong></a
             ><br />
 
             <a
-            href="#!"
-            class="green-text"
-            routerLink="/user/{{item.manager.id}}"
-            ><h4 class="h4 mb-3">{{ item.manager.firstName }}  {{item.manager.lastName}}</h4></a
-          >
+              href="#!"
+              class="green-text"
+              routerLink="/user/{{ item.manager.id }}"
+              ><h4 class="h4 mb-3">
+                {{ item.manager.firstName }} {{ item.manager.lastName }}
+              </h4></a
+            >
           </p>
         </div>
-        </div>
+      </div>
+    </div>
+  </div>
+</div>

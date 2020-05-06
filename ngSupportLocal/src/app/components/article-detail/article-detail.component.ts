@@ -40,7 +40,6 @@ export class ArticleDetailComponent implements OnInit {
           this.article = yay;
           console.log('success retrieving article');
           console.log(this.article.articleComments);
-          this.getLoggedInUserByEmail();
         },
         (nay) => {
           console.log('error retrieving article ' + nay);

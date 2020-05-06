@@ -40,6 +40,7 @@ export class BusinessComponent implements OnInit {
   reviews: Review[] = [];
   articleList: Article[] = [];
   user: User;
+  phone: string;
   constructor(
     private businessSvc: BusinessService,
     private router: Router,
@@ -75,16 +76,19 @@ export class BusinessComponent implements OnInit {
         localStorage.getItem('businessId')
     );
 
-    this.businessSvc.businessById(this.authService.getCurrentBusinessId()).subscribe(
-      (result) => {
-        this.individualBusiness = Object.assign({}, result);
-        localStorage.setItem('phone', result.phone);
-        this.displayYelpReviews();
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    this.businessSvc
+      .businessById(this.authService.getCurrentBusinessId())
+      .subscribe(
+        (result) => {
+          this.individualBusiness = Object.assign({}, result);
+          localStorage.setItem('phone', result.phone);
+          this.displayYelpReviews();
+          this.phone = this.formatPhoneNumber(result.phone);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 
   logReviews() {
@@ -157,14 +161,16 @@ export class BusinessComponent implements OnInit {
 
   loadBusinessArticles() {
     this.articleList = [];
-    this.articleSvc.indexBusArt(Number(this.authService.getCurrentBusinessId())).subscribe(
-      (yes) => {
-        this.articleList = yes;
-        this.getArticleComments();
-        console.log(this.articleList);
-      },
-      (no) => {}
-    );
+    this.articleSvc
+      .indexBusArt(Number(this.authService.getCurrentBusinessId()))
+      .subscribe(
+        (yes) => {
+          this.articleList = yes;
+          this.getArticleComments();
+          console.log(this.articleList);
+        },
+        (no) => {}
+      );
   }
 
   getArticleComments() {
@@ -225,4 +231,18 @@ export class BusinessComponent implements OnInit {
   reloadAgain() {
     this.getArticleComments();
   }
+
+  formatPhoneNumber = (str) => {
+    //Filter only numbers from the input
+    let cleaned = ('' + str).replace(/\D/g, '');
+
+    //Check if the input is of correct length
+    let match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+
+    if (match) {
+      return '(' + match[1] + ') ' + match[2] + '-' + match[3];
+    }
+
+    return null;
+  };
 }
