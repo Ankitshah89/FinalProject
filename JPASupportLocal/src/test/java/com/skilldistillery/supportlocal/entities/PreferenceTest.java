@@ -42,26 +42,26 @@ class PreferenceTest {
 		pref = null;
 	}
 
-	@Test
-	@DisplayName("Testing Preference mapping without relationships")
-	void test() {
-		assertNotNull(pref);
-		assertEquals("climbing", pref.getPreferenceType());
-		assertEquals("Sports", pref.getPreferenceCategory().toString());
-		
-	}
-	
-	@Test
-	@DisplayName("Relationship Mapping between Preference/Business")
-	void test2() {
-		assertEquals("Mount Rushmore", pref.getBuinesses().get(0).getName());
-	}
-	
-	@Test
-	@DisplayName("Relationship Mapping between Preference/User")
-	void test3() {
-		assertEquals("Jason", pref.getUsers().get(0).getFirstName());
-	}
+//	@Test
+//	@DisplayName("Testing Preference mapping without relationships")
+//	void test() {
+//		assertNotNull(pref);
+//		assertEquals("climbing", pref.getPreferenceType());
+//		assertEquals("Sports", pref.getPreferenceCategory().toString());
+//		
+//	}
+//	
+//	@Test
+//	@DisplayName("Relationship Mapping between Preference/Business")
+//	void test2() {
+//		assertEquals("Mount Rushmore", pref.getBuinesses().get(0).getName());
+//	}
+//	
+//	@Test
+//	@DisplayName("Relationship Mapping between Preference/User")
+//	void test3() {
+//		assertEquals("Jason", pref.getUsers().get(0).getFirstName());
+//	}
 	
 	
 

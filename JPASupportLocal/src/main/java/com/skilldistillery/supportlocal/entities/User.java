@@ -52,7 +52,8 @@ public class User {
 	private boolean active;
 
 	@OneToMany(mappedBy = "user")
-//	@JsonIgnoreProperties(value = )
+//	@JsonIgnoreProperties(value = "user",allowSetters = true)
+	@JsonIgnore
 	private List<Review> reviews;
 
 	@OneToMany(mappedBy = "user")

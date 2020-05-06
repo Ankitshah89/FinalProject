@@ -51,11 +51,11 @@ class ArticleCommentTest {
 //	void test1() {
 //		assertEquals("Trial and Error",articleComment.getArticle().getContent());
 //	}
-	@Test
-	@DisplayName("ArticleComment to parentComment Entity Mapping")
-	void test2() {
-		assertEquals("Check Check",articleComment.getParentComment().getContent());
-	}
+//	@Test
+//	@DisplayName("ArticleComment to parentComment Entity Mapping")
+//	void test2() {
+//		assertEquals("Check Check",articleComment.getParentComment().getContent());
+//	}
 //	@Test
 //	@DisplayName("ArticleComment to User Entity Mapping")
 //	void test3() {
