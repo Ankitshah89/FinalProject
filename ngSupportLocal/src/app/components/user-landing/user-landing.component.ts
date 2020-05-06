@@ -32,6 +32,7 @@ export class UserLandingComponent implements OnInit {
   newUserArticle = null;
   userName = '';
   user: User;
+  phone: string;
 
   categories = ['Sports', 'Food', 'Entertainment', 'Shopping'];
 
@@ -63,6 +64,7 @@ export class UserLandingComponent implements OnInit {
       .subscribe(
         (foundUser) => {
           this.loggedInUser = foundUser;
+          this.phone = this.formatPhoneNumber(foundUser.phone);
           console.log('The following was found for user:');
 
           console.log(foundUser);
@@ -240,4 +242,18 @@ export class UserLandingComponent implements OnInit {
       btnText.innerHTML = 'Show Comments';
     }
   }
+
+  formatPhoneNumber = (str) => {
+    //Filter only numbers from the input
+    let cleaned = ('' + str).replace(/\D/g, '');
+
+    //Check if the input is of correct length
+    let match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+
+    if (match) {
+      return '(' + match[1] + ') ' + match[2] + '-' + match[3];
+    }
+
+    return null;
+  };
 }

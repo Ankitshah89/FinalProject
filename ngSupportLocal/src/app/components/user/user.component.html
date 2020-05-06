@@ -2,7 +2,10 @@
   <app-left-side-bar></app-left-side-bar>
   <div id="page-content-wrapper">
     <!-- Profile header and image -->
-    <div class="row justify-content-center align-self-center mt-5 mb-4">
+    <div
+      class="row justify-content-center align-self-center profile-background mx-1 pt-3"
+      style="height: 225px;"
+    >
       <div class="row no-gutters">
         <div class="col-md-12">
           <img
@@ -15,21 +18,20 @@
     </div>
 
     <!-- Navigation Links and body -->
-    <ul ngbNav #nav="ngbNav" class="nav-tabs justify-content-center">
+    <ul ngbNav #nav="ngbNav" class="justify-content-center mt-2">
       <!-- Info Link tab and body -->
       <li [ngbNavItem]="1">
         <a ngbNavLink>My Info</a>
         <ng-template ngbNavContent class="mx-2">
-          <div class="jumbotron jumbotron-fluid text-center">
-            <div class="container">
-              <h1 class="display-4">
-                {{ user.firstName }} {{ user.lastName }}
-              </h1>
-              <p class="lead">
-                {{ user.email }} <br />
-                {{ user.phone }} <br />
-              </p>
-            </div>
+          <div class="justify-content-center text-center">
+            <!-- <div class="jumbotron jumbotron-fluid text-center"> -->
+            <h1 class="display-4" style="font-family: Beth Ellen;">
+              {{ user.firstName }} {{ user.lastName }}
+            </h1>
+            <p class="lead mt-1">
+              <a href="mailto:{{ user.email }}">{{ user.email }}</a> <br />
+              <a href="tel:+1{{ phone }}"> {{ phone }}</a> <br />
+            </p>
           </div>
         </ng-template>
       </li>
@@ -37,106 +39,95 @@
       <!-- Articles Link and body -->
       <li [ngbNavItem]="2">
         <a ngbNavLink>My Articles</a>
-
         <ng-template ngbNavContent>
-          <div
-            class="jumbotron-fluid text-center hoverable p-4"
-            *ngFor="let article of articles"
-          >
-            <!-- Grid row -->
-            <div class="row">
-              <!-- Grid column -->
-              <div class="col-md-4 offset-md-1 mx-3 my-3">
-                <!-- Featured image -->
-                <div class="view overlay">
-                  <img
-                    src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg"
-                    class="img-fluid"
-                    alt="Sample image for first version of blog listing"
-                  />
-                  <a>
-                    <div class="mask rgba-white-slight"></div>
+          <div *ngFor="let article of articles">
+            <div class="jumbotron-fluid text-center hoverable p-4">
+              <!-- Grid row -->
+              <div class="row">
+                <!-- Grid column -->
+                <div class="col-md-4 offset-md-1 mx-3 my-3">
+                  <!-- Featured image -->
+                  <div class="view overlay">
+                    <img
+                      src="{{ article.imageUrl }}"
+                      class="img-fluid"
+                      alt="Sample image for first version of blog listing"
+                    />
+                    <a>
+                      <div class="mask rgba-white-slight"></div>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-md-7 text-md-left ml-3 mt-3">
+                  <h4 class="h4 mb-4">{{ article.title }}</h4>
+                  <h5 class="font-weight-normal">
+                    by
+
+                    <strong>{{ user.firstName }} {{ user.lastName }}</strong
+                    ><br />
+                    {{ article.createAt | date: "MMM d, y h:mm a" }}
+                  </h5>
+
+                  <p
+                    id="dots"
+                    style="
+                      display: -webkit-box;
+                      -webkit-line-clamp: 3;
+                      -webkit-box-orient: vertical;
+                      overflow: hidden;
+                    "
+                  >
+                    {{ article.content }}
+                  </p>
+                  <a
+                    href="#/article-detail/{{ article.id }}"
+                    class="stretched-link"
+                  >
+                    continue reading...
                   </a>
                 </div>
+                <!-- Grid column -->
               </div>
-              <!-- Grid column -->
-
-              <!-- Grid column -->
-              <div class="col-md-7 text-md-left ml-3 mt-3">
-                <!-- Excerpt -->
-                <a href="#!" class="green-text">
-                  <h6 class="h6 pb-1">
-                    <i class="fas fa-desktop pr-1"></i> Articles
-                  </h6>
-                </a>
-
-                <h4 class="h4 mb-4">{{ article.title }}</h4>
-                <h5 class="font-weight-normal">
-                  by
-                  <a
-                    ><strong
-                      >{{ user.firstName }} {{ user.lastName }}</strong
-                    ></a
-                  >, {{ article.createAt | date: "MMM d, y h:mm a" }}
-                </h5>
-
-                <p
-                  id="dots"
-                  style="
-                    display: -webkit-box;
-                    -webkit-line-clamp: 3;
-                    -webkit-box-orient: vertical;
-                    overflow: hidden;
-                  "
-                >
-                  {{ article.content }}
-                </p>
-                <a
-                  href="#/article-detail/{{ article.id }}"
-                  class="stretched-link"
-                >
-                  continue reading...
-                </a>
-              </div>
-              <!-- Grid column -->
-            </div>
-            <div class="row bootstrap snippets">
-              <div class="container">
-                <a
-                  href=""
-                  onclick="return false"
-                  (click)="showComments(article.id)"
-                  id="divBtn{{ article.id }}"
-                >
-                  Show Comment
-                </a>
-              </div>
-              <div class="col-md-12 col-md-offset-2 col-sm-12">
-                <div class="comment-wrapper">
-                  <div class="panel panel-info">
-                    <div class="panel-heading"></div>
-                    <div
-                      class="panel-body"
-                      id="commentDiv{{ article.id }}"
-                      style="display: none;"
-                    >
-                      <div class="clearfix"></div>
-                      <hr />
-                      <div>
+              <div class="row bootstrap snippets">
+                <div class="col-md-12 col-md-offset-2 col-sm-12">
+                  <div class="comment-wrapper">
+                    <div class="panel panel-info">
+                      <div class="panel-heading">
+                        <a
+                          href=""
+                          onclick="return false"
+                          (click)="showComments(article.id)"
+                          id="divBtn{{ article.id }}"
+                        >
+                          Show Comment
+                        </a>
+                      </div>
+                      <div
+                        class="panel-body"
+                        id="commentDiv{{ article.id }}"
+                        style="display: none;"
+                      >
+                        <hr />
                         <ul class="media-list">
                           <li
                             class="media"
                             *ngFor="let comment of article.articleComments"
                           >
-                            <a href="#" class="pull-left">
-                              <img
-                                src="https://bootdey.com/img/Content/user_3.jpg"
-                                alt=""
-                                class="rounded-circle"
-                              />
-                            </a>
-                            {{ comment.user.firstName }}
-                            <div class="media-body">
+                            <div class="row">
+                              <a
+                                href="#"
+                                class="pull-left"
+                                routerLink="/user/{{ comment.user.id }}"
+                              >
+                                <img
+                                  src="{{ comment.user.userImageUrl }}"
+                                  alt=""
+                                  class="rounded-circle img-thumbnail"
+                                />
+                                {{ comment.user.firstName }}
+                              </a>
+                            </div>
+                            <div class="media-body my-auto">
                               <span class="text-muted pull-right">
                                 <small class="text-muted">{{
                                   comment.createDate | date: "MMM d, y h:mm a"
@@ -148,14 +139,39 @@
                             </div>
                           </li>
                         </ul>
-                      </div>
-                      <div>
-                        <a
-                          href="#/article-detail/{{ article.id }}"
-                          class="stretched-link"
+                        <form
+                          name="article-comment"
+                          class="mr-auto"
+                          #articleCommentForm="ngForm"
+                          ngNativeValidate
+                          id="articleCommentForm"
                         >
-                          write a comment
-                        </a>
+                          <input
+                            type="hidden"
+                            name="articleId"
+                            value="{{ article.id }}"
+                            ngModel
+                          />
+                          <div class="form-group">
+                            <textarea
+                              name="content"
+                              class="form-control"
+                              placeholder="write a comment..."
+                              rows="3"
+                              ngModel
+                            ></textarea>
+                          </div>
+                          <button
+                            class="pull-right btn btn-danger"
+                            (click)="
+                              postArticleComment(articleCommentForm, article.id)
+                            "
+                            type="reset"
+                          >
+                            Submit
+                          </button>
+                        </form>
+                        <br />
                       </div>
                     </div>
                   </div>

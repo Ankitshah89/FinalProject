@@ -45,6 +45,8 @@ export class AuthService {
   }
 
   register(user) {
+    console.log(user);
+
     // create request to register a new account
     return this.http.post(this.baseUrl + 'register', user).pipe(
       catchError((err: any) => {
@@ -87,7 +89,6 @@ export class AuthService {
   getCurrentBusinessId() {
     return localStorage.getItem('businessId');
   }
-
 
   getLoggedInEmail() {
     console.log('This is the email: ' + localStorage.getItem('email'));

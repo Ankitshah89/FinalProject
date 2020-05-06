@@ -1,93 +1,14 @@
+$link: chocolate;
+
 .profile-img {
   height: 200px;
   width: auto;
 }
 
-/* Tabs panel */
-.tabbable-panel {
-  border: 1px solid #eee;
-  padding: 10px;
+.profile-background {
+  background: url("/assets/images/denverskyline.jpg") no-repeat center center;
 }
 
-/* Default mode */
-.tabbable-line > .nav-tabs {
-  border: none;
-  margin: 0px;
-}
-.tabbable-line > .nav-tabs > li {
-  margin-right: 2px;
-}
-.tabbable-line > .nav-tabs > li > a {
-  border: 0;
-  margin-right: 0;
-  color: #737373;
-}
-.tabbable-line > .nav-tabs > li > a > i {
-  color: #a6a6a6;
-}
-.tabbable-line > .nav-tabs > li.open,
-.tabbable-line > .nav-tabs > li:hover {
-  border-bottom: 4px solid #fbcdcf;
-}
-.tabbable-line > .nav-tabs > li.open > a,
-.tabbable-line > .nav-tabs > li:hover > a {
-  border: 0;
-  background: none !important;
-  color: #333333;
-}
-.tabbable-line > .nav-tabs > li.open > a > i,
-.tabbable-line > .nav-tabs > li:hover > a > i {
-  color: #a6a6a6;
-}
-.tabbable-line > .nav-tabs > li.open .dropdown-menu,
-.tabbable-line > .nav-tabs > li:hover .dropdown-menu {
-  margin-top: 0px;
-}
-.tabbable-line > .nav-tabs > li.active {
-  border-bottom: 4px solid #f3565d;
-  position: relative;
-}
-.tabbable-line > .nav-tabs > li.active > a {
-  border: 0;
-  color: #333333;
-}
-.tabbable-line > .nav-tabs > li.active > a > i {
-  color: #404040;
-}
-.tabbable-line > .tab-content {
-  margin-top: -3px;
-  background-color: #fff;
-  border: 0;
-  border-top: 1px solid #eee;
-  padding: 15px 0;
-}
-.portlet .tabbable-line > .tab-content {
-  padding-bottom: 0;
-}
-
-/* Below tabs mode */
-
-.tabbable-line.tabs-below > .nav-tabs > li {
-  border-top: 4px solid transparent;
-}
-.tabbable-line.tabs-below > .nav-tabs > li > a {
-  margin-top: 0;
-}
-.tabbable-line.tabs-below > .nav-tabs > li:hover {
-  border-bottom: 0;
-  border-top: 4px solid #fbcdcf;
-}
-.tabbable-line.tabs-below > .nav-tabs > li.active {
-  margin-bottom: -2px;
-  border-bottom: 0;
-  border-top: 4px solid #f3565d;
-}
-.tabbable-line.tabs-below > .tab-content {
-  margin-top: -10px;
-  border-top: 0;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 15px;
-}
 .nav-tabs > li,
 .nav-pills > li {
   float: none;
@@ -100,28 +21,6 @@
 .nav-tabs,
 .nav-pills {
   text-align: center;
-}
-
-.star {
-  font-size: 1.5rem;
-  color: #b0c4de;
-}
-.filled {
-  color: #1e90ff;
-}
-.bad {
-  color: #deb0b0;
-}
-.filled.bad {
-  color: #ff1e1e;
-}
-
-#more {
-  display: none;
-}
-
-body {
-  margin-top: 20px;
 }
 
 .comment-wrapper .panel-body {
@@ -145,123 +44,6 @@ form {
   text-align: left;
 }
 
-.jumbotron {
-  margin-top: 50px;
-  position: relative;
-  min-height: 400px;
-  background-size: 100%;
-  padding: 10px;
-}
-
-.jumbotron-content {
-  position: absolute;
-  right: 0;
-  top: 0;
-  padding: 0px 15px;
-  width: 25%;
-  height: 100%;
-  background-color: #000;
-  background-color: rgba(0, 0, 0, 0.66);
-  border-radius: 5px;
-}
-
-.jumbotron-content h1 {
-  text-align: center;
-  color: #fff;
-  font-size: 1.75em;
-  margin-bottom: 0.5em;
-}
-
-.jumbotron p {
-  margin-top: 0;
-  color: #fff;
-  font-size: 1.2em;
-}
-
-.jumbotron-content label {
-  color: #fff;
-}
-
-.jumbotron .img-credit {
-  color: #bbb;
-  background-color: #000;
-  background-color: rgba(0, 0, 0, 0.5);
-  font-size: 10px;
-  margin: 5px;
-  padding: 3px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-}
-
-.jumbotron .img-credit a,
-.jumbotron .img-credit a:hover {
-  color: #fff;
-}
-
-.jumbotron .btn {
-  padding: 5px 5%;
-  margin: 0 3%;
-}
-
-@media (min-width: 992px) {
-  .jumbotron .btn {
-    padding: 5px 10%;
-  }
-}
-
-@media (max-width: 991px) {
-  .jumbotron-content {
-    position: absolute;
-    height: 100%;
-  }
-
-  .jumbotron-lg-only {
-    display: none;
-  }
-}
-
-@media (max-width: 768px) {
-  .jumbotron {
-    background-size: 100% 100%;
-  }
-
-  .jumbotron-content {
-    top: 0;
-    height: 100%;
-    width: 37%;
-  }
-
-  .jumbotron .btn {
-    font-size: 0.85em;
-    padding: 8px 5%;
-    max-width: 65px;
-  }
-}
-
-@media (min-device-width: 320px) and (max-device-width: 568px) {
-  .jumbotron {
-    background: #3667a6;
-    min-height: 275px;
-  }
-
-  .jumbotron-content {
-    width: 100%;
-    height: 100%;
-  }
-
-  .jumbotron .img-credit {
-    display: none;
-  }
-}
-
-.content {
-  width: 240px;
-  overflow: hidden;
-  word-wrap: break-word;
-  text-overflow: ellipsis;
-  line-height: 18px;
-}
-.less {
-  max-height: 54px;
+ul a {
+  color: $link;
 }

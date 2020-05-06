@@ -34,7 +34,7 @@ public class Address {
 
 	@OneToOne
 	@JoinColumn(name = "business_id")
-	@JsonIgnoreProperties(value="address")
+	@JsonIgnoreProperties(value="address", allowSetters = true)
 	private Business business;
 	// Methods begin
 	

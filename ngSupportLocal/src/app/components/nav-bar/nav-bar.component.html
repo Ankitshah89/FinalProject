@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <header class="blog-header py-3 px-3">
+  <header class="blog-header py-2 px-2">
     <div class="row flex-nowrap justify-content-between align-items-center">
       <div class="col-4 pt-1" *ngIf="!userLogInCheck()">
         <a
@@ -146,11 +146,21 @@
         </div>
       </div>
       <div class="col-4 text-center">
-        <a class="blog-header-logo text-dark" href="#">Colorado Tribe</a>
+        <a class="blog-header-logo text-dark" href="#"
+          ><img
+            src="assets/images/coloradotribe.jpg"
+            class="img-responsive"
+            style="width: 250px;"
+        /></a>
       </div>
       <div class="col-4 d-flex justify-content-end align-items-center">
         <a class="text-muted" aria-label="Search">
-          <input type="text" name="keyword" [(ngModel)]="keyword" />
+          <input
+            type="text"
+            name="keyword"
+            placeholder="Search"
+            [(ngModel)]="keyword"
+          />
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -165,6 +175,7 @@
             viewBox="0 0 24 24"
             focusable="false"
             (click)="search(keyword)"
+            id="navbarSearch"
           >
             <title>Search</title>
             <circle cx="10.5" cy="10.5" r="7.5" />
@@ -173,23 +184,19 @@
         </a>
 
         <a [routerLink]="['/register']" *ngIf="!userLogInCheck()">
-          <button
-            class="btn btn-sm btn-outline-dark mx-4"
+          <a
+            class="text-muted mx-4"
             data-toggle="modal"
             data-target="#registerModal"
           >
             Register
-          </button>
+          </a>
         </a>
 
         <a [routerLink]="['/login']" *ngIf="!userLogInCheck()">
-          <button
-            class="btn btn-sm btn-outline-dark"
-            data-toggle="modal"
-            data-target="#loginModal"
-          >
+          <a class="text-muted" data-toggle="modal" data-target="#loginModal">
             Login
-          </button>
+          </a>
         </a>
         <a *ngIf="userLogInCheck()">
           <app-logout></app-logout>
@@ -198,7 +205,7 @@
     </div>
   </header>
 
-  <div class="container nav-scroller py- mb-2 border-bottom my-3">
+  <div class="container nav-scroller mb-3 border-bottom">
     <nav class="nav d-flex justify-content-between">
       <a
         class="p-2 text-muted"
@@ -224,69 +231,7 @@
         routerLinkActive="router-link-active"
         >Sports</a
       >
-      <!-- <a class="p-2 text-muted" href="#">Culture</a>
-      <a class="p-2 text-muted" href="#">Business</a>
-      <a class="p-2 text-muted" href="#">Politics</a>
-      <a class="p-2 text-muted" href="#">Opinion</a>
-      <a class="p-2 text-muted" href="#">Science</a>
-      <a class="p-2 text-muted" href="#">Health</a>
-      <a class="p-2 text-muted" href="#">Style</a>
-      <a class="p-2 text-muted" href="#">Travel</a> -->
     </nav>
   </div>
 </div>
 <script src="contactform/contactform.js" defer></script>
-
-<!-- Modal -->
-
-<!-- Modal  -->
-
-<!-- Modal -->
-<!--
-<div
-  class="modal fade"
-  id="loginModal"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="loginModal"
-  aria-hidden="true"
->
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="loginModalTitle">Login</h5>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form  #loginForm="ngForm"
-        ngNativeValidate
-        id="login-form">
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="text" class="form-control" name="email" ngModel/>
-          </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" name="password" ngModel/>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">
-              Close
-            </button>
-            <button type="button" class="btn btn-primary" (click)="login(loginForm)"  >Login</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-
-
-
-</div> -->
