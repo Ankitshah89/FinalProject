@@ -36,7 +36,6 @@ export class BusinessComponent implements OnInit {
 
   yelpReviews: YelpReview[] = [];
 
-
   newComment: ArticleComment;
   reviews: Review[] = [];
   articleList: Article[] = [];
@@ -50,11 +49,8 @@ export class BusinessComponent implements OnInit {
     private yelpApiSvc: YelpApiService,
     private authService: AuthService,
     private actRouter: ActivatedRoute,
-    private articleCommentService : ArticleCommentService,
+    private articleCommentService: ArticleCommentService,
     private articleSvc: ArticleService
-
-
-
   ) {}
 
   categories = ['All', 'Sports', 'Entertainment', 'Shopping'];
@@ -62,7 +58,7 @@ export class BusinessComponent implements OnInit {
   selectedType = 'All';
 
   ngOnInit(): void {
-    this.actRouter.params.subscribe(routeParams => {
+    this.actRouter.params.subscribe((routeParams) => {
       this.getIndividualBusiness();
     });
 
@@ -73,7 +69,6 @@ export class BusinessComponent implements OnInit {
   }
 
   getIndividualBusiness() {
-
     console.log(
       'i will populate the business info for ' +
         localStorage.getItem('businessId')
@@ -81,11 +76,9 @@ export class BusinessComponent implements OnInit {
 
     this.businessSvc.businessById(localStorage.getItem('businessId')).subscribe(
       (result) => {
-
         this.individualBusiness = Object.assign({}, result);
         localStorage.setItem('phone', result.phone);
         this.displayYelpReviews();
-
       },
       (error) => {
         console.log(error);
@@ -148,9 +141,9 @@ export class BusinessComponent implements OnInit {
     }
   }
 
-  showComments() {
-    var commentBox = document.getElementById('commentDiv');
-    var btnText = document.getElementById('divBtn');
+  showComments(aid: string) {
+    var commentBox = document.getElementById('commentDiv' + aid);
+    var btnText = document.getElementById('divBtn' + aid);
 
     if (commentBox.style.display === 'none') {
       commentBox.style.display = 'block';
@@ -166,13 +159,12 @@ export class BusinessComponent implements OnInit {
     this.articleSvc.indexUserArt().subscribe(
       (yes) => {
         this.articleList = yes;
-        this. getArticleComments();
+        this.getArticleComments();
         console.log(this.articleList);
       },
       (no) => {}
     );
   }
-
 
   getArticleComments() {
     this.articleList.forEach((article) => {
@@ -191,7 +183,6 @@ export class BusinessComponent implements OnInit {
   }
 
   getUserReviews() {
-
     this.review.indexReviewById(this.user.id).subscribe(
       (yay) => {
         this.reviews = yay;
@@ -203,18 +194,16 @@ export class BusinessComponent implements OnInit {
     );
   }
 
+  postArticleComment(articleCommentForm: NgForm, articleId: number) {
+    //  this.articleList.forEach((article) => {
 
-
- postArticleComment(articleCommentForm: NgForm,articleId :number) {
-  //  this.articleList.forEach((article) => {
-
-console.log(articleId);
-  console.log(articleCommentForm);
-  console.log(articleCommentForm.value);
+    console.log(articleId);
+    console.log(articleCommentForm);
+    console.log(articleCommentForm.value);
     var commentData: ArticleComment = articleCommentForm.value;
 
-  console.log(commentData);
-    delete  commentData.articleId;
+    console.log(commentData);
+    delete commentData.articleId;
 
     console.log('this is the comment content' + commentData.content);
     console.log('this is the comment articleid' + articleId);
@@ -230,17 +219,9 @@ console.log(articleId);
         console.log('error posting new comment' + this.newComment);
       }
     );
-
   }
 
   reloadAgain() {
     this.getArticleComments();
   }
-
-
-
-
-
-
-  }
-
+}
