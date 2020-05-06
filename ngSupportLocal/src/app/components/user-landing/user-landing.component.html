@@ -2,17 +2,6 @@
   <app-left-side-bar></app-left-side-bar>
   <div id="page-content-wrapper">
     <!-- Profile header and image -->
-    <div class="row justify-content-center align-self-center mt-5 mb-4">
-      <div class="row no-gutters">
-        <div class="col-md-12">
-          <img
-            src="{{ loggedInUser.userImageUrl }}"
-            class="card-img rounded-circle img-thumbnail profile-img"
-            alt="..."
-          />
-        </div>
-      </div>
-    </div>
 
     <!-- Navigation Links and body -->
     <ul ngbNav #nav="ngbNav" class="nav-tabs justify-content-center">
@@ -21,15 +10,24 @@
         <a ngbNavLink>My Info</a>
         <ng-template ngbNavContent class="mx-2">
           <div class="jumbotron jumbotron-fluid text-center">
-            <div class="container">
-              <h1 class="display-4">
-                {{ loggedInUser.firstName }} {{ loggedInUser.lastName }}
-              </h1>
-              <p class="lead">
-                {{ loggedInUser.email }} <br />
-                {{ loggedInUser.phone }}<br />
-              </p>
+            <div class="row justify-content-center align-self-center mt-5 mb-4">
+              <div class="row no-gutters">
+                <div class="col-md-12">
+                  <img
+                    src="{{ loggedInUser.userImageUrl }}"
+                    class="card-img rounded-circle img-thumbnail profile-img"
+                    alt="..."
+                  />
+                </div>
+              </div>
             </div>
+            <h1 class="display-4">
+              {{ loggedInUser.firstName }} {{ loggedInUser.lastName }}
+            </h1>
+            <p class="lead">
+              {{ loggedInUser.email }} <br />
+              {{ loggedInUser.phone }}<br />
+            </p>
           </div>
         </ng-template>
       </li>
@@ -56,20 +54,8 @@
                     </a>
                   </div>
                 </div>
-                <!-- Grid column -->
-
-                <!-- Grid column -->
                 <div class="col-md-7 text-md-left ml-3 mt-3">
-                  <!-- Excerpt -->
-                  <!-- <a href="#!" class="green-text">
-                    <h6 class="h6 pb-1">
-                      <i class="fas fa-desktop pr-1"></i> Articles
-                    </h6>
-                  </a> -->
-
                   <h4 class="h4 mb-4">{{ item.title }}</h4>
-                  <!-- <h4 class="h4 mb-4">TITLE</h4> -->
-
                   <h5 class="font-weight-normal">
                     by
                     <a
@@ -82,19 +68,14 @@
 
                   <p>
                     {{ item.content }}
-                    <!-- <span id="dots">...</span
-                    ><span id="more"> </span> -->
                   </p>
 
-                  <p
-                    id="dots"
-                    style="
-                      display: -webkit-box;
-                      -webkit-line-clamp: 3;
-                      -webkit-box-orient: vertical;
-                      overflow: hidden;
-                    "
-                  ></p>
+                  <a
+                    href="#/article-detail/{{ item.id }}"
+                    class="stretched-link"
+                  >
+                    continue reading...
+                  </a>
                   <!-- <button (click)="myFunction()" id="myBtn">Read more</button> -->
                 </div>
                 <!-- Grid column -->
@@ -145,13 +126,6 @@
                             </div>
                           </li>
                         </ul>
-                        <a
-                          href="#/article-detail/{{ item.id }}"
-                          class="stretched-link"
-                        >
-                          write a comment
-                        </a>
-
                         <form
                           name="article-comment"
                           class="mr-auto"
@@ -213,9 +187,6 @@
           </div>
         </ng-template>
       </li>
-
-
-
 
       <!-- ////////////////////////////////////////////////////// -->
       <!-- Reviews Link and body -->

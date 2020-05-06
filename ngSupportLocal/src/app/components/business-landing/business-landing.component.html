@@ -95,12 +95,6 @@
 
       <!-- Articles Link and body -->
 
-
-
-
-
-
-
       <li [ngbNavItem]="2">
         <a ngbNavLink (click)="loadUserArticles()">My Articles</a>
         <ng-template ngbNavContent>
@@ -113,7 +107,7 @@
                   <!-- Featured image -->
                   <div class="view overlay">
                     <img
-                      src={{item.imageUrl}}
+                      src="{{ item.imageUrl }}"
                       class="img-fluid"
                       alt="Sample image for first version of blog listing"
                     />
@@ -137,41 +131,55 @@
                   <!-- <h4 class="h4 mb-4">TITLE</h4> -->
 
                   <h5 class="font-weight-normal">
-                    by <a><strong>{{item.user.firstName}} {{item.user.lastName}}</strong></a
+                    by
+                    <a
+                      ><strong
+                        >{{ item.user.firstName }}
+                        {{ item.user.lastName }}</strong
+                      ></a
                     >, {{ item.createAt }}
                   </h5>
 
                   <p>
                     {{ item.content }}
-                    <!-- <span id="dots">...</span
-                    ><span id="more"> </span> -->
                   </p>
-
-                  <p
-                    id="dots"
-                    style="
-                      display: -webkit-box;
-                      -webkit-line-clamp: 3;
-                      -webkit-box-orient: vertical;
-                      overflow: hidden;
-                    "
-                  ></p>
-                   <!-- <button (click)="myFunction()" id="myBtn">Read more</button> -->
+                  <a
+                    href="#/article-detail/{{ item.id }}"
+                    class="stretched-link"
+                  >
+                    continue reading...
+                  </a>
                 </div>
-                <!-- Grid column -->
               </div>
 
-               <div class="row bootstrap snippets">
+              <div class="row bootstrap snippets">
                 <div class="col-md-12 col-md-offset-2 col-sm-12">
                   <div class="comment-wrapper">
                     <div class="panel panel-info">
-                      <div class="panel-body" id="commentDiv">
+                      <div class="panel-heading">
+                        <a
+                          href=""
+                          onclick="return false"
+                          (click)="showComments(item.id)"
+                          id="divBtn{{ item.id }}"
+                        >
+                          Show Comment
+                        </a>
+                      </div>
+                      <div
+                        class="panel-body"
+                        id="commentDiv{{ item.id }}"
+                        style="display: none;"
+                      >
                         <hr />
                         <ul class="media-list">
-                          <li class="media" *ngFor="let comment of item.articleComments">
+                          <li
+                            class="media"
+                            *ngFor="let comment of item.articleComments"
+                          >
                             <a href="#" class="pull-left">
                               <img
-                                src={{comment.user.userImageUrl}}
+                                src="{{ comment.user.userImageUrl }}"
                                 alt=""
                                 class="rounded-circle"
                               />
@@ -190,193 +198,48 @@
                           </li>
                         </ul>
 
-
                         <form
-                        name="article-comment"
-                        class="mr-auto"
-                        #articleCommentForm="ngForm"
-                        ngNativeValidate
-                        id="articleCommentForm"
-                      >
-                        <input type="hidden" name="articleId" value="{{item.id}}"
-                        ngModel />
-                        <div class="form-group">
-                          <textarea
-                            name="content"
-                            class="form-control"
-                            placeholder="write a comment..."
-                            rows="3"
-
-                            ngModel
-                          ></textarea>
-
-                        </div>
-                        <button
-                          class="pull-right btn btn-danger"
-                          (click)="postArticleComment(articleCommentForm, item.id)"
-                          type = "reset"
+                          name="article-comment"
+                          class="mr-auto"
+                          #articleCommentForm="ngForm"
+                          ngNativeValidate
+                          id="articleCommentForm"
                         >
-                          Submit
-                        </button>
-                      </form>
-                      <br />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-
-              </div>
-
-
-
-
-
-
-
-
-
-
-
-
-              <div class="row bootstrap snippets">
-                <div class="col-md-12 col-md-offset-2 col-sm-12">
-                  <div class="comment-wrapper">
-                    <div class="panel panel-info">
-                      <div class="panel-heading">
+                          <input
+                            type="hidden"
+                            name="articleId"
+                            value="{{ item.id }}"
+                            ngModel
+                          />
+                          <div class="form-group">
+                            <textarea
+                              name="content"
+                              class="form-control"
+                              placeholder="write a comment..."
+                              rows="3"
+                              ngModel
+                            ></textarea>
+                          </div>
+                          <button
+                            class="pull-right btn btn-danger"
+                            (click)="
+                              postArticleComment(articleCommentForm, item.id)
+                            "
+                            type="reset"
+                          >
+                            Submit
+                          </button>
+                        </form>
                         <br />
-                        <!-- Comment panel -->
-
-                        <br />
-<!-- //////////////////// New section for comments////////////// -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ???????????????????????????????????????????????????????????????????? -->
-                        <!-- Comment panel -->
-
-                        <button (click)="showComments()" id="divBtn">
-                          Show Comment
-                        </button>
-                      </div>
-
-
-
-                      <div
-                        class="panel-body"
-                        id="commentDiv"
-                        style="display: none;"
-                      >
-                        <div class="clearfix"></div>
-                        <hr />
-                        <ul class="media-list">
-                          <li class="media">
-                            <a href="#" class="pull-left">
-                              <img
-                                src="https://bootdey.com/img/Content/user_1.jpg"
-                                alt=""
-                                class="rounded-circle"
-                              />
-                            </a>
-                            <div class="media-body">
-                              <span class="text-muted pull-right">
-                                <small class="text-muted"
-                                  >4-20-2020 11:15am</small
-                                >
-                              </span>
-                              <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Lorem ipsum dolor sit amet,
-                                <a href="#">#consecteturadipiscing </a>.
-                              </p>
-                            </div>
-                          </li>
-                          <li class="media">
-                            <a href="#" class="pull-left">
-                              <img
-                                src="assets/images/chrissy.jpg"
-                                alt=""
-                                class="rounded-circle"
-                              />
-                            </a>
-                            <div class="media-body">
-                              <span class="text-muted pull-right">
-                                <small class="text-muted"
-                                  >4-20-2020 11:30am</small
-                                >
-                              </span>
-                              <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Lorem ipsum dolor
-                                <a href="#">#ipsumdolor </a>adipiscing elit.
-                              </p>
-                            </div>
-                          </li>
-                          <li class="media">
-                            <a href="#" class="pull-left">
-                              <img
-                                src="https://bootdey.com/img/Content/user_3.jpg"
-                                alt=""
-                                class="rounded-circle"
-                              />
-                            </a>
-                            <div class="media-body">
-                              <span class="text-muted pull-right">
-                                <small class="text-muted"
-                                  >4-20-2020 11:35am</small
-                                >
-                              </span>
-                              <p>
-                                Lorem ipsum dolor <a href="#">#sitamet</a> sit
-                                amet, consectetur adipiscing elit.
-                              </p>
-                            </div>
-                          </li>
-                        </ul>
-                        <textarea
-                          class="form-control"
-                          placeholder="write a comment..."
-                          rows="3"
-                        ></textarea>
-                        <br />
-                        <button type="button" class="btn btn-info pull-right">
-                          Post
-                        </button>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-
           </div>
         </ng-template>
       </li>
-
-
-
-
-
-
-
-
-
 
       <!-- Reviews Link and body -->
       <li [ngbNavItem]="3">
@@ -435,8 +298,8 @@
           </div>
         </ng-template>
       </li>
-
-      <!-- Favorites Link and Body -->
+      <!--
+      <!-- Favorites Link and Body
       <li [ngbNavItem]="4">
         <a ngbNavLink>My Favorites</a>
         <ng-template ngbNavContent>
@@ -475,8 +338,8 @@
             </div>
           </div>
         </ng-template>
-      </li>
-      <li [ngbNavItem]="5">
+      </li> -->
+      <li [ngbNavItem]="4">
         <a ngbNavLink>Write Article</a>
         <ng-template ngbNavContent class="mx-2">
           <div class="container">
@@ -518,7 +381,6 @@
               </div>
 
               <a
-                href="#"
                 class="pull-right btn btn-danger"
                 (click)="postBusinessArticle(articleForm)"
                 >Submit</a
@@ -527,7 +389,7 @@
           </div>
         </ng-template>
       </li>
-      <li [ngbNavItem]="6">
+      <li [ngbNavItem]="5">
         <a ngbNavLink>Edit Business Profile</a>
         <!-- How do I do a selector for business? -->
         <ng-template ngbNavContent class="mx-2">
@@ -591,7 +453,7 @@
           </div>
         </ng-template>
       </li>
-      <li [ngbNavItem]="7">
+      <li [ngbNavItem]="6">
         <a ngbNavLink>Edit Address</a>
         <ng-template ngbNavContent class="mx-2">
           <div class="container">
