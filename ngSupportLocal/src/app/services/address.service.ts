@@ -9,115 +9,108 @@ import { Address } from './../models/address';
 import { throwError } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AddressService {
-
   constructor(
     private http: HttpClient,
     private authService: AuthService,
     private router: Router
-  ) {
-
-  }
+  ) {}
   private url = environment.baseUrl + 'api/addresses/';
 
   public index() {
-    return this.http.get<Address[]>(this.url)
-      .pipe(
-        catchError((err: any) => {
-          console.log(err);
-          return throwError('Index list of addresses could not be found');
-
-        })
-      );
+    return this.http.get<Address[]>(this.url).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Index list of addresses could not be found');
+      })
+    );
   }
 
   public addressId(id: number) {
-    return this.http.get<Address>(this.url + id)
-      .pipe(
-        catchError((err: any) => {
-          console.log(err);
-          return throwError('Could not find address by index: ' + id)
-
-        })
-      );
+    return this.http.get<Address>(this.url + id).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Could not find address by index: ' + id);
+      })
+    );
   }
 
   public createAddress(newAddress: Address) {
-
-
     const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Basic ${credentials}`
-      })
+        Authorization: `Basic ${credentials}`,
+      }),
     };
     if (this.authService.checkLogin()) {
       return this.http.post<any>(this.url, newAddress, httpOptions).pipe(
         catchError((err: any) => {
           console.log(err);
+          console.log(
+            'this is newAddress in Serveice' + newAddress.id + newAddress.street
+          );
+
           return throwError('Could not create new Address' + err);
         })
-      )
+      );
     } else {
       this.router.navigateByUrl(`/home`);
-
     }
   }
 
   //Delete
-  public deleteAddress(id: number){
+  public deleteAddress(id: number) {
     const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Basic ${credentials}`
-      })
+        Authorization: `Basic ${credentials}`,
+      }),
     };
-    if(this.authService.checkLogin()) {
-      return this.http.delete<any>(this.url + id, httpOptions)
-      .pipe(
-        catchError((err : any) =>{
-        console.log(err);
-        return throwError('Could not delete address with id: ' + id);
+    if (this.authService.checkLogin()) {
+      return this.http.delete<any>(this.url + id, httpOptions).pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('Could not delete address with id: ' + id);
         })
       );
     }
   }
 
   //Update
-  public updateAddress(address: Address){
+  public updateAddress(address: Address) {
     const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Basic ${credentials}`
-      })
+        Authorization: `Basic ${credentials}`,
+      }),
     };
-    if (this.authService.checkLogin()){
-      return this.http.put<Address>(this.url + address.id, address, httpOptions)
-      .pipe(
-        catchError((err: any) =>{
-          console.log(err);
-          return throwError('Could not update address with id: ' + address.id);
-
-        })
-      )
-    };
+    if (this.authService.checkLogin()) {
+      return this.http
+        .put<Address>(this.url + address.id, address, httpOptions)
+        .pipe(
+          catchError((err: any) => {
+            console.log(err);
+            return throwError(
+              'Could not update address with id: ' + address.id
+            );
+          })
+        );
+    }
   }
 
-  public generalSearch(keyword: string){
-    return this.http.get<Address[]>(this.url + 'search/' + keyword).
-    pipe(
+  public generalSearch(keyword: string) {
+    return this.http.get<Address[]>(this.url + 'search/' + keyword).pipe(
       catchError((err: any) => {
         console.log(err);
-        return throwError('Could not retrieve list of Addresses using search: ' + keyword);
-
+        return throwError(
+          'Could not retrieve list of Addresses using search: ' + keyword
+        );
       })
-    )
+    );
   }
-
-
 }

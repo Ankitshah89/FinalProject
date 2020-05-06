@@ -2,31 +2,38 @@
   <app-left-side-bar></app-left-side-bar>
   <div id="page-content-wrapper">
     <!-- Profile header and image -->
+    <div
+      class="row justify-content-center align-self-center profile-background mx-1 pt-3"
+      style="height: 225px;"
+    >
+      <div class="row no-gutters">
+        <div class="col-md-12">
+          <img
+            src="{{ loggedInUser.userImageUrl }}"
+            class="card-img rounded-circle img-thumbnail profile-img"
+            alt="..."
+          />
+        </div>
+      </div>
+    </div>
 
     <!-- Navigation Links and body -->
-    <ul ngbNav #nav="ngbNav" class="nav-tabs justify-content-center">
+    <ul ngbNav #nav="ngbNav" class="justify-content-center mt-2">
       <!-- Info Link tab and body -->
       <li [ngbNavItem]="1">
         <a ngbNavLink>My Info</a>
         <ng-template ngbNavContent class="mx-2">
-          <div class="jumbotron jumbotron-fluid text-center">
-            <div class="row justify-content-center align-self-center mt-5 mb-4">
-              <div class="row no-gutters">
-                <div class="col-md-12">
-                  <img
-                    src="{{ loggedInUser.userImageUrl }}"
-                    class="card-img rounded-circle img-thumbnail profile-img"
-                    alt="..."
-                  />
-                </div>
-              </div>
-            </div>
-            <h1 class="display-4">
+          <div class="justify-content-center text-center">
+            <!-- <div class="jumbotron jumbotron-fluid text-center"> -->
+            <h1 class="display-4" style="font-family: Beth Ellen;">
               {{ loggedInUser.firstName }} {{ loggedInUser.lastName }}
             </h1>
-            <p class="lead">
-              {{ loggedInUser.email }} <br />
-              {{ loggedInUser.phone }}<br />
+            <p class="lead m-2">
+              <a href="mailto:{{ loggedInUser.email }}">{{
+                loggedInUser.email
+              }}</a>
+              <br />
+              <a href="tel:+1{{ phone }}"> {{ phone }}</a> <br />
             </p>
           </div>
         </ng-template>
@@ -58,15 +65,23 @@
                   <h4 class="h4 mb-4">{{ item.title }}</h4>
                   <h5 class="font-weight-normal">
                     by
-                    <a
-                      ><strong
-                        >{{ item.user.firstName }}
-                        {{ item.user.lastName }}</strong
-                      ></a
-                    >, {{ item.createAt }}
+
+                    <strong
+                      >{{ item.user.firstName }}
+                      {{ item.user.lastName }}</strong
+                    >
+                    , {{ item.createAt | date: "MMM d, y h:mm a" }}
                   </h5>
 
-                  <p>
+                  <p
+                    id="dots"
+                    style="
+                      display: -webkit-box;
+                      -webkit-line-clamp: 3;
+                      -webkit-box-orient: vertical;
+                      overflow: hidden;
+                    "
+                  >
                     {{ item.content }}
                   </p>
 
@@ -106,15 +121,17 @@
                             class="media"
                             *ngFor="let comment of item.articleComments"
                           >
-                            <a href="#" class="pull-left">
-                              <img
-                                src="{{ comment.user.userImageUrl }}"
-                                alt=""
-                                class="rounded-circle"
-                              />
-                            </a>
-                            {{ comment.user.firstName }}
-                            <div class="media-body">
+                            <div class="row justify-content-center">
+                              <a href="#" class="pull-left">
+                                <img
+                                  src="{{ comment.user.userImageUrl }}"
+                                  alt=""
+                                  class="rounded-circle"
+                                />
+                                {{ comment.user.firstName }}
+                              </a>
+                            </div>
+                            <div class="media-body my-auto">
                               <span class="text-muted pull-right">
                                 <small class="text-muted">{{
                                   comment.createDate | date: "MMM d, y h:mm a"
@@ -159,25 +176,6 @@
                           </button>
                         </form>
                         <br />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="row bootstrap snippets">
-                <div class="col-md-12 col-md-offset-2 col-sm-12">
-                  <div class="comment-wrapper">
-                    <div class="panel panel-info">
-                      <div class="panel-heading">
-                        <br />
-                        <!-- Comment panel -->
-
-                        <br />
-                        <!-- //////////////////// New section for comments////////////// -->
-
-                        <!-- ???????????????????????????????????????????????????????????????????? -->
-                        <!-- Comment panel -->
                       </div>
                     </div>
                   </div>

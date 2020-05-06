@@ -9,7 +9,7 @@
     <li data-target="#homeCarousel" data-slide-to="2"></li>
   </ol>
   <div class="carousel-inner">
-    <div class="carousel-item shadow active mb-4">
+    <div class="carousel-item shadow active mb-4" data-interval="4000">
       <img
         class="d-block w-100"
         src="assets/images/unionstation.jpg"
@@ -25,6 +25,7 @@
     </div>
     <div
       class="carousel-item shadow flex-column align-items-center justify-content-center mb-4"
+      data-interval="4000"
     >
       <img
         class="d-block w-100"
@@ -41,6 +42,7 @@
     </div>
     <div
       class="carousel-item shadow d-flex h-100 justify-content-center align-items-center mb-4"
+      data-interval="4000"
     >
       <img
         class="d-block w-100"
@@ -97,7 +99,6 @@
           <h5 class="font-weight-normal">
             by
             <a>
-
               <!-- <a
               href="#!"
               class="green-text"
@@ -109,26 +110,26 @@
                 href="#!"
                 class="green-text"
                 routerLink="/businesses/info/{{article.business.id}}" -->
-                <a  href="#!" class="green-text"
-                (click)="showIndividualBusiness(article.business.id)">
-                <h4 class="h4 mb-3" >{{ article.business.name }}</h4></a>
+                <a
+                  href="#!"
+                  class="green-text"
+                  (click)="showIndividualBusiness(article.business.id)"
+                >
+                  <h4 class="h4 mb-3">{{ article.business.name }}</h4></a
+                >
                 <!-- ><h4 class="h4 mb-3">{{ article.business.name}}  {{article.business.id}}</h4> -->
                 <!-- </a> -->
               </strong>
-              <strong *ngIf="!article.business"
-                >
+              <strong *ngIf="!article.business">
                 <a
-                href="#!"
-                class="green-text"
-                routerLink="/user/{{article.user.id}}"
-
-                ><h4 class="h4 mb-3">{{ article.user.firstName}}  {{article.user.lastName}}</h4></a
-              >
-
-
-
-              </strong
-              >
+                  href="#!"
+                  class="green-text"
+                  routerLink="/user/{{ article.user.id }}"
+                  ><h4 class="h4 mb-3">
+                    {{ article.user.firstName }} {{ article.user.lastName }}
+                  </h4></a
+                >
+              </strong>
             </a>
             on {{ article.createAt | date: "MMM d, y h:mm a" }}
           </h5>

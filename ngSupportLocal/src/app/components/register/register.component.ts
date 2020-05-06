@@ -11,12 +11,11 @@ import { Business } from 'src/app/models/business';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-
   userRole = 'User';
-
+  country: string = 'USA';
   constructor(
     private router: Router,
     private auth: AuthService,
@@ -46,7 +45,8 @@ export class RegisterComponent implements OnInit {
       formData.street2,
       formData.city,
       formData.state,
-      formData.postalCode
+      formData.postalCode,
+      this.country
     );
 
     const business: Business = new Business(
@@ -80,9 +80,11 @@ export class RegisterComponent implements OnInit {
                   console.log(
                     'RegisterComponent.register(): business registered.'
                   );
-                  console.log(good);
+                  console.log('new business' + good);
 
                   address.business = good;
+                  console.log('this is address after business added' + address);
+
                   this.addressSvc.createAddress(address).subscribe(
                     (yes) => {
                       console.log(
@@ -107,7 +109,7 @@ export class RegisterComponent implements OnInit {
                   console.error(bad);
                 }
               );
-            }else{
+            } else {
               this.router.navigateByUrl('/user-landing');
               userForm.reset();
             }
@@ -123,5 +125,4 @@ export class RegisterComponent implements OnInit {
       }
     );
   }
-
 }

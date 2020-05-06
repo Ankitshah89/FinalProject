@@ -1,3 +1,26 @@
+$link: slategray;
+$hover: chocolate;
+
+#navbarSearch {
+  border: 1px $link !important;
+}
+
+a:hover {
+  color: $hover !important;
+}
+
+body a:hover {
+  color: $hover !important;
+}
+
+.nav-scroller a:hover {
+  color: $hover !important;
+}
+
+svg {
+  color: chocolate !important;
+}
+
 .blog-header {
   line-height: 1;
   border-bottom: 1px solid #e5e5e5;
@@ -54,6 +77,10 @@ h6 {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
   font-size: 0.875rem;
+}
+
+.nav-scroller a {
+  color: $link !important;
 }
 
 .validation {

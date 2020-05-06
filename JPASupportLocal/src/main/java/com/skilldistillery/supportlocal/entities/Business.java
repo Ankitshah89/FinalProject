@@ -43,7 +43,7 @@ public class Business {
 	private LocalDate createdAt;
 
 	@OneToOne(mappedBy = "business")
-	@JsonIgnoreProperties(value = "business")
+	@JsonIgnoreProperties(value = "business", allowSetters= true)
 	private Address address;
 
 	@Column(name = "image_url")
