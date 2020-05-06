@@ -66,6 +66,7 @@ export class BusinessComponent implements OnInit {
     this.getIndividualBusiness();
     this.logReviews();
     this.loadBusiness();
+    this.displayYelpReviews();
   }
 
   getIndividualBusiness() {
@@ -74,7 +75,7 @@ export class BusinessComponent implements OnInit {
         localStorage.getItem('businessId')
     );
 
-    this.businessSvc.businessById(localStorage.getItem('businessId')).subscribe(
+    this.businessSvc.businessById(this.authService.getCurrentBusinessId()).subscribe(
       (result) => {
         this.individualBusiness = Object.assign({}, result);
         localStorage.setItem('phone', result.phone);
@@ -154,9 +155,9 @@ export class BusinessComponent implements OnInit {
     }
   }
 
-  loadUserArticles() {
+  loadBusinessArticles() {
     this.articleList = [];
-    this.articleSvc.indexUserArt().subscribe(
+    this.articleSvc.indexBusArt(Number(this.authService.getCurrentBusinessId())).subscribe(
       (yes) => {
         this.articleList = yes;
         this.getArticleComments();

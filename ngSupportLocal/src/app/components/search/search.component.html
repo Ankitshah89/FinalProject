@@ -46,8 +46,12 @@
           <p class="font-weight-normal">
             <a><strong>Manager</strong></a
             ><br />
-            {{ result.business.manager.firstName }}
-            {{ result.business.manager.lastName }}
+            <a
+            href="#!"
+            class="green-text"
+            routerLink="/user/{{result.business.manager.id}}"
+            ><h4 class="h4 mb-3">{{ result.business.manager.firstName }}  {{result.business.manager.lastName}}</h4></a
+          >
           </p>
         </div>
         <!-- Grid column -->

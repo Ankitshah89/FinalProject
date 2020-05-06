@@ -28,7 +28,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'businesses', component: BusinessesComponent },
-  { path: 'business/:id', component: BusinessComponent},
+  { path: 'businesses/info/:id', component: BusinessComponent},
   { path: 'articles', component: ArticlesComponent },
   { path: 'article-detail/:id', component: ArticleDetailComponent },
   { path: 'reviews', component: ReviewsComponent },

@@ -35,8 +35,14 @@
           <p class="font-weight-normal">
             <a><strong>Manager</strong></a
             ><br />
-            {{ individualBusiness.manager.firstName }}
-            {{ individualBusiness.manager.lastName }}
+
+            <a
+            href="#!"
+            class="green-text"
+            routerLink="/user/{{individualBusiness.manager.id}}"
+            ><h4 class="h4 mb-3">{{ individualBusiness.manager.firstName }}  {{individualBusiness.manager.lastName}}</h4></a
+          >
+
           </p>
         </div>
         <div class="col-md-3 text-md-center my-auto">
@@ -64,11 +70,50 @@
     </div>
     <!-- Navigation Links and body -->
     <ul ngbNav #nav="ngbNav" class="nav-tabs justify-content-center">
-      <!-- Articles Link and body -->
 
+
+
+
+      <!-- Reviews Link and body -->
       <li [ngbNavItem]="1">
-        <a ngbNavLink (click)="loadUserArticles()">My Articles</a>
+        <a ngbNavLink (click)="displayYelpReviews()">Yelp Reviews</a>
+
         <ng-template ngbNavContent>
+          <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+
+
+              <p text-align ="center"> <strong>Overall rating : {{rating}} </strong> </p>
+              <table class="table table-hover">
+                <thead>
+                  <tr >
+                    <th scope="col">UserName</th>
+                    <th scope="col">Review</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor ="let item of yelpReviews[0]">
+
+
+                    <td>{{item.user}}</td>
+                    <td>{{item.text}}</td>
+                  </tr>
+
+                </tbody>
+              </table>
+
+
+            </div>
+          </div>
+        </ng-template>
+      </li>
+
+
+      <!-- Articles Link and body -->
+      <li [ngbNavItem]="2">
+        <a ngbNavLink (click)="loadBusinessArticles()">My Articles</a>
+        <ng-template ngbNavContent >
           <div *ngFor="let item of articleList">
             <div class="jumbotron-fluid text-center hoverable p-4">
               <!-- Grid row -->
@@ -127,7 +172,7 @@
                         </a>
                       </div>
                       <div
-                        <div
+
                         class="panel-body"
                         id="commentDiv{{ item.id }}"
                         style="display: none;"
@@ -207,34 +252,10 @@
         </ng-template>
       </li>
 
-      <!-- Reviews Link and body -->
-      <li [ngbNavItem]="2">
-        <a ngbNavLink (click)="displayYelpReviews()">Yelp Reviews</a>
 
-        <ng-template ngbNavContent>
-          <div class="jumbotron jumbotron-fluid">
-            <div class="container">
-              <p text-align="center">
-                <strong>Overall rating : {{ rating }} </strong>
-              </p>
-              <table class="table table-hover">
-                <thead>
-                  <tr>
-                    <th scope="col">UserName</th>
-                    <th scope="col">Review</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let item of yelpReviews[0]">
-                    <td>{{ item.user }}</td>
-                    <td>{{ item.text }}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </ng-template>
-      </li>
+
+
+
     </ul>
 
     <div [ngbNavOutlet]="nav" class="mt-2"></div>
