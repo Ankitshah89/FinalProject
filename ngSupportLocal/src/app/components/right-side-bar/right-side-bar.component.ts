@@ -45,7 +45,7 @@ export class RightSideBarComponent implements OnInit {
     console.log('******************showing individual business');
     localStorage.setItem('businessId', '');
     localStorage.setItem('businessId', String(id));
-    this.router.navigate(['business/' + id]);
+    this.router.navigate(['businesses/info/' + id]);
   }
 
   randomBus() {

@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { ArticleService } from 'src/app/services/article.service';
 import { FormBuilder } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private artServ: ArticleService,
     private fb: FormBuilder,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private router : Router
   ) {}
 
   ngOnInit(): void {
@@ -62,6 +64,16 @@ export class HomeComponent implements OnInit {
       windowClass: 'fullscreen',
     });
   }
+
+
+  showIndividualBusiness(id){
+    console.log('******************showing individual business');
+    localStorage.setItem("businessId", "");
+    localStorage.setItem("businessId", String(id));
+    this.router.navigate(['business']);
+  }
+
+
 }
 
 // new WOW().init();

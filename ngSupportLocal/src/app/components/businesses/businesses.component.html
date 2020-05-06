@@ -34,7 +34,13 @@
           <p class="font-weight-normal">
             <a><strong>Manager</strong></a
             ><br />
-            {{item.manager.firstName}} {{item.manager.lastName}}
+
+            <a
+            href="#!"
+            class="green-text"
+            routerLink="/user/{{item.manager.id}}"
+            ><h4 class="h4 mb-3">{{ item.manager.firstName }}  {{item.manager.lastName}}</h4></a
+          >
           </p>
         </div>
         </div>

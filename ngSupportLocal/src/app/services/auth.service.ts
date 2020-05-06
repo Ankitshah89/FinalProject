@@ -84,6 +84,11 @@ export class AuthService {
     return localStorage.getItem('userId');
   }
 
+  getCurrentBusinessId() {
+    return localStorage.getItem('businessId');
+  }
+
+
   getLoggedInEmail() {
     console.log('This is the email: ' + localStorage.getItem('email'));
 
