@@ -1,6 +1,6 @@
 <div
   id="homeCarousel"
-  class="carousel slide carousel-fade"
+  class="carousel slide carousel-fade carousel-custom"
   data-ride="carousel"
 >
   <ol class="carousel-indicators">
@@ -157,7 +157,7 @@
 
   <ng-template #readArticleModal let-modal>
     <div class="modal-header">
-      <h4 class="modal-title">{{modalArticle.title}}</h4>
+      <h4 class="modal-title">{{ modalArticle.title }}</h4>
       <button
         type="button"
         class="close"
@@ -168,14 +168,14 @@
       </button>
     </div>
     <div class="modal-body">
-      {{modalArticle.content}}
+      {{ modalArticle.content }}
     </div>
     <div class="modal-footer">
       <button
-      type="button"
-      class="btn btn-light"
-      routerLink="/article-detail/{{modalArticle.id}}"
-      (click)="modal.close('Close click')"
+        type="button"
+        class="btn btn-light"
+        routerLink="/article-detail/{{ modalArticle.id }}"
+        (click)="modal.close('Close click')"
       >
         Comments
       </button>
