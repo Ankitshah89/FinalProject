@@ -97,12 +97,37 @@
           <h5 class="font-weight-normal">
             by
             <a>
-              <strong *ngIf="article.business">{{
-                article.business.name
-              }}</strong>
+
+              <!-- <a
+              href="#!"
+              class="green-text"
+              routerLink="/business/{{item.manager.id}}"
+              ><h4 class="h4 mb-3">{{ item.manager.firstName }}  {{item.manager.lastName}}</h4></a
+            > -->
+              <strong *ngIf="article.business">
+                <!-- <a
+                href="#!"
+                class="green-text"
+                routerLink="/businesses/info/{{article.business.id}}" -->
+                <a  href="#!" class="green-text"
+                (click)="showIndividualBusiness(article.business.id)">
+                <h4 class="h4 mb-3" >{{ article.business.name }}</h4></a>
+                <!-- ><h4 class="h4 mb-3">{{ article.business.name}}  {{article.business.id}}</h4> -->
+                <!-- </a> -->
+              </strong>
               <strong *ngIf="!article.business"
-                >{{ article.user.firstName }}
-                {{ article.user.lastName }}</strong
+                >
+                <a
+                href="#!"
+                class="green-text"
+                routerLink="/user/{{article.user.id}}"
+
+                ><h4 class="h4 mb-3">{{ article.user.firstName}}  {{article.user.lastName}}</h4></a
+              >
+
+
+
+              </strong
               >
             </a>
             on {{ article.createAt | date: "MMM d, y h:mm a" }}
