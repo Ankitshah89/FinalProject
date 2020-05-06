@@ -32,6 +32,7 @@ export class BusinessLandingComponent implements OnInit {
   newComment: ArticleComment;
   reviews: Review[] = [];
   articleList: Article[] = [];
+  phone: string;
 
   constructor(
     private businessSvc: BusinessService,
@@ -200,9 +201,11 @@ export class BusinessLandingComponent implements OnInit {
     this.businessSvc.businessByManager(user).subscribe(
       (good) => {
         const randomArray = good;
+
         randomArray.forEach((business) => {
           console.log('Using this user to find businesses:');
 
+          // business.phone = this.formatPhoneNumber(business.phone);
           console.log(user);
           if (business.active) {
             ////new line
@@ -269,4 +272,18 @@ export class BusinessLandingComponent implements OnInit {
       }
     );
   }
+
+  // formatPhoneNumber = (str) => {
+  //   //Filter only numbers from the input
+  //   let cleaned = ('' + str).replace(/\D/g, '');
+
+  //   //Check if the input is of correct length
+  //   let match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+
+  //   if (match) {
+  //     return '(' + match[1] + ') ' + match[2] + '-' + match[3];
+  //   }
+
+  //   return null;
+  // };
 }

@@ -1,13 +1,15 @@
 <div class="d-flex" id="wrapper">
   <app-left-side-bar></app-left-side-bar>
   <div id="page-content-wrapper">
-    <div class="jumbotron jumbotron-fluid">
+    <div
+      class="jumbotron jumbotron-fluid profile-background mt-1 mx-2 mb-0 shadow"
+    >
       <h1 class="display-4 text-md-center">Search Results</h1>
       <h2 class="display-4 text-md-center">{{ keyword }}</h2>
     </div>
     <!-- News jumbotron -->
     <div
-      class="jumbotron text-center hoverable p-4"
+      class="jumbotron text-center hoverable p-4 mx-2 mt-4 shadow rounded"
       *ngFor="let result of searchResults"
     >
       <!-- Grid row -->
@@ -17,7 +19,7 @@
           <!-- Featured image -->
           <div class="view overlay">
             <img
-              src={{result.business.imageUrl}}
+              src="{{ result.business.imageUrl }}"
               class="img-fluid"
               alt="Sample image for first version of blog listing"
             />
@@ -37,7 +39,12 @@
             </h6>
           </a> -->
 
-          <a  href="#!" class="green-text" (click)="showIndividualBusiness(result.business.id)"><h4 class="h4 mb-3" >{{ result.business.name }}</h4></a>
+          <a
+            href="#!"
+            class="green-text"
+            (click)="showIndividualBusiness(result.business.id)"
+            ><h4 class="h4 mb-3">{{ result.business.name }}</h4></a
+          >
           <p>
             {{ result.street }}<br />
             {{ result.city }}, {{ result.state }} {{ result.postalCode }} <br />
@@ -47,11 +54,14 @@
             <a><strong>Manager</strong></a
             ><br />
             <a
-            href="#!"
-            class="green-text"
-            routerLink="/user/{{result.business.manager.id}}"
-            ><h4 class="h4 mb-3">{{ result.business.manager.firstName }}  {{result.business.manager.lastName}}</h4></a
-          >
+              href="#!"
+              class="green-text"
+              routerLink="/user/{{ result.business.manager.id }}"
+              ><h4 class="h4 mb-3">
+                {{ result.business.manager.firstName }}
+                {{ result.business.manager.lastName }}
+              </h4></a
+            >
           </p>
         </div>
         <!-- Grid column -->

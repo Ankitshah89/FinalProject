@@ -1,0 +1,14 @@
+$link: chocolate;
+
+.profile-img {
+  height: 200px;
+  width: auto;
+}
+
+ul a {
+  color: $link !important;
+}
+
+.profile-background {
+  background: url("/assets/images/businessskyline.jpg") no-repeat center center;
+}
